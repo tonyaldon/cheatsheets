@@ -1,0 +1,202 @@
+% copyright (c): 2019 Tony Aldon <aldon.tony@gmail.com>
+% License: MIT
+
+\begin{picture}(297,210)
+  \put(10,200){
+		\begin{minipage}[t]{85mm}
+
+      \section{emacs workflow}{(2/5)} \
+
+      \begin{fctenv}
+         
+        ido\hyp find\hyp file\hyp other\hyp window |
+        ido\hyp switch\hyp buffer\hyp other\hyp window |
+        delete\hyp other\hyp windows |
+        delete\hyp window
+      \end{fctenv} 
+
+      \subparagraph{specific interfaces}
+
+      \customkeybinding{\klistA{M-u}\sepmodekeyAkeyB\keybox{\klistB{t}{s}{c}}}
+      
+      \begin{fctenv}
+         
+        ta/modify\hyp ui\hyp window\hyp split\hyp toggle |
+        ta/modify\hyp ui\hyp shell\hyp window\hyp below |
+        ta/modify\hyp ui\hyp writing\hyp code 
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \customkeybinding{\klistA{C-c C-u}\sepmodekeyAkeyB\keybox{\klistB{c}{d}}}
+      
+      \begin{fctenv}
+         
+        ta/modify\hyp ui\hyp find\hyp file\hyp custom\hyp emacs |
+        ta/modify\hyp ui\hyp find\hyp file\hyp daily
+      \end{fctenv} 
+
+      \sepwithinsubpar
+
+      \customkeybinding{\klistA{C-c C-u k}\sepmodekeyAkeyB\keybox{\klistB{c}{d}}}
+      
+      \begin{fctenv}
+         
+        ta/save\hyp kill\hyp buffer\hyp custom\hyp emacs |
+        ta/save\hyp kill\hyp buffer\hyp daily
+      \end{fctenv} 
+
+      \subparagraph{switch buffer}
+      
+      \customkeybinding{\klistA{C-x}\sepmodekeyAkeyB\keybox{\klistB{b}{C-b}}}
+      
+      \begin{fctenv}
+
+        ido-switch-buffer |
+        ibuffer
+      \end{fctenv} 
+
+    \end{minipage}
+	}
+
+  \put(105,200){
+		\begin{minipage}[t]{85mm}
+
+      \paragraph{move within buffer}
+
+      \subparagraph{large movements}
+
+      \klistA{M-<}{M->} 
+
+      \begin{fctenv}
+         
+        beginning\hyp of\hyp buffer |
+        end\hyp of\hyp buffer
+      \end{fctenv} 
+
+      \sepwithinsubpar
+      
+      \klistA{<next>}{<prior>}
+
+      \begin{fctenv}
+         
+        scroll\hyp up\hyp command |
+        scroll\hyp down\hyp command 
+      \end{fctenv}
+
+            \sepwithinsubpar
+      
+      \klistA{M-<next>}{M-<prior>} 
+
+      \begin{fctenv}
+         
+        scroll\hyp other\hyp window |
+        scroll\hyp other\hyp window\hyp down |
+      \end{fctenv} 
+
+      \subparagraph{small movements}
+
+      \klistA{C-b}{C-f}{C-n}{C-p}
+
+      \begin{fctenv}
+         
+        backward\hyp char |
+        forward\hyp char |
+        next\hyp line |
+        previous\hyp line
+      \end{fctenv} 
+
+      \subparagraph{word/sentence movements}
+
+      \klistA{M-b}{M-f}{M-a}{M-e}
+
+      \begin{fctenv}
+         
+        backward\hyp word |
+        forward\hyp word     
+        backward\hyp sentence |
+        forward\hyp sentence |
+      \end{fctenv} 
+
+      \subparagraph{line movements}
+
+      \klistA{C-a}{C-e}{M-m}	
+
+		\end{minipage}
+	}
+
+	\put(200,200){
+		\begin{minipage}[t]{85mm}
+
+      \begin{fctenv}
+         
+        move\hyp beginning\hyp of\hyp line |
+        move\hyp end\hyp of\hyp line |
+        back\hyp to\hyp indentation   
+      \end{fctenv} 
+
+      \subparagraph{top/bottom movements}
+      
+      \klistA{M-r}{C-l}	
+
+      \begin{fctenv}
+         
+        move\hyp to\hyp window\hyp line\hyp top\hyp bottom |
+        recenter\hyp top\hyp bottom           
+      \end{fctenv}
+
+      \subparagraph{search}
+
+      \klistA{M-g}\sepmodekeyAkeyB\keybox{\klistB{M-g}{M-n}{M-p}} 
+
+      \begin{fctenv}
+         
+        goto\hyp line |     
+        next\hyp error |    
+        previous\hyp error
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \customkeybinding{\klistA{C-c}\sepmodekeyAkeyB\keybox{\klistB{s}{r}}}
+      
+      \begin{fctenv}
+         
+        isearch\hyp forward |
+        isearch\hyp backward
+      \end{fctenv} 
+
+      \klistA{C-s}{C-r}{M-s o}
+
+      \begin{fctenv}
+         
+        isearch\hyp forward |
+        isearch\hyp backward |
+        occur      
+      \end{fctenv} 
+
+
+      \paragraph{text manipulation}
+
+      \subparagraph{miscellaneous}
+
+      \customkeybinding{\klistA{C-y}{C-o}{M-;}{C-c l}}
+
+      \begin{fctenv}
+
+        yank |
+        open\hyp line |
+        comment\hyp dwim |
+        ta/comment\hyp line
+      \end{fctenv}
+      
+      \sepwithinsubpar
+      
+		\end{minipage}
+	}
+
+  \contact
+  
+\end{picture}
+
+

@@ -1,0 +1,207 @@
+% copyright (c): 2019 Tony Aldon <aldon.tony@gmail.com>
+% License: MIT
+
+\begin{picture}(297,210)
+  \put(10,200){
+		\begin{minipage}[t]{85mm}
+      \section{emacs workflow}{(1/5)} \
+
+      \paragraph{get help}
+
+      \subparagraph{general}
+
+
+      \customkeybinding{\klistA{C-c h}{<f1>}{C-h}}
+      
+      \begin{fctenv}
+
+        help
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \klistA{<f1>}\sepmodekeyAkeyB\keybox{\klistB{?}{b}{f}{k}}
+
+      \begin{fctenv}
+         
+        help\hyp for\hyp help |
+        describe\hyp bindings |
+        describe\hyp function |
+        describe\hyp key
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \klistA{<f1>}\sepmodekeyAkeyB\keybox{\klistB{m}{p}{P}{v}}
+
+      \begin{fctenv}
+         
+        describe\hyp mode |
+        finder\hyp by\hyp keyword |
+        describe\hyp package |
+        describe\hyp variable
+      \end{fctenv}
+      
+      \subparagraph{miscellaneous}
+      
+      \begin{fctenv}
+        
+        apropos\hyp variable |
+        customize |
+        customize\hyp variable |
+        elisp\hyp index\hyp search |
+        list\hyp packages |
+        info |
+        info\hyp display\hyp manual | 
+        info\hyp lookup\hyp symbol |
+        menu\hyp bar\hyp open |
+        <mode-name>\hyp mode |
+        search\hyp emacs\hyp glossary 
+      \end{fctenv}
+      
+		\end{minipage}
+	}
+
+
+  
+  \put(105,200){
+		\begin{minipage}[t]{85mm}
+
+      \paragraph{specific actions}
+
+
+      \subparagraph{general}
+
+      \klistA{C-x}\sepmodekeyAkeyB\keybox{\klistB{C-f}{k}{C-c}}
+
+      \begin{fctenv}
+
+        ido\hyp find\hyp file |
+        ido\hyp kill\hyp buffer |
+        save\hyp buffers\hyp kill\hyp terminal
+      \end{fctenv}
+
+      \subparagraph{save/undo/quit/kill}
+
+      \customkeybinding{\klistA{<f4>}{M-\--}{M-q}{C-c .}}
+      
+      \begin{fctenv}
+        
+        save\hyp buffer |
+        undo |
+        keyboard\hyp quit |
+        kill\hyp buffer
+      \end{fctenv}
+
+
+      \subparagraph{miscellaneous}
+      
+      \klistA{M-x}{C-g}{C-u}{C-\--}
+      
+      \begin{fctenv}
+        
+        execute\hyp extended\hyp command |
+        keyboard\hyp quit |
+        universal\hyp argument |
+        negative\hyp argument 
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \klistA{M-!}{M-=}{C-j}
+
+      \begin{fctenv}
+         
+        shell\hyp command |
+        count\hyp words\hyp region |
+        electric\hyp newline\hyp and\hyp maybe\hyp indent
+      \end{fctenv}
+      
+      \subparagraph{keyboard macro}
+
+      \klistA{C-x}\sepmodekeyAkeyB\keybox{\klistB{(}{)}{e}}
+      
+      \begin{fctenv}
+
+        kmacro\hyp start\hyp macro |
+        kmacro\hyp end\hyp macro |
+        kmacro\hyp end\hyp and\hyp call\hyp macro
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+		\end{minipage}
+	}
+
+	\put(200,200){
+		\begin{minipage}[t]{85mm}
+
+      \klistA{C-x C-k}\sepmodekeyAkeyB\keybox{\klistB{C-c}{C-i}{n}{b}}
+      
+      \begin{fctenv}
+
+        kmacro\hyp set\hyp counter |  
+        kmacro\hyp insert\hyp counter |  
+        kmacro\hyp name\hyp last\hyp macro |  
+        kmacro\hyp bind\hyp to\hyp key
+      \end{fctenv}
+
+      \paragraph{user interface}
+      
+      \subparagraph{switch windows}
+
+      \customkeybinding{\klistA{C-<tab>}}
+      
+      \begin{fctenv}
+         
+        ace\hyp window [a|i|e|w|b|n|f|p|k]
+      \end{fctenv}
+
+      \subparagraph{window size - text scale}
+
+      \customkeybinding{\klistA{<f3>}{<f5>}{<f10>}{<f12>}}
+      
+      \begin{fctenv}
+         
+        shrink\hyp window\hyp horizontally |	 
+        enlarge\hyp window\hyp horizontally |
+        shrink\hyp window |
+        enlarge\hyp window  
+      \end{fctenv} 
+
+      \sepwithinsubpar
+      
+      \klistA{C-x}\sepmodekeyAkeyB\keybox{\klistB{C-+}{C-\--}{C-0}}
+
+      \begin{fctenv}
+         
+        text\hyp scale\hyp adjust |
+        text\hyp scale\hyp adjust |
+        text\hyp scale\hyp adjust
+      \end{fctenv} 
+
+      \subparagraph{delete/split windows}
+
+      \klistA{C-x}\sepmodekeyAkeyB\keybox{\klistB{0}{1}{2}{3}}
+
+      \begin{fctenv}
+         
+        delete\hyp window |
+        delete\hyp other\hyp windows |
+        split\hyp window\hyp below |
+        split\hyp window\hyp right
+      \end{fctenv} 
+
+      \sepwithinsubpar
+
+      \customkeybinding{\klistA{C-c}\sepmodekeyAkeyB\keybox{\klistB{f}{b}{d}{-}}}
+      
+		\end{minipage}
+	}
+
+  \customkeybindingfootnote
+  
+  \contact
+  
+\end{picture}
+

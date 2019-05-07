@@ -1,0 +1,14 @@
+*~
+
+# produced by latex compilation
+*.log
+*.aux
+*.out
+*.pdf
+
+# track pdf in pdf directory
+!pdf/*.pdf
+
+# personal documentation
+*ideas.org
+ext-cheatsheets/*

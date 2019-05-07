@@ -1,0 +1,200 @@
+% copyright (c): 2019 Tony Aldon <aldon.tony@gmail.com>
+% License: MIT
+
+\begin{picture}(297,210)
+  \put(10,200){
+		\begin{minipage}[t]{85mm}
+      \section{emacs workflow}{(4/5)} \ 
+
+      \begin{fctenv}
+
+        dired\hyp find\hyp file |
+        dired\hyp find\hyp file\hyp other\hyp window |
+        dired\hyp create\hyp directory
+      \end{fctenv}
+
+      \subparagraph{move within dired buffer}
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{p}{n}{
+          <}{>}}
+
+      \begin{fctenv}
+
+        dired\hyp previous\hyp line |
+        dired\hyp next\hyp line |
+        dired\hyp prev\hyp dirline |
+        dired\hyp next\hyp dirline
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{M-\{}{M-\}}{
+          \^}}
+
+      \begin{fctenv}
+
+        dired\hyp prev\hyp marked\hyp file|
+        dired\hyp next\hyp marked\hyp file |
+        dired\hyp up\hyp directory
+      \end{fctenv}
+
+      \subparagraph{dired user interface}
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{i}{g}{
+          \$}{M-\$}}
+
+      \begin{fctenv}
+
+        dired\hyp maybe\hyp insert\hyp subdir |
+        revert\hyp buffer |
+        dired\hyp hide\hyp subdir |
+        dired\hyp hide\hyp all
+      \end{fctenv}
+
+      \subparagraph{mark and act}
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{m}{u}{U}{t}}
+
+      \begin{fctenv}
+
+        dired\hyp mark |
+        dired\hyp unmark |
+        dired\hyp unmark\hyp all\hyp marks |
+        dired\hyp toggle\hyp marks
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+		\end{minipage}
+  }	
+
+  \put(105,200){
+
+		\begin{minipage}[t]{85mm}
+
+
+
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{C}{R}{d}{x}{!}}
+
+      \begin{fctenv}
+
+        dired\hyp do\hyp copy |
+        dired\hyp do\hyp rename |
+        dired\hyp flag\hyp file\hyp deletion |
+        dired\hyp do\hyp flagged\hyp delete |
+        dired\hyp do\hyp shell\hyp command
+      \end{fctenv}
+
+      \paragraph{csv-mode}
+
+      \subparagraph{move within}
+
+      \emacsmode{csv\hyp mode}\sepmodekeyAkeyB\klistA{C-M-b}{C-M-f}
+
+      \begin{fctenv}
+
+        backward\hyp sexp |
+        forward\hyp sexp
+      \end{fctenv}
+
+      \subparagraph{handle}
+
+      \emacsmode{csv\hyp mode}\sepmodekeyAkeyB\keyA{C-c}\sepmodekeyAkeyB\keybox{\klistB{C-a}{C-u}{C-t}}
+
+      \begin{fctenv}
+
+        csv\hyp align\hyp fields |
+        csv\hyp unalign\hyp fields |
+        csv\hyp transpose
+      \end{fctenv}
+      
+      \sepwithinsubpar
+      
+      \emacsmode{csv\hyp mode}\sepmodekeyAkeyB\keyA{C-c}\sepmodekeyAkeyB\keybox{\klistB{C-s}{C-n}}
+
+      \begin{fctenv}
+
+        csv\hyp sort\hyp fields |
+        csv\hyp sort\hyp numeric\hyp fields
+      \end{fctenv}
+
+
+
+      \subparagraph{act}
+      \emacsmode{csv\hyp mode}\sepmodekeyAkeyB\keyA{C-c}\sepmodekeyAkeyB\keybox{\klistB{C-k}{C-y}}
+
+      \begin{fctenv}
+
+        csv\hyp kill\hyp fields |
+        csv\hyp yank\hyp fields
+      \end{fctenv}
+
+    \end{minipage}
+	}
+
+	\put(200,200){
+		\begin{minipage}[t]{85mm}
+
+      \paragraph{org-mode}
+
+      \subparagraph{visibility}
+
+      \emacsmode{org-mode}\sepmodekeyAkeyB\klistA{TAB}{S-TAB}
+
+      \begin{fctenv}
+         
+        org\hyp cycle |   
+        org\hyp shifttab
+      \end{fctenv}
+
+      \subparagraph{motion}
+
+      \emacsmode{org-mode}\sepmodekeyAkeyB\klistA{C\hyp c}\sepmodekeyAkeyB\keybox{\klistB{C-p}{C-n}}
+
+      \begin{fctenv}
+         
+        outline\hyp previous\hyp visible\hyp heading |
+        outline\hyp next\hyp visible\hyp heading
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{org-mode}\sepmodekeyAkeyB\klistA{C-c}\sepmodekeyAkeyB\keybox{\klistB{C-f}{C-b}}
+
+      \begin{fctenv}
+         
+        org\hyp forward\hyp heading\hyp same\hyp level |
+        org\hyp backward\hyp heading\hyp same\hyp level
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{org-mode}\sepmodekeyAkeyB\klistA{C-c C-u}
+
+      \begin{fctenv}
+         
+        outline\hyp up\hyp heading
+      \end{fctenv}
+
+
+      \subparagraph{structure editing}
+
+      \emacsmode{org-mode}\sepmodekeyAkeyB\klistA{M-RET}{C-RET}
+
+      \begin{fctenv}
+         
+        org\hyp meta\hyp return |
+        org\hyp insert\hyp heading\hyp respect\hyp content
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{org-mode}\sepmodekeyAkeyB\klistA{C-c}\sepmodekeyAkeyB\keybox{\klistB{-}{*}{C-x c}} 
+
+		\end{minipage}
+	}
+
+  \contact
+
+\end{picture}
+

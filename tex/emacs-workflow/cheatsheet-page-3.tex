@@ -1,0 +1,212 @@
+% copyright (c): 2019 Tony Aldon <aldon.tony@gmail.com>
+% License: MIT
+
+\begin{picture}(297,210)
+  \put(10,200){
+		\begin{minipage}[t]{85mm}
+
+      \section{emacs workflow}{(3/5)} \
+
+      \klistA{M-q}{C-x f}{M-\$}
+
+      \begin{fctenv}
+
+        fill\hyp paragraph |
+        set\hyp fill\hyp column |
+        ispell\hyp word 
+      \end{fctenv}
+
+
+      \subparagraph{replace}
+
+      \customkeybinding{\klistA{C-\$}{C-c q}}
+
+      \begin{fctenv}
+
+        replace\hyp string |
+        query\hyp replace 
+      \end{fctenv}
+
+      \subparagraph{character/word kill}
+
+      \klistA{C-d}{M-d}
+
+      \begin{fctenv}
+         
+        delete\hyp char |
+        kill\hyp word 
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \klistA{<backspace>}{C-<backspace>}
+
+      \begin{fctenv}
+
+        backward\hyp kill\hyp word |
+        delete\hyp backward\hyp char
+      \end{fctenv}
+      
+      \subparagraph{line/sentence/region kill}
+      
+      \customkeybinding{\klistA{C-k}{C-c u}{C-x C-o}}
+
+      \begin{fctenv}
+         
+        kill\hyp line |         
+        ta/kill\hyp line\hyp backward |
+        delete\hyp blank\hyp lines
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \klistA{M-k}{C-w}{M-w}
+
+      \begin{fctenv}
+        
+        kill\hyp sentence |         
+        kill\hyp region |
+        kill\hyp ring\hyp save
+      \end{fctenv}
+
+    \end{minipage}
+	}
+
+  \put(105,200){
+		\begin{minipage}[t]{85mm}
+
+      \subparagraph{mark}
+
+      \klistA{C-<space>}{M-h}{C-x h}
+
+      \begin{fctenv}
+         
+        set\hyp mark\hyp command |
+        mark\hyp paragraph |
+        mark\hyp whole\hyp buffer
+      \end{fctenv}
+
+      \subparagraph{multiple mark}
+
+      \customkeybinding{\klistA{C-c i}{M-n}{M-p}}
+      
+      \begin{fctenv}
+
+        iedit\hyp mode |
+        mc/mark\hyp next\hyp like\hyp this\hyp word |
+        mc/mark\hyp previous\hyp like\hyp this\hyp word 
+      \end{fctenv}
+
+      \customkeybinding{\klistA{C-<}{C->}}
+      
+      \begin{fctenv}
+         
+        mc/mark\hyp previous\hyp like\hyp this
+        mc/mark\hyp next\hyp like\hyp this
+      \end{fctenv}
+
+      \subparagraph{transposing}
+
+      \klistA{C-t}{M-t}{C-x C-t}
+
+      \begin{fctenv}
+        
+        transpose\hyp chars |
+        transpose\hyp words |
+        transpose\hyp lines
+      \end{fctenv}
+
+      \subparagraph{case changes}
+
+      \customkeybinding{\klistA{M-c}\sepmodekeyAkeyB\keybox{\klistB{u}{l}{c}}} 
+
+      
+      \begin{fctenv}
+        
+        upcase\hyp word |
+        downcase\hyp word |
+        capitalize\hyp word
+      \end{fctenv} 
+
+      \sepwithinsubpar
+      
+      \customkeybinding{\klistA{M-c r}\sepmodekeyAkeyB\keybox{\klistB{u}{l}}}
+
+      \begin{fctenv}
+
+        upcase\hyp region |
+        downcase\hyp region
+      \end{fctenv}
+
+		\end{minipage}
+	}
+
+	\put(200,200){
+		\begin{minipage}[t]{85mm}
+
+      \subparagraph{rectangles}
+
+      \klistA{C-x r}\sepmodekeyAkeyB\keybox{\klistB{o}{c}{k}{M-w}}
+
+      \begin{fctenv}
+
+        open\hyp rectangle |
+        clear\hyp rectangle |
+        kill\hyp rectangle |
+        copy\hyp rectangle\hyp as\hyp kill
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \klistA{C-x r}\sepmodekeyAkeyB\keybox{\klistB{y}{t}}
+
+      \begin{fctenv}
+
+        yank\hyp rectangle |
+        string\hyp rectangle 
+      \end{fctenv}
+      
+      \paragraph{dired-mode}
+
+      \subparagraph{miscellaneous}
+
+      \klistA{C-x d}
+
+      \begin{fctenv}
+
+        ido\hyp dired
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{q}{h}{?}}
+
+      \begin{fctenv}
+
+        quit\hyp window |
+        describe\hyp mode |
+        dired\hyp summary
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\klistA{C-x C-q}{C-x C-s}
+
+
+      \begin{fctenv}
+        
+        dired\hyp toggle\hyp read\hyp only |
+        save\hyp buffer
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \emacsmode{dired\hyp mode}\sepmodekeyAkeyB\keybox{\klistB{f}{o}{+}}
+
+
+    \end{minipage}
+	}
+
+  \contact
+\end{picture}
+

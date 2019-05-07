@@ -1,0 +1,233 @@
+% copyright (c): 2019 Tony Aldon <aldon.tony@gmail.com>
+% License: MIT
+
+\begin{picture}(297,210)
+  \put(10,200){
+		\begin{minipage}[t]{85mm}
+      \section{keyboard shortcuts}{(2/3)}{-for linux applications-} \
+
+			\paragraph{chromium}
+
+      \paragraphpart{setting}
+
+      {\footnotesize
+      To profit from Emacs-style text editing shortcuts in chromium
+      text box, you must enable it in GNOME. To enable this style and
+      see the defined keybindings, just run the lines below:
+
+
+        \begin{fctenv} 
+
+          \$ gsettings set
+
+          \hspace{5pt} org.gnome.desktop.interface
+
+          \hspace{5pt} gtk-key-theme "Emacs"
+
+          \$ cat /usr/share/themes/Emacs/
+
+          \hspace{5pt} gtk-3.0/gtk-keys.css
+        \end{fctenv}
+
+
+      The Saka Key extension offers an handy interface to customize
+      keyboard shortcuts to browse the web.
+
+      The Saka extension is an elegant tab search, selection and
+      beyond. \vspace{5pt}
+    }      
+      
+      \paragraphpart{orginal keyboard shortcuts}
+
+      \subparagraph{miscellaneous}
+
+      \klistA{C-l}{C-o}{C-h}
+
+      \begin{fctenv} 
+
+        select location bar |
+        open file |
+        history sidebar
+      \end{fctenv}
+      
+      \sepwithinsubpar
+
+      \klistA{<tab>}{S-<tab>}
+
+      \begin{fctenv} 
+        
+        focus next link or input field |
+        focus previous link or input field
+      \end{fctenv}
+      
+      \sepwithinsubpar
+
+		\end{minipage}
+	}
+
+  \put(105,200){
+		\begin{minipage}[t]{85mm}
+
+      \klistA{C-n}{C-S-w}
+
+      \begin{fctenv} 
+
+        new window |
+        close window
+      \end{fctenv}
+
+      \subparagraph{search}
+      
+      \klistA{C-f}{C-g}{C-S-g}
+
+      \begin{fctenv} 
+
+        find |
+        find again |
+        find Previous
+      \end{fctenv}
+
+      \subparagraph{zoom}
+
+      \klistA{C-+}{C-\--}{C-0}
+      
+      \begin{fctenv} 
+
+        zoom in |
+        zoom out |
+        zoom reset 
+
+      \end{fctenv}
+
+
+      \subparagraph{tabs}
+      
+
+      \klistA{C-t}{C-S-t}{C-r}{C-w}
+
+      \begin{fctenv} 
+
+        new tab |
+        restore tab |
+        refresh tab |
+        close tab 
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \klistA{C-<tab>}{C-S-<tab>}
+
+      \begin{fctenv} 
+
+        next tab |
+        previous tab  
+      \end{fctenv}
+
+      \subparagraph{navigation}
+
+      \klistA{M-<left>}{M-<right>}
+
+      \begin{fctenv} 
+
+        go back |
+        go forward
+      \end{fctenv}
+
+      \subparagraph{dev part}
+
+      \klistA{<f12>}{C-u}
+
+      \begin{fctenv} 
+
+        open developer tool |
+        page source 
+      \end{fctenv}
+
+		\end{minipage}
+	}
+
+	\put(200,200){
+		\begin{minipage}[t]{85mm}
+      
+      
+
+      
+      \paragraphpart{saka key and saka extensions}
+
+      \subparagraph{toggle saka}
+
+      \customkeybinding{\klistA{C-x}}
+      
+      \begin{fctenv} 
+
+        toggle saka
+
+      \end{fctenv}
+
+
+      \subparagraph{link hints}
+
+      \begin{fctenv} 
+
+        hint characters: asurimefqndblwj 
+
+      \end{fctenv}
+      
+      \customkeybinding{\klistA{l}{o l}{o r}}
+
+      \begin{fctenv}
+
+        open link |
+        open link in foreground tab |
+        open link in background tab
+      \end{fctenv}
+
+      \subparagraph{navigation}
+
+      \customkeybinding{\klistA{g b}{g f}{g u}{g r}}
+
+      \begin{fctenv} 
+
+        go back |
+        go forward |
+        go up |
+        go to root 
+      \end{fctenv}
+
+      
+      \subparagraph{scroll}
+
+      \customkeybinding{\klistA{n}{p}{<}{>}}
+
+      \begin{fctenv} 
+
+        scroll half page down |
+        scroll half page up |
+        scroll to top |
+        scroll to bottom 
+      \end{fctenv}
+
+            \subparagraph{zoom}
+
+      \customkeybinding{\klistA{+}{-}{0}}
+      
+      \begin{fctenv} 
+
+        zoom in |
+        zoom out |
+        zoom reset 
+
+      \end{fctenv}
+      \subparagraph{tabs}
+
+      \customkeybinding{\klistA{t}{y t}{y d}}
+
+
+		\end{minipage}
+	}
+
+  
+
+  \contact
+  
+\end{picture}

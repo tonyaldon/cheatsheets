@@ -1,0 +1,412 @@
+% copyright (c): 2019 Tony Aldon <aldon.tony@gmail.com>
+% License: MIT
+
+% --- colors
+\definecolor{mygray}{gray}{.75}
+\definecolor{mygraylight}{gray}{.95}
+\definecolor{mygreen}{RGB}{64, 240, 135}
+\definecolor{mysalmon}{RGB}{254, 169, 118}
+\definecolor{myblack}{RGB}{8, 8, 8}
+\definecolor{mywhite}{RGB}{241, 250, 234}
+
+\pagecolor{mywhite}             % document background color
+\color{myblack}                 % document text color
+
+% --- contact
+\newcommand{\contact}{
+  \put(10,12){
+    \begin{minipage}[t]{277mm}
+      \vspace*{0.3em}
+      {\centering{\color{mygray}\rule{\linewidth}{0.4pt}}}
+      {\footnotesize
+        \begin{tcolorbox}[
+          nobeforeafter,
+          width=5cm,
+          colframe=mywhite,
+          box align=center,
+          size=title,
+          left=0mm,
+          right=0mm]
+          © 2019 Tony Aldon | MIT license
+        \end{tcolorbox}
+        \hfill
+        \tcbset{
+          enhanced,
+          colframe=green,
+          colback=mygraylight,
+          width=5.6cm,
+          nobeforeafter}
+        \begin{tcolorbox}[
+          box align=center,
+          size=title,
+          left=2mm,
+          right=2mm,
+          frame style={
+            left color=mygreen,
+            right color=mywhite},
+          interior style={
+            left color=mygreen,
+            right color=mywhite},
+          shadow={0.5mm}{-0.5mm}{0mm}{myblack}]
+          \url{https://github.com/tonyaldon}
+        \end{tcolorbox}
+        \begin{tcolorbox}[
+          box align=center,
+          size=title,
+          left=2mm,
+          right=2mm,
+          frame style={
+            left color=mygreen,
+            right color=mywhite},
+          interior style={
+            left color=mygreen,
+            right color=mywhite},
+          shadow={0.5mm}{-0.5mm}{0mm}{myblack}]
+          \url{https://twitter.com/tonyaldon}
+        \end{tcolorbox}
+      }
+    \end{minipage}
+  }
+}
+
+% --- external links
+
+\newcommand{\externallink}[3]{
+  {\footnotesize
+    \tcbset{
+      enhanced,
+      before=\vspace{1.2mm},
+      width=#1cm}
+    \begin{tcolorbox}[
+      box align=center,
+      size=title,
+      left=2mm,
+      right=2mm,
+      frame style={
+        left color=mygray,
+        right color=mywhite},
+      interior style={
+        left color=mygray,
+        right color=mywhite},
+      shadow={0.5mm}{-0.5mm}{0mm}{myblack}]
+      \href{#2}{#3}
+    \end{tcolorbox}
+  }
+}
+
+
+
+% --- layout
+\setlength{\unitlength}{1mm}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+\renewcommand{\baselinestretch}{1}
+
+\renewcommand{\section}[3]{
+\tcbox[
+  center,
+  colback=mygreen,
+  colframe=mygray,
+  enhanced,
+  before={\par\pagebreak[0]},
+  box align=base,
+  baseline=2mm,
+  size=title,
+  left=2mm,
+  right=2mm,
+  boxrule=0.4pt,
+  shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+    \tcbox[
+    colback=mywhite,
+    colframe=myblack,
+    enhanced,
+    nobeforeafter,
+    box align=center,
+    size=title,
+    left=2mm,
+    right=2mm,
+    boxrule=0.4pt,
+    shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+      {\color{myblack}{\bfseries{
+            \scshape #1 {\small #2}}}}}}
+  \tcbox[
+  center,
+  before={\vspace{1mm}},
+  colback=mywhite,
+  colframe=mywhite,
+  coltext=myblack,
+  enhanced,
+  box align=center,
+  size=title,
+  left=2mm,
+  right=2mm,
+  boxrule=0.4pt]{
+    {\scshape {\footnotesize #3}}}
+  \tcbox[
+  center,
+  before={\vspace{3mm}},
+  colback=mywhite,
+  colframe=mywhite,
+  coltext=myblack,
+  enhanced,
+  box align=center,
+  size=title,
+  left=2mm,
+  right=2mm,
+  boxrule=0.4pt]{
+    \texttt{{\footnotesize [Keep learning.\,Stay alive.]}}
+}}
+
+\renewcommand{\paragraph}[1]{
+  \tcbox[
+  colback=mysalmon,
+  colframe=mygray,
+  enhanced,
+  before={{\vspace{5mm}\color{myblack}\rule{5mm}{0.4pt}}\hspace{0.5mm}},
+  after={\hspace{0.5mm}{\color{myblack}\hrulefill\vspace{2mm}}},
+  box align=base,
+  baseline=2mm,
+  size=title,
+  left=2mm,
+  right=2mm,
+  boxrule=0.4pt,
+  shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+    \tcbox[
+    colback=mywhite,
+    colframe=myblack,
+    enhanced,
+    nobeforeafter,
+    box align=center,
+    size=title,
+    left=2mm,
+    right=2mm,
+    boxrule=0.4pt,
+    shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+      {\color{myblack}{\bfseries{
+            \scshape #1}}}}}
+}
+
+
+\newcommand{\paragraphpart}[1]{
+  \tcbox[
+  colback=mysalmon,
+  colframe=mygray,
+  enhanced,
+  coltext=myblack,
+  before={{\vspace{2mm}\color{myblack}\rule{5mm}{0.4pt}}\hspace{0.5mm}},
+  after={\hrulefill \vspace{0.5em}},
+  box align=base,
+  top=0.1mm,
+  bottom=0.1mm,
+  left=1.5mm,
+  right=1.5mm,
+  arc=1.5mm,
+  boxrule=0.4pt,
+  shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+  {\scriptsize #1}}
+}
+
+
+\renewcommand{\subparagraph}[1]{
+  {\color{myblack}\rule{5mm}{0.4pt}
+    {\color{myblack}{\tiny #1}}
+    \hrulefill}
+  \hspace{15mm}\vspace{0.5em} \par}
+
+\newcommand{\sepwithinsubpar}{
+  \begin{tcolorbox}[
+    before={\vspace{1mm}\hspace{3.6mm}},
+    width=67.5mm,
+    height=4mm,
+    colframe=mywhite,
+    valign=center,
+    left=0mm,
+    right=0mm]
+    {\color{mygray}\hrulefill}
+  \end{tcolorbox}
+}
+
+% --- keys, emacs mode, command lines
+\newcommand{\keyA}[1]{
+  \tcbox[
+  colback=mygreen,
+  colframe=mygray,
+  enhanced,
+  nobeforeafter,
+  box align=center,
+  size=title,
+  left=1mm,
+  right=1mm,
+  shadow={0.5mm}{-0.5mm}{0mm}{myblack}]{
+    \texttt{#1}}
+}
+
+\newcommand{\keyB}[1]{
+  \tcbox[
+  colback=mywhite,
+  colframe=mygray,
+  enhanced,
+  nobeforeafter,
+  box align=center,
+  size=fbox,
+  left=0mm,
+  right=0mm,
+  shadow={0.5mm}{-0.5mm}{0mm}{myblack}]{
+  \texttt{#1}}}
+
+\newcommand{\emacsmode}[1]{
+  \tcbox[
+  colback=mysalmon,
+  colframe=mygray,
+  enhanced,
+  coltext=myblack,
+  nobeforeafter,
+  box align=center,
+  size=fbox,
+  left=1mm,
+  right=1mm,
+  arc=1.5mm,
+  shadow={0.5mm}{-0.5mm}{0mm}{myblack}]{
+  \texttt{#1}}}
+
+\newcommand{\cmdlines}[1]{
+  \tcbox[
+  colback=mygreen,
+  colframe=mygray,
+  enhanced,
+  coltext=myblack,
+  nobeforeafter,
+  box align=center,
+  size=fbox,
+  left=1mm,
+  right=1mm,
+  arc=2mm,
+  shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+  \texttt{#1}}}
+
+
+% custom keybinding indication
+\newcommand{\customkeybindingbox}{
+\begin{tcolorbox}[
+    nobeforeafter,
+    box align=center,
+    width=5mm,
+    left=0mm,
+    right=0mm,
+    boxrule=0.4pt,
+    colback=mygraylight,
+    colframe=mygray,
+    halign=center,
+    valign=center,
+    square,
+    circular arc]
+    \hyperlink{name}{{\footnotesize ck}}
+  \end{tcolorbox}
+}
+
+\newcommand{\customkeybindingfootnote}{
+  \put(10,21){
+    \begin{minipage}[t]{85mm}
+      {\color{mygray}\rule{35mm}{0.4pt}}
+
+      \customkeybindingbox
+      \tcbox[
+      nobeforeafter,
+      box align=center,
+      size=tight,
+      colback=mywhite,
+      colframe=mywhite]{
+        \hypertarget{name}{\footnotesize{custom keybinding}}}
+    \end{minipage}
+  }
+}
+  
+\newcommand{\customkeybinding}[1]{
+  \leftskip -7.5mm
+  \customkeybindingbox
+  #1
+
+  \leftskip 0mm
+}
+
+% --- separations
+\newcommand{\sepverticalA}{
+  \begin{tcolorbox}[
+    nobeforeafter,
+    width=0.5cm,
+    colframe=mywhite,
+    box align=center,
+    size=title,
+    left=0mm,
+    right=0mm]
+    |
+  \end{tcolorbox}
+}
+
+\newcommand{\sepverticalB}{
+  \begin{tcolorbox}[
+    nobeforeafter,
+    width=0.2cm,
+    colback=mygreen,
+    colframe=mygreen,
+    box align=center,
+    size=title,
+    left=0mm,
+    right=0mm]
+    |
+  \end{tcolorbox}
+}
+
+\newcommand{\sepmodekeyAkeyB}{\hspace{2mm}}
+
+% --- environment for function name
+\newenvironment{fctenv}[1]{     
+  \tcbset{
+    colback=mygraylight,
+    colframe=mygray,
+    enhanced,
+    frame hidden,
+    before={\hspace{5mm}},
+    width=75mm,
+    boxsep=0mm,fontupper=\ttfamily,
+    borderline west={0.4pt}{0mm}{mygray},
+    borderline east={0.4pt}{0mm}{mygray},
+    borderline north={0.4pt}{0mm}{mygray},
+    borderline south={0.4pt}{0mm}{mygray}}
+  \vspace{2mm}
+  \begin{tcolorbox}}  % must open a line to not eat the first letter of the first word
+  {\end{tcolorbox}} % manual page 181 for borderline
+
+
+% --- list of keys
+\makeatletter
+\newcommand{\keybox}[1]{
+  \tcbox[
+  colback=mygreen,
+  colframe=mygray,
+  enhanced,
+  nobeforeafter,
+  box align=center,
+  size=tight,
+  left=1mm,
+  right=1mm,
+  shadow={0.2mm}{-0.2mm}{0mm}{myblack}]{
+    #1
+    }
+}
+
+\newcommand{\klistA}[1]{%
+  \keyA{#1}\klistAchecknextarg}
+\newcommand{\klistAchecknextarg}{
+  \@ifnextchar\bgroup{\klistAgobblenextarg}{}}
+\newcommand{\klistAgobblenextarg}[1]{\sepverticalA\keyA{#1}
+  \@ifnextchar\bgroup{\klistAgobblenextarg}{}}
+
+\newcommand{\klistB}[1]{%
+  \keyB{#1}\sepverticalB\klistBchecknextarg}
+\newcommand{\klistBchecknextarg}{
+  \@ifnextchar\bgroup{\klistBgobblenextarg}{}}
+\newcommand{\klistBgobblenextarg}[1]{\keyB{#1}
+  \@ifnextchar\bgroup{\sepverticalB
+    \klistBgobblenextarg}{}}
+
