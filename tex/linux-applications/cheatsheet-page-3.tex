@@ -4,7 +4,7 @@
 \begin{picture}(297,210)
   \put(10,200){
 		\begin{minipage}[t]{85mm}
-      \section{keyboard shortcuts}{(3/3)}{-for linux applications-} \
+      \section{keyboard shortcuts}{(3/4)}{-for linux applications-} \
 
       \begin{fctenv} 
         
@@ -76,19 +76,73 @@
   \put(105,200){
 		\begin{minipage}[t]{85mm}
 
-      \paragraph{links}
-
-      \externallink{5.5}
-      {https://www.gnu.org/software/bash/manual/bash.html\#Command-Line-Editing}
-      {gnu.org: command line editing}
-
-      \externallink{5.5}
-      {https://key.saka.io/docs/about/introduction}
-      {key.saka.io: saka key introduction}
+      \paragraph{i3 window management}
       
-      \externallink{5.5}
-      {https://saka.io/}
-      {saka.io: saka home page}
+      {\footnotesize
+        When using i3 program, some gnome internal programs are not awailable or
+        reduced to basics stuff. For example, you have to set your keyboard
+        layout by command line interface.
+
+        I use the modular key 'window key' (W) to define some of the key bindings.
+
+        To reload or restart i3, you can run in the terminal 'i3-msg reload'
+        or 'i3-msg restart'.
+      }
+
+      \paragraphpart{direct actions}
+
+      \klistA{<f10>}
+
+      \begin{fctenv} 
+        
+        fullscreen toggle
+      \end{fctenv}
+      
+      \subparagraph{dmenu/kill/exit}
+
+      \klistA{W-m}{W-q}{W-S-q}
+
+      \begin{fctenv} 
+        
+        dmenu |
+        kill focused window |
+        exit i3
+      \end{fctenv}
+
+      \subparagraph{start applications}
+
+      \klistA{W-1}{W-2}{W-3}
+      
+      \begin{fctenv} 
+        
+        emacs |
+        i3-sensible-terminal |
+        chromium-browser
+      \end{fctenv}
+
+      \subparagraph{split}
+
+      \klistA{W-h}{W-m}
+
+      \begin{fctenv} 
+        
+        horizontal split |
+        vertical split
+      \end{fctenv}
+
+      \subparagraph{focus}
+
+      \klistA{W-}\sepmodekeyAkeyB\keybox{\klistB{s}{r}{d}{l}}
+
+      \begin{fctenv} 
+
+        focus left |
+        focus right |
+        focus up |
+        focus down
+      \end{fctenv}
+      
+      
     \end{minipage}
   }
 
@@ -96,9 +150,80 @@
   \put(200,200){
 		\begin{minipage}[t]{85mm}
 
+      \klistA{W-S-}\sepmodekeyAkeyB\keybox{\klistB{s}{r}{d}{l}}
+
+      \begin{fctenv} 
+
+        move left |
+        move right |
+        move up |
+        move down
+      \end{fctenv}
+
+      \subparagraph{workspaces}
+
+      \klistA{C-<f3>}{C-<f4>}{C-<f5>}
+
+      \begin{fctenv} 
+
+        switch to workspace 1 |
+        switch to workspace 2 |
+        switch to workspace 3
+      \end{fctenv}
+
+      \sepwithinsubpar
+      
+      \klistA{W-S-1}{W-S-2}{W-S-3}
+
+      \begin{fctenv} 
+
+        move workspace 1 |
+        move workspace 2 |
+        move workspace 3
+      \end{fctenv}
 
 
+      \paragraphpart{mode layout}
 
+      \klistA{<f3>}
+
+      \begin{fctenv}
+        
+        enter in mode layout
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \emacsmode{layout}\sepmodekeyAkeyB\klistA{<return>}
+
+      \begin{fctenv}
+        
+        quit mode layout
+      \end{fctenv}
+
+
+      \sepwithinsubpar
+
+      \emacsmode{layout}\sepmodekeyAkeyB\keybox{\klistB{u}{i}{e}}
+
+
+      
+      \begin{fctenv}
+        
+        layout stacking |
+        layout tabbed |
+        layout toggle split
+      \end{fctenv}
+
+      \sepwithinsubpar
+
+      \emacsmode{layout}\sepmodekeyAkeyB\keybox{\klistB{p}{n}}
+
+      \begin{fctenv}
+        
+        focus parent |
+        focus child
+      \end{fctenv}
 
     \end{minipage}
   }
