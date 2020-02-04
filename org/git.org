@@ -1,0 +1,122 @@
+#+title: Git tricks
+#+author: Tony Aldon
+
+* settings
+** git-config
+   #+BEGIN_SRC bash
+   git config --global user.name "<my-name>"
+   git config --global user.email "<my-email>"
+   #+END_SRC
+* basics
+** git-init/git-add/git-commit
+   #+BEGIN_SRC bash
+   #+END_SRC
+   #+BEGIN_SRC bash
+   git init
+   git commit --allow-empty -m "Initial commit"
+   git add .
+   git commit -a -m "<my-message>"
+   git commit -F <my-file>
+   #+END_SRC
+** git-branch/git-checkout
+   #+BEGIN_SRC bash
+   git branch <my-branch>
+   git checkout <my-branch>
+   git checkout -b <my-branch>
+   #+END_SRC
+** git-stash
+   #+BEGIN_SRC bash
+   git stash
+   git stash pop
+   git stash pop stash@{1}
+   #+END_SRC
+** git-merge
+   #+BEGIN_SRC bash
+   git merge <my-branch>
+   #+END_SRC
+** git-tag
+   #+BEGIN_SRC bash
+   git tag -a <tag-name> -m "<tag-message>"
+   git tag -a <tag-name> <past-commit-ref>
+   #+END_SRC
+* list
+** git-status/git-config/git-ls-tree
+   #+BEGIN_SRC bash
+   git status
+   git config -l
+   git ls-tree -r master --name-only
+   #+END_SRC
+** git-stash/git-branch
+   #+BEGIN_SRC bash
+   git stash list
+   git branch
+   git branch --merged
+   git branch --merged master
+   git branch --no-merged
+   #+END_SRC
+** git-log/git-reflog
+   #+BEGIN_SRC bash
+   git log
+   git log --stat
+   git log -p
+   git log -p -2
+   git log --oneline
+   git reflog
+   #+END_SRC
+** git-show/git-diff
+   #+BEGIN_SRC bash
+  git show
+  git diff
+   #+END_SRC
+** git-tag/git-show
+   #+BEGIN_SRC bash
+   git tag
+   git tag -l "v1.5.*"
+   git show <tag-name>
+   #+END_SRC
+* delete
+** git-rm
+   #+BEGIN_SRC bash
+   git rm --cached <my-file>
+   #+END_SRC
+
+   First commit your current changes, or you will lose them.
+   #+BEGIN_SRC bash
+   git rm -r --cached .
+   git add .
+   git commit -m "fixed untracked files"
+   #+END_SRC
+** git-commit/git-tag/git-branch/git-rebase
+   #+BEGIN_SRC bash
+   git commit -a --amend -m "<my-new-message>"
+   git tag -d <tag-name>
+   git branch -d <my-branch>
+   git rebase --help
+   #+END_SRC
+** uncommitted
+   #+BEGIN_SRC bash
+   git checkout .
+   git reset --hard
+   #+END_SRC
+* repository
+** git-remote
+   #+BEGIN_SRC bash
+     git remote add origin <remote-url>
+     git remote set-url origin <new-remote-url>
+   #+END_SRC
+** git-clone/git-pull/git-push
+   #+BEGIN_SRC bash
+     git clone <url-repository>
+     git push -u origin master
+     git pull origin master
+     git push origin master
+   #+END_SRC
+** git-tag
+   #+BEGIN_SRC bash
+     git push origin <tag-name>
+     git push origin --tags
+     git push origin --delete <tag-name>
+   #+END_SRC
+* links
+  [[https://git-scm.com/book/en/v2][git-scm.com: the book]]
+  [[https://semver.org/][semver.org: semantic versioning]]
