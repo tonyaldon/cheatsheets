@@ -1,39 +1,19 @@
-<p align="center">
-<a href="images/tony-aldon-github-presents-cheatsheets-small-size.svg">
-<img
-	src="images/tony-aldon-github-presents-cheatsheets-small-size.png"
-	alt="Tony Aldon presents cheatsheets" title="Tony Aldon
-	presents cheatsheets">
-</a>
-<p/>
-
 # About
-`cheatsheets` repository pools all my cheetsheats mainly in linux environment.
+Some valuable computing tricks.
 
-Here, the cheatsheets:
-1. [keyboard shortcuts for linux applications](pdf/cheatsheet-tony-aldon-keyboard-shortcuts-for-linux-applications.pdf)
+Tricks are organize by theme and store as plain text format. To browse
+and take all the power of these notes, I use 
+[org mode](https://orgmode.org/) inside
+[emacs](https://www.gnu.org/software/emacs/). But if you prefer you
+can export those notes you can export them either as pdf or html
+document.
 
-2. [emacs workflow](pdf/cheatsheet-tony-aldon-emacs-workflow.pdf)
+# Cover themes
+Up until now I've started cover part of the following themes:
 
-3. [source code management](pdf/cheatsheet-tony-aldon-source-code-management.pdf)
-
-<p>
-<a href="pdf/cheatsheet-tony-aldon-keyboard-shortcuts-for-linux-applications.pdf">
-<img
-	src="images/tony-aldon-github-cheatsheets-icon-keyboard-shortcuts-for-linux-applications.png"
-	alt="tony aldon: cheatsheets keyboard shortcuts for linux applications" title="">
-</a>
-<a href="pdf/cheatsheet-tony-aldon-emacs-workflow.pdf">
-<img
-	src="images/tony-aldon-github-cheatsheets-icon-emacs-workflow.png"
-	alt="tony aldon: cheatsheets emacs workflow" title="">
-</a>
-<a href="pdf/cheatsheet-tony-aldon-source-code-management.pdf">
-<img
-	src="images/tony-aldon-github-cheatsheets-icon-source-code-management.png"
-	alt="tony aldon: cheatsheets source code management" title="">
-</a>
-<p/>
+1. keyboard shortcuts for linux applications
+2. emacs workflow
+3. source code management
 
 
 # Motivation 
@@ -47,27 +27,14 @@ Here, the cheatsheets:
 * **Fact 4**: "Improve any kind of performance comes from every little
    things you do everyday."
 
-# Get more
-
-In some of the above cheatsheets, custom shortcuts are closely related to
-my custom keyboard layout. If you're interested in, I would urge you
-to have a look at [my keyboard layout.](https://github.com/tonyaldon/keyboard-layout)
-
-
 # Contact
 
-Do you have any question? Do you have any suggestion? Or, do you just
-want to start a chat? Please, feel free to:
+Do you have any question or suggestion? Please, feel free to:
 * leave me a message on twitter <a
 href="http://www.twitter.com/tonyaldon">@tonyaldon</a> 
 * or to email me at aldon.tony@gmail.com. 
 
-Depend on my workflow, but I use to reply within 48 hours.
-
-# Sharing
-
-The more we share knowledge, the more we gain. If you think about a
-friend who could be interested in this work, do not hesitate to let him know.
+I use to reply within 48 hours.
 
 # License
 Project under MIT license
