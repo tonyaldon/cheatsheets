@@ -1,0 +1,68 @@
+#+title: Emacs tricks
+#+author: Tony Aldon
+
+* js-mode
+  ~tern~ is a ~node~ package. We use it to perfom completion in
+  ~js-mode~.See [[https://ternjs.net/doc/manual.html#emacs][ternjs]].
+
+  We have to perform following steps to use it:
+  #+BEGIN_SRC bash
+  npm install -g tern    # to install it
+  whereis tern           # to get the path of the executable
+  #+END_SRC
+
+  Then into emacs, add the path-to ~tern~ executable into ~PATH~ and
+  ~exec-path~:
+	#+BEGIN_SRC emacs-lisp
+	(setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:"
+												 (getenv "PATH")))
+	(add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
+	#+END_SRC
+
+* Emacs setup
+** File type
+   Each file should be either a:
+   * setup :: file prefixed by ~setup-~ where we set
+              stuff,
+   * keybinding :: file prefixed by ~kb-~ where we
+                   mainly set keybindings.
+   * util :: TODO ~util-~
+** Files' skeleton
+   In those files, things should be ordered in the following way:
+   1) ~require~,
+   2) ~defvar~,
+   3) ~setq~,
+   4) ~defun~,
+   5) ~defadvice~,
+   6) ~add-hook~,
+   7) ~define-key~.
+* Colors
+** tools
+   [[https://www.colorhexa.com/f92672][colorhexa]]
+   [[http://hslpicker.com/#fff,0][hslpicker]]
+   [[https://yuilibrary.com/yui/docs/color/hsl-picker.html][yuilibrary: hsl picker]]
+** documentation
+   [[https://www.youtube.com/watch?v=0IIb0tnLIcU][What is HUE, Saturation, Brightness and Luminance!]]
+   [[https://en.wikipedia.org/wiki/Hue][color: HUE]]
+   [[https://en.wikipedia.org/wiki/Web_colors][web color]]
+   [[https://en.wikipedia.org/wiki/Color_vision][color vision]]
+   [[https://en.wikipedia.org/wiki/Color_constancy][color constancy]]
+   [[https://en.wikipedia.org/wiki/Spectral_sensitivity][spectral sensitivity]]
+   [[https://en.wikipedia.org/wiki/Cone_cell][cone cell]]
+** shell colors
+   [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
+   [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
+   [[https://github.com/dieggsy/eterm-256color][emacs: eterm-256color]]
+* Emacs-lisp files
+  [[~/Documents/apps/emacs/lisp/thingatpt.el][thingatpt.el]], [[~/.emacs.d/elpa/iedit-20181114.950/iedit.el][iedit.el]], s.el, avy, acewindow, expand region,
+  multiple cursor, company.el, mhtml-mode.el, syntax.el (see the
+  function: ~syntax-ppss-context~)
+* post-command
+  [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
+  - In package ~company~, see the function ~company-post-command~ which
+    is added to the the hook ~post-command-hook~.
+
+* TDD
+  - [[https://github.com/ecukes/ecukes][ecukes]]
+  - [[https://github.com/ecukes/espuds][espuds]]
+  - [[https://github.com/magnars/buster-mode][buster-mode]]
