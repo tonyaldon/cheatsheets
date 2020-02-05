@@ -1,0 +1,99 @@
+#+title: Video Tricks
+#+author: Tony Aldon
+
+* video project skeleton
+	project/
+    README.md
+    audacity/          # edited audio
+    images/            # edited images
+    kdenlive/          # edited videos
+    r-audios/          # raw audios
+    r-images/          # raw images
+    r-videos/          # raw videos
+    src/               # code and docs to generate videos...
+* Format d'affichage
+  [[https://fr.wikipedia.org/wiki/Format_d'affichage_vid\%C3\%A9o][Video: format d'affichage]]
+* Alsa card
+  You can find out what alsa devices are usable with the command
+  ~arecord~. For instance: ~arecord -l~ gives me:
+  #+BEGING_SRC bash
+  card 1: PCH [HDA Intel PCH], device 0: 92HD91BXX Analog [92HD91BXX Analog]
+  Subdevices: 1/1
+  Subdevice #0: subdevice #0
+  #+END_SRC
+
+  So with *ffmpeg* I can use property: ~-i hw:1,0~.
+* Audio
+** Links
+   [[https://www.youtube.com/watch?v=10FFKl_0GSA][How to remove background noise in audacity]]
+   [[https://www.youtube.com/watch?v=O5H7xRzjVkw][How to Make Your Voice Sound Better in Audacity]]
+   [[https://www.youtube.com/watch?v=Liqm7AO9HgM][Setting audio recording levels]]
+** Recording
+   1) Turn off your fan,
+   2) Check the Microphone position,
+   3) Use a pop filter,
+   4) Check the audio input level with  *audacity*. It should be in
+      the range *[-18,-6]*. And modify the audio input level in the
+      *system preferences* of the OS.
+** Editing
+   Audio edited with *audacity*.
+   1) Noise
+      | noise reduction     | 22 |
+      | sensitivity         |  6 |
+      | frequency smoothing |  0 |
+   2) Compressor
+      | threshold    | -15 |
+      | noise floor  | -40 |
+      | ratio        | 2:1 |
+      | attack time  | 0.2 |
+      | release time | 1 |
+   3) Equalization
+      * bass boost (deeper voice)
+      * trebble boost (more presence)
+   4) Normalize (make a little louder)
+   5) Hard limiter (-3db). And after you can normalize once more, in
+      order to make the sound louder.
+* Video
+** Links
+   [[https://www.youtube.com/watch?v=jSqv8Z9IMg0][Kdenlive: Speed Up Or Slow Down A Video Clip]]
+   [[https://www.ffmpeg.org/][ffmpeg website]]
+   [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
+   [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
+** Recording
+   Video recorded with  *ffmpeg*.
+   Get the screen size by running *xrandr* in the terminal. In
+   my laptop I get /1366x768/.
+*** Screencast with audio
+    As my size screen is equal to /1366x768/, to record it with the
+    audio, I just have to run in the terminal the following command
+    where /output.mkv/  will be the recorded video:
+
+    #+BEGIN_SRC bash
+   ffmpeg -video_size 1366x768 -framerate 25 -f x11grab -i :0.0 -f \
+   pulse -ac 2 -i default output.mkv
+    #+END_SRC
+
+    If I want to record only my {\bfseries emacs} but not the {\bfseries
+    i3} bottom info line, I can replace  in the command line above
+    \mintinline{shell}^-video_size 1366x768^ by \mintinline{shell}^-video_size 1366x750^.
+
+*** Screencast without audio
+
+    #+BEGIN_SRC bash
+   ffmpeg -f x11grab -s 1366x768 -r 25 -i :0.0 output.mp4
+    #+END_SRC
+
+*** Only audio recording
+
+    #+BEGIN_SRC bash
+   ffmpeg -f alsa -ac 2 -i hw:1,0 output.wav
+    #+END_SRC
+** ffmpeg tips
+*** Convert
+    #+BEGIN_SRC bash
+   ffmpeg -i input.mkv -c copy output.mp4
+    #+END_SRC
+*** Cut
+    #+BEGIN_SRC bash
+   ffmpeg -i input.mp4 -ss 00:00:03 -t 00:00:08 -async 1 output.mp4
+    #+END_SRC
