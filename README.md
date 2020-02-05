@@ -9,11 +9,14 @@ can export those notes you can export them either as pdf or html
 document.
 
 # Cover themes
-Up until now I've started cover part of the following themes:
+Up until now I've started to cover part of the following themes:
 
-1. keyboard shortcuts for linux applications
-2. emacs workflow
-3. source code management
+1. Emacs key bindings, see: 
+   [emacs key bindings](org/emacs-key-bindings.org),
+2. Git, see: 
+   [git](org/git.org),
+3. Linux key bindings, see: 
+   [linux key bindings](org/linux-key-bindings.org),
 
 
 # Motivation 
