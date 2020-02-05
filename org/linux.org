@@ -1,0 +1,101 @@
+#+title: Linux Tricks
+#+author: Tony Aldon
+
+* Links
+  [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
+  [[https://fr.wikipedia.org/wiki/POSIX][wikipedia: POSIX]]
+  [[http://docopt.org/][docopt: cli description language]]
+  [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
+  [[https://devhints.io/bash][devhints.io: bash scripting]]
+* Info
+  A command is either an executable program, a shell builtins, a shell
+  function, or an alias. Also see, directory /usr/share/doc.
+
+  type, which, help, man, apropos, whatis, wich, whereis
+* Packages management
+  apt-cache, apt-get, dpkg, pip, npm
+
+  #+BEGIN_SRC bash
+   apt-cache search emacs
+   apt-cache show <package-name>
+   apt-get uptdate
+   apt-get install <package-name>
+   apt-get remove <package-name>
+   apt-get update; apt-get upgrade
+   dpkg -i <package-file>
+   dpkg -l list installed packages
+   dpkg -s <package-name>
+   dpkg -S <file-name>
+  #+END_SRC
+* Environment variables
+  ifconfig,
+  whoami
+* Users and groups
+  adduser, deluser, passwd
+  addgroup, delgroup, usermod
+  chown, chgrp
+* Process and system
+  lscpu, hostnamectl, top, ps
+* Files
+** View
+  du, file, ls, cat, more, less, head, tail
+** Links
+  ln, stow, alias, unalias
+** Compression/backup
+  tar, zip, unzip, unrar, rsync, zcat, zmore, zless
+** search
+  locate, find, grep
+** directories
+  mkdir, cd, tree
+* Network
+  ssh, openssh-server, curl, wget, ping, ftp
+* Devices
+  lsblk, mount, umount
+
+  [[https://askubuntu.com/questions/37767/how-to-access-a-usb-flash-drive-from-the-terminal][usb flash drive: commnand line]]
+  #+BEGIN_SRC bash
+  lsblk  # find what the drive is called
+  sudo mount /dev/sdb1 /mnt/  # if drive called sdb1
+  sudo umount /mnt/
+  #+END_SRC
+
+* X window system
+  xbindkey, xmodmap, xev, xdotools, wmctrl
+* Date
+  date, crontab, sleep, at, atq, atrm
+* Sensitive actions
+  rm, kill, killall, gparted
+* Miscellaneous
+	shutdown,
+	reboot
+	pandoc
+  chmod
+  sort
+  wc
+  uniq
+  cut  csplit,
+  split,
+  iconv,
+  diff,
+  patch,
+  man ascii,
+  man utf-8,
+  fpp (https://github.com/facebook/PathPicker),
+  history,
+  ffmpeg,
+  xargs,
+  ;,
+  \&\&,
+  \&,
+  nohup,
+  |,
+  grip,
+  pdflatex,
+  pdftk,
+  docker,
+  source,
+  dpkg,
+  debootstrap
+  >, > >, 2>, 2> >, 2>\&1, <, < <, |,
+  uptime,
+  tload
