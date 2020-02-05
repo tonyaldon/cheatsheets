@@ -1,0 +1,245 @@
+#+title: Frontend Tricks
+#+author: Tony Aldon
+
+* Images
+** Responsive images
+   * ~img { width: 100%; height: auto;}~  the image will be responsive
+     and scale up and down. But the image can be scaled up to be
+     larger than its original size.
+   * ~img { max-width: 100%; height: auto;}~. The image will never
+     scale up to be larger to the original size.
+** Background images
+   ~background-size: auto|length|cover|contain|initial|inherit;~.
+
+   If the ~background-size~ property is set to ~cover~, the background
+   image will scale to cover the entire content area. Notice that the
+   ~cover~ value keeps the aspect ratio, and some part of the background
+   image may be clipped.
+
+   #+BEGIN_SRC css
+   div {
+     width: 100%;
+     background-image: url('path-to-image.jpg');
+     background-size: cover;
+     background-position: center
+   }
+   #+END_SRC
+
+   You can use media queries to display different images on different devices.
+** With Bootstrap
+   Images in Bootstrap are made responsive with ~.img-fluid~.
+   ~max-width: 100%;~ and ~height: auto;~ are applied to the image so
+   that it scales with the parent element.
+
+   #+BEGIN_SRC html
+   <img src="..." class="img-fluid" alt="Responsive image">
+   #+END_SRC
+
+   You can use ~.img-thumbnail~ to give an image a rounded 1px border appearance.
+** Position text over an image
+   You have to use both the properties ~position~ and ~transform~.
+   ~position: relative;~ to the father tag, ~position: absolute;~ to
+   the child tag containing the text.
+
+   #+BEGIN_SRC html
+   <div class="container">
+     <img class="my-image" src="path-to-image.jpg"/>
+     <div class="my-text"><p>My text</p></div>
+   </div>
+   #+END_SRC
+
+   #+BEGIN_SRC css
+   .container {
+     position: relative;
+     text-align: center;
+   }
+
+   .my-image {
+     max-width: 100%;
+     height: auto;
+   }
+
+   .my-text p {
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform:  translate(-50%, -50%);
+   }
+   #+END_SRC
+* Fonts
+  Find fonts in [[https://fonts.google.com][Google Fonts]] web page and add the link into your
+  ~<head>~ element.
+
+  For the fonts Open Sans, Oswald and Passion One the link is
+  ~<link href= "https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Passion+ One&display=swap" rel="stylesheet">~
+
+  And you can use them by adding those css lines:
+  * ~font-family: 'Oswald', sans-serif;~,
+  * ~font-family: 'Open Sans', sans-serif;~,
+  * ~font-family: 'Passion One', cursive;~.
+* Icons
+  With the [[https://fontawesome.com/v3.2.1/][Fontawesome]] library you can you can place Font Awesome
+  icons just about anywhere with the ~<i>~ tag.
+
+  First add into the ~<head>~ element:
+  ~<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">~
+
+  To use the icon ~icon-ok~, just add ~<i class="icon-ok"></i>~.
+
+  See some [[https://fontawesome.com/v3.2.1/examples/][Fontawesome Examples]] and some [[https://fontawesome.com/v3.2.1/icons/][Fontawesome Icons]].
+* Colors
+** Converter
+   A nice color converter tool: [[https://www.hexcolortool.com/][hexcolortool]].
+** Opacity
+   To change the background opacity, you can use the property
+   ~opacity~ or the property ~background-color~ with ~rgba()~ value.
+   *  ~opacity:0.9;~ or
+   *  ~background-color: rgba(33,33,33,0.9);~.
+
+   There is no easy way to both have:
+   1) opacity on the background images using only css and,
+   2) ~<a>~ tags with hyper references that work.
+
+   In this previous case, don't play with css and prefer to manualy
+   add opacity to your image with Inkscape for example.
+* SASS
+  See [[https://sass-lang.com/][SASS]] a powerful CSS extension language.
+* CSS grid
+  See the video [[https://www.youtube.com/watch?v=7kVeCqQCxlk][css grid changes everything]].
+
+* Overflow
+  ~overflow:visible|hidden|scroll|auto;~.
+
+  The CSS ~overflow~  property controls what happens to content that is too
+  big to fit into an area. The ~overflow~  property only works for
+  block elements with a specified height. See [[https://www.w3schools.com/css/css_overflow.asp][w3schools]].
+* CSS basics
+  * ~height: auto|length|initial|inherit;~,
+  * ~line-height: normal|number|length|initial|inherit;~,
+  * ~font-size: medium|xx-small|x-small|...|length|initial|inherit;~.
+
+  The ~height~ property sets the height of an element. The ~height~ of
+  an element does not include padding, borders, or margins! The
+  ~line-height~ property specifies the height of a line.The
+  ~font-size~ property specifies the size of a font.
+
+  If the ~font-size~ is equal to 20px and if you set the ~line-height~
+  to 1.5 or 150%, then ~line-height~ will be equal to 30px
+  (1.5 * ~font-size~).
+
+  #+BEGIN_SRC css
+  div {
+    font-size:20px;
+    line-height:1.5;
+  }
+  #+END_SRC
+* Centering in CSS
+  When you want center thing in CSS, there is a lot of
+  possibilities. There is no better choice, just remember that you
+  want the job get done. To read good solutions to center you can see
+  [[https://www.w3schools.com/css/css_align.asp][w3schools]] and [[https://css-tricks.com/centering-css-complete-guide/][css-tricks]].
+
+  Here I just mention some stuff you must keep in mind:
+  * Take care of the element's sizes (length and height),
+  * If the child element has the same /dimension/ of the parent
+    element, you won't be able to center the child in any way,
+  * Most of the time we ignore the height of element so don't do as if
+    element have a fixed height,
+  * Prefer solution that are responsive,
+  * If you use ~transform~ property with the ~translate()~ value, when
+    zooming or change size of device the child element can be scaled
+    up to be larger than its parent,
+  * Solution are differents if elements are displayed as ~inline~,
+    ~inline~ or ~block~. 
+
+  Here some pieces of CSS you can try to center elements:
+  1) Try ~margin~ property:
+     #+BEGIN_SRC css
+     .child-center {
+       margin: auto;
+       width: 50%;
+     }
+     #+END_SRC
+
+  2) Try ~text-align~ property:
+     #+BEGIN_SRC css
+     .child-center {
+       text-align:center;
+       width: 50%;
+     }
+     #+END_SRC
+
+  3) Try ~display~ and ~marging~
+     properties for images:
+     #+BEGIN_SRC css
+     .img {
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+       width: 40%;
+     }
+     #+END_SRC
+
+  4) To verticaly center, try to set the top and bottom
+     ~padding~ properties to the same value:
+     #+BEGIN_SRC css
+     .child-center {
+       padding: 100px 0;
+       text-align:center;
+     }
+     #+END_SRC
+
+  5) If there is only one line you can set
+     ~line-height~ and  ~height~ to the
+     same value. And if there is more than one line, the
+     \mintinline{html}^<p>^ tag should be ~inline-block~.
+     #+BEGIN_SRC css
+     .child-center {
+       line-height: 200px;
+       height: 200px;
+       text-align: center;
+     }
+  
+     .child-center p {
+       line-height: 1.5;
+       display: inline-block;
+       vertical-align: middle;
+     }
+     #+END_SRC
+
+  6) You can use ~transform~ and ~position~.
+  7) You can use ~flexbox~.
+  8) You can use ~display~ property with ~table~ value for the parent
+     and ~table-cell~ value for the child and add
+     ~vertical-align:middle;~ to the child. 
+* Social media
+  You have to put some extra lines into the ~<head>~
+  that allow social media to render in a pretty way (cards) some
+  information about your website when it is shared. You can test the
+  rendering of the cards at [[https://developers.facebook.com/tools/debug/sharing/][facebook sharing]] and at twitter validator.
+
+  #+BEGIN_SRC html
+  <!-- facebook card data -->
+  <meta property="og:title" content="title">
+  <meta property="og:description" content="description">
+  <meta property="og:image" content="path-to-image">
+  <meta property="og:url" content="url">
+  <!-- twitter card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="title">
+  <meta property="twitter:description" content="description">
+  <meta property="twitter:image" content="path-to-image">
+  <meta property="twitter:url" content="url">
+  #+END_SRC
+* Javascript questions
+  [[https://github.com/sudheerj/javascript-interview-questions/blob/master/README.md][javascript interview question]]
+  [[https://github.com/lydiahallie/javascript-questions][javascript questions]]
+
+* Links
+** Inspiring
+  [[https://css-transform.moro.es/][css-transform]], [[https://cssfx.dev/][cssfx]], [[https://codepen.io/ainalem/pen/byqBNK][css gradient/svg]], [[https://codepen.io/ainalem/pen/ZdVywW][toggle button]], [[https://codepen.io/][codepen.io]]
+** to sort
+  [[https://frontendmasters.com/books/front-end-handbook/2019/][frontend handbook]], [[https://www.w3schools.com/howto/howto_css_zoom_hover.asp][zoom hover]], [[https://www.w3schools.com/css/css3_animations.asp][css animation]], [[https://www.w3schools.com/css/css3_variables.asp][css3 variables]],
+	[[https://www.w3schools.com/jsref/met_win_matchmedia.asp][js and media queries]], [[https://www.youtube.com/watch?v=vs34f9FiHps][css tricks video]], [[https://davidwalsh.name/pseudo-element][javascript get/set pseudo element]],
+  [[http://mcgivery.com/htmlelement-pseudostyle-settingmodifying-before-and-after-in-javascript/][javascript get/set pseudo element]], [[https://www.w3schools.com/html/html_forms.asp][html forms]], [[https://www.w3schools.com/howto/howto_css_responsive_text.asp][text css responsive]],
+  [[https://css-tricks.com/snippets/css/a-guide-to-flexbox/][css flexbox]], [[https://www.w3schools.com/cssref/css_units.asp][css units]], [[https://www.w3schools.com/cssref/css3_pr_mediaquery.asp][css @media]] 
