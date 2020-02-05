@@ -1,23 +1,219 @@
 #+title: Emacs tricks
 #+author: Tony Aldon
 
+* Emacs workflow
+** Phylosophy
+   -  Have a clear mind map :: of emacs actions (commands): belong to
+        a group, hot commands, warm commands and cold commands,
+	 -  Recommended ::  use 'hydra' for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
+	 -  If any alternative ::  use 'specific' key-chords, 2 fingers in
+				the same hand used as one finger [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
+	 -  Banned ::  long term key-chords,
+	 -  Banned ::  bind commands with low use.
+** Actions
+*** Groups
+    windows, buffers and files, scrolling, narrow, org-mode, lines,
+    parentheses, multiple-cursors, macros
+*** Hot commands
+    undo, save-buffer, kill-this-buffer, ta-find-file-daily-notes,
+    previous-buffer, next-buffer, delete-other-windows, ace-window,
+    kill-region, kill-ring-save, yank, er/mark-word, er/expand-region,
+    iedit-mode, swiper, iy-go-to-char, iy-go-to-char-backward,
+    ace-jump-mode, ace-jump-line-mode, buffer ring stuff, ace-jump
+    ring stuff 
+*** Warm commands
+		help-*,back-to-indent, kill-line, transpose-words, counsel-M-x,
+		eval-expression, shell-command, counsel-yank-pop, eval-buffer,
+		eval-last-sexp, term-line-mode, term-char-mode,
+		counsel-semantic-or-imenu. 
+** Setup
+	 Either to write code or just text, I need good:
+  - Completion :: [[https://company-mode.github.io/][company-mode]] [[https://github.com/abo-abo/swiper][ivy]]
+  - Linting :: [[https://www.flycheck.org/en/latest/][flycheck]]
+  - Snippets :: [[https://github.com/joaotavora/yasnippet][yasnippet]]
+  - UI enhanced :: [[https://github.com/tumashu/posframe][posframe]]
+  - Display :: indentation, color, highlight.
+* Programming Paradigm
+  Lorsque l'on fait un travail de programmation, il faut distinguer
+  deux états:
+	1) Je suis *perdu* et,
+	2) Je ne suis *pas perdu*.
+
+** Je suis perdu
+   Lorsque l'on est perdu, les actions suivantes peuvent nous aider à
+   retrouver notre chemin:
+   * lire le message d'erreur
+   * découper le problème
+   * mettre des prints/consol.log() un peu partout
+   * mettre le message d'erreur dans google
+   * chercher dans stackoverflow
+   * chercher dans github
+   * lire différents post liée au sujet
+   * lire la documentation du langage, module (library), system
+     (linux)
+   * lire le code source du langage, module, ...
+   * s'acharner jusqu'à ce que le problème saute (soit solutionné)
+   * penser à changer de paradigme (ne pas confondre les moyens avec
+     les résultats attendus)
+** Je ne suis pas perdu
+   Lorsque l'on sait ce que l'on veut faire, alors programmer se réduit à
+   de l'édition de text que ce soit soit au niveau des fichiers (écrire
+   dans le fichiers) ou au niveau du système (déplacer/renommer les
+   fichiers/répertoires, modifier les droits sur les fichiers).
+
+   L'acte d'édition de texte peut s'apparenter à un acte chirurgical dans
+   lequelle la précision et la parfaite exécution du geste sont essentiels et
+   garantissent la qualité du résultat.
+
+   L'acte d'édition peut se voir comme l'application répétée des
+   sous-actes suivants:
+
+   1) *Décider*: Qu'est-ce que je veux modifier? directory, fichier,
+      region, lines, line, words, word
+   2) *Localiser*: Quels fichiers/directories?, quelle partie du
+      fichier?, quels mots? ...
+   3) *Se déplacer*: dired, rgrep, swiper, find file, find buffer, jump
+      line, jump word, go-to-char, ring movement ...
+   4) *Sélectionner*: files/directories, region, line, one cursor,
+      multiple cursors, multiple files ...
+   5) *Inciser*: kill-ring-save, cut, insert space, insert new line,
+      insert new line indent, new statment (variable, function, class,
+      if/loop, library)
+   6) *Réparer*: yank, fill, write
+   7) *Coudre*: save and run
+* Ideas
+** Abo-Abo
+   * [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
+   * [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
+   * [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
+   * [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
+   * [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
+** Other
+   - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
+   - [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
+   - To tweak vuejs mode, with emmet package, see the behaviour of
+     the variable ~emmet-use-css-transform~ when come-in/out part of
+     multiple-major mode.
+   - [[https://cask.readthedocs.io/en/latest/][Project management tool: Cask]]
+   - ~mode-line~: To modify what appears in mode-line, you can modify
+     the default variable ~mode-line-format~. For instance, to show
+     the total number of line in the buffer see [[https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline][display in mode-line]].
+   - [[https://github.com/gregsexton/origami.el][origami.el : a text folding minor mode for Emacs.]]
+   - [[http://www.shanidar.net/news/ca/2016/09/11/0001/more-emacs-configuration-tweaks-multiple-cursor-on-click-minimap-code-folding-ensime-eval-overlays][minimap and origami]]
+   - It may be possible to change the rendering of the two spaces
+     ~"  "~ inserted when expand a subtree in dired-subtree by modifying
+     the function ~dired-subtree--readin~.
+   - [[http://ergoemacs.org/emacs/emacs_show_key_and_command.html][command-log-mode package]]
+   - [[http://ergoemacs.org/emacs/emacs_n_unicode.html][ergoemacs: emacs unicode]]
+   - [[https://github.com/iqbalansari/emacs-emojify][emoji into emacs]]
+   - [[https://github.com/AdamNiederer/vue-mode/issues/32][company and vue-mode]]
+   - [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
+   - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
+   - [[https://melpa.org/#/counsel-jq][counsel for jq]]
+* Tips
+**  commands
+   * ~M-x re-builder~ : build regular expression
+   * ~C-u C-x =~ : pop a buffer with information at point
+   * ~M-x list-faces-display~ : list all available faces on current emacs session
+   * ~C-M-o~ : split-line
+   * ~M-:~ : interactive ~eval-expression~
+** emacs setup
+   * The package ~company-emoji~ only if the list defined in file
+     ~company-emoji-list.el~ in the function
+     ~company-emoji-list-create~ is ordered.
+   * Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
+     to bind ~kmacro~ if needed.
+** miscellaneous
+   * [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
+   * [[https://emacs.stackexchange.com/questions/10367/construct-a-list-from-a-variable][emacs: construct list from variable]]
+   * [[http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html][tips on ibuffer]]
+   * [[http://ergoemacs.org/emacs/emacs_jump_to_previous_position.html][ergoemacs: jump to previous position]]
+   * [[http://iboyko.com/articles/updating-emacs-from-24-to-26-27-on-ubuntu/][updating emacs from 24 to 26-27]]
+   * ~mark-ring~ :
+     1) Don't try to ~push-mark~ when that you want is to cycle into the ~mark-ring~.
+     2) Better is to ~defadvice~ before with ~(push-mark)~ other
+        commands when they move point and you may want to go back to the
+        position. [[https://gist.github.com/magnars/2350388][see magnars to do the advice.]]
+   * ~key-chord~ example: ~(key-chord-define js-mode-map ";;" "\C-e;")~
+   * Don't rebind ~(kbd "ESC")~ , it doesn't work and break some
+     internal emacs stuff. Better to bind ~[escape]~.
+     See: [[https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key][escape prefix key]]
+** byte compilation
+   - [[https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory][Byte compilation:]]
+   see the emacs functions ~byte-compile-file~, ~byte-recompile-file~,
+   ~byte-recompile-directory~. You can do: ~M-x
+   byte-recompile-directory~.
+   - When you upgrade your emacs (for example from 24 to 26), some
+   packages wouldn't work because they have been byte compile with the
+   old version. Think to byte compile your packages with the newer
+   emacs version.
+** people to follow
+   * [[https://github.com/danielmartin/dotfiles][github: daniel martin dotfiles]]
+   * [[https://github.com/abo-abo][github (abo-abo)]]
+   * [[https://oremacs.com/][oremacs (abo-abo)]]
+   * [[http://emacsrocks.com/][emacsrocks (magnars)]]
+   * [[http://whattheemacsd.com/][.emacs.d (magnars)]]
+   * [[https://github.com/magnars][github (magnars)]]
+   * [[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]
+* Articles
+** Ergoemacs/xahlee
+   [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
+   ~describe-character-set~.
+   [[http://xahlee.info/UnixResource_dir/writ/lisp_problems.html][lisp problems]]
+   [[http://ergoemacs.org/emacs/ergoemacs_and_paredit.html][ergoemacs and paredit]]
+   [[http://ergoemacs.org/emacs/emacs_editing_lisp.html][emacs editing lisp]] (see: ~mark-sexp~, ~backward-up-list~)
+   [[http://ergoemacs.org/emacs/elisp_change_brackets.html][elisp change brackets]]
+   [[http://xahlee.info/UnixResource_dir/writ/hard-wrap.html][hard-wrap]]
+   [[http://xahlee.info/UnixResource_dir/writ/truncate_line.html][truncate line]]
+   [[http://ergoemacs.org/emacs/lisp_formatter.html][lisp formatter]]
+   [[http://ergoemacs.org/emacs/bookmark.html][bookmark]]
+** other
+   [[https://www.masteringemacs.org/article/swapping-quote-symbols-emacs-parsepartialsexp][marsteringemacs: swapping quote symbols]]
+   [[http://dreamsongs.com/RiseOfWorseIsBetter.html][the rise of worse is better]]
+   [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]: emacs-lisp example, see ~logand~.
+* dired-mode
+  | ~A~ | ~dired-do-search~               |
+  | ~Q~ | ~dired-do-query-replace-regexp~ |
+  | ~/~ | to narrow           |
+  | ~g~ | Revert back listing |
+* ibuffer
+  | ~/ n~ | filter by name     |
+  | ~/ p~ | remove last filter |
+  | ~/ /~ | remove all filters |
+* ivy/counsel/swiper
+  * [[https://www.youtube.com/watch?v=rLF9oTmVFsc\&feature=youtu.be][search+replace in multiple files]]
+  * [[https://github.com/abo-abo/swiper/blob/master/doc/ivy.org][ivy documentation]]
+  * [[https://oremacs.com/2015/10/14/swiper-mc/][swiper-mc]]
+  * [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
+  * [[https://github.com/abo-abo/swiper/issues/1515][github issue: counsel-minibuffer-history]]
+  * In ~ivy-mode-map~:
+    | ~C-m~     | ~ivy-done~                |
+    | ~M-o~     | ~ivy-dispatching-done~    |
+    | ~C-M-o~   | ~ivy-dispatching-call~    |
+    | ~M-i~     | ~ivy-insert-current~      |
+    | ~M-j~     | ~ivy-yank-word~           |
+    | ~S-SPC~   | ~ivy-restrict-to-matches~ |
+    | ~C-c C-o~ | ~ivy-occur~               |
+  * In ~ivy-minibuffer-map~:
+    | ~C-r~   | ~ivy-reverse-i-search~ |
+    | ~C-M-j~ | ~ivy-immediate-done~   |
+    | ~M-o j~ | ~open in other window~ |
+* info-mode
+  full name of the node.
 * js-mode
   ~tern~ is a ~node~ package. We use it to perfom completion in
   ~js-mode~.See [[https://ternjs.net/doc/manual.html#emacs][ternjs]].
 
   We have to perform following steps to use it:
   #+BEGIN_SRC bash
-  npm install -g tern    # to install it
   whereis tern           # to get the path of the executable
-  #+END_SRC
 
   Then into emacs, add the path-to ~tern~ executable into ~PATH~ and
   ~exec-path~:
-	#+BEGIN_SRC emacs-lisp
-	(setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:"
-												 (getenv "PATH")))
-	(add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
-	#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+  (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:"
+  (getenv "PATH")))
+  (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
 
 * Emacs setup
 ** File type
@@ -53,16 +249,12 @@
    [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
    [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
    [[https://github.com/dieggsy/eterm-256color][emacs: eterm-256color]]
-* Emacs-lisp files
+* emacs-lisp files
   [[~/Documents/apps/emacs/lisp/thingatpt.el][thingatpt.el]], [[~/.emacs.d/elpa/iedit-20181114.950/iedit.el][iedit.el]], s.el, avy, acewindow, expand region,
   multiple cursor, company.el, mhtml-mode.el, syntax.el (see the
   function: ~syntax-ppss-context~)
 * post-command
   [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
-  - In package ~company~, see the function ~company-post-command~ which
-    is added to the the hook ~post-command-hook~.
+  is added to the the hook ~post-command-hook~.
 
 * TDD
-  - [[https://github.com/ecukes/ecukes][ecukes]]
-  - [[https://github.com/ecukes/espuds][espuds]]
-  - [[https://github.com/magnars/buster-mode][buster-mode]]
