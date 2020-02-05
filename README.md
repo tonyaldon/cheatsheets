@@ -5,19 +5,21 @@ Tricks are organize by theme and store as plain text format. To browse
 and take all the power of these notes, I use 
 [org mode](https://orgmode.org/) inside
 [emacs](https://www.gnu.org/software/emacs/). But if you prefer you
-can export those notes you can export them either as pdf or html
-document.
+can export these notes either as pdf or html document.
 
-# Cover themes
+# Covered themes
+[tricks](org/tricks.org) is the main entry for all my computing
+tricks. Here you have the only truth of my computing notes. By type on
+the heading, you enter on the differents themes. 
+
 Up until now I've started to cover part of the following themes:
 
-1. Emacs key bindings, see: 
-   [emacs key bindings](org/emacs-key-bindings.org),
-2. Git, see: 
-   [git](org/git.org),
-3. Linux key bindings, see: 
-   [linux key bindings](org/linux-key-bindings.org),
-
+1. emacs, see [emacs](org/emacs.org),
+2. frontend, see [frontend](org/frontend.org),
+3. git, see [git](org/git.org),
+4. linux, see [linux](org/linux.org),
+5. mysql, see [mysql](org/mysql.org),
+6. video, see [video](org/video.org),
 
 # Motivation 
 * **Fact 1**: "I can't remember everything".
