@@ -14,6 +14,61 @@
 
 
 * [[file:./emacs.org][emacs]]
+** --eval
+*** emacs command line in terminal
+		- Problem :: How can I write in a file with an emacs command line?
+		- Use the option ~--eval~ of ~emacs~ considered as a command line.
+		- If you want to get insert ~"blabla"~ into the file ~some-file~,
+      run the command:
+			#+BEGIN_SRC bash
+			emacs some-file --eval '(insert "blabla")'
+			#+END_SRC
+** ideas
+	 - ~swiper-all~ (search in all open buffers)
+	 - To open plain text svg Files
+		 #+BEGIN_SRC emacs-lisp
+		 (add-to-list `auto-mode-alist '("\\.svg\\'" . xml-mode))
+		 #+END_SRC
+*** ispell, flyspell, aspell (for text mode)
+		- switch between English, French, Spanish
+		- work with company (see: company-ispell)
+		https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el
+		http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html
+		http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html
+		https://www.emacswiki.org/emacs/FlySpell
+		https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el
+		http://aspell.net/
+*** react-native inside emacs
+		https://patrickskiba.com/emacs/2019/09/07/emacs-for-react-dev.html
+		https://github.com/emacs-mirror/emacs
+		http://git.savannah.gnu.org/cgit/emacs.git/tree/INSTALL.REPO
+
+** testing in emacs
+   ert, ecukes, Cask
+*** To understand testing whith *ecukes*
+		1) multiple-cursor
+		2) expand-region
+		3) buster-mode (emacs rocks videos)
+*** To understand testing whith *ert*
+**** simple.el
+		 1) [[~/Documents/apps/emacs/lisp/simple.el][simple.el]] and [[~/Documents/apps/emacs/test/lisp/simple-tests.el][simple-tests.el]]
+		 2) open-line test
+				- [[file:~/Documents/apps/emacs/lisp/simple.el::576][open-line]] definition
+				- [[file:~/Documents/apps/emacs/test/lisp/simple-tests.el::113][open-line]] basic test
+				- [[file:~/Documents/apps/emacs/test/lisp/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
+**** avy.el
+     - see: Makefile ...
+** Emacs internals
+	 1) The best way to understand *Emacs internals* is to read the
+      code. Some source files, such as ~xdisp.c~, have extensive
+      comments describing the design and implementation.
+	 2) The /Tips/ an /GNU Emacs Internals/ may also help. To go to the
+      respective info nodes, eval the ~emacs-lisp~ expressions:
+			#+BEGIN_SRC emacs-lisp
+			(info "(elisp)Tips")
+			(info "(elisp)GNU Emacs Internals").
+			#+END_SRC
+	 3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]
