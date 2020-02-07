@@ -17,5 +17,120 @@
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]
+** php server
+   - Problem :: How to run a php server?
+   - Use the command ~php~.
+   - If the directory contains a /index.php/ file, to have the server
+     running on /localhost/ on port /8080/, run the command:
+
+     #+BEGIN_SRC bash
+     php -S localhost:8080
+     #+END_SRC
+
+** DNS information
+   - Problem :: How to get information of an /url/ ?
+   - Use the command ~dig~.
+   - ~dig~ is a DNS lookup utility.
+   - See examples here [[https://support.dnsimple.com/articles/a-record/][A record]].
+   - If you want to get the *A record* of /youtube.com/, run the
+     command:
+
+     #+BEGIN_SRC bash
+     dig A youtube.com
+     #+END_SRC
+** find files
+   - Problem :: How to find files that match string or regexp?
+   - Use the command ~find~.
+   - See examples here [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
+   - If you want to find files recursively from the your ~$HOME~
+     directory where the /name/ match the global patern ~virtualenv*~,
+     run the command:
+
+     #+BEGIN_SRC bash
+     find ~/ -name "virtualenv*"
+     #+END_SRC
+** Replace string
+   - Problem :: How to replace string in multiple files?
+   - Use commands ~sed~, ~perl~ and ~find~.
+   - See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
+** wallpaper
+   - Problem :: How to set the wallpaper?
+   - Use the command ~feh~.
+   - See examples here [[https://wiki.archlinux.org/index.php/feh][wiki command feh]].
+   - If you want ~path/to/images.jpg~ to be you be your image
+     background, run the command:
+
+     #+BEGIN_SRC bash
+     feh --bg-fill path/to/images.jpg
+     #+END_SRC
+** Automatic reload server
+   - Problem :: How to run a server that automatically reload when
+                files change on the system?
+   - Use the command ~browser-sync~.
+   - If the directory contains a /index.html/ file, to have the server
+     reload each second, run the command:
+
+     #+BEGIN_SRC bash
+     browser-sync start --reload-delay=1000 -w --server
+     #+END_SRC
+** latex
+   - Problem :: How to read pdf documentation of a latex package?
+   - Using the command ~texdoc~.
+   - To read the documentation of /tikz/, you can run ~texdoc tikz~.
+** images
+   - Problem :: How to convert images?
+   - See the command ~convert~.
+   - It comes with the [[https://imagemagick.org/][imagemagick]] package.
+   - See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
+** block device attribute
+   - Problem :: locat/print block device attributes.
+   - By running the command ~blkid~.
+** disk space usage
+   - Problem :: Report file system disk space usage.
+   - By running the command ~df~.
+** printenv
+   see command ~printenv~.
+** Terminal's color
+   - Problem :: How to get list of color use on the terminal?
+   - By running the command ~dircolors --print-database~.
+** X window
+*** Can't close a window
+    - [[https://faq.i3wm.org/question/2665/how-to-deal-with-the-window-that-can-not-be-closed-by-modshiftq.1.html][can't close a window]]
+    - You can get X window information by running ~xwininfo -all~.
+    - You can kill a window by running ~xkill~ and clicking the window.
+*** xprop
+    - run the command ~xprop~.
+    - click on the application you want informations
+    - for i3 wm, use the line which contains ~WM_CLASS(STRING):~
+    - for example on clicking on chromium window, I get the line:
+      ~WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"~
+      - first  ~"chromium-browser"~ is the *instance*,
+      - second ~"Chromium-browser"~ is the *class*.
+*** xrandr
+    - Problem :: I want to set the display of multiple monitors.
+    - By running the command ~xrandr~, I get the following information:
+      eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm
+      DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm x 270mm
+    - And I can set the layout as follow:
+      #+BEGIN_SRC bash
+      xrandr --output DP-2 --left-of eDP-1
+      #+END_SRC
+
+** Links
+   [[https://linuxize.com/post/how-get-size-of-file-directory-linux/][size file of directory]]
+   [[https://linuxize.com/post/how-to-setup-a-git-server/][git server]]
+   [[https://linuxize.com/post/su-command-in-linux/][command su]]
+   [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]]
+   [[https://linuxize.com][linuxize (really good linux content)]]
+** rsync
+   #+BEGIN_SRC bash
+   rsync -vr --inplace --append --delete-before settings/ /mnt/NEW/settings/
+   #+END_SRC
+** stow
+   #+BEGIN_SRC bash
+  stow -t $HOME uconfig # to stow my config file (make symbolic link)
+  stow -D -t $HOME uconfig # Delete previous stow link
+   #+END_SRC
+
 * [[./mysql.org][mysql]]
 * [[./video.org][video]]
