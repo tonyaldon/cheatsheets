@@ -16,6 +16,56 @@
 * [[file:./emacs.org][emacs]]
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
+** list
+*** tag
+  # show tag and the first line of tag message.
+  $ git tag -l -n
+*** log
+		[git-branching]https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell#ch03-git-branching
+		$ git log --oneline --decorate
+		$ git log --oneline --decorate --graph --all
+
+** settings
+  # add a template commit message
+  $ git config --global commit.template ~/.gitmessage
+
+** submodule
+	 .../parent-git-project/
+	 .../parent-git-project/submodule-1/
+
+	 cd parent-git-project
+	 git submodule add ./submodule-1/
+	 git submodule init
+	 # new file -> .../parent/.gitmodules
+	 git commit -m "Add submodule-1"
+	 # When we don't touch the submodule-1, we can do anything in
+	 # parent-git-project
+
+	 cd submodule-1
+	 # Do what we want in submodule-1 git project. And commit changes
+	 # before comming back to the parent parent-git-project
+	 git status
+	 git diff --submodule
+
+	 git submodule update # not sure what happen with this instruction
+	 git commit -m "Updated submodule-1"
+
+** write commit
+*** git add --patch
+		$ git add --patch <file>  # to add only pieces ("patches") of a file
+*** message format
+	# git commit message (example from emacs)
+	Bump Emacs version to 28.0.50
+
+** repository
+*** working with remotes
+		[working with remote]https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
+		$ git remote add <shortname> <url>
+		$ git remote
+		$ git fetch <remote>     # it doesn’t automatically merge it with any of your work
+		$ git push <remote> <branch>
+		$ git remote show <origin>
+
 * [[./linux.org][linux]]
 * [[./mysql.org][mysql]]
 * [[./video.org][video]]
