@@ -117,10 +117,10 @@
       #+END_SRC
 
 ** Links
-   [[https://linuxize.com/post/how-get-size-of-file-directory-linux/][size file of directory]]
+   [[https://linoxide.com/linux-how-to/linux-interview-questions-answers/][linux-interview-questions-answers]]
+	 [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
+	 [[https://linuxize.com/post/how-get-size-of-file-directory-linux/][size file of directory]]
    [[https://linuxize.com/post/how-to-setup-a-git-server/][git server]]
-   [[https://linuxize.com/post/su-command-in-linux/][command su]]
-   [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]]
    [[https://linuxize.com][linuxize (really good linux content)]]
 ** rsync
    #+BEGIN_SRC bash

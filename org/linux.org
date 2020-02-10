@@ -38,15 +38,15 @@
   lscpu, hostnamectl, top, ps
 * Files
 ** View
-  du, file, ls, cat, more, less, head, tail
+   du, file, ls, cat, more, less, head, tail
 ** Links
-  ln, stow, alias, unalias
+   ln, stow, alias, unalias
 ** Compression/backup
-  tar, zip, unzip, unrar, rsync, zcat, zmore, zless
+   tar, zip, unzip, unrar, rsync, zcat, zmore, zless
 ** search
-  locate, find, grep
+   locate, find, grep
 ** directories
-  mkdir, cd, tree
+   mkdir, cd, tree
 * Network
   ssh, openssh-server, curl, wget, ping, ftp
 * Devices
@@ -64,11 +64,43 @@
 * Date
   date, crontab, sleep, at, atq, atrm
 * Sensitive actions
-  rm, kill, killall, gparted
+** users
+*** Run interactive shell as root
+		- Problem :: How can I switch to root User?
+		- Use ~su~ command.
+		- Change user ID or become superuser.
+		- See examples [[https://linuxize.com/post/su-command-in-linux/][su command]].
+		- If you want to run an interactive shell as root, when root's
+      password is already defined, run the command:
+			#+BEGIN_SRC bash
+			su
+      #+END_SRC
+		- If you want to run an interactive shell as root, when root's
+      password is not defined, run the command:
+			#+BEGIN_SRC bash
+			sudo su -
+			#+END_SRC
+*** Enable root user account
+		- Problem :: How can I enable root user account?
+		- Use ~passwd~ command.
+		- Change user password.
+		- See examples [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]].
+		- If you want to enable the root user account and you have the
+      sudo privileges, run the command:
+			#+BEGIN_SRC bash
+			sudo passwd root
+      #+END_SRC
+		- If you want to disable the root user account and you have the
+      sudo privileges, run the command:
+			#+BEGIN_SRC bash
+			sudo passwd -l root
+      #+END_SRC
+*** other
+    - rm, kill, killall, gparted
 * Miscellaneous
-	shutdown,
-	reboot
-	pandoc
+  shutdown,
+  reboot
+  pandoc
   chmod
   sort
   wc
