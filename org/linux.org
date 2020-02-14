@@ -13,24 +13,94 @@
 
   type, which, help, man, apropos, whatis, wich, whereis
 * Packages management
-  apt-cache, apt-get, dpkg, pip, npm
-
-  #+BEGIN_SRC bash
-   apt-cache search emacs
-   apt-cache show <package-name>
-   apt-get uptdate
-   apt-get install <package-name>
-   apt-get remove <package-name>
-   apt-get update; apt-get upgrade
-   dpkg -i <package-file>
-   dpkg -l list installed packages
-   dpkg -s <package-name>
-   dpkg -S <file-name>
-  #+END_SRC
+** linux packages
+*** List available linux packages related to a regexp
+		- Problem :: How can I list linux package related to a regexp?
+		- Use ~apt-cache search~ command.
+		- search performs a full text search on all available package lists for
+           the POSIX regex pattern given
+		- If you want to search linux packages related to emacs, run the
+      command: 
+			#+BEGIN_SRC bash
+			apt-cache search emacs
+      #+END_SRC
+*** Show linux package information
+		- Problem :: How can I show linux package information?
+		- Use ~apt-cache show~ command.
+		- Display the package records for the named packages.
+		- If you want to show the information of the installed ~emacs~
+      emacs package, run the command:
+			#+BEGIN_SRC bash
+			apt-cache show emacs
+      #+END_SRC
+*** Update list of available linux packages
+		- Problem :: How can I update the list of available linux packages?
+		- Use ~apt-get update~ command.
+		- This command is used to resynchronize the package index files from
+      their sources.
+*** Install newest version of all packages
+		- Problem :: How can I install newest version of all my packages?
+		- Use ~apt-get upgrade~ command.
+		- This command installs the newest versions of all packages
+      currently installed on the system from the sources enumerated in
+      /etc/apt/sources.list.
+*** Install a new linux package
+		- Problem :: How can I install a new linux package?
+		- Use ~apt-get install~ command.
+		- Install new one or more linux packages.
+		- If you want to install ~emacs~, run the command:
+			#+BEGIN_SRC bash
+			apt-get install emacs
+      #+END_SRC
+*** Remove a linux package
+		- Problem :: How can I remove a linux package?
+		- Use ~apt-get remove~ command.
+		- Remove linux packages. Note that removing a package leaves its
+      configuration files on the system. 
+		- If you want to remove ~emacs~, run the command:
+			#+BEGIN_SRC bash
+			apt-get remove emacs
+      #+END_SRC
+** other packages
+*** Managne ~nodejs~ packages
+		npm
+*** Manage ~python~ packages
+		pip
 * Environment variables
   ifconfig,
   whoami
 * Users and groups
+*** Run interactive shell as root
+		- Problem :: How can I switch to root User?
+		- Use ~su~ command.
+		- Change user ID or become superuser.
+		- See examples [[https://linuxize.com/post/su-command-in-linux/][su command]].
+		- If you want to run an interactive shell as root, when root's
+      password is already defined, run the command:
+			#+BEGIN_SRC bash
+			su
+      #+END_SRC
+		- If you want to run an interactive shell as root, when root's
+      password is not defined, run the command:
+			#+BEGIN_SRC bash
+			sudo su -
+			#+END_SRC
+*** Enable root user account
+		- Problem :: How can I enable root user account?
+		- Use ~passwd~ command.
+		- Change user password.
+		- See examples [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]].
+		- If you want to enable the root user account and you have the
+      sudo privileges, run the command:
+			#+BEGIN_SRC bash
+			sudo passwd root
+      #+END_SRC
+		- If you want to disable the root user account and you have the
+      sudo privileges, run the command:
+			#+BEGIN_SRC bash
+			sudo passwd -l root
+      #+END_SRC
+*** to sort
   adduser, deluser, passwd
   addgroup, delgroup, usermod
   chown, chgrp
@@ -64,39 +134,7 @@
 * Date
   date, crontab, sleep, at, atq, atrm
 * Sensitive actions
-** users
-*** Run interactive shell as root
-		- Problem :: How can I switch to root User?
-		- Use ~su~ command.
-		- Change user ID or become superuser.
-		- See examples [[https://linuxize.com/post/su-command-in-linux/][su command]].
-		- If you want to run an interactive shell as root, when root's
-      password is already defined, run the command:
-			#+BEGIN_SRC bash
-			su
-      #+END_SRC
-		- If you want to run an interactive shell as root, when root's
-      password is not defined, run the command:
-			#+BEGIN_SRC bash
-			sudo su -
-			#+END_SRC
-*** Enable root user account
-		- Problem :: How can I enable root user account?
-		- Use ~passwd~ command.
-		- Change user password.
-		- See examples [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]].
-		- If you want to enable the root user account and you have the
-      sudo privileges, run the command:
-			#+BEGIN_SRC bash
-			sudo passwd root
-      #+END_SRC
-		- If you want to disable the root user account and you have the
-      sudo privileges, run the command:
-			#+BEGIN_SRC bash
-			sudo passwd -l root
-      #+END_SRC
-*** other
-    - rm, kill, killall, gparted
+  rm, kill, killall, gparted
 * Miscellaneous
   shutdown,
   reboot
