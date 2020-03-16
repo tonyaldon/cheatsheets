@@ -115,6 +115,49 @@
    tar, zip, unzip, unrar, rsync, zcat, zmore, zless
 ** search
    locate, find, grep
+*** find files
+   - Problem :: How to find files that match string or regexp?
+   - Use the command ~find~.
+   - Search for files in a directory hierarchy.
+	 - See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
+   - If you want to find files recursively from your ~$HOME~
+     directory where the ~name~ match the global patern ~virtualenv*~,
+     run the command:
+     #+BEGIN_SRC bash
+     find ~/ -name "virtualenv*"
+     #+END_SRC
+** Replace
+*** replace string in multiple files
+   - Problem :: How to replace string in multiple files?
+   - Use commands ~sed~, ~perl~ and ~find~.
+	 - Stream editor for filtering and transforming text (~sed~).
+   - See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
+	 - If you want to replace all occurrences of one string with another
+     in all files in the current directory (Non recursive, files in
+     this directory only.), run the command:
+		 #+BEGIN_SRC bash
+     sed -i -- 's/foo/bar/g' *
+		 #+END_SRC
+	 - If you want to replace all occurrences of one string with another
+     in all files in the current directory (Recursive, regular files
+     (including hidden ones) in this and all subdirectories), run the
+     command:
+		 #+BEGIN_SRC bash
+		 find . -type f -exec sed -i 's/foo/bar/g' {} +
+		 #+END_SRC
+	 - If you want to replace only if the file name matches another
+     string / has a specific extension / is of a certain type etc
+     (Non-recursive, files in this directory only), run the command:
+		 #+BEGIN_SRC bash
+     sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
+		 #+END_SRC
+		- If you want to replace only if the file name matches another
+     string / has a specific extension / is of a certain type etc
+     (Non-recursive, files in this directory only), run the command:
+		 #+BEGIN_SRC bash
+		 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
+		 # all files whose name contains baz
+		 #+END_SRC
 ** directories
    mkdir, cd, tree
 * Network
