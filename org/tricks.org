@@ -17,16 +17,6 @@
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]
-** php server
-   - Problem :: How to run a php server?
-   - Use the command ~php~.
-   - If the directory contains a /index.php/ file, to have the server
-     running on /localhost/ on port /8080/, run the command:
-
-     #+BEGIN_SRC bash
-     php -S localhost:8080
-     #+END_SRC
-
 ** DNS information
    - Problem :: How to get information of an /url/ ?
    - Use the command ~dig~.
@@ -38,43 +28,16 @@
      #+BEGIN_SRC bash
      dig A youtube.com
      #+END_SRC
-** wallpaper
-   - Problem :: How to set the wallpaper?
-   - Use the command ~feh~.
-   - See examples here [[https://wiki.archlinux.org/index.php/feh][wiki command feh]].
-   - If you want ~path/to/images.jpg~ to be you be your image
-     background, run the command:
-
-     #+BEGIN_SRC bash
-     feh --bg-fill path/to/images.jpg
-     #+END_SRC
-** Automatic reload server
-   - Problem :: How to run a server that automatically reload when
-                files change on the system?
-   - Use the command ~browser-sync~.
-   - If the directory contains a /index.html/ file, to have the server
-     reload each second, run the command:
-
-     #+BEGIN_SRC bash
-     browser-sync start --reload-delay=1000 -w --server
-     #+END_SRC
 ** latex
    - Problem :: How to read pdf documentation of a latex package?
    - Using the command ~texdoc~.
    - To read the documentation of /tikz/, you can run ~texdoc tikz~.
-** images
-   - Problem :: How to convert images?
-   - See the command ~convert~.
-   - It comes with the [[https://imagemagick.org/][imagemagick]] package.
-   - See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
 ** block device attribute
    - Problem :: locat/print block device attributes.
    - By running the command ~blkid~.
 ** disk space usage
    - Problem :: Report file system disk space usage.
    - By running the command ~df~.
-** printenv
-   see command ~printenv~.
 ** Terminal's color
    - Problem :: How to get list of color use on the terminal?
    - By running the command ~dircolors --print-database~.

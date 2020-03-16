@@ -68,7 +68,8 @@
 		pip
 * Environment variables
   ifconfig,
-  whoami
+  whoami,
+	see command ~printenv~.
 * Users and groups
 *** Run interactive shell as root
 		- Problem :: How can I switch to root User?
@@ -162,6 +163,24 @@
    mkdir, cd, tree
 * Network
   ssh, openssh-server, curl, wget, ping, ftp
+** Servers
+*** php server
+		- Problem :: How to run a php server?
+		- Use the command ~php~.
+		- If the directory contains a ~index.php~ file, to have the server
+			running on ~localhost~ on port ~8080~, run the command:
+			#+BEGIN_SRC bash
+			php -S localhost:8080
+			#+END_SRC
+*** Automatic reload server
+		- Problem :: How to run a server that automatically reload when
+                 files change on the system?
+		- Use the command ~browser-sync~.
+		- If the directory contains a ~index.html~ file, to have the server
+			reload each second, run the command:
+			#+BEGIN_SRC bash
+			browser-sync start --reload-delay=1000 -w --server
+			#+END_SRC
 * Devices
   lsblk, mount, umount
 
@@ -176,6 +195,49 @@
   xbindkey, xmodmap, xev, xdotools, wmctrl
 * Date
   date, crontab, sleep, at, atq, atrm
+* Images
+** Use images
+*** Wallpaper
+		- Problem :: How to set the wallpaper?
+		- Use the command ~feh~.
+		- Image viewer and cataloguer.
+		- See examples here [[https://wiki.archlinux.org/index.php/feh][wiki command feh]].
+		- If you want ~path/to/images.jpg~ to be you be your image
+			background, run the command:
+			#+BEGIN_SRC bash
+			feh --bg-fill path/to/images.jpg
+			#+END_SRC
+** Manipulate images
+*** Convert images
+		- Problem :: How to convert images?
+		- Use the command ~convert~.
+		- Convert  between  image  formats as well as resize an image.
+		- See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
+		- If you want to convert the image ~image.png~ to the format
+      ~jpg~, run the command:
+			#+BEGIN_SRC bash
+			convert image.png image.jpg
+			#+END_SRC
+		- If you want to install ~convert~, as it comes with the
+      [[https://imagemagick.org/][imagemagick]] package, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install imagemagick
+			#+END_SRC
+*** Resize an image
+		- Problem :: How to resize an image?
+		- Use the command ~convert~.
+		- Convert  between  image  formats as well as resize an image.
+		- See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
+		- If you want to resize an image to 200 pixels in width and 100
+      pixels in heigh, run the command:
+			#+BEGIN_SRC bash
+			convert image.png -resize 200x100 image.png
+			#+END_SRC
+		- If you want to install ~convert~, as it comes with the
+      [[https://imagemagick.org/][imagemagick]] package, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install imagemagick
+			#+END_SRC
 * Sensitive actions
   rm, kill, killall, gparted
 * Miscellaneous
