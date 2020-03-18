@@ -238,6 +238,51 @@
 			#+BEGIN_SRC bash
 			sudo apt install imagemagick
 			#+END_SRC
+* Backup
+** Backup ~/etc~ directory
+*** ~/etc~ stored in a ~git~ repository
+		- Problem :: How can I review or revert changes that were made to ~/etc~?
+		- Use ~etckeeper~ tool.
+		- Store ~/etc~ in ~git~.
+		- See examples [[https://etckeeper.branchable.com/README/][etckeeper README]].
+		- If you want to install and initialize ~etckeeper~ on ubuntu,
+      run the commands:
+			#+BEGIN_SRC bash
+			sudo apt install etckeeper
+      #+END_SRC
+		- If you want to ~commit~ changes made in ~/etc~ installing new
+      package using ~apt~, do *nothing*, ~etckeeper~ do it for you.
+		- If you want to ~commit~ changes made in ~/etc~, run the
+      commands:
+			#+BEGIN_SRC bash
+      cd /etc
+			sudo git add .  # or only a few files
+			sudo git commit -m "your message"
+			#+END_SRC
+		- If you want to *configure* and tweak ~etckeeper~, see files and
+      directories:
+			- /etc/etckeeper/
+			- /etc/etckeeper/etckeeper.conf
+		- If you want to *skip* some files or directories from being
+      stored into ~git~ repository, add them to ~/etc/.gitignore~.
+		- If I want to *revert* changes to a previous state (commit), you
+      must ~checkout~ to the previous commit and re-initialize
+      ~etckeeper~, to do so run the commands:
+			#+BEGIN_SRC bash
+      sudo git checkout <previous-commit>
+			sudo etckeeper init
+			#+END_SRC
+*** ~/etc~ backed up to ~usb~ drive
+		- Problem :: How can I back up the ~/etc~ directory to ~usb~ drive?
+		- Use ~rsync~ command.
+		- A fast, versatile, remote (and local) file-copying tool
+		- If you want to ???:
+			#+BEGIN_SRC bash
+			???
+      #+END_SRC
+		- Be aware that ~/etc~ directory contains secret informations. For
+      instance, SHA-512 password are stored in the file
+      ~/etc/shadow~.
 * Sensitive actions
   rm, kill, killall, gparted
 * Miscellaneous
