@@ -38,6 +38,20 @@
 		- Use ~apt-get update~ command.
 		- This command is used to resynchronize the package index files from
       their sources.
+*** list of installed package
+		- Problem :: How can I list the installed packages?
+		- Use ~apt list~ command.
+		- List package satifying certain criteria.
+		- See examples [[https://linuxize.com/post/how-to-list-installed-packages-on-ubuntu/][list installed packages]].
+		- If you want to list all installed packages, run the command:
+			#+BEGIN_SRC bash
+			apt list --installed
+      #+END_SRC
+		- If you want to check if the package ~emacs~ is install, run the
+      command:
+			#+BEGIN_SRC bash
+			apt list --installed | grep emacs
+      #+END_SRC
 *** Install newest version of all packages
 		- Problem :: How can I install newest version of all my packages?
 		- Use ~apt-get upgrade~ command.
@@ -162,7 +176,89 @@
 ** directories
    mkdir, cd, tree
 * Network
-  ssh, openssh-server, curl, wget, ping, ftp
+  curl, wget, ping, ftp
+** DNS
+*** A record of an url
+		- Problem :: How to get information of an ~url~ ?
+		- Use the command ~dig~.
+		- ~dig~ is a DNS lookup utility.
+		- See examples [[https://support.dnsimple.com/articles/a-record/][A record]].
+		- If you want to get the *A record* of ~youtube.com~, run the
+			command:
+			#+BEGIN_SRC bash
+			dig A youtube.com
+			#+END_SRC
+** Host
+*** IP address
+		- Problem :: How can I know my IP address?
+		- Use ~ifconfig~ command.
+		- configure a network interface.
+		- If you want to know your (local) IP address (use over the LAN),
+      run the command:
+			#+BEGIN_SRC bash
+			ifconfig -a | grep -E 'inet '  # this is the local IP address
+      #+END_SRC
+		- If you want to know your (public) IP address (use over internet),
+      follow the link  [[https://ifconfig.co/ip][ifconfig.co]] or run the command:
+			#+BEGIN_SRC bash
+			curl ifconfig.co
+      #+END_SRC
+** SSH
+*** Enable SSH on ubuntu
+		- Problem :: How can I to enable SSH (server) on ubuntu?
+		- Use ~openssh-server~ package.
+		- Secure shell (SSH) server, for secure access from remote machines.
+		- See examples [[linkhttps://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
+		- If you want to enable SSH server on the standard port 22, you
+      have to *start* ~ssh~ service with ~systemctl~ command and
+      *allow* incomming SSH connection by *opening* (allowing) the
+      port 22 with the command ~ufw~ and *enabling* the connection
+      with the command ~ufw~. To do so, run the commands
+			#+BEGIN_SRC bash
+			sudo systemctl start ssh
+			sudo ufw allow ssh  # or sudo ufw allow 22/tcp
+			sudo ufw enable
+      #+END_SRC
+		- If you want to install ~openssh-server~ and *start* the service
+      ~ssh~, run the command:
+			#+BEGIN_SRC bash
+      sudo apt install openssh-server
+			#+END_SRC
+*** Connecting to SSH
+		- Problem :: How can I connect to my server via SSH?
+		- Use ~ssh~ command.
+		- OpenSSH SSH client (remote login program)
+		- See examples [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
+		- If you want to connect to your Ubuntu machine over LAN with
+      ~bob~ as username and ~192.168.1.100~, run the command:
+			#+BEGIN_SRC language
+			ssh bob@192.168.1.100
+      #+END_SRC
+		- If you want to connect to your Ubuntu machine over Internet with
+      ~bob~ as username and ~2a01:c50e:e911:9600:fc4d:b07d:d36f:6358~,
+      run the command:
+			#+BEGIN_SRC language
+			ssh bob@2a01:c50e:e911:9600:fc4d:b07d:d36f:6358
+      #+END_SRC
+*** Connected to SSH server
+		- Problem :: How can I know that my shell is connected via a SSH connection?
+		- Use ~printenv~ command.
+		- Print all or part of environment.
+		- If you want to know if you're connected via SSH, check if the
+      environment variables ~SSH_CONNECTION~, ~SSH_CLIENT~ and
+      ~SSH_TTY~ are defined. To do so, run the command:
+			#+BEGIN_SRC bash
+			printenv | grep SSH
+      #+END_SRC
+*** Exit SSH session
+		- Problem :: How can I exit a SSH connection?
+		- Use ~exit~ command.
+		- cause normal process termination
+		- If you want to exit a SSH connection, you can either type ~C-d~
+      or run the command:
+			#+BEGIN_SRC bash
+			exit
+      #+END_SRC
 ** Servers
 *** php server
 		- Problem :: How to run a php server?

@@ -17,17 +17,6 @@
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]
-** DNS information
-   - Problem :: How to get information of an /url/ ?
-   - Use the command ~dig~.
-   - ~dig~ is a DNS lookup utility.
-   - See examples here [[https://support.dnsimple.com/articles/a-record/][A record]].
-   - If you want to get the *A record* of /youtube.com/, run the
-     command:
-
-     #+BEGIN_SRC bash
-     dig A youtube.com
-     #+END_SRC
 ** latex
    - Problem :: How to read pdf documentation of a latex package?
    - Using the command ~texdoc~.
