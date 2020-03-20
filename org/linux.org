@@ -128,8 +128,48 @@
 		- If you want to print the UID of the user ~tony~, run the
       command:
 			#+BEGIN_SRC language
-      id
+      id tony
+			id   # if you're logged as tony
 			#+END_SRC
+*** Add user to sudo Group
+		- Problem :: How can I add a user to the ~sudo~ group?
+		- Use ~usermod~ command.
+		- Modify a user account.
+		- If you want to add the user ~jim~ to the group ~sudo~, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo usermod -aG sudo jim
+      #+END_SRC
+*** Remove user from sudo Group
+		- Problem :: How can I remove a user from the ~sudo~ group?
+		- Use ~deluser~ command.
+		- Remove a user from the system.
+		- If you want to remove the user ~jim~ from the group ~sudo~, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo deluser jim sudo
+      #+END_SRC
+*** Users' groups
+		- Problem :: How can I list all groups a user is a member of?
+		- Use ~groups~ command.
+		- print the groups a user is in.
+		- See examples [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]].
+		- If you want to list the groups the user ~jim~ is a membre of,
+      run the command:
+			#+BEGIN_SRC bash
+			groups jim
+			groups # if you're logged as jim
+      #+END_SRC
+*** List all groups
+		- Problem :: How can I list all groups present on the system?
+		- Use ~getent~ command.
+		- Get entries from Name Service Switch libraries.
+		- See examples [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]].
+		- If you want to list all groups present on the system, run the
+      command:
+			#+BEGIN_SRC bash
+			getent group
+      #+END_SRC
 *** to sort
   adduser, deluser, passwd
   addgroup, delgroup, chown, chgrp
