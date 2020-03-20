@@ -115,10 +115,24 @@
 			#+BEGIN_SRC bash
 			sudo passwd -l root
       #+END_SRC
+*** Modify UID
+		- Problem :: How can I modify the UID of an user on linux?
+		- Use ~usermod~ command.
+		- Modify a user account.
+		- See examples [[https://www.tecmint.com/usermod-command-examples/][usermod command example]].
+		- If you want to modify the UID of the user ~tony~ to the number
+      ~1050~ for instance, run the command:
+			#+BEGIN_SRC language
+			usermod -u 1050 tony
+      #+END_SRC
+		- If you want to print the UID of the user ~tony~, run the
+      command:
+			#+BEGIN_SRC language
+      id
+			#+END_SRC
 *** to sort
   adduser, deluser, passwd
-  addgroup, delgroup, usermod
-  chown, chgrp
+  addgroup, delgroup, chown, chgrp
 * Process and system
   lscpu, hostnamectl, top, ps
 * Files
@@ -201,7 +215,7 @@
 		- If you want to know your (public) IP address (use over internet),
       follow the link  [[https://ifconfig.co/ip][ifconfig.co]] or run the command:
 			#+BEGIN_SRC bash
-			curl ifconfig.co
+			curl ifconfig.co/ip
       #+END_SRC
 ** SSH
 *** Enable SSH on ubuntu
@@ -279,14 +293,102 @@
 			#+END_SRC
 * Devices
   lsblk, mount, umount
-
   [[https://askubuntu.com/questions/37767/how-to-access-a-usb-flash-drive-from-the-terminal][usb flash drive: commnand line]]
   #+BEGIN_SRC bash
   lsblk  # find what the drive is called
   sudo mount /dev/sdb1 /mnt/  # if drive called sdb1
   sudo umount /mnt/
   #+END_SRC
-
+** USB drive
+*** Wipe out data
+		- Problem :: How can I securely clear (wipe out) all the data on
+      my USB drive?
+		- Use ~dd~ command.
+		- Convert and copy a file.
+		- See examples [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][how to format usb drives]].
+		- If you want to wipe out all the data on your USB drive, plug
+      it, be sure that is not mounted, and assuming that your target drive
+      is ~/dev/sdb~, run the command:
+			#+BEGIN_SRC bash
+			sudo dd if=/dev/zero of=/dev/sdb bs=4096 status=progress
+      #+END_SRC
+		- Last time, for a 32GB usb drive, the process took about 30
+      minuntes to complete.
+		- Once the disk is erased, the ~dd~ command will print ~~No space
+      left on device~.
+*** Format USB drive with EXT4
+		- Problem :: How can I format a usb drive with EXT4?
+		- Use ~parted~ and ~mkfs.ext4~ commands.
+		- A partition manipulation program (~parted~).
+		- Create an ext4 filesystem (~mkfs.ext4~).
+		- See examples [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][how to format usb drives]].
+		- If you want to format an usb drive with only one ext4 partition
+      that take the whole space, plug you're usb drive, be sure that
+      is not mounted, create a GPT partition table, create a ext4
+      partition that takes the whole space and finaly format the
+      partition to ext4. To do so, assuming that your target drive
+      is ~/dev/sdb~, run the commands:
+			#+BEGIN_SRC bash
+			sudo parted /dev/sdb --script -- mklabel gpt
+			sudo parted /dev/sdb --script -- mkpart primary ext4 0% 100%
+			sudo mkfs.ext4 -F /dev/sdb1
+      #+END_SRC
+		- When format as above, when the usb is mounted is own by ~root~,
+      belong to ~root~ group and as the permission file is
+      ~drwxr-xr-x~.
+		- If you want to print the partition table and verify that
+      everything is set up correctly, run the command:
+			#+BEGIN_SRC bash
+			sudo parted /dev/sdb --script print
+      #+END_SRC
+*** Name a USB drive
+		- Problem :: How can I name a USB drive with an ext4 filesystem?
+		- Use ~e2label~ command.
+		- Change the label on an ext2/ext3/ext4 filesystem.
+		- See examples [[https://help.ubuntu.com/community/RenameUSBDrive][rename usb drive]].
+		- If you want to name (or rename) ~my-name~ your USB drive,
+      assuming the target drive is ~/dev/sdb1~ and is unmounted, run
+      the command:
+			#+BEGIN_SRC language
+			sudo e2label /dev/sdb1 my-name
+      #+END_SRC
+		- I you want to check the name of your USB drive, assuming the
+      target is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC language
+			sudo e2label /dev/sdb1
+      #+END_SRC
+		- The name of an usb drive doesn't identify the usb drive. For
+      this purpose see ~UUID~ of the usb drive or the ~PARTUUID~.
+*** UUID of an USB drive
+		- Problem :: How can I know the ~UUID~ of an USB drive?
+		- Use ~blkid~ command.
+		- locate/print block device attributes
+		- See examples [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]].
+		- If you want to print the ~UUID~ of the block device wich
+      partition is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC language
+			blkid -s UUID -o value /dev/sdb1
+      #+END_SRC
+		- Filesystem partitions have UUIDs but physical devices do not.
+*** USB drive accross linux system
+		- Problem :: How can I set up the USB drive in such way that user
+      with the same UID accross linux system can access to the USB drive?
+		- Use ~mkfs.ext4~ and ~chown~ commands.
+		- Create an ext4 filesystem (~mkfs.ext4~).
+		- Change file owner and group (~chown~).
+		- See examples [[https://unix.stackexchange.com/questions/422656/how-to-make-an-ext4-formatted-usb-drive-with-full-rw-permissions-for-any-linux-m][ext4 formatted usb drive with full rw permissions]].
+		- If you want to format your usb drive to ext4 file system and
+      give it the ownership of the same username (same UID) your
+      share accross linux system, assuming that ~/dev/sdb1~ is the
+      partition and ~my-name~ is your username, run the commands:
+			#+BEGIN_SRC language
+			sudo mkfs.ext4 /dev/sdb1
+			sudo mount /dev/sdb1 /mnt
+			sudo chown my-name: /mnt
+			sudo umount /mnt
+      #+END_SRC
+		- Take care, the above operations will kill your all the data on
+      the usb drive.
 * X window system
   xbindkey, xmodmap, xev, xdotools, wmctrl
 * Date
