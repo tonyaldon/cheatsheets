@@ -21,12 +21,6 @@
    - Problem :: How to read pdf documentation of a latex package?
    - Using the command ~texdoc~.
    - To read the documentation of /tikz/, you can run ~texdoc tikz~.
-** block device attribute
-   - Problem :: locat/print block device attributes.
-   - By running the command ~blkid~.
-** disk space usage
-   - Problem :: Report file system disk space usage.
-   - By running the command ~df~.
 ** Terminal's color
    - Problem :: How to get list of color use on the terminal?
    - By running the command ~dircolors --print-database~.

@@ -429,6 +429,83 @@
       #+END_SRC
 		- Take care, the above operations will kill your all the data on
       the usb drive.
+*** Preserve mode/ownership/timestamps when using sudo
+		- Problem :: How can I preserve mode/ownership/timestamps when
+      ~cp~ or ~rsync~ and using ~sudo~ ?
+		- Use ~cp~ or ~rsync~ command.
+		- Copy files and directories (~cp~).
+		- A fast, versatile, remote (and local) file-copying tool (~rsync~).
+		- If you want to copy the directory ~my-dir~ to your USB drive
+      mounted at ~/mnt~ and preserving mode/ownership/timestamps, run
+      the command:
+			#+BEGIN_SRC bash
+			sudo cp -r --preserve my-dir /mnt  # with cp
+			sudo rsync -rog my-dir /mnt  # with rsync
+      #+END_SRC
+*** Mount USB drive without sudo privilege
+		- Problem :: How can I mount a usb drive without sudo privilege?
+		- Use ~pmount~ command.
+		- Mount arbitrary hotpluggable devices as normal user.
+		- If you want to mount your USB drive on ~/media/usbdrive~
+      assuming the target drive is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			pmount /dev/sdb1 usbdrive
+      #+END_SRC
+		- If you want to unmount your USB drive mounted with ~pmount~
+      assuming the target drive is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			pumount /dev/sdb1
+      #+END_SRC
+*** List block USB devices
+		- Problem :: How can I list block USB devices?
+		- Use ~lsblk~ command.
+		- List block devices.
+		- If you want to the block USB devices on your machine, run the
+      command:
+			#+BEGIN_SRC bash
+			lsblk
+      #+END_SRC
+*** List USB devices
+		- Problem :: How can I list USB devices?
+		- Use ~lsusb~ command.
+		- List USB devices.
+		- If you want to the USB devices on your machine, run the
+      command:
+			#+BEGIN_SRC bash
+			lsusb
+      #+END_SRC
+** Iphone
+*** Mount Iphone on Linux Ubuntu
+		- Problem :: How can I mount my Iphone on my linux machine?
+		- Use ~idevicepair~ and ~ifuse~ command.
+		- Manage host pairings with devices and usbmuxd (~idevicepair~).
+		- Mount directories of an iOS device locally using fuse (~ifuse~).
+		- See examples [[https://www.maketecheasier.com/easily-mount-your-iphone-as-an-external-drive-in-ubuntu/][mount your iphone as an external drive]].
+		- If you want to mount your Iphone on the directory
+      ~/media/iphone~ in order browse its directories contents, you
+      have to plug your Iphone to your machine, pair it, create the
+      directory ~/media/iphone~ (if doesn't exist yet) and mount the
+      Iphone. To do so, run the commands:
+			#+BEGIN_SRC bash
+			idevicepair pair
+			mkdir /media/iphone
+			sudo ifuse
+      #+END_SRC
+		- If you to list the medias on your mobile (in my case there were
+      on the directory ~/media/iphone/DCIM/106APPLE~), run the
+      command:
+			#+BEGIN_SRC bash
+      ls ~/media/iphone/DCIM/106APPLE~
+			#+END_SRC
+		- If you want to unmount your Iphone, run the command:
+			#+BEGIN_SRC bash
+			sudo umount /media/iphone
+      #+END_SRC
+		- If you want to install ~idevicepair~ and ~ifuse~, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo apt install libimobiledevice6 libimobiledevice-utils ifuse
+      #+END_SRC
 * X window system
   xbindkey, xmodmap, xev, xdotools, wmctrl
 * Date
