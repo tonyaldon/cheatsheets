@@ -23,8 +23,6 @@
   - [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
   - [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
 	- [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
-  - [[https://devhints.io/bash][devhints.io: bash scripting]]
-	- [[https://makefiletutorial.com/][makefile tutorial]]
 * Info
   type, which, help, man, apropos, whatis, whereis
 ** latex
@@ -36,6 +34,25 @@
 			#+BEGIN_SRC bash
 			texdoc tikz
       #+END_SRC
+* Script
+** Makefile
+	- [[https://makefiletutorial.com/][makefile tutorial]]
+	- [[https://opensource.com/article/18/8/what-how-makefile][how does a makefile work]]
+	- [[https://stackoverflow.com/questions/11184389/what-does-wildcard-mean-in-makefile][wildcard in makefile]]
+** bash script
+  - [[https://devhints.io/bash][devhints.io: bash scripting]]
+*** status in bash
+		- Problem :: How can I know the status of the last command run?
+		- Use ~$?~ symbols.
+		- See examples [[https://linuxize.com/post/bash-functions/][bash functions]].
+		- If you want to print the status of the last command run, run
+      the command:
+			#+BEGIN_SRC bash
+			echo $?
+      #+END_SRC
+		- When a bash function completes, its return value is the status
+      of the last statement executed in the function, *0* for *success*
+      and non-zero decimal number in the *1 - 255* range for *failure*.
 * Packages management
 ** Linux packages
 *** List available linux packages related to a regexp
@@ -398,6 +415,56 @@
 			#+BEGIN_SRC bash
 			exit
       #+END_SRC
+*** Use sshfs
+		- Problem :: How can I mount remote directories over ssh?
+		- Use ~sshfs~ command.
+		- filesystem client based on ssh.
+		- See examples [[https://linuxize.com/post/how-to-use-sshfs-to-mount-remote-directories-over-ssh/][sshfs]].
+		- If you want to mount the home directory of a user named *tony*
+      on a remote host with IP address of *192.168.1.100*, create a
+      directory ~~/remote-tony~ that will serve as a mount point and
+      use ~sshfs~ command. To do so, run the commands:
+			#+BEGIN_SRC language
+			mkdir ~/remote-tony
+			sshfs tony@192.168.1.100:/home/tony ~/remote-tony
+      #+END_SRC
+		- If you want to detach the mounted file system ~~/remote-tony~,
+      run the command:
+			#+BEGIN_SRC language
+			sudo umount ~/remote-tony
+      #+END_SRC
+*** Passwordless SSH login
+		- Problem :: How can I setup a passwordless SSH login?
+		- Use ~ssh-keygen~, ~ssh-add~ and ~ssh-copy-id~ command.
+		- Authentication key generation, management and conversion
+      (~ssh-keygen~).
+		- Use locally available keys to authorise logins on a remote
+      machine (~ssh-copy-id~).
+		- Adds private key identities to the authentication agent
+      (~ssh-add~).
+		- See examples [[https://linuxize.com/post/how-to-setup-passwordless-ssh-login/][setup passwordless ssh login]] and [[https://gist.github.com/jexchan/2351996][create different public key]].
+		- If you want to connect to the user ~jim~ on the server
+      ~192.168.1.100~ without prompting a password, you have to
+      generate a *ssh key*, send the public part to
+      ~jim@192.168.1.100~ server, append the public key on the remote
+      file ~~/.ssh/authorized_keys~ and add the private key to the
+      authentication agent. After that, you can directly connect to
+      the server. To do so, run the command:
+			#+BEGIN_SRC bash
+			ssh-keygen -t rsa -f ~/.ssh/id_rsa_jim
+			ssh-copy-id -i ~/.ssh/id_rsa_jim.pub jim@192.168.1.100
+			ssh-add ~/.ssh/id_rsa_jim
+      #+END_SRC
+		- If you want to list all identities currently represented by the
+      agent, run the command:
+			#+BEGIN_SRC bash
+      ssh-add -l
+			#+END_SRC
+		- If you want to delete the identity ~~/.ssh/id_rsa_jim~ from the
+      agent, run the command:
+			#+BEGIN_SRC bash
+      ssh-add -d ~/.ssh/id_rsa_jim
+			#+END_SRC
 ** Servers
 *** php server
 		- Problem :: How to run a php server?
@@ -553,6 +620,22 @@
 			#+BEGIN_SRC bash
 			pumount /dev/sdb1
       #+END_SRC
+
+*** Mount USB drive
+		- Problem :: How can I mount a usb drive?
+		- Use ~mount~ command.
+		- Mount a filesystem.
+		- If you want to mount your USB drive on ~/mnt~
+      assuming the target drive is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			sudo /dev/sdb1 /mnt
+      #+END_SRC
+		- If you want to unmount your USB drive, assuming the target drive
+      is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			sudo umount /dev/sdb1
+      #+END_SRC
+
 *** List block USB devices
 		- Problem :: How can I list block USB devices?
 		- Use ~lsblk~ command.
