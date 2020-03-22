@@ -6,6 +6,7 @@
   - [[https://fr.wikipedia.org/wiki/POSIX][POSIX (article)]]
 	- [[https://whatismyipaddress.com/hostname][hostname (article)]]
 	- [[https://en.wikipedia.org/wiki/Passwd][password (article)]]
+	- [[https://askubuntu.com/questions/394067/why-use-sticky-bit][sticky bit (article)]]
 ** Linuxize
 	- [[https://linuxize.com/post/scheduling-cron-jobs-with-crontab/][cron jobs (linuxize)]]
 	- [[https://linuxize.com/post/how-to-setup-a-git-server/][setup git server (linuxize)]]
@@ -15,19 +16,26 @@
 	- [[https://linuxize.com/post/linux-xargs-command/][xargs command (linuxize)]]
 	- [[https://linuxize.com/post/linux-watch-command/][watch command (linuxize)]]
 	- [[https://linuxize.com/post/etc-shadow-file/][/etc/shadow file (linuxize)]]
-	- [[https://linuxize.com/post/how-to-change-hostname-on-ubuntu-18-04/][change hostname on ubuntu (Linuxize)]]
+	- [[https://linuxize.com/post/how-to-change-hostname-on-ubuntu-18-04/][change hostname on ubuntu (linuxize)]]
+	- [[https://linuxize.com/post/how-get-size-of-file-directory-linux/][size of file and directory (linuxize)]]
 ** Miscellaneous
   - [[http://docopt.org/][docopt: cli description language]]
   - [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
   - [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
 	- [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
   - [[https://devhints.io/bash][devhints.io: bash scripting]]
-
+	- [[https://makefiletutorial.com/][makefile tutorial]]
 * Info
-  A command is either an executable program, a shell builtins, a shell
-  function, or an alias. Also see, directory /usr/share/doc.
-
   type, which, help, man, apropos, whatis, wich, whereis
+** latex
+*** latex package
+		- Problem :: How can I get the documentation of a ~latex~ package?
+		- Use ~texdoc~ command.
+		- If you want to read the documentation of the latex package
+      ~tikz~, run the command:
+			#+BEGIN_SRC bash
+			texdoc tikz
+      #+END_SRC
 * Packages management
 ** linux packages
 *** List available linux packages related to a regexp
@@ -237,6 +245,25 @@
    du, file, ls, cat, more, less, head, tail
 ** Links
    ln, stow, alias, unalias
+*** Stow links
+		- Problem :: How can I manage symbolic links of whole directory tree?
+		- Use ~stow~ command.
+		- software package installation manager.
+		- .
+		- If you want to link all my ~dotfiles~ files in my ~$HOME~
+      directory to a versioned directory ~my-dotfiles~ that contained
+      all my ~dotfiles~, assuming ~my-dotfiles~ directory is a
+      subdirectory of ~~/some-directory~, run the commands:
+			#+BEGIN_SRC bash
+			cd ~/some-directory
+			stow -t $HOME my-dotfiles
+      #+END_SRC
+		- If you want to unlink the ~stow~ links made in the previous
+      section, run the commands:
+			#+BEGIN_SRC bash
+			cd ~/some-directory
+			stow -D -t $HOME my-dotfiles
+      #+END_SRC
 ** Compression/backup
    tar, zip, unzip, unrar, rsync, zcat, zmore, zless
 ** search
@@ -540,6 +567,17 @@
       command:
 			#+BEGIN_SRC bash
 			lsusb
+      #+END_SRC
+*** Available space on USB
+		- Problem :: How can I know what is the available space on a USB drive?
+		- Use ~df~ command.
+		- report file system disk space usage.
+		-  .
+		- If you want to know the available space that remains on a USB
+      drive, assuming the target drive is ~/dev/sdb1~ and is mounted,
+      run the command:
+			#+BEGIN_SRC bash
+			df -h /dev/sdb1
       #+END_SRC
 ** Iphone
 *** Mount Iphone on Linux Ubuntu
