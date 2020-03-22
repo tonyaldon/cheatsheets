@@ -2,11 +2,27 @@
 #+author: Tony Aldon
 
 * Links
-  [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
-  [[https://fr.wikipedia.org/wiki/POSIX][wikipedia: POSIX]]
-  [[http://docopt.org/][docopt: cli description language]]
-  [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
-  [[https://devhints.io/bash][devhints.io: bash scripting]]
+** Article
+  - [[https://fr.wikipedia.org/wiki/POSIX][POSIX (article)]]
+	- [[https://whatismyipaddress.com/hostname][hostname (article)]]
+	- [[https://en.wikipedia.org/wiki/Passwd][password (article)]]
+** Linuxize
+	- [[https://linuxize.com/post/scheduling-cron-jobs-with-crontab/][cron jobs (linuxize)]]
+	- [[https://linuxize.com/post/how-to-setup-a-git-server/][setup git server (linuxize)]]
+	- [[https://linuxize.com/post/how-to-setup-ftp-server-with-vsftpd-on-ubuntu-18-04/][setup ftp server (linuxize)]]
+	- [[https://linuxize.com/post/how-to-set-up-sftp-chroot-jail/][setup sftp (linuxize)]]
+	- [[https://linuxize.com/post/how-to-add-apt-repository-in-ubuntu/][add apt repository (linuxize)]]
+	- [[https://linuxize.com/post/linux-xargs-command/][xargs command (linuxize)]]
+	- [[https://linuxize.com/post/linux-watch-command/][watch command (linuxize)]]
+	- [[https://linuxize.com/post/etc-shadow-file/][/etc/shadow file (linuxize)]]
+	- [[https://linuxize.com/post/how-to-change-hostname-on-ubuntu-18-04/][change hostname on ubuntu (Linuxize)]]
+** Miscellaneous
+  - [[http://docopt.org/][docopt: cli description language]]
+  - [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
+  - [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
+	- [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
+  - [[https://devhints.io/bash][devhints.io: bash scripting]]
+
 * Info
   A command is either an executable program, a shell builtins, a shell
   function, or an alias. Also see, directory /usr/share/doc.
@@ -81,9 +97,24 @@
 *** Manage ~python~ packages
 		pip
 * Environment variables
-  ifconfig,
-  whoami,
-	see command ~printenv~.
+*** Print all environment variables
+		- Problem :: How can I print all environment variables?
+		- Use ~printenv~ command.
+		- print all or part of environment
+		- If you want to print all environment variables, run the command:
+			#+BEGIN_SRC bash
+			printenv
+      #+END_SRC
+*** Color in terminal
+		- Problem :: How can I list colors used in the terminal?
+		- Use ~dircolors~ command.
+		- Color setup for ls.
+		- See examples link.
+		- If you want to print the color used by ~ls~ command in your
+      terminal, run the command:
+			#+BEGIN_SRC bash
+			dircolors --print-database
+      #+END_SRC
 * Users and groups
 *** Run interactive shell as root
 		- Problem :: How can I switch to root User?
@@ -170,6 +201,32 @@
 			#+BEGIN_SRC bash
 			getent group
       #+END_SRC
+*** Encrypt password into SHA 512 hash
+		- Problem :: How can I encrypt a password that can be used in the
+      ~/etc/shadow~ file?
+		- Use ~mkpasswd~ command.
+		- Encrypts the given password with the crypt(3) libc function using the given salt.
+		- See examples [[https://superuser.com/questions/371442/how-to-use-mkpasswd-to-generate-a-password-in-shadow-file-in-ubuntu-10-lucid][generate a password in shadow file]].
+		- If you want to encrypt a password into SHA 512 hash with the
+      given *salt* ~saltsalt~, run the command (and type your password):
+			#+BEGIN_SRC bash
+			mkpasswd -m sha-512 -S saltsalt
+      #+END_SRC
+		- If you want to encrypt a password into SHA 512 hash without
+      specifying the *salt* (a random one will be provide), run the
+      command (and type your password):
+			#+BEGIN_SRC bash
+			mkpasswd -m sha-512
+      #+END_SRC
+		- I you want to list all the encryption methods, run the command:
+			#+BEGIN_SRC bash
+			mkpasswd -m help
+      #+END_SRC
+		- I you want to install the ~mkpasswd~ command, you have to
+      install the package ~whois~. To do so, run the command:
+			#+BEGIN_SRC bash
+      sudo apt install whois
+			#+END_SRC
 *** to sort
   adduser, deluser, passwd
   addgroup, delgroup, chown, chgrp
@@ -331,6 +388,16 @@
 			#+BEGIN_SRC bash
 			browser-sync start --reload-delay=1000 -w --server
 			#+END_SRC
+** Connection
+*** Wifi connection
+		- Problem :: How can I restart my wifi connection?
+		- Use ~service~ command.
+		- run a System V init script.
+		- See examples [[https://askubuntu.com/questions/271387/how-to-restart-wifi-connection][restart wifi connection]].
+		- If you want to restart your wifi connection, run the command:
+			#+BEGIN_SRC bash
+			sudo service network-manager restart
+      #+END_SRC
 * Devices
   lsblk, mount, umount
   [[https://askubuntu.com/questions/37767/how-to-access-a-usb-flash-drive-from-the-terminal][usb flash drive: commnand line]]
@@ -658,6 +725,7 @@
 * Sensitive actions
   rm, kill, killall, gparted
 * Miscellaneous
+  whoami,
   shutdown,
   reboot
   pandoc
