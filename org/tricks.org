@@ -17,51 +17,5 @@
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]
-** latex
-   - Problem :: How to read pdf documentation of a latex package?
-   - Using the command ~texdoc~.
-   - To read the documentation of /tikz/, you can run ~texdoc tikz~.
-** Terminal's color
-   - Problem :: How to get list of color use on the terminal?
-   - By running the command ~dircolors --print-database~.
-** X window
-*** Can't close a window
-    - [[https://faq.i3wm.org/question/2665/how-to-deal-with-the-window-that-can-not-be-closed-by-modshiftq.1.html][can't close a window]]
-    - You can get X window information by running ~xwininfo -all~.
-    - You can kill a window by running ~xkill~ and clicking the window.
-*** xprop
-    - run the command ~xprop~.
-    - click on the application you want informations
-    - for i3 wm, use the line which contains ~WM_CLASS(STRING):~
-    - for example on clicking on chromium window, I get the line:
-      ~WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"~
-      - first  ~"chromium-browser"~ is the *instance*,
-      - second ~"Chromium-browser"~ is the *class*.
-*** xrandr
-    - Problem :: I want to set the display of multiple monitors.
-    - By running the command ~xrandr~, I get the following information:
-      eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm
-      DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm x 270mm
-    - And I can set the layout as follow:
-      #+BEGIN_SRC bash
-      xrandr --output DP-2 --left-of eDP-1
-      #+END_SRC
-
-** Links
-   [[https://linoxide.com/linux-how-to/linux-interview-questions-answers/][linux-interview-questions-answers]]
-	 [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
-	 [[https://linuxize.com/post/how-get-size-of-file-directory-linux/][size file of directory]]
-   [[https://linuxize.com/post/how-to-setup-a-git-server/][git server]]
-   [[https://linuxize.com][linuxize (really good linux content)]]
-** rsync
-   #+BEGIN_SRC bash
-   rsync -vr --inplace --append --delete-before settings/ /mnt/NEW/settings/
-   #+END_SRC
-** stow
-   #+BEGIN_SRC bash
-  stow -t $HOME uconfig # to stow my config file (make symbolic link)
-  stow -D -t $HOME uconfig # Delete previous stow link
-   #+END_SRC
-
 * [[./mysql.org][mysql]]
 * [[./video.org][video]]

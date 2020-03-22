@@ -508,6 +508,63 @@
       #+END_SRC
 * X window system
   xbindkey, xmodmap, xev, xdotools, wmctrl
+** Kill window
+*** Kill a window
+		- Problem :: How can I kill a window that I can't kill with i3?
+		- Use ~xkill~ command.
+		- Kill a client by its X resource.
+		- If you want to kill a window that do no respond, run the
+      command ~xkill~ and click on the window you want to kill:
+			#+BEGIN_SRC bash
+			xkill  # and click on the window you want to kill
+      #+END_SRC
+** Get X information
+*** Global X information
+		- Problem :: How can I print all X information on a selected window?
+		- Use ~xwininfo~ command.
+		- Window information utility for X.
+		- If you want to to print all X information on a selected window,
+      run the command ~xwininfo -all~ and click on the window you want
+      the information from:
+			#+BEGIN_SRC bash
+			xwininfo -all  # and click on the window you want the information from
+      #+END_SRC
+** X and i3
+*** Instance and class of a X window
+		- Problem :: How can I get the instance and class of X window that
+      are used with ~i3~?
+		- Use ~xprop~ command.
+		- Property displayer for X.
+		- If you want to get the instance and class of an X window in
+      order to use them with ~i3~, run the command ~xprop~ and click on
+      the window you want the information from and inspect the line
+      starting by ~WM_CLASS(STRING):~. For example on clicking on a
+      window running ~chromium-browser~ application, I get the line:
+			- ~WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"~
+      - first  ~"chromium-browser"~ is the *instance*,
+      - second ~"Chromium-browser"~ is the *class*.:
+			#+BEGIN_SRC bash
+			xprop  # and click on the window you want the information from
+      #+END_SRC
+** Multiple monitors
+*** Display 2 monitors
+    - Problem :: How can I display a monitor on the left of the other monitor?
+    - Use ~xrandr~ command.
+		- Set the size, orientation and/or reflection of the outputs for a screen.
+		- If you want to display the monitor ~DP-2~ on the left of the
+      monitor ~<eDP-1>~, run the command:
+			#+BEGIN_SRC bash
+			xrandr --output DP-2 --left-of eDP-1
+      #+END_SRC
+		- If you want to get the names of the outputs you want to display
+      with ~xrandr~, run the command ~xrandr~ and seek for lines like
+      these ones (in my case ~eDP-1~ and ~DP-2~ are the monitors I want
+      to display side by side):
+      1) ~eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm~
+      2) ~DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm x 270mm~
+			#+BEGIN_SRC bash
+			xrandr
+      #+END_SRC
 * Date
   date, crontab, sleep, at, atq, atrm
 * Images
