@@ -803,7 +803,26 @@
 			sudo apt install imagemagick
 			#+END_SRC
 * Backup
-** Backup ~/etc~ directory
+** Backup and archive
+*** Backup
+		- Problem :: What is a Backup?
+		- A *backup* is a copy of data that can be used to restore the
+      original in the event that your data is lost or damaged. If a
+      company experiences data loss due to hardware failure, human
+      error or natural disaster, a backup can be used to quickly
+      restore that data.
+*** Archive
+		- Problem :: What is an Archive?
+		- An *archive* is a collection of historical records that are kept
+      for long-term retention and used for future
+      reference. Typically, archives contain data that is not actively
+      used.
+*** Difference between backup and archive
+		- Problem :: What is the difference between *backup* and *archive*?
+		- Basically, a *backup* is a *copy* of a set of data, while an
+      *archive* holds *original* data that has been *removed* from its
+      original location.
+** Back up ~/etc~ directory
 *** ~/etc~ stored in a ~git~ repository
 		- Problem :: How can I review or revert changes that were made to ~/etc~?
 		- Use ~etckeeper~ tool.
@@ -847,6 +866,32 @@
 		- Be aware that ~/etc~ directory contains secret informations. For
       instance, SHA-512 password are stored in the file
       ~/etc/shadow~.
+** Large files with ~git~
+*** git-annex
+		- [[https://git-annex.branchable.com/][git-annex (homepage)]]
+		- [[https://git-annex.branchable.com/not/][git-annex is NOT ...]]
+		- [[https://git-annex.branchable.com/walkthrough/][git-annex (walkthrough)]]
+		- [[https://git-annex.branchable.com/tips/emacs_integration/][git-annex (emacs integration)]]
+*** git-lfs
+		- [[https://git-lfs.github.com/][git-lfs (homepage)]]
+		- [[https://www.atlassian.com/git/tutorials/git-lfs][git-lfs (tutorial)]]
+		- [[https://www.youtube.com/watch?v=006RUPVIP-c][git-lfs (talk)]]
+*** Difference between git-lfs and git-annex
+		- Problem :: What is the difference between ~git-lfs~ and ~git-annex~?
+		- ~git-lfs~ differs from ~git-annex~ in that:
+			1) all the large files in the repository are usually present in
+         the working tree; it doesn't have a way to drop content that
+         is not wanted locally while keeping other content locally
+         available, as ~git-annex~ does.
+			2) And so it does not need to be able to get content like
+         ~git-annex~ can do either.
+			3) It also differs in that it uses a central server, which is
+         trusted to retain content, so it doesn't try to avoid losing
+         the local copy, which could be the only copy, as ~git-annex~
+         does.
+		- See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and
+		[[https://lwn.net/Articles/774125/][large files with git (article)]].
+
 * Sensitive actions
   rm, kill, killall, gparted
 * Miscellaneous
