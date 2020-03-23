@@ -2,100 +2,901 @@
 #+author: Tony Aldon
 
 * Links
-  [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
-  [[https://fr.wikipedia.org/wiki/POSIX][wikipedia: POSIX]]
-  [[http://docopt.org/][docopt: cli description language]]
-  [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
-  [[https://devhints.io/bash][devhints.io: bash scripting]]
+** Article
+  - [[https://fr.wikipedia.org/wiki/POSIX][POSIX (article)]]
+	- [[https://whatismyipaddress.com/hostname][hostname (article)]]
+	- [[https://en.wikipedia.org/wiki/Passwd][password (article)]]
+	- [[https://askubuntu.com/questions/394067/why-use-sticky-bit][sticky bit (article)]]
+** Linuxize
+	- [[https://linuxize.com/post/scheduling-cron-jobs-with-crontab/][cron jobs (linuxize)]]
+	- [[https://linuxize.com/post/how-to-setup-a-git-server/][setup git server (linuxize)]]
+	- [[https://linuxize.com/post/how-to-setup-ftp-server-with-vsftpd-on-ubuntu-18-04/][setup ftp server (linuxize)]]
+	- [[https://linuxize.com/post/how-to-set-up-sftp-chroot-jail/][setup sftp (linuxize)]]
+	- [[https://linuxize.com/post/how-to-add-apt-repository-in-ubuntu/][add apt repository (linuxize)]]
+	- [[https://linuxize.com/post/linux-xargs-command/][xargs command (linuxize)]]
+	- [[https://linuxize.com/post/linux-watch-command/][watch command (linuxize)]]
+	- [[https://linuxize.com/post/etc-shadow-file/][/etc/shadow file (linuxize)]]
+	- [[https://linuxize.com/post/how-to-change-hostname-on-ubuntu-18-04/][change hostname on ubuntu (linuxize)]]
+	- [[https://linuxize.com/post/how-get-size-of-file-directory-linux/][size of file and directory (linuxize)]]
+** Miscellaneous
+  - [[http://docopt.org/][docopt: cli description language]]
+  - [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
+  - [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
+	- [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
 * Info
-  A command is either an executable program, a shell builtins, a shell
-  function, or an alias. Also see, directory /usr/share/doc.
-
-  type, which, help, man, apropos, whatis, wich, whereis
+  type, which, help, man, apropos, whatis, whereis
+** latex
+*** latex package
+		- Problem :: How can I get the documentation of a ~latex~ package?
+		- Use ~texdoc~ command.
+		- If you want to read the documentation of the latex package
+      ~tikz~, run the command:
+			#+BEGIN_SRC bash
+			texdoc tikz
+      #+END_SRC
+* Script
+** Makefile
+	- [[https://makefiletutorial.com/][makefile tutorial]]
+	- [[https://opensource.com/article/18/8/what-how-makefile][how does a makefile work]]
+	- [[https://stackoverflow.com/questions/11184389/what-does-wildcard-mean-in-makefile][wildcard in makefile]]
+** bash script
+  - [[https://devhints.io/bash][devhints.io: bash scripting]]
+*** status in bash
+		- Problem :: How can I know the status of the last command run?
+		- Use ~$?~ symbols.
+		- See examples [[https://linuxize.com/post/bash-functions/][bash functions]].
+		- If you want to print the status of the last command run, run
+      the command:
+			#+BEGIN_SRC bash
+			echo $?
+      #+END_SRC
+		- When a bash function completes, its return value is the status
+      of the last statement executed in the function, *0* for *success*
+      and non-zero decimal number in the *1 - 255* range for *failure*.
 * Packages management
-  apt-cache, apt-get, dpkg, pip, npm
-
-  #+BEGIN_SRC bash
-   apt-cache search emacs
-   apt-cache show <package-name>
-   apt-get uptdate
-   apt-get install <package-name>
-   apt-get remove <package-name>
-   apt-get update; apt-get upgrade
-   dpkg -i <package-file>
-   dpkg -l list installed packages
-   dpkg -s <package-name>
-   dpkg -S <file-name>
-  #+END_SRC
+** Linux packages
+*** List available linux packages related to a regexp
+		- Problem :: How can I list linux package related to a regexp?
+		- Use ~apt-cache search~ command.
+		- search performs a full text search on all available package lists for
+           the POSIX regex pattern given
+		- If you want to search linux packages related to emacs, run the
+      command: 
+			#+BEGIN_SRC bash
+			apt-cache search emacs
+      #+END_SRC
+*** Show linux package information
+		- Problem :: How can I show linux package information?
+		- Use ~apt-cache show~ command.
+		- Display the package records for the named packages.
+		- If you want to show the information of the installed ~emacs~
+      emacs package, run the command:
+			#+BEGIN_SRC bash
+			apt-cache show emacs
+      #+END_SRC
+*** Update list of available linux packages
+		- Problem :: How can I update the list of available linux packages?
+		- Use ~apt-get update~ command.
+		- This command is used to resynchronize the package index files from
+      their sources.
+*** list of installed packages
+		- Problem :: How can I list the installed packages?
+		- Use ~apt list~ command.
+		- List package satifying certain criteria.
+		- See examples [[https://linuxize.com/post/how-to-list-installed-packages-on-ubuntu/][list installed packages]].
+		- If you want to list all installed packages, run the command:
+			#+BEGIN_SRC bash
+			apt list --installed
+      #+END_SRC
+		- If you want to check if the package ~emacs~ is install, run the
+      command:
+			#+BEGIN_SRC bash
+			apt list --installed | grep emacs
+      #+END_SRC
+*** Install newest version of all packages
+		- Problem :: How can I install newest version of all my packages?
+		- Use ~apt-get upgrade~ command.
+		- This command installs the newest versions of all packages
+      currently installed on the system from the sources enumerated in
+      /etc/apt/sources.list.
+*** Install a new linux package
+		- Problem :: How can I install a new linux package?
+		- Use ~apt-get install~ command.
+		- Install new one or more linux packages.
+		- If you want to install ~emacs~, run the command:
+			#+BEGIN_SRC bash
+			apt-get install emacs
+      #+END_SRC
+*** Remove a linux package
+		- Problem :: How can I remove a linux package?
+		- Use ~apt-get remove~ command.
+		- Remove linux packages. Note that removing a package leaves its
+      configuration files on the system. 
+		- If you want to remove ~emacs~, run the command:
+			#+BEGIN_SRC bash
+			apt-get remove emacs
+      #+END_SRC
+** Other packages
+*** Manage ~nodejs~ packages
+		npm
+*** Manage ~python~ packages
+		pip
 * Environment variables
-  ifconfig,
-  whoami
+*** Print all environment variables
+		- Problem :: How can I print all environment variables?
+		- Use ~printenv~ command.
+		- print all or part of environment
+		- If you want to print all environment variables, run the command:
+			#+BEGIN_SRC bash
+			printenv
+      #+END_SRC
+*** Color in terminal
+		- Problem :: How can I list colors used in the terminal?
+		- Use ~dircolors~ command.
+		- Color setup for ls.
+		- See examples link.
+		- If you want to print the color used by ~ls~ command in your
+      terminal, run the command:
+			#+BEGIN_SRC bash
+			dircolors --print-database
+      #+END_SRC
 * Users and groups
-  adduser, deluser, passwd
-  addgroup, delgroup, usermod
-  chown, chgrp
+** Sudo and Root
+*** Run interactive shell as root
+		- Problem :: How can I switch to root User?
+		- Use ~su~ command.
+		- Change user ID or become superuser.
+		- See examples [[https://linuxize.com/post/su-command-in-linux/][su command]].
+		- If you want to run an interactive shell as root, when root's
+      password is already defined, run the command:
+			#+BEGIN_SRC bash
+			su
+      #+END_SRC
+		- If you want to run an interactive shell as root, when root's
+      password is not defined, run the command:
+			#+BEGIN_SRC bash
+			sudo su -
+			#+END_SRC
+*** Add user to sudo Group
+		- Problem :: How can I add a user to the ~sudo~ group?
+		- Use ~usermod~ command.
+		- Modify a user account.
+		- If you want to add the user ~jim~ to the group ~sudo~, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo usermod -aG sudo jim
+      #+END_SRC
+*** Remove user from sudo Group
+		- Problem :: How can I remove a user from the ~sudo~ group?
+		- Use ~deluser~ command.
+		- Remove a user from the system.
+		- If you want to remove the user ~jim~ from the group ~sudo~, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo deluser jim sudo
+      #+END_SRC
+** Groups
+*** Users' groups
+		- Problem :: How can I list all groups a user is a member of?
+		- Use ~groups~ command.
+		- print the groups a user is in.
+		- See examples [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]].
+		- If you want to list the groups the user ~jim~ is a membre of,
+      run the command:
+			#+BEGIN_SRC bash
+			groups jim
+			groups # if you're logged as jim
+      #+END_SRC
+*** List all groups
+		- Problem :: How can I list all groups present on the system?
+		- Use ~getent~ command.
+		- Get entries from Name Service Switch libraries.
+		- See examples [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]].
+		- If you want to list all groups present on the system, run the
+      command:
+			#+BEGIN_SRC bash
+			getent group
+      #+END_SRC
+** Passwords
+*** Enable root user account
+		- Problem :: How can I enable root user account?
+		- Use ~passwd~ command.
+		- Change user password.
+		- See examples [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]].
+		- If you want to enable the root user account and you have the
+      sudo privileges, run the command:
+			#+BEGIN_SRC bash
+			sudo passwd root
+      #+END_SRC
+		- If you want to disable the root user account and you have the
+      sudo privileges, run the command:
+			#+BEGIN_SRC bash
+			sudo passwd -l root
+      #+END_SRC
+*** Encrypt password into SHA 512 hash
+		- Problem :: How can I encrypt a password that can be used in the
+      ~/etc/shadow~ file?
+		- Use ~mkpasswd~ command.
+		- Encrypts the given password with the crypt(3) libc function using the given salt.
+		- See examples [[https://superuser.com/questions/371442/how-to-use-mkpasswd-to-generate-a-password-in-shadow-file-in-ubuntu-10-lucid][generate a password in shadow file]].
+		- If you want to encrypt a password into SHA 512 hash with the
+      given *salt* ~saltsalt~, run the command (and type your password):
+			#+BEGIN_SRC bash
+			mkpasswd -m sha-512 -S saltsalt
+      #+END_SRC
+		- If you want to encrypt a password into SHA 512 hash without
+      specifying the *salt* (a random one will be provide), run the
+      command (and type your password):
+			#+BEGIN_SRC bash
+			mkpasswd -m sha-512
+      #+END_SRC
+		- I you want to list all the encryption methods, run the command:
+			#+BEGIN_SRC bash
+			mkpasswd -m help
+      #+END_SRC
+		- I you want to install the ~mkpasswd~ command, you have to
+      install the package ~whois~. To do so, run the command:
+			#+BEGIN_SRC bash
+      sudo apt install whois
+			#+END_SRC
+** Miscellaneous
+  adduser, deluser, passwd addgroup, delgroup, chown, chgrp
+*** Modify UID
+		- Problem :: How can I modify the UID of an user on linux?
+		- Use ~usermod~ command.
+		- Modify a user account.
+		- See examples [[https://www.tecmint.com/usermod-command-examples/][usermod command example]].
+		- If you want to modify the UID of the user ~tony~ to the number
+      ~1050~ for instance, run the command:
+			#+BEGIN_SRC language
+			usermod -u 1050 tony
+      #+END_SRC
+		- If you want to print the UID of the user ~tony~, run the
+      command:
+			#+BEGIN_SRC language
+      id tony
+			id   # if you're logged as tony
+			#+END_SRC
 * Process and system
   lscpu, hostnamectl, top, ps
 * Files
 ** View
-  du, file, ls, cat, more, less, head, tail
+   du, file, ls, cat, more, less, head, tail
 ** Links
-  ln, stow, alias, unalias
+   ln, stow, alias, unalias
+*** Stow links
+		- Problem :: How can I manage symbolic links of whole directory tree?
+		- Use ~stow~ command.
+		- software package installation manager.
+		- .
+		- If you want to link all my ~dotfiles~ files in my ~$HOME~
+      directory to a versioned directory ~my-dotfiles~ that contained
+      all my ~dotfiles~, assuming ~my-dotfiles~ directory is a
+      subdirectory of ~~/some-directory~, run the commands:
+			#+BEGIN_SRC bash
+			cd ~/some-directory
+			stow -t $HOME my-dotfiles
+      #+END_SRC
+		- If you want to unlink the ~stow~ links made in the previous
+      section, run the commands:
+			#+BEGIN_SRC bash
+			cd ~/some-directory
+			stow -D -t $HOME my-dotfiles
+      #+END_SRC
 ** Compression/backup
-  tar, zip, unzip, unrar, rsync, zcat, zmore, zless
+   tar, zip, unzip, unrar, rsync, zcat, zmore, zless
 ** search
-  locate, find, grep
+   locate, find, grep
+*** find files
+   - Problem :: How to find files that match string or regexp?
+   - Use the command ~find~.
+   - Search for files in a directory hierarchy.
+	 - See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
+   - If you want to find files recursively from your ~$HOME~
+     directory where the ~name~ match the global patern ~virtualenv*~,
+     run the command:
+     #+BEGIN_SRC bash
+     find ~/ -name "virtualenv*"
+     #+END_SRC
+** Replace
+*** replace string in multiple files
+   - Problem :: How to replace string in multiple files?
+   - Use commands ~sed~, ~perl~ and ~find~.
+	 - Stream editor for filtering and transforming text (~sed~).
+   - See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
+	 - If you want to replace all occurrences of one string with another
+     in all files in the current directory (Non recursive, files in
+     this directory only.), run the command:
+		 #+BEGIN_SRC bash
+     sed -i -- 's/foo/bar/g' *
+		 #+END_SRC
+	 - If you want to replace all occurrences of one string with another
+     in all files in the current directory (Recursive, regular files
+     (including hidden ones) in this and all subdirectories), run the
+     command:
+		 #+BEGIN_SRC bash
+		 find . -type f -exec sed -i 's/foo/bar/g' {} +
+		 #+END_SRC
+	 - If you want to replace only if the file name matches another
+     string / has a specific extension / is of a certain type etc
+     (Non-recursive, files in this directory only), run the command:
+		 #+BEGIN_SRC bash
+     sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
+		 #+END_SRC
+		- If you want to replace only if the file name matches another
+     string / has a specific extension / is of a certain type etc
+     (Non-recursive, files in this directory only), run the command:
+		 #+BEGIN_SRC bash
+		 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
+		 # all files whose name contains baz
+		 #+END_SRC
 ** directories
-  mkdir, cd, tree
+   mkdir, cd, tree
 * Network
-  ssh, openssh-server, curl, wget, ping, ftp
+** DNS
+*** A record of an url
+		- Problem :: How to get information of an ~url~ ?
+		- Use the command ~dig~.
+		- ~dig~ is a DNS lookup utility.
+		- See examples [[https://support.dnsimple.com/articles/a-record/][A record]].
+		- If you want to get the *A record* of ~youtube.com~, run the
+			command:
+			#+BEGIN_SRC bash
+			dig A youtube.com
+			#+END_SRC
+** Host
+*** IP address
+		- Problem :: How can I know my IP address?
+		- Use ~ifconfig~ command.
+		- configure a network interface.
+		- If you want to know your (local) IP address (use over the LAN),
+      run the command:
+			#+BEGIN_SRC bash
+			ifconfig -a | grep -E 'inet '  # this is the local IP address
+      #+END_SRC
+		- If you want to know your (public) IP address (use over internet),
+      follow the link  [[https://ifconfig.co/ip][ifconfig.co]] or run the command:
+			#+BEGIN_SRC bash
+			curl ifconfig.co/ip
+      #+END_SRC
+** SSH
+*** Enable SSH on ubuntu
+		- Problem :: How can I to enable SSH (server) on ubuntu?
+		- Use ~openssh-server~ package.
+		- Secure shell (SSH) server, for secure access from remote machines.
+		- See examples [[linkhttps://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
+		- If you want to enable SSH server on the standard port 22, you
+      have to *start* ~ssh~ service with ~systemctl~ command and
+      *allow* incomming SSH connection by *opening* (allowing) the
+      port 22 with the command ~ufw~ and *enabling* the connection
+      with the command ~ufw~. To do so, run the commands
+			#+BEGIN_SRC bash
+			sudo systemctl start ssh
+			sudo ufw allow ssh  # or sudo ufw allow 22/tcp
+			sudo ufw enable
+      #+END_SRC
+		- If you want to install ~openssh-server~ and *start* the service
+      ~ssh~, run the command:
+			#+BEGIN_SRC bash
+      sudo apt install openssh-server
+			#+END_SRC
+*** Connecting to SSH
+		- Problem :: How can I connect to my server via SSH?
+		- Use ~ssh~ command.
+		- OpenSSH SSH client (remote login program)
+		- See examples [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
+		- If you want to connect to your Ubuntu machine over LAN with
+      ~bob~ as username and ~192.168.1.100~, run the command:
+			#+BEGIN_SRC language
+			ssh bob@192.168.1.100
+      #+END_SRC
+		- If you want to connect to your Ubuntu machine over Internet with
+      ~bob~ as username and ~2a01:c50e:e911:9600:fc4d:b07d:d36f:6358~,
+      run the command:
+			#+BEGIN_SRC language
+			ssh bob@2a01:c50e:e911:9600:fc4d:b07d:d36f:6358
+      #+END_SRC
+*** Connected to SSH server
+		- Problem :: How can I know that my shell is connected via a SSH connection?
+		- Use ~printenv~ command.
+		- Print all or part of environment.
+		- If you want to know if you're connected via SSH, check if the
+      environment variables ~SSH_CONNECTION~, ~SSH_CLIENT~ and
+      ~SSH_TTY~ are defined. To do so, run the command:
+			#+BEGIN_SRC bash
+			printenv | grep SSH
+      #+END_SRC
+*** Exit SSH session
+		- Problem :: How can I exit a SSH connection?
+		- Use ~exit~ command.
+		- cause normal process termination
+		- If you want to exit a SSH connection, you can either type ~C-d~
+      or run the command:
+			#+BEGIN_SRC bash
+			exit
+      #+END_SRC
+*** Use sshfs
+		- Problem :: How can I mount remote directories over ssh?
+		- Use ~sshfs~ command.
+		- filesystem client based on ssh.
+		- See examples [[https://linuxize.com/post/how-to-use-sshfs-to-mount-remote-directories-over-ssh/][sshfs]].
+		- If you want to mount the home directory of a user named *tony*
+      on a remote host with IP address of *192.168.1.100*, create a
+      directory ~~/remote-tony~ that will serve as a mount point and
+      use ~sshfs~ command. To do so, run the commands:
+			#+BEGIN_SRC language
+			mkdir ~/remote-tony
+			sshfs tony@192.168.1.100:/home/tony ~/remote-tony
+      #+END_SRC
+		- If you want to detach the mounted file system ~~/remote-tony~,
+      run the command:
+			#+BEGIN_SRC language
+			sudo umount ~/remote-tony
+      #+END_SRC
+*** Passwordless SSH login
+		- Problem :: How can I setup a passwordless SSH login?
+		- Use ~ssh-keygen~, ~ssh-add~ and ~ssh-copy-id~ command.
+		- Authentication key generation, management and conversion
+      (~ssh-keygen~).
+		- Use locally available keys to authorise logins on a remote
+      machine (~ssh-copy-id~).
+		- Adds private key identities to the authentication agent
+      (~ssh-add~).
+		- See examples [[https://linuxize.com/post/how-to-setup-passwordless-ssh-login/][setup passwordless ssh login]] and [[https://gist.github.com/jexchan/2351996][create different public key]].
+		- If you want to connect to the user ~jim~ on the server
+      ~192.168.1.100~ without prompting a password, you have to
+      generate a *ssh key*, send the public part to
+      ~jim@192.168.1.100~ server, append the public key on the remote
+      file ~~/.ssh/authorized_keys~ and add the private key to the
+      authentication agent. After that, you can directly connect to
+      the server. To do so, run the command:
+			#+BEGIN_SRC bash
+			ssh-keygen -t rsa -f ~/.ssh/id_rsa_jim
+			ssh-copy-id -i ~/.ssh/id_rsa_jim.pub jim@192.168.1.100
+			ssh-add ~/.ssh/id_rsa_jim
+      #+END_SRC
+		- If you want to list all identities currently represented by the
+      agent, run the command:
+			#+BEGIN_SRC bash
+      ssh-add -l
+			#+END_SRC
+		- If you want to delete the identity ~~/.ssh/id_rsa_jim~ from the
+      agent, run the command:
+			#+BEGIN_SRC bash
+      ssh-add -d ~/.ssh/id_rsa_jim
+			#+END_SRC
+** Servers
+*** php server
+		- Problem :: How to run a php server?
+		- Use the command ~php~.
+		- If the directory contains a ~index.php~ file, to have the server
+			running on ~localhost~ on port ~8080~, run the command:
+			#+BEGIN_SRC bash
+			php -S localhost:8080
+			#+END_SRC
+*** Automatic reload server
+		- Problem :: How to run a server that automatically reload when
+                 files change on the system?
+		- Use the command ~browser-sync~.
+		- If the directory contains a ~index.html~ file, to have the server
+			reload each second, run the command:
+			#+BEGIN_SRC bash
+			browser-sync start --reload-delay=1000 -w --server
+			#+END_SRC
+** Connection
+*** Wifi connection
+		- Problem :: How can I restart my wifi connection?
+		- Use ~service~ command.
+		- run a System V init script.
+		- See examples [[https://askubuntu.com/questions/271387/how-to-restart-wifi-connection][restart wifi connection]].
+		- If you want to restart your wifi connection, run the command:
+			#+BEGIN_SRC bash
+			sudo service network-manager restart
+      #+END_SRC
+** Miscellaneous
+  curl, wget, ping, ftp
 * Devices
   lsblk, mount, umount
-
   [[https://askubuntu.com/questions/37767/how-to-access-a-usb-flash-drive-from-the-terminal][usb flash drive: commnand line]]
   #+BEGIN_SRC bash
   lsblk  # find what the drive is called
   sudo mount /dev/sdb1 /mnt/  # if drive called sdb1
   sudo umount /mnt/
   #+END_SRC
+** USB drive
+*** Wipe out data
+		- Problem :: How can I securely clear (wipe out) all the data on
+      my USB drive?
+		- Use ~dd~ command.
+		- Convert and copy a file.
+		- See examples [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][how to format usb drives]].
+		- If you want to wipe out all the data on your USB drive, plug
+      it, be sure that is not mounted, and assuming that your target drive
+      is ~/dev/sdb~, run the command:
+			#+BEGIN_SRC bash
+			sudo dd if=/dev/zero of=/dev/sdb bs=4096 status=progress
+      #+END_SRC
+		- Last time, for a 32GB usb drive, the process took about 30
+      minuntes to complete.
+		- Once the disk is erased, the ~dd~ command will print ~~No space
+      left on device~.
+*** Format USB drive with EXT4
+		- Problem :: How can I format a usb drive with EXT4?
+		- Use ~parted~ and ~mkfs.ext4~ commands.
+		- A partition manipulation program (~parted~).
+		- Create an ext4 filesystem (~mkfs.ext4~).
+		- See examples [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][how to format usb drives]].
+		- If you want to format an usb drive with only one ext4 partition
+      that take the whole space, plug you're usb drive, be sure that
+      is not mounted, create a GPT partition table, create a ext4
+      partition that takes the whole space and finaly format the
+      partition to ext4. To do so, assuming that your target drive
+      is ~/dev/sdb~, run the commands:
+			#+BEGIN_SRC bash
+			sudo parted /dev/sdb --script -- mklabel gpt
+			sudo parted /dev/sdb --script -- mkpart primary ext4 0% 100%
+			sudo mkfs.ext4 -F /dev/sdb1
+      #+END_SRC
+		- When format as above, when the usb is mounted is own by ~root~,
+      belong to ~root~ group and as the permission file is
+      ~drwxr-xr-x~.
+		- If you want to print the partition table and verify that
+      everything is set up correctly, run the command:
+			#+BEGIN_SRC bash
+			sudo parted /dev/sdb --script print
+      #+END_SRC
+*** Name a USB drive
+		- Problem :: How can I name a USB drive with an ext4 filesystem?
+		- Use ~e2label~ command.
+		- Change the label on an ext2/ext3/ext4 filesystem.
+		- See examples [[https://help.ubuntu.com/community/RenameUSBDrive][rename usb drive]].
+		- If you want to name (or rename) ~my-name~ your USB drive,
+      assuming the target drive is ~/dev/sdb1~ and is unmounted, run
+      the command:
+			#+BEGIN_SRC language
+			sudo e2label /dev/sdb1 my-name
+      #+END_SRC
+		- I you want to check the name of your USB drive, assuming the
+      target is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC language
+			sudo e2label /dev/sdb1
+      #+END_SRC
+		- The name of an usb drive doesn't identify the usb drive. For
+      this purpose see ~UUID~ of the usb drive or the ~PARTUUID~.
+*** UUID of an USB drive
+		- Problem :: How can I know the ~UUID~ of an USB drive?
+		- Use ~blkid~ command.
+		- locate/print block device attributes
+		- See examples [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]].
+		- If you want to print the ~UUID~ of the block device wich
+      partition is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC language
+			blkid -s UUID -o value /dev/sdb1
+      #+END_SRC
+		- Filesystem partitions have UUIDs but physical devices do not.
+*** USB drive accross linux system
+		- Problem :: How can I set up the USB drive in such way that user
+      with the same UID accross linux system can access to the USB drive?
+		- Use ~mkfs.ext4~ and ~chown~ commands.
+		- Create an ext4 filesystem (~mkfs.ext4~).
+		- Change file owner and group (~chown~).
+		- See examples [[https://unix.stackexchange.com/questions/422656/how-to-make-an-ext4-formatted-usb-drive-with-full-rw-permissions-for-any-linux-m][ext4 formatted usb drive with full rw permissions]].
+		- If you want to format your usb drive to ext4 file system and
+      give it the ownership of the same username (same UID) your
+      share accross linux system, assuming that ~/dev/sdb1~ is the
+      partition and ~my-name~ is your username, run the commands:
+			#+BEGIN_SRC language
+			sudo mkfs.ext4 /dev/sdb1
+			sudo mount /dev/sdb1 /mnt
+			sudo chown my-name: /mnt
+			sudo umount /mnt
+      #+END_SRC
+		- Take care, the above operations will kill your all the data on
+      the usb drive.
+*** Preserve mode/ownership/timestamps when using sudo
+		- Problem :: How can I preserve mode/ownership/timestamps when
+      ~cp~ or ~rsync~ and using ~sudo~ ?
+		- Use ~cp~ or ~rsync~ command.
+		- Copy files and directories (~cp~).
+		- A fast, versatile, remote (and local) file-copying tool (~rsync~).
+		- If you want to copy the directory ~my-dir~ to your USB drive
+      mounted at ~/mnt~ and preserving mode/ownership/timestamps, run
+      the command:
+			#+BEGIN_SRC bash
+			sudo cp -r --preserve my-dir /mnt  # with cp
+			sudo rsync -rog my-dir /mnt  # with rsync
+      #+END_SRC
+*** Mount USB drive without sudo privilege
+		- Problem :: How can I mount a usb drive without sudo privilege?
+		- Use ~pmount~ command.
+		- Mount arbitrary hotpluggable devices as normal user.
+		- If you want to mount your USB drive on ~/media/usbdrive~
+      assuming the target drive is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			pmount /dev/sdb1 usbdrive
+      #+END_SRC
+		- If you want to unmount your USB drive mounted with ~pmount~
+      assuming the target drive is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			pumount /dev/sdb1
+      #+END_SRC
 
+*** Mount USB drive
+		- Problem :: How can I mount a usb drive?
+		- Use ~mount~ command.
+		- Mount a filesystem.
+		- If you want to mount your USB drive on ~/mnt~
+      assuming the target drive is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			sudo /dev/sdb1 /mnt
+      #+END_SRC
+		- If you want to unmount your USB drive, assuming the target drive
+      is ~/dev/sdb1~, run the command:
+			#+BEGIN_SRC bash
+			sudo umount /dev/sdb1
+      #+END_SRC
+
+*** List block USB devices
+		- Problem :: How can I list block USB devices?
+		- Use ~lsblk~ command.
+		- List block devices.
+		- If you want to the block USB devices on your machine, run the
+      command:
+			#+BEGIN_SRC bash
+			lsblk
+      #+END_SRC
+*** List USB devices
+		- Problem :: How can I list USB devices?
+		- Use ~lsusb~ command.
+		- List USB devices.
+		- If you want to the USB devices on your machine, run the
+      command:
+			#+BEGIN_SRC bash
+			lsusb
+      #+END_SRC
+*** Available space on USB
+		- Problem :: How can I know what is the available space on a USB drive?
+		- Use ~df~ command.
+		- report file system disk space usage.
+		-  .
+		- If you want to know the available space that remains on a USB
+      drive, assuming the target drive is ~/dev/sdb1~ and is mounted,
+      run the command:
+			#+BEGIN_SRC bash
+			df -h /dev/sdb1
+      #+END_SRC
+** Iphone
+*** Mount Iphone on Linux Ubuntu
+		- Problem :: How can I mount my Iphone on my linux machine?
+		- Use ~idevicepair~ and ~ifuse~ command.
+		- Manage host pairings with devices and usbmuxd (~idevicepair~).
+		- Mount directories of an iOS device locally using fuse (~ifuse~).
+		- See examples [[https://www.maketecheasier.com/easily-mount-your-iphone-as-an-external-drive-in-ubuntu/][mount your iphone as an external drive]].
+		- If you want to mount your Iphone on the directory
+      ~/media/iphone~ in order browse its directories contents, you
+      have to plug your Iphone to your machine, pair it, create the
+      directory ~/media/iphone~ (if doesn't exist yet) and mount the
+      Iphone. To do so, run the commands:
+			#+BEGIN_SRC bash
+			idevicepair pair
+			mkdir /media/iphone
+			sudo ifuse
+      #+END_SRC
+		- If you to list the medias on your mobile (in my case there were
+      on the directory ~/media/iphone/DCIM/106APPLE~), run the
+      command:
+			#+BEGIN_SRC bash
+      ls ~/media/iphone/DCIM/106APPLE~
+			#+END_SRC
+		- If you want to unmount your Iphone, run the command:
+			#+BEGIN_SRC bash
+			sudo umount /media/iphone
+      #+END_SRC
+		- If you want to install ~idevicepair~ and ~ifuse~, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo apt install libimobiledevice6 libimobiledevice-utils ifuse
+      #+END_SRC
 * X window system
+** Kill window
+*** Kill a window
+		- Problem :: How can I kill a window that I can't kill with i3?
+		- Use ~xkill~ command.
+		- Kill a client by its X resource.
+		- If you want to kill a window that do no respond, run the
+      command ~xkill~ and click on the window you want to kill:
+			#+BEGIN_SRC bash
+			xkill  # and click on the window you want to kill
+      #+END_SRC
+** Get X information
+*** Global X information
+		- Problem :: How can I print all X information on a selected window?
+		- Use ~xwininfo~ command.
+		- Window information utility for X.
+		- If you want to to print all X information on a selected window,
+      run the command ~xwininfo -all~ and click on the window you want
+      the information from:
+			#+BEGIN_SRC bash
+			xwininfo -all  # and click on the window you want the information from
+      #+END_SRC
+** X and i3
+*** Instance and class of a X window
+		- Problem :: How can I get the instance and class of X window that
+      are used with ~i3~?
+		- Use ~xprop~ command.
+		- Property displayer for X.
+		- If you want to get the instance and class of an X window in
+      order to use them with ~i3~, run the command ~xprop~ and click on
+      the window you want the information from and inspect the line
+      starting by ~WM_CLASS(STRING):~. For example on clicking on a
+      window running ~chromium-browser~ application, I get the line:
+			- ~WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"~
+      - first  ~"chromium-browser"~ is the *instance*,
+      - second ~"Chromium-browser"~ is the *class*.:
+			#+BEGIN_SRC bash
+			xprop  # and click on the window you want the information from
+      #+END_SRC
+** Multiple monitors
+*** Display 2 monitors
+    - Problem :: How can I display a monitor on the left of the other monitor?
+    - Use ~xrandr~ command.
+		- Set the size, orientation and/or reflection of the outputs for a screen.
+		- If you want to display the monitor ~DP-2~ on the left of the
+      monitor ~<eDP-1>~, run the command:
+			#+BEGIN_SRC bash
+			xrandr --output DP-2 --left-of eDP-1
+      #+END_SRC
+		- If you want to get the names of the outputs you want to display
+      with ~xrandr~, run the command ~xrandr~ and seek for lines like
+      these ones (in my case ~eDP-1~ and ~DP-2~ are the monitors I want
+      to display side by side):
+      1) ~eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm~
+      2) ~DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm x 270mm~
+			#+BEGIN_SRC bash
+			xrandr
+      #+END_SRC
+** Miscellaneous
   xbindkey, xmodmap, xev, xdotools, wmctrl
 * Date
   date, crontab, sleep, at, atq, atrm
+* Images
+** Use images
+*** Wallpaper
+		- Problem :: How to set the wallpaper?
+		- Use the command ~feh~.
+		- Image viewer and cataloguer.
+		- See examples here [[https://wiki.archlinux.org/index.php/feh][wiki command feh]].
+		- If you want ~path/to/images.jpg~ to be you be your image
+			background, run the command:
+			#+BEGIN_SRC bash
+			feh --bg-fill path/to/images.jpg
+			#+END_SRC
+** Manipulate images
+*** Convert images
+		- Problem :: How to convert images?
+		- Use the command ~convert~.
+		- Convert  between  image  formats as well as resize an image.
+		- See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
+		- If you want to convert the image ~image.png~ to the format
+      ~jpg~, run the command:
+			#+BEGIN_SRC bash
+			convert image.png image.jpg
+			#+END_SRC
+		- If you want to install ~convert~, as it comes with the
+      [[https://imagemagick.org/][imagemagick]] package, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install imagemagick
+			#+END_SRC
+*** Resize an image
+		- Problem :: How to resize an image?
+		- Use the command ~convert~.
+		- Convert  between  image  formats as well as resize an image.
+		- See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
+		- If you want to resize an image to 200 pixels in width and 100
+      pixels in heigh, run the command:
+			#+BEGIN_SRC bash
+			convert image.png -resize 200x100 image.png
+			#+END_SRC
+		- If you want to install ~convert~, as it comes with the
+      [[https://imagemagick.org/][imagemagick]] package, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install imagemagick
+			#+END_SRC
+* Backup
+** Backup and archive
+*** Backup
+		- Problem :: What is a Backup?
+		- A *backup* is a copy of data that can be used to restore the
+      original in the event that your data is lost or damaged. If a
+      company experiences data loss due to hardware failure, human
+      error or natural disaster, a backup can be used to quickly
+      restore that data.
+*** Archive
+		- Problem :: What is an Archive?
+		- An *archive* is a collection of historical records that are kept
+      for long-term retention and used for future
+      reference. Typically, archives contain data that is not actively
+      used.
+*** Difference between backup and archive
+		- Problem :: What is the difference between *backup* and *archive*?
+		- Basically, a *backup* is a *copy* of a set of data, while an
+      *archive* holds *original* data that has been *removed* from its
+      original location.
+** Back up ~/etc~ directory
+*** ~/etc~ stored in a ~git~ repository
+		- Problem :: How can I review or revert changes that were made to ~/etc~?
+		- Use ~etckeeper~ tool.
+		- Store ~/etc~ in ~git~.
+		- See examples [[https://etckeeper.branchable.com/README/][etckeeper README]].
+		- If you want to install and initialize ~etckeeper~ on ubuntu,
+      run the commands:
+			#+BEGIN_SRC bash
+			sudo apt install etckeeper
+      #+END_SRC
+		- If you want to ~commit~ changes made in ~/etc~ installing new
+      package using ~apt~, do *nothing*, ~etckeeper~ do it for you.
+		- If you want to ~commit~ changes made in ~/etc~, run the
+      commands:
+			#+BEGIN_SRC bash
+      cd /etc
+			sudo git add .  # or only a few files
+			sudo git commit -m "your message"
+			#+END_SRC
+		- If you want to *configure* and tweak ~etckeeper~, see files and
+      directories:
+			- /etc/etckeeper/
+			- /etc/etckeeper/etckeeper.conf
+		- If you want to *skip* some files or directories from being
+      stored into ~git~ repository, add them to ~/etc/.gitignore~.
+		- If I want to *revert* changes to a previous state (commit), you
+      must ~checkout~ to the previous commit and re-initialize
+      ~etckeeper~, to do so run the commands:
+			#+BEGIN_SRC bash
+      sudo git checkout <previous-commit>
+			sudo etckeeper init
+			#+END_SRC
+*** ~/etc~ backed up to ~usb~ drive
+		- Problem :: How can I back up the ~/etc~ directory to ~usb~ drive?
+		- Use ~rsync~ command.
+		- A fast, versatile, remote (and local) file-copying tool
+		- If you want to ???:
+			#+BEGIN_SRC bash
+			???
+      #+END_SRC
+		- Be aware that ~/etc~ directory contains secret informations. For
+      instance, SHA-512 password are stored in the file
+      ~/etc/shadow~.
+** Large files with ~git~
+*** git-annex
+		- [[https://git-annex.branchable.com/][git-annex (homepage)]]
+		- [[https://git-annex.branchable.com/not/][git-annex is NOT ...]]
+		- [[https://git-annex.branchable.com/walkthrough/][git-annex (walkthrough)]]
+		- [[https://git-annex.branchable.com/tips/emacs_integration/][git-annex (emacs integration)]]
+*** git-lfs
+		- [[https://git-lfs.github.com/][git-lfs (homepage)]]
+		- [[https://www.atlassian.com/git/tutorials/git-lfs][git-lfs (tutorial)]]
+		- [[https://www.youtube.com/watch?v=006RUPVIP-c][git-lfs (talk)]]
+*** Difference between git-lfs and git-annex
+		- Problem :: What is the difference between ~git-lfs~ and ~git-annex~?
+		- ~git-lfs~ differs from ~git-annex~ in that:
+			1) all the large files in the repository are usually present in
+         the working tree; it doesn't have a way to drop content that
+         is not wanted locally while keeping other content locally
+         available, as ~git-annex~ does.
+			2) And so it does not need to be able to get content like
+         ~git-annex~ can do either.
+			3) It also differs in that it uses a central server, which is
+         trusted to retain content, so it doesn't try to avoid losing
+         the local copy, which could be the only copy, as ~git-annex~
+         does.
+		- See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and
+		[[https://lwn.net/Articles/774125/][large files with git (article)]].
+
 * Sensitive actions
   rm, kill, killall, gparted
 * Miscellaneous
-	shutdown,
-	reboot
-	pandoc
-  chmod
-  sort
-  wc
-  uniq
-  cut  csplit,
-  split,
-  iconv,
-  diff,
-  patch,
-  man ascii,
-  man utf-8,
-  fpp (https://github.com/facebook/PathPicker),
-  history,
-  ffmpeg,
-  xargs,
-  ;,
-  \&\&,
-  \&,
-  nohup,
-  |,
-  grip,
-  pdflatex,
-  pdftk,
-  docker,
-  source,
-  dpkg,
-  debootstrap
-  >, > >, 2>, 2> >, 2>\&1, <, < <, |,
-  uptime,
-  tload
+  whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
+  split, iconv, diff, patch, man ascii, man utf-8, fpp
+  (https://github.com/facebook/PathPicker), history, ffmpeg, ;,
+  \&\&, \&, nohup, |, grip, pdflatex, pdftk, docker, source, dpkg,
+  debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload
