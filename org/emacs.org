@@ -80,35 +80,51 @@
       if/loop, library,...),
    6) *Réparer*: yank, fill, write,...,
    7) *Coudre*: save and run.
-* Ideas
-** Abo-Abo
-   * [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
-   * [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
-   * [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
-   * [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
-   * [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
-** Other
-   - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
-   - [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
-   - To tweak vuejs mode, with emmet package, see the behaviour of
-     the variable ~emmet-use-css-transform~ when come-in/out part of
-     multiple-major mode.
-   - [[https://cask.readthedocs.io/en/latest/][Project management tool: Cask]]
-   - ~mode-line~: To modify what appears in mode-line, you can modify
-     the default variable ~mode-line-format~. For instance, to show
-     the total number of line in the buffer see [[https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline][display in mode-line]].
-   - [[https://github.com/gregsexton/origami.el][origami.el : a text folding minor mode for Emacs.]]
-   - [[http://www.shanidar.net/news/ca/2016/09/11/0001/more-emacs-configuration-tweaks-multiple-cursor-on-click-minimap-code-folding-ensime-eval-overlays][minimap and origami]]
-   - It may be possible to change the rendering of the two spaces
-     ~"  "~ inserted when expand a subtree in dired-subtree by modifying
-     the function ~dired-subtree--readin~.
-   - [[http://ergoemacs.org/emacs/emacs_show_key_and_command.html][command-log-mode package]]
-   - [[http://ergoemacs.org/emacs/emacs_n_unicode.html][ergoemacs: emacs unicode]]
-   - [[https://github.com/iqbalansari/emacs-emojify][emoji into emacs]]
-   - [[https://github.com/AdamNiederer/vue-mode/issues/32][company and vue-mode]]
-   - [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
-   - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
-   - [[https://melpa.org/#/counsel-jq][counsel for jq]]
+* dired-mode
+** Default keybindings
+  | ~A~ | ~dired-do-search~               |
+  | ~Q~ | ~dired-do-query-replace-regexp~ |
+  | ~/~ | ~dired-narrow~                  |
+  | ~g~ | ~revert-buffer~                 |
+* ibuffer
+** Default keybindings
+  | ~/ n~ | filter by name     |
+  | ~/ p~ | remove last filter |
+  | ~/ /~ | remove all filters |
+* ivy/counsel/swiper
+** Default keybindings
+*** In ~ivy-mode-map~:
+    | ~C-m~     | ~ivy-done~                |
+    | ~M-o~     | ~ivy-dispatching-done~    |
+    | ~C-M-o~   | ~ivy-dispatching-call~    |
+    | ~M-i~     | ~ivy-insert-current~      |
+    | ~M-j~     | ~ivy-yank-word~           |
+    | ~S-SPC~   | ~ivy-restrict-to-matches~ |
+    | ~C-c C-o~ | ~ivy-occur~               |
+*** In ~ivy-minibuffer-map~:
+    | ~C-r~   | ~ivy-reverse-i-search~ |
+    | ~C-M-j~ | ~ivy-immediate-done~   |
+    | ~M-o j~ | ~open in other window~ |
+* js-mode
+  ~tern~ is a ~node~ package. We use it to perfom completion in
+  ~js-mode~.See [[https://ternjs.net/doc/manual.html#emacs][ternjs]].
+
+  We have to perform following steps to use it:
+  #+BEGIN_SRC bash
+  whereis tern           # to get the path of the executable
+
+  Then into emacs, add the path-to ~tern~ executable into ~PATH~ and
+  ~exec-path~:
+  #+BEGIN_SRC emacs-lisp
+  (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:"
+  (getenv "PATH")))
+  (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
+
+* emacs-lisp files
+  [[~/Documents/apps/emacs/lisp/thingatpt.el][thingatpt.el]], [[~/.emacs.d/elpa/iedit-20181114.950/iedit.el][iedit.el]], s.el, avy, acewindow, expand region,
+  multiple cursor, company.el, mhtml-mode.el, syntax.el (see the
+  function: ~syntax-ppss-context~)
+* TDD
 * Tips
 **  commands
    * ~M-x re-builder~ : build regular expression
@@ -156,87 +172,42 @@
    * [[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]
 * Articles
 ** Ergoemacs/xahlee
-   [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
+   - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
    ~describe-character-set~.
-   [[http://xahlee.info/UnixResource_dir/writ/lisp_problems.html][lisp problems]]
-   [[http://ergoemacs.org/emacs/ergoemacs_and_paredit.html][ergoemacs and paredit]]
-   [[http://ergoemacs.org/emacs/emacs_editing_lisp.html][emacs editing lisp]] (see: ~mark-sexp~, ~backward-up-list~)
-   [[http://ergoemacs.org/emacs/elisp_change_brackets.html][elisp change brackets]]
-   [[http://xahlee.info/UnixResource_dir/writ/hard-wrap.html][hard-wrap]]
-   [[http://xahlee.info/UnixResource_dir/writ/truncate_line.html][truncate line]]
-   [[http://ergoemacs.org/emacs/lisp_formatter.html][lisp formatter]]
-   [[http://ergoemacs.org/emacs/bookmark.html][bookmark]]
+   - [[http://xahlee.info/UnixResource_dir/writ/lisp_problems.html][lisp problems]]
+   - [[http://ergoemacs.org/emacs/ergoemacs_and_paredit.html][ergoemacs and paredit]]
+   - [[http://ergoemacs.org/emacs/emacs_editing_lisp.html][emacs editing lisp]] (see: ~mark-sexp~, ~backward-up-list~)
+   - [[http://ergoemacs.org/emacs/elisp_change_brackets.html][elisp change brackets]]
+   - [[http://xahlee.info/UnixResource_dir/writ/hard-wrap.html][hard-wrap]]
+   - [[http://xahlee.info/UnixResource_dir/writ/truncate_line.html][truncate line]]
+   - [[http://ergoemacs.org/emacs/lisp_formatter.html][lisp formatter]]
+   - [[http://ergoemacs.org/emacs/bookmark.html][bookmark]]
 ** other
-   [[https://www.masteringemacs.org/article/swapping-quote-symbols-emacs-parsepartialsexp][marsteringemacs: swapping quote symbols]]
-   [[http://dreamsongs.com/RiseOfWorseIsBetter.html][the rise of worse is better]]
-   [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]: emacs-lisp example, see ~logand~.
-* dired-mode
-  | ~A~ | ~dired-do-search~               |
-  | ~Q~ | ~dired-do-query-replace-regexp~ |
-  | ~/~ | to narrow           |
-  | ~g~ | Revert back listing |
-* ibuffer
-  | ~/ n~ | filter by name     |
-  | ~/ p~ | remove last filter |
-  | ~/ /~ | remove all filters |
-* ivy/counsel/swiper
-  * [[https://www.youtube.com/watch?v=rLF9oTmVFsc\&feature=youtu.be][search+replace in multiple files]]
-  * [[https://github.com/abo-abo/swiper/blob/master/doc/ivy.org][ivy documentation]]
-  * [[https://oremacs.com/2015/10/14/swiper-mc/][swiper-mc]]
-  * [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
-  * [[https://github.com/abo-abo/swiper/issues/1515][github issue: counsel-minibuffer-history]]
-  * In ~ivy-mode-map~:
-    | ~C-m~     | ~ivy-done~                |
-    | ~M-o~     | ~ivy-dispatching-done~    |
-    | ~C-M-o~   | ~ivy-dispatching-call~    |
-    | ~M-i~     | ~ivy-insert-current~      |
-    | ~M-j~     | ~ivy-yank-word~           |
-    | ~S-SPC~   | ~ivy-restrict-to-matches~ |
-    | ~C-c C-o~ | ~ivy-occur~               |
-  * In ~ivy-minibuffer-map~:
-    | ~C-r~   | ~ivy-reverse-i-search~ |
-    | ~C-M-j~ | ~ivy-immediate-done~   |
-    | ~M-o j~ | ~open in other window~ |
-* js-mode
-  ~tern~ is a ~node~ package. We use it to perfom completion in
-  ~js-mode~.See [[https://ternjs.net/doc/manual.html#emacs][ternjs]].
-
-  We have to perform following steps to use it:
-  #+BEGIN_SRC bash
-  whereis tern           # to get the path of the executable
-
-  Then into emacs, add the path-to ~tern~ executable into ~PATH~ and
-  ~exec-path~:
-  #+BEGIN_SRC emacs-lisp
-  (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:"
-  (getenv "PATH")))
-  (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
-
-* Emacs setup
-
-* Colors
-** tools
-   [[https://www.colorhexa.com/f92672][colorhexa]]
-   [[http://hslpicker.com/#fff,0][hslpicker]]
-   [[https://yuilibrary.com/yui/docs/color/hsl-picker.html][yuilibrary: hsl picker]]
-** documentation
-   [[https://www.youtube.com/watch?v=0IIb0tnLIcU][What is HUE, Saturation, Brightness and Luminance!]]
-   [[https://en.wikipedia.org/wiki/Hue][color: HUE]]
-   [[https://en.wikipedia.org/wiki/Web_colors][web color]]
-   [[https://en.wikipedia.org/wiki/Color_vision][color vision]]
-   [[https://en.wikipedia.org/wiki/Color_constancy][color constancy]]
-   [[https://en.wikipedia.org/wiki/Spectral_sensitivity][spectral sensitivity]]
-   [[https://en.wikipedia.org/wiki/Cone_cell][cone cell]]
-** shell colors
-   [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
-   [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
-   [[https://github.com/dieggsy/eterm-256color][emacs: eterm-256color]]
-* emacs-lisp files
-  [[~/Documents/apps/emacs/lisp/thingatpt.el][thingatpt.el]], [[~/.emacs.d/elpa/iedit-20181114.950/iedit.el][iedit.el]], s.el, avy, acewindow, expand region,
-  multiple cursor, company.el, mhtml-mode.el, syntax.el (see the
-  function: ~syntax-ppss-context~)
-* post-command
-  [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
-  is added to the the hook ~post-command-hook~.
-
-* TDD
+   - [[https://www.masteringemacs.org/article/swapping-quote-symbols-emacs-parsepartialsexp][marsteringemacs: swapping quote symbols]]
+   - [[http://dreamsongs.com/RiseOfWorseIsBetter.html][the rise of worse is better]]
+   - [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]: emacs-lisp example, see ~logand~.
+* Ideas
+** Abo-Abo
+   - [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
+   - [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
+   - [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
+   - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
+   - [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
+** Other
+	 - [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
+   - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
+   - [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
+   - ~mode-line~: To modify what appears in mode-line, you can modify
+     the default variable ~mode-line-format~. For instance, to show
+     the total number of line in the buffer see [[https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline][display in mode-line]].
+   - [[https://github.com/gregsexton/origami.el][origami.el : a text folding minor mode for Emacs.]]
+   - [[http://www.shanidar.net/news/ca/2016/09/11/0001/more-emacs-configuration-tweaks-multiple-cursor-on-click-minimap-code-folding-ensime-eval-overlays][minimap and origami]]
+   - It may be possible to change the rendering of the two spaces
+     ~"  "~ inserted when expand a subtree in dired-subtree by modifying
+     the function ~dired-subtree--readin~.
+   - [[http://ergoemacs.org/emacs/emacs_show_key_and_command.html][command-log-mode package]]
+   - [[http://ergoemacs.org/emacs/emacs_n_unicode.html][ergoemacs: emacs unicode]]
+   - [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
+   - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
+   - [[https://melpa.org/#/counsel-jq][counsel for jq]]
+	 - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
