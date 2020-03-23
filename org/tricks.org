@@ -2,17 +2,8 @@
 #+author: Tony Aldon
 
 * About
-  1) The truth
-     This is the main entry for all my computing tricks.
-     Here you have the only truth of my computing notes.
-     By typing on the heading, you enter on the different themes.
-
-  2) New content
-		 This document plays the role of buffer for new content, new
-     tricks. Each new content must be put here in first place, and
-     later dispatched.
-
-
+  This is the main entry for all my computing tricks. Here you have
+  the only *truth* of my computing notes.
 * [[file:./emacs.org][emacs]]
 ** --eval
 *** emacs command line in terminal
