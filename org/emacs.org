@@ -2,37 +2,37 @@
 #+author: Tony Aldon
 
 * Emacs workflow
-** Phylosophy
-   -  Have a clear mind map :: of emacs actions (commands): belong to
-        a group, hot commands, warm commands and cold commands,
-	 -  Recommended ::  use 'hydra' for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
-	 -  If any alternative ::  use 'specific' key-chords, 2 fingers in
-				the same hand used as one finger [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
-	 -  Banned ::  long term key-chords,
-	 -  Banned ::  bind commands with low use.
-** Actions
-*** Groups
-    windows, buffers and files, scrolling, narrow, org-mode, lines,
-    parentheses, multiple-cursors, macros
-*** Hot commands
-    undo, save-buffer, kill-this-buffer, ta-find-file-daily-notes,
-    previous-buffer, next-buffer, delete-other-windows, ace-window,
-    kill-region, kill-ring-save, yank, er/mark-word, er/expand-region,
-    iedit-mode, swiper, iy-go-to-char, iy-go-to-char-backward,
-    ace-jump-mode, ace-jump-line-mode, buffer ring stuff, ace-jump
-    ring stuff 
-*** Warm commands
-		help-*,back-to-indent, kill-line, transpose-words, counsel-M-x,
-		eval-expression, shell-command, counsel-yank-pop, eval-buffer,
-		eval-last-sexp, term-line-mode, term-char-mode,
-		counsel-semantic-or-imenu. 
-** Setup
-	 Either to write code or just text, I need good:
-  - Completion :: [[https://company-mode.github.io/][company-mode]] [[https://github.com/abo-abo/swiper][ivy]]
-  - Linting :: [[https://www.flycheck.org/en/latest/][flycheck]]
-  - Snippets :: [[https://github.com/joaotavora/yasnippet][yasnippet]]
-  - UI enhanced :: [[https://github.com/tumashu/posframe][posframe]]
-  - Display :: indentation, color, highlight.
+** Keybindings phylosophy
+	 -  Recommended :: use ~hydra~ for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
+	 -  If any alternative :: use ~key-chords~ (2 fingers in
+				the same hand used as one finger) [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
+	 -  Banned :: long term key-chords,
+	 -  Banned :: bind commands with low use.
+** A good setup
+	 Either to write *code* or just *text*, I need:
+  - a good completion sytem :: [[https://company-mode.github.io/][company-mode]], [[https://github.com/abo-abo/swiper][ivy]],
+  - a good linting system :: [[https://www.flycheck.org/en/latest/][flycheck]],
+  - a good snippets system :: [[https://github.com/joaotavora/yasnippet][yasnippet]],
+  - an enhanced UI :: [[https://github.com/tumashu/posframe][posframe]],
+  - an unified layout :: indentation, color, highlight.
+** Settings guide lines
+*** File types
+		Each file should be either a:
+		* setup file :: where we set stuff - mainly a ~mode~ - (file
+			prefixed by ~setup-~),
+		* keybinding file :: where we mainly set keybindings (files
+			prefixed by ~kb-~),
+		* util file :: where we define functions and variables that can be
+			use in many ~setup~ or ~kb~ files (files prefixed by ~util-~).
+*** Files' skeleton
+		In those files, things should be ordered in the following way:
+		1) ~require~,
+		2) ~defvar~,
+		3) ~setq~,
+		4) ~defun~,
+		5) ~defadvice~,
+		6) ~add-hook~,
+		7) ~define-key~.
 * Programming Paradigm
   Lorsque l'on fait un travail de programmation, il faut distinguer
   deux états:
@@ -198,8 +198,6 @@
     | ~C-r~   | ~ivy-reverse-i-search~ |
     | ~C-M-j~ | ~ivy-immediate-done~   |
     | ~M-o j~ | ~open in other window~ |
-* info-mode
-  full name of the node.
 * js-mode
   ~tern~ is a ~node~ package. We use it to perfom completion in
   ~js-mode~.See [[https://ternjs.net/doc/manual.html#emacs][ternjs]].
@@ -216,22 +214,7 @@
   (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
 
 * Emacs setup
-** File type
-   Each file should be either a:
-   * setup :: file prefixed by ~setup-~ where we set
-              stuff,
-   * keybinding :: file prefixed by ~kb-~ where we
-                   mainly set keybindings.
-   * util :: TODO ~util-~
-** Files' skeleton
-   In those files, things should be ordered in the following way:
-   1) ~require~,
-   2) ~defvar~,
-   3) ~setq~,
-   4) ~defun~,
-   5) ~defadvice~,
-   6) ~add-hook~,
-   7) ~define-key~.
+
 * Colors
 ** tools
    [[https://www.colorhexa.com/f92672][colorhexa]]
