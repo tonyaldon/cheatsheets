@@ -35,7 +35,7 @@
 		http://git.savannah.gnu.org/cgit/emacs.git/tree/INSTALL.REPO
 
 ** testing in emacs
-   ert, ecukes, Cask
+   ert, ecukes
 *** To understand testing whith *ecukes*
 		1) multiple-cursor
 		2) expand-region
@@ -49,17 +49,6 @@
 				- [[file:~/Documents/apps/emacs/test/lisp/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
 **** avy.el
      - see: Makefile ...
-** Emacs internals
-	 1) The best way to understand *Emacs internals* is to read the
-      code. Some source files, such as ~xdisp.c~, have extensive
-      comments describing the design and implementation.
-	 2) The /Tips/ an /GNU Emacs Internals/ may also help. To go to the
-      respective info nodes, eval the ~emacs-lisp~ expressions:
-			#+BEGIN_SRC emacs-lisp
-			(info "(elisp)Tips")
-			(info "(elisp)GNU Emacs Internals").
-			#+END_SRC
-	 3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]

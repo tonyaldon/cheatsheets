@@ -157,10 +157,44 @@
 				 }
 			 }
 			 #+END_SRC
-* emacs-lisp files
-  [[~/Documents/apps/emacs/lisp/thingatpt.el][thingatpt.el]], [[~/.emacs.d/elpa/iedit-20181114.950/iedit.el][iedit.el]], s.el, avy, acewindow, expand region,
-  multiple cursor, company.el, mhtml-mode.el, syntax.el (see the
-  function: ~syntax-ppss-context~)
+* Learn emacs/emacs-lisp
+  The best way to learn to code is to *read* a lot of *good
+  code*. Thanks to every open-source projects, we can do it. Here a
+  list of files, packages or people in the emacs world that I think
+  they are worth reading to understand ~emacs~ and ~emacs-lisp~.
+** Emacs internals
+	 1) The best way to understand *Emacs internals* is to read the
+      code ([[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]). Some source files, such as
+      ~xdisp.c~, have extensive comments describing the design and
+      implementation.
+	 2) The *Tips* an *GNU Emacs Internals* may also help. To go to the
+      respective info nodes, eval the ~emacs-lisp~ expressions:
+			#+BEGIN_SRC emacs-lisp
+			(info "(elisp)Tips")
+			(info "(elisp)GNU Emacs Internals").
+			#+END_SRC
+	 3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
+** Emacs built-in (emacs-lisp)
+	 - [[../emacs/built-in/thingatpt.el][thingatpt.el]]: get the thing at point.
+	 - [[../emacs/built-in/mhtml-mode.el][mhtml-mode.el]]: HTML editing mode that handles CSS and JS.
+	 - [[../emacs/built-in/syntax.el][syntax.el]]: helper functions to find syntactic context. See the
+     function ~syntax-ppss-context~.
+** Emacs external packages
+	 - [[../emacs/external/ace-window/][ace-window]]: Quickly switch windows,
+	 - [[../emacs/external/company/][company]]: Modular text completion framework,
+	 - [[../emacs/external/avy/][avy]]: Jump to arbitrary positions in visible text and select text
+     quickly,
+	 - [[../emacs/external/expand-region/][expand-region]]: Increase selected region by semantic units,
+	 - [[../emacs/external/iedit/][iedit]]: Edit multiple regions in the same way simultaneously,
+	 - [[../emacs/external/multiple-cursors/][multiple-cursors]]: Multiple cursors for emacs,
+	 - [[../emacs/external/s/][s]]: The long lost Emacs string manipulation library.
+** Emacs community
+   - [[https://github.com/danielmartin/dotfiles][github: daniel martin dotfiles]]
+   - [[https://github.com/abo-abo][github (abo-abo)]]
+   - [[https://oremacs.com/][oremacs (abo-abo)]]
+   - [[http://emacsrocks.com/][emacsrocks (magnars)]]
+   - [[http://whattheemacsd.com/][.emacs.d (magnars)]]
+   - [[https://github.com/magnars][github (magnars)]]
 * TDD
 * Tips
 **  commands
@@ -199,14 +233,6 @@
    packages wouldn't work because they have been byte compile with the
    old version. Think to byte compile your packages with the newer
    emacs version.
-** people to follow
-   * [[https://github.com/danielmartin/dotfiles][github: daniel martin dotfiles]]
-   * [[https://github.com/abo-abo][github (abo-abo)]]
-   * [[https://oremacs.com/][oremacs (abo-abo)]]
-   * [[http://emacsrocks.com/][emacsrocks (magnars)]]
-   * [[http://whattheemacsd.com/][.emacs.d (magnars)]]
-   * [[https://github.com/magnars][github (magnars)]]
-   * [[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]
 * Articles
 ** Ergoemacs/xahlee
    - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
