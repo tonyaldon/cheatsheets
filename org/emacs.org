@@ -106,20 +106,57 @@
     | ~C-M-j~ | ~ivy-immediate-done~   |
     | ~M-o j~ | ~open in other window~ |
 * js-mode
-  ~tern~ is a ~node~ package. We use it to perfom completion in
-  ~js-mode~.See [[https://ternjs.net/doc/manual.html#emacs][ternjs]].
-
-  We have to perform following steps to use it:
-  #+BEGIN_SRC bash
-  whereis tern           # to get the path of the executable
-
-  Then into emacs, add the path-to ~tern~ executable into ~PATH~ and
-  ~exec-path~:
-  #+BEGIN_SRC emacs-lisp
-  (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:"
-  (getenv "PATH")))
-  (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
-
+** Completion with ~tern~
+	 - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
+     editor-independent JavaScript analyzer that can be used to
+     improve the JavaScript integration of existing editors. I use it
+     to perfom completion in ~js-mode~.
+	 - See [[https://ternjs.net/doc/manual.html#emacs][tern (into emacs)]].
+	 - If you want to install ~tern~, run the command:
+		 #+BEGIN_SRC bash
+     npm install -g tern
+		 #+END_SRC
+	 - If you want to use ~tern~ within emacs in the ~js-mode~:
+		 - you have to install the emacs package ~tern~ (or ~company-tern~
+       that have ~tern~ as a dependency). To do so, add the line
+       ~(depends-on "company-tern")~ to the ~Cask~ file of the emacs
+       configuration in the directory ~~/.emacs.d~,
+		 - you have to add the directory where the ~tern~ executable
+       resides to the ~PATH~ and ~exec-path~ emacs variables. As it
+       depends on the way you've installed ~node~ (either with ~apt~
+       or ~nvm~), first find it with ~whereis~ command, then add
+       it. To do so, run the command:
+			 #+BEGIN_SRC bash
+       whereis tern
+			 #+END_SRC
+			 And for instance, if you get
+       ~/home/tony/.nvm/versions/node/v8.9.0/bin/tern~, add the
+       following lines to your emacs config file:
+			 #+BEGIN_SRC emacs-lisp
+			 (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:" (getenv "PATH")))
+			 (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
+			 #+END_SRC
+		 - you have to enable the ~tern-mode~ in the ~js-mode-hook~. To do
+       so, add the folling line to you emacs config file:
+			 #+BEGIN_SRC bash
+			 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+			 #+END_SRC
+		 - Finally, to work, ~tern~ looks for a file named ~.tern-config~
+       either in the directory where the file ~my-file.js~ resides, or
+       in the chain of the parents directories, until the ~$HOME~ home
+       directory. The ~.tern-config~ must contain at list the
+       following content:
+			 #+BEGIN_SRC js
+			 {
+				 "libs": [
+					 "browser",
+					 "ecmascript"
+				 ],
+				 "plugins": {
+					 "node": {}
+				 }
+			 }
+			 #+END_SRC
 * emacs-lisp files
   [[~/Documents/apps/emacs/lisp/thingatpt.el][thingatpt.el]], [[~/.emacs.d/elpa/iedit-20181114.950/iedit.el][iedit.el]], s.el, avy, acewindow, expand region,
   multiple cursor, company.el, mhtml-mode.el, syntax.el (see the
