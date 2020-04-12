@@ -5,15 +5,6 @@
   This is the main entry for all my computing tricks. Here you have
   the only *truth* of my computing notes.
 * [[file:./emacs.org][emacs]]
-** --eval
-*** emacs command line in terminal
-		- Problem :: How can I write in a file with an emacs command line?
-		- Use the option ~--eval~ of ~emacs~ considered as a command line.
-		- If you want to get insert ~"blabla"~ into the file ~some-file~,
-      run the command:
-			#+BEGIN_SRC bash
-			emacs some-file --eval '(insert "blabla")'
-			#+END_SRC
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]

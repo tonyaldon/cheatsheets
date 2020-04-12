@@ -211,12 +211,12 @@
 				- [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
 				- [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
 * Tips
-**  commands
+** Commands
    * ~M-x re-builder~ : build regular expression
    * ~C-u C-x =~ : pop a buffer with information at point
    * ~M-x list-faces-display~ : list all available faces on current emacs session
-   * ~C-M-o~ : split-line
    * ~M-:~ : interactive ~eval-expression~
+	 * ~c~ : in ~Info-mode~ run ~Info-copy-current-node-name~.
 ** emacs setup
    * The package ~company-emoji~ only if the list defined in file
      ~company-emoji-list.el~ in the function
@@ -247,6 +247,17 @@
    packages wouldn't work because they have been byte compile with the
    old version. Think to byte compile your packages with the newer
    emacs version.
+** emacs command line in terminal
+*** --eval
+		- Problem :: How can I write in a file with ~emacs~ use as a command line?
+		- Use the options ~--eval~, ~--batch~, ~-f~ of ~emacs~ considered
+      as a command line.
+		- See example: ~(info "(emacs) Command Example")~.
+		- If you want write ~"blabla"~ into the file ~some-file~,
+      run the command:
+			#+BEGIN_SRC bash
+			emacs --batch some-file --eval '(insert "blabla")' -f save-buffer >& log
+			#+END_SRC
 * Articles
 ** Ergoemacs/xahlee
    - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
