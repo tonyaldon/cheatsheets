@@ -14,41 +14,6 @@
 			#+BEGIN_SRC bash
 			emacs some-file --eval '(insert "blabla")'
 			#+END_SRC
-** ideas
-	 - ~swiper-all~ (search in all open buffers)
-	 - To open plain text svg Files
-		 #+BEGIN_SRC emacs-lisp
-		 (add-to-list `auto-mode-alist '("\\.svg\\'" . xml-mode))
-		 #+END_SRC
-*** ispell, flyspell, aspell (for text mode)
-		- switch between English, French, Spanish
-		- work with company (see: company-ispell)
-		https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el
-		http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html
-		http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html
-		https://www.emacswiki.org/emacs/FlySpell
-		https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el
-		http://aspell.net/
-*** react-native inside emacs
-		https://patrickskiba.com/emacs/2019/09/07/emacs-for-react-dev.html
-		https://github.com/emacs-mirror/emacs
-		http://git.savannah.gnu.org/cgit/emacs.git/tree/INSTALL.REPO
-
-** testing in emacs
-   ert, ecukes
-*** To understand testing whith *ecukes*
-		1) multiple-cursor
-		2) expand-region
-		3) buster-mode (emacs rocks videos)
-*** To understand testing whith *ert*
-**** simple.el
-		 1) [[~/Documents/apps/emacs/lisp/simple.el][simple.el]] and [[~/Documents/apps/emacs/test/lisp/simple-tests.el][simple-tests.el]]
-		 2) open-line test
-				- [[file:~/Documents/apps/emacs/lisp/simple.el::576][open-line]] definition
-				- [[file:~/Documents/apps/emacs/test/lisp/simple-tests.el::113][open-line]] basic test
-				- [[file:~/Documents/apps/emacs/test/lisp/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
-**** avy.el
-     - see: Makefile ...
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
 * [[./linux.org][linux]]

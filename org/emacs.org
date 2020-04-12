@@ -195,7 +195,21 @@
    - [[http://emacsrocks.com/][emacsrocks (magnars)]]
    - [[http://whattheemacsd.com/][.emacs.d (magnars)]]
    - [[https://github.com/magnars][github (magnars)]]
-* TDD
+** Test emacs-lisp code and emacs
+*** tools
+		- ~ert~: see the info node ~(info "ert")~,
+		- ~ecukes~: see the [[https://github.com/ecukes/ecukes][github page]].
+*** To understand testing whith *ecukes*
+		1) [[https://github.com/magnars/expand-region.el][expand region]],
+		2) [[https://github.com/magnars/multiple-cursors.el][multiple-cusors]],
+		3) [[https://github.com/niligulmohar/buster-mode][buster-mode (github)]] or [[http://emacsrocks.com/][buster mode (emacsrocks)]].
+*** To understand testing whith *ert*
+**** simple.el (emacs built-in)
+		 1) [[../emacs/built-in/simple.el][simple.el]] and [[../emacs/built-in/simple-tests.el][simple-tests.el]]
+		 2) test of the ~open-line~ function:
+				- [[file:../emacs/built-in/simple.el::582][open-line]] definition
+				- [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
+				- [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
 * Tips
 **  commands
    * ~M-x re-builder~ : build regular expression
@@ -256,6 +270,7 @@
    - [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
    - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
    - [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
+	 - ~swiper-all~ (search in all open buffers)
 ** Other
 	 - [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
    - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
@@ -274,3 +289,12 @@
    - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
    - [[https://melpa.org/#/counsel-jq][counsel for jq]]
 	 - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
+** ispell, flyspell, aspell (for text mode)
+	 - switch between English, French, Spanish
+	 - work with company (see: company-ispell)
+	 - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][company example (redguardtoo)]]
+	 - [[http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html][auto completion for non programmers]]
+	 - [[http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html][spell check set up]]
+	 - [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
+	 - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
+	 - [[http://aspell.net/][aspell (homepage)]]
