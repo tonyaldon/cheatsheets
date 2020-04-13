@@ -60,3 +60,5 @@
 * [[./linux.org][linux]]
 * [[./mysql.org][mysql]]
 * [[./video.org][video]]
+* [[./image.org][image]]
+* [[./miscellaneous.org][miscellaneous]]
