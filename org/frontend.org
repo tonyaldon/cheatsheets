@@ -102,6 +102,29 @@
      transform:  translate(-50%, -50%);
    }
    #+END_SRC
+* Videos
+** autoplay
+*** autoplay
+		- Problem :: How can I autoplay a video when loading the page?
+		- Use ~autoplay~ and ~muted~ attributes of ~video~ tag.
+		- The audio will be initially silenced (~muted~).
+		- The video automatically begins to play back (~autoplay~).
+		- See examples [[https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video][video tag (mozzilla)]].
+		- If you want your video automatically begins to play back when
+      the page is loaded, ~autoplay~ and ~muted~ attributes as follow:
+			#+BEGIN_SRC html
+			<video src="path/to/video.mp4" type="video/mp4" autoplay muted></video>`
+      #+END_SRC
+* References
+** <a> tag
+*** Open link in another tab
+		- Problem :: How can I open a link in another tab?
+		- Use ~target~ attribute of ~<a>~ tag.
+		- If you want to open a link in another tab using the ~<a>~ tag,
+      use the ~target~ as follow:
+			#+BEGIN_SRC html
+			<a href="https://twitter.com/tonyaldon" target="_blank">Tony Aldon</a>
+      #+END_SRC
 * Social media
   You have to put some extra lines into the ~<head>~
   that allow social media to render in a pretty way (cards) some
