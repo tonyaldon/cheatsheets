@@ -231,10 +231,46 @@
   <meta property="twitter:image" content="path-to-image">
   <meta property="twitter:url" content="url">
   #+END_SRC
-* Javascript questions
+* Javascript
+** Javascript questions
   [[https://github.com/sudheerj/javascript-interview-questions/blob/master/README.md][javascript interview question]]
   [[https://github.com/lydiahallie/javascript-questions][javascript questions]]
-
+** higlightjs
+*** Colors in block code
+		- Problem :: How can I colors code block according to a given
+      programming language?
+		- Use [[https://highlightjs.org/][highlightjs]] javascript package.
+		- Javascript syntax highlighter.
+		- See examples:
+			- [[https://highlightjs.readthedocs.io/en/latest/][documentation]],
+			- [[https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html][css class reference]],
+			- [[https://highlightjs.readthedocs.io/en/latest/language-guide.html][language guide]].
+		- If you want to higlight ~htlm~ code in your document, add the
+      link to the style, load the package and initialize on load
+      ~hljs~. To do so, add this lines to your document:
+			#+BEGIN_SRC html
+			<link rel="stylesheet" href="/path/to/styles/default.css">
+			<script src="/path/to/highlight.pack.js"></script>
+			<script>hljs.initHighlightingOnLoad();</script>
+      #+END_SRC
+			And use the tags ~<pre><code class="html">~ to highlight any
+      pieces of code you want. To do so, use them as follow:
+			#+BEGIN_SRC html
+      <pre><code class="html">...</code></pre>
+			#+END_SRC
+*** Inline colors block code
+		- Problem :: How can I use the colors use by ~highlightjs~ but not
+      inside tags ~<pre><code>...</code></pre>~ but inline?
+		- Use ~<span>~ tag and ~hljs~ classes defined by ~highlightjs~.
+		- See examples [[https://highlightjs.readthedocs.io/en/latest/css-classes-reference.html][css class reference]], [[https://highlightjs.readthedocs.io/en/latest/language-guide.html][language guide]].
+		- If you want to highlight the word ~function~ as ~highlightjs~
+      would do for the ~javascript~ language, you have to notice that
+      ~function~ is a keyword in the javascript language and
+      ~highlightjs~ use the class ~hljs-keyword~ to highlight it. So
+      we do:
+			#+BEGIN_SRC html
+			...some text <span class="hljs-keyword">function</span> some text...
+      #+END_SRC
 * Links
 ** Inspiring
   [[https://css-transform.moro.es/][css-transform]], [[https://cssfx.dev/][cssfx]], [[https://codepen.io/ainalem/pen/byqBNK][css gradient/svg]], [[https://codepen.io/ainalem/pen/ZdVywW][toggle button]], [[https://codepen.io/][codepen.io]]
