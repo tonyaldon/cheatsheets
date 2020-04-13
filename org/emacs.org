@@ -274,6 +274,62 @@
 			#+BEGIN_SRC bash
 			emacs --batch some-file --eval '(insert "blabla")' -f save-buffer >& log
 			#+END_SRC
+** bugs
+	 * In terminal (emacs without Xwindow), emacs adds some strange
+     characters when:(copying stuff frome the clipboard into
+     emacs, when switching between emacs (in terminal) and other
+     Xwindows, when lauching emacs.)
+		 Problem solved by removing the binding ~M-[~. See
+     [[https://superuser.com/questions/729366/emacs-adding-strange-characters-at-the-beginning-of-files][stackoverflow thread]].
+
+** emacs server/client
+*** start emacs faster
+		- Problem :: How can I run emacs faster at startup?
+		- Use ~--fg-daemon~ flag of ~emacs~ and ~emacsclient~.
+		- Start a server in the foreground (~--fg-daemon~).
+		- Tells a running Emacs to visit a file (~emacsclient~).
+		- See examples [[http://wikemacs.org/wiki/Emacs_server][emacs server (wikemacs)]], [[https://stackoverflow.com/questions/1167484/how-to-gracefully-shutdown-emacs-daemon][emacs server (stackoverflow)]],
+			 [[https://www.emacswiki.org/emacs/EmacsAsDaemon][emacs server (emacswiki)]], [[https://emacs.stackexchange.com/questions/39484/speed-up-emacs-start-up-time][emacs daemon]].
+		- If you want to start emacs faster, the best way is to run
+      ~emacs~ as server and connect client ~emacsclient~ to this
+      server. To do so, run the following commands:
+			#+BEGIN_SRC bash
+			emacs --fg-daemon
+			emacsclient -nc
+      #+END_SRC
+		- Your ~.emacs~ configuration is loaded once with ~emacs
+      --fg-daemon~. 
+		- Your can start as many client ~emacsclient~ as you want. As they
+      run with the server you have started before, they all share
+      buffers, a command history, or other kinds of information with
+      any existing Emacs process.
+*** emacs daemon
+		- Problem :: How can I start ~emacs~ in daemon mode when you login
+      to your linux session?
+		- Use ~systemctl~ command.
+		- Control the ~systemd~ system and ~service manager~.
+		- See examples: ~(info "(emacs) Emacs Server")~.
+		- If you want to ~emacs~ start in daemon mode when you login to
+      your linux session, we use the ~systemd~ and add it a ~systemd
+      unit file~. To do so:
+			1) Locate the ~emacs.service~ files that comes with your ~emacs~
+         distribution. Run ~locate emacs.service~ in your terminal to
+         find the path.
+			2) Then you have to copy ~emacs.service~ file to a standard
+         directory such as ~~/.config/systemd/user/~.
+			3) Finally, activate it by running the command:
+			#+BEGIN_SRC bash 
+			systemctl --user enable emacs
+      #+END_SRC
+		- ~systemctl~ comes with standard commands as ~enable~, ~start~,
+      ~status~, ~stop~. So to interact with ~emacs systemd unit~, you
+      can use the following commands:
+			#+BEGIN_SRC bash
+			systemctl --user enable emacs
+			systemctl --user start emacs
+			systemctl --user status emacs
+			systemctl --user stop emacs
+      #+END_SRC
 * Articles
 ** Ergoemacs/xahlee
    - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
