@@ -1,0 +1,15 @@
+#+title: Image Tricks
+#+author: Tony Aldon
+
+* Inkscape
+** Revert svg
+*** Revert svg
+		- Problem :: How to revert svg from last saved version of document?
+		- See example here [[https://bugs.launchpad.net/inkscape/+bug/804068][revert svg from last saved version]].
+		- You have two ways to do:
+			- With the mouse ~File > Revert~,
+   		- With keyboard shortcut ~M-f v~,
+		- If you want the verb's ID for revert action, run the command:
+			#+BEGIN_SRC bash
+			inkscape --verb-list | grep -i revert
+			#+END_SRC
