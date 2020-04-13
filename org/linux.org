@@ -465,6 +465,106 @@
 			#+BEGIN_SRC bash
       ssh-add -d ~/.ssh/id_rsa_jim
 			#+END_SRC
+*** Error connecting to agent
+		- Problem :: How can I solve the problem that give either message
+      ~Error connecting to agent: No such file or directory~ or ~Could
+      not open a connection to your authentication agent~ when I run
+      the command ~~/.ssh/id_rsa_some_key~?
+		- Use ~eval~ command.
+		- Execute arguments as a shell command.
+		- See example [[https://unix.stackexchange.com/questions/48863/ssh-add-complains-could-not-open-a-connection-to-your-authentication-agent/48868][open a connection to your authentication agent]].
+		- If you want to open a connection to your authentication agent
+      that is already running, run the command:
+			#+BEGIN_SRC bash
+			eval "$(ssh-agent)"
+      #+END_SRC
+*** Start authentication agent
+		- Problem :: How can I start my authentication agent ~ssh-agent~?
+		- Use ~ssh-agent~, ~eval~ and ~ssh-add~ commands.
+		- Hold private keys used for public key authentication
+      (~ssh-agent~).
+		- Execute arguments as a shell command (~eval~).
+		- Adds private key identities to the authentication agent
+      (~ssh-add~).
+		- If you want to start your authentication agent, open a
+      connection to the agent and add the key ~id_rsa_some_key~ to
+      the agent, run the commands:
+			#+BEGIN_SRC bash
+			ssh-agent
+			eval "$(ssh-agent)"
+			ssh-add ~/.ssh/id_rsa_some_key
+      #+END_SRC
+		- If you want to list the identities represented by the
+      authentication agent, run the command:
+			#+BEGIN_SRC bash
+			ssh-add -l
+      #+END_SRC
+		- If you want to Kill the current agent (given by the
+      SSH_AGENT_PID environment variable), run the command:
+			#+BEGIN_SRC bash
+			ssh-agent -k
+      #+END_SRC
+*** SSH private key automatically added to ssh-agent
+		- Problem :: how to get ssh private key automatically added to the
+      authentication agent?
+		- Use the keywords ~AddKeysToAgent~ and ~IdentityFile~ in the
+      ~~/.ssh/config~ user's configuration file.
+		- Specifies whether keys should be automatically added to a
+      running ssh-agent(1) (~AddKeysToAgent~).
+		- Specifies a file from which the user's RSA authentication
+      identity is read.
+		- See ~ssh_config~ ~man~ documentation.
+		- If you want to get ssh private keys ~~/.ssh/id_rsa_key_1~ and
+      ~~/.ssh/id_rsa_key_2~ automatically added to the authentication
+      agent, you have to add these following lines to the file
+      ~~/.ssh/config~:
+			#+BEGIN_SRC bash
+			Host *
+			    AddKeysToAgent yes
+					IdentityFile ~/.ssh/id_rsa_key_1
+					IdentityFile ~/.ssh/id_rsa_key_2
+      #+END_SRC
+*** Start ssh-agent on login
+		- Problem :: How can I start ~ssh-agent~ on login?
+		- Use ~systemd~ by adding a user sytemd unit for ~ssh-agent~.
+		- See examples [[https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login][start-ssh-agent-on-login]].
+		- If you want to start ~ssh-agent~ on login, you have to add a
+      ~ssh-agent.service~ user systemd unit, export ~SSH_AUTH_SOCK~
+      environment in the ~.bashrc~ file, ~enable~ and ~start~ the
+      ~ssh-agent~ unit, and specify (in the file ~~/.ssh/config~) that
+      keys should be automatically added to a running ~ssh-agent~.
+			1) file ~~/.config/systemd/user/ssh-agent.service~:
+				 #+BEGIN_SRC bash
+				 [Unit]
+				 Description=SSH key agent
+				 
+				 [Service]
+				 Type=forking
+				 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+				 ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+				 
+				 [Install]
+				 WantedBy=default.target
+			   #+END_SRC
+			2) file ~.bashrc~:
+				 #+BEGIN_SRC bash
+			   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+				 #+END_SRC
+			3) in a terminal, run the commands:
+				 #+BEGIN_SRC bash
+				 systemctl --user enable ssh-agent
+				 systemctl --user start ssh-agent
+				 #+END_SRC
+			4) file ~~./ssh/config~, if you have two private keys:
+				 #+BEGIN_SRC bash
+				 Host *
+			        AddKeysToAgent yes
+							IdentityFile ~/.ssh/id_rsa_key_1
+							IdentityFile ~/.ssh/id_rsa_key_2
+				 #+END_SRC
+		- Note that after login, before the first use of ~ssh~ (via
+      ~ssh~, ~git~, ...), your ~ssh-agent~ doesn't know about your keys,
+      so ~ssh-add -l~ lists anything.
 ** Servers
 *** php server
 		- Problem :: How to run a php server?
