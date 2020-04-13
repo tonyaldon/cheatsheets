@@ -1,0 +1,20 @@
+#+title: Miscellaneous Tricks
+#+author: Tony Aldon
+
+* Colors
+** tools
+   - [[https://www.colorhexa.com/f92672][colorhexa]]
+   - [[http://hslpicker.com/#fff,0][hslpicker]]
+   - [[https://yuilibrary.com/yui/docs/color/hsl-picker.html][yuilibrary: hsl picker]]
+** shell colors
+   - [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
+   - [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
+   - [[https://github.com/dieggsy/eterm-256color][emacs: eterm-256color]]
+** Vocabulary
+   - [[https://www.youtube.com/watch?v=0IIb0tnLIcU][What is HUE, Saturation, Brightness and Luminance!]]
+   - [[https://en.wikipedia.org/wiki/Hue][color: HUE]]
+   - [[https://en.wikipedia.org/wiki/Web_colors][web color]]
+   - [[https://en.wikipedia.org/wiki/Color_vision][color vision]]
+   - [[https://en.wikipedia.org/wiki/Color_constancy][color constancy]]
+   - [[https://en.wikipedia.org/wiki/Spectral_sensitivity][spectral sensitivity]]
+   - [[https://en.wikipedia.org/wiki/Cone_cell][cone cell]]
