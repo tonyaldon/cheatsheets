@@ -210,6 +210,9 @@
 				- [[file:../emacs/built-in/simple.el::582][open-line]] definition
 				- [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
 				- [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
+** How to define ~derived-mode~
+	 - [[../emacs/built-in/elisp-mode.el][elisp-mode.el]]
+	 - [[../emacs/built-in/conf-mode.el][conf-mode.el]]
 * Tips
 ** Commands
    * ~M-x re-builder~ : build regular expression
@@ -223,6 +226,8 @@
      ~company-emoji-list-create~ is ordered.
    * Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
      to bind ~kmacro~ if needed.
+	 * If you want to mute warning messages, add this line ~(setq
+     warning-minimum-level :emergency)~ to your emacs configuration.
 ** miscellaneous
    * [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
    * [[https://emacs.stackexchange.com/questions/10367/construct-a-list-from-a-variable][emacs: construct list from variable]]
@@ -238,6 +243,17 @@
    * Don't rebind ~(kbd "ESC")~ , it doesn't work and break some
      internal emacs stuff. Better to bind ~[escape]~.
      See: [[https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key][escape prefix key]]
+	 * To open a file as ~sudo~, emacs use ~tramp~. To do so:
+		 1) with ~counsel-find-file~: give the path of the file,
+				- run ~counsel-find-file~,
+				- in ~ivy-minibuffer~, give the path of the file,
+				- in ~ivy-minibuffer~, run ~ivy-dispatching-done~,
+				- in ~ivy-minibuffer~, type ~r~ key to open as root.
+		 2) in ~dired-mode~, see the package ~dired-toggle-sudo~
+        ([[https://lists.gnu.org/archive/html/help-gnu-emacs/2014-02/msg00268.html][switching dired using sudo]]).
+	 * If you get the error ~<dead-acute> is undefined~, try adding the
+     package ~iso-transl~ to your ~.emacs~. Add this ~(require
+     'iso-transl')~ to your ~.emacs~.
 ** byte compilation
    - [[https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory][Byte compilation:]]
    see the emacs functions ~byte-compile-file~, ~byte-recompile-file~,
