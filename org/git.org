@@ -13,9 +13,10 @@
    git init
    git commit --allow-empty -m "Initial commit"
    git add .
+	 git add -p <file>
    git commit -a -m "<my-message>"
    git commit -F <my-file>
-   #+END_SRC
+	 #+END_SRC
 ** git-branch/git-checkout
    #+BEGIN_SRC bash
    git branch <my-branch>
@@ -117,6 +118,13 @@
      git push origin --tags
      git push origin --delete <tag-name>
    #+END_SRC
+* submodule
+** git-submodule
+	 #+BEGIN_SRC bash
+   git submodule add ./my-submodule/
+	 git submodule init
+	 git commit -m "Add my-submodule"
+	 #+END_SRC
 * links
   [[https://git-scm.com/book/en/v2][git-scm.com: the book]]
   [[https://semver.org/][semver.org: semantic versioning]]
