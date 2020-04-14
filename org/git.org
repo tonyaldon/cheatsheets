@@ -110,8 +110,8 @@
 	 #+BEGIN_SRC bash
    git reset --hard <commit-id>
 	 #+END_SRC
-* repository
 ** git-remote
+* repository
    #+BEGIN_SRC bash
      git remote add origin <remote-url>
 		 git remote set-url origin <new-remote-url>
@@ -128,7 +128,9 @@
 ** git-push
    #+BEGIN_SRC bash
      git push -u origin master
-     git push origin master
+     git push
+		 git push origin master
+		 git push origin --all
      git push origin <tag-name>
      git push origin --tags
      git push origin --delete <tag-name>
