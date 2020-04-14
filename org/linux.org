@@ -780,7 +780,7 @@
 			#+BEGIN_SRC bash
 			idevicepair pair
 			mkdir /media/iphone
-			sudo ifuse
+			sudo ifuse /media/iphone
       #+END_SRC
 		- If you to list the medias on your mobile (in my case there were
       on the directory ~/media/iphone/DCIM/106APPLE~), run the
