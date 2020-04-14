@@ -258,7 +258,80 @@
 			id   # if you're logged as tony
 			#+END_SRC
 * Process and system
-  lscpu, hostnamectl, top, ps
+** pm2
+*** pm2 install
+		- Problem :: How can I install pm2?
+		- Use ~npm~ command.
+		- Javascript package manager.
+		- If you want to install ~pm2~ globaly, as it is a ~javascript~
+      package, you must have ~npm~ install and run the command:
+			#+BEGIN_SRC bash
+			npm install pm2 -g
+      #+END_SRC
+		- If you want to start your ~app.js~ application, run the command:
+			#+BEGIN_SRC bash
+			pm2 start app.js
+      #+END_SRC
+*** pm2 start application
+		- Problem :: How can I start and daemonize applications with ~pm2~?
+		- Use ~pm2 start~ command.
+		- Start and daemonize an app.
+		- See examples [[https://pm2.keymetrics.io/docs/usage/quick-start/][(documentation) quick start]].
+		- If you want to start and daemonize with ~pm2~ your application
+      that normally start by running ~npm start~, run the command:
+			#+BEGIN_SRC bash
+			pm2 start npm -- start
+      #+END_SRC
+		- If you want to start and daemonize with ~pm2~ your application
+      that normally start by running ~npm start -- --port=5000~, run
+      the command:
+			#+BEGIN_SRC bash
+			pm2 start npm -- start --port=5000
+      #+END_SRC
+		- If you want to start and daemonize with ~pm2~ your application
+      that normally start by running ~npm start~ and give it the
+      ~name~ ~my-app~ run the command:
+			#+BEGIN_SRC bash
+			pm2 start npm --name my-app -- start
+      #+END_SRC
+*** pm2 restart process on boot/reboot
+		- Problem :: How can I automatically restart application on
+      boot/reboot? 
+		- Use ~pm2 startup~ and ~pm2 save~ commands.
+		- Enable the pm2 startup hook (~pm2 startup~).
+		- Freeze a process list for automatic respawn (~pm2 save~).
+		- See examples [[https://pm2.keymetrics.io/docs/usage/quick-start/][(documentation) quick start]].
+		- If you want that ~pm2~ automatically ~restart~ on boot/reboot
+      and run the saved processes, you have to enable the ~pm2~
+      startup hook and freeze a list of the current running
+      processes. To do so, run the commands:
+			#+BEGIN_SRC bash
+			pm2 startup  #then copy/past the generated command
+			pm2 save
+      #+END_SRC
+		- If you want to revert the action ~pm2 startup~, run the command:
+			#+BEGIN_SRC bash
+			pm2 unstartup  #then copy/past the generated command
+      #+END_SRC
+*** pm2 bunch of commands and options
+		- Problem :: What are the common actions I want to do with ~pm2~?
+		- See examples [[https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/][documentation]] and ~pm2 --help~.
+		- List of commands, without description:
+			#+BEGIN_SRC bash
+			pm2 example
+			pm2 list
+			pm2 show <name|id>
+			pm2 stop <name|id>
+			pm2 delete <name|id>
+			pm2 restart <name|id>
+			pm2 status
+			pm2 start
+			pm2 logs
+      #+END_SRC
+		- List of options, without description: ~--watch~,
+      ~--ignore-watch~, ~--watch-delay~.
+** miscellaneous
+	 lscpu, hostnamectl, top, ps
 * Files
 ** View
    du, file, ls, cat, more, less, head, tail
