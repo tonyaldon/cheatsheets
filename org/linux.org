@@ -98,7 +98,7 @@
 		- Use ~apt-get upgrade~ command.
 		- This command installs the newest versions of all packages
       currently installed on the system from the sources enumerated in
-      /etc/apt/sources.list.
+      etc/apt/sources.list.
 *** Install a new linux package
 		- Problem :: How can I install a new linux package?
 		- Use ~apt-get install~ command.
@@ -240,7 +240,7 @@
       sudo apt install whois
 			#+END_SRC
 ** Miscellaneous
-  adduser, deluser, passwd addgroup, delgroup, chown, chgrp
+   adduser, deluser, passwd addgroup, delgroup, chown, chgrp
 *** Modify UID
 		- Problem :: How can I modify the UID of an user on linux?
 		- Use ~usermod~ command.
@@ -288,48 +288,48 @@
 ** search
    locate, find, grep
 *** find files
-   - Problem :: How to find files that match string or regexp?
-   - Use the command ~find~.
-   - Search for files in a directory hierarchy.
-	 - See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
-   - If you want to find files recursively from your ~$HOME~
-     directory where the ~name~ match the global patern ~virtualenv*~,
-     run the command:
-     #+BEGIN_SRC bash
-     find ~/ -name "virtualenv*"
-     #+END_SRC
+		- Problem :: How to find files that match string or regexp?
+		- Use the command ~find~.
+		- Search for files in a directory hierarchy.
+		- See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
+		- If you want to find files recursively from your ~$HOME~
+			directory where the ~name~ match the global patern ~virtualenv*~,
+			run the command:
+			#+BEGIN_SRC bash
+			find ~/ -name "virtualenv*"
+			#+END_SRC
 ** Replace
 *** replace string in multiple files
-   - Problem :: How to replace string in multiple files?
-   - Use commands ~sed~, ~perl~ and ~find~.
-	 - Stream editor for filtering and transforming text (~sed~).
-   - See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
-	 - If you want to replace all occurrences of one string with another
-     in all files in the current directory (Non recursive, files in
-     this directory only.), run the command:
-		 #+BEGIN_SRC bash
-     sed -i -- 's/foo/bar/g' *
-		 #+END_SRC
-	 - If you want to replace all occurrences of one string with another
-     in all files in the current directory (Recursive, regular files
-     (including hidden ones) in this and all subdirectories), run the
-     command:
-		 #+BEGIN_SRC bash
-		 find . -type f -exec sed -i 's/foo/bar/g' {} +
-		 #+END_SRC
-	 - If you want to replace only if the file name matches another
-     string / has a specific extension / is of a certain type etc
-     (Non-recursive, files in this directory only), run the command:
-		 #+BEGIN_SRC bash
-     sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
-		 #+END_SRC
+		- Problem :: How to replace string in multiple files?
+		- Use commands ~sed~, ~perl~ and ~find~.
+		- Stream editor for filtering and transforming text (~sed~).
+		- See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
+		- If you want to replace all occurrences of one string with another
+			in all files in the current directory (Non recursive, files in
+			this directory only.), run the command:
+			#+BEGIN_SRC bash
+			sed -i -- 's/foo/bar/g' *
+			#+END_SRC
+		- If you want to replace all occurrences of one string with another
+			in all files in the current directory (Recursive, regular files
+			(including hidden ones) in this and all subdirectories), run the
+			command:
+			#+BEGIN_SRC bash
+			find . -type f -exec sed -i 's/foo/bar/g' {} +
+			#+END_SRC
 		- If you want to replace only if the file name matches another
-     string / has a specific extension / is of a certain type etc
-     (Non-recursive, files in this directory only), run the command:
-		 #+BEGIN_SRC bash
-		 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
-		 # all files whose name contains baz
-		 #+END_SRC
+			string / has a specific extension / is of a certain type etc
+			(Non-recursive, files in this directory only), run the command:
+			#+BEGIN_SRC bash
+			sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
+			#+END_SRC
+			- If you want to replace only if the file name matches another
+				string / has a specific extension / is of a certain type etc
+				(Non-recursive, files in this directory only), run the command:
+				#+BEGIN_SRC bash
+			 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
+			 # all files whose name contains baz
+				#+END_SRC
 ** directories
    mkdir, cd, tree
 * Network
@@ -576,7 +576,7 @@
 			#+END_SRC
 *** Automatic reload server
 		- Problem :: How to run a server that automatically reload when
-                 files change on the system?
+      files change on the system?
 		- Use the command ~browser-sync~.
 		- If the directory contains a ~index.html~ file, to have the server
 			reload each second, run the command:
@@ -591,6 +591,113 @@
 		- Problem :: How can I configure ovh config file on server?
 		- Modify the ~.ovhconfig~ file.
 		- See examples [[https://docs.ovh.com/fr/hosting/configurer-fichier-ovhconfig/][ovh documentation on .ovhconfig file]].
+*** nginx resources
+		- [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]]
+		- [[https://linuxize.com/post/nginx-reverse-proxy/][(linuxize) nginx reverse proxy]]
+		- [[https://linuxize.com/post/how-to-set-up-nginx-server-blocks-on-ubuntu-18-04/][(linuxize) nginx server block]]
+		- [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
+		- [[https://scaron.info/blog/improve-your-nginx-ssl-configuration.html][improve your nginx ssl]]
+		- [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][(nginx.com) reverse proxy]]
+		- [[https://www.nginx.com/blog/creating-nginx-rewrite-rules/][(nginx.com) nginx rewrite rules]]: Really good examples to
+      understand what are ~$uri~, ~$request_uri~, ~try_files~,
+      ~return~, ~rewrite~.
+		- [[https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/][(nginx.com) nginx config pitfalls]]
+		- [[https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/][(nginx.com) nginx serving statict content]]
+		- [[https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/][(nginx.com) ssl nginx / upstream server]]
+		- The *request URI* is the part of the request that comes after
+      the domain name or IP address/port.
+*** Install nginx
+		- Problem :: How can I install nginx on ubuntu?
+		- Use ~apt~ command.
+		- High-level commandline interface for the package management
+      system.
+		- See example [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]].
+		- If you want to install nginx on ubuntu and get ready to use,
+      update your packages with ~apt update~, install it with ~apt
+      install~ and open the ~ports~ used by nginx:
+			#+BEGIN_SRC bash
+			sudo apt update
+			sudo apt install nginx
+			sudo ufw allow 'Nginx Full'
+			sudo ufw enable
+      #+END_SRC
+		- If you want to check if ~nginx~ is running, run the command:
+			#+BEGIN_SRC bash
+			sudo systemctl status nginx
+      #+END_SRC
+		- Each time you modify your ~nginx~ configuration, you have to
+      ~reload~ ~nginx~. To do so, run the command:
+			#+BEGIN_SRC bash
+			sudo systemctl reload nginx
+      #+END_SRC
+*** nginx default configuration
+		- Problem :: What is the default configuration of ~nginx~ after
+      installing it?
+		- See example [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]].
+		- By default, ~nginx~ serves the file ~index.nginx-debian.html~ on
+      ~localhost~ (~127.0.0.1~) on ~port 80~. Just after intalling
+      ~nginx~, before any modification, you can visit the address
+      ~http://127.0.0.1~ on your browser.
+		- This happens because ~nginx~ looks at config files on the directory
+      ~/etc/nginx/sites-enabled~. It sees the file
+      ~/etc/nginx/sites-enabled/default~ that is a symlink of the file
+      ~/etc/nginx/sites-available/default~. This default file tells
+      ~nginx~ to serve the file ~index.nginx-debian.html~ that is in
+      the directory ~/var/www/html~. And the config file [[../linux/etc_nginx_sites-available_default.txt][default]],
+      after flushing the commented lines, is as follow:
+		  #+BEGIN_SRC bash
+			server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+			}
+      #+END_SRC
+*** nginx reverse proxy
+		- Problem :: How can I set nginx to be a reverse proxy?
+		- Use ~proxy_pass~ directive in your ~nginx block~ configuration.
+		- To pass a request to an HTTP proxied server, the ~proxy_pass~
+      directive is specified inside a ~location~.
+		- See examples [[https://linuxize.com/post/nginx-reverse-proxy/][(linuxize) nginx reverse proxy]], [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][(nginx.com) reverse proxy]] 
+		  and [[http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass][(documentation) proxy_pass]].
+		- If you want to serve at ~mydomain.com~ an application that is running as a http
+      server (node app, flask app,...) on ~http://127.0.0.1:5000~,
+      your ~nginx block~ for ~mydomain.com~ defined in the file
+      ~/etc/nginx/sites-available/mydomain.conf~ must contain the
+      following lines:
+			#+BEGIN_SRC bash
+			server {
+			  listen 80;
+				server_name www.mydomain.com mydomain.com;
+				
+				location / {
+				proxy_pass http://127.0.0.1:5000;
+				}
+			}
+      #+END_SRC
+*** error (nginx): cannot get
+		- Problem :: How can I fix the nginx error ~error (nginx): cannot
+      get /app~ related to proxy servers?
+		- See ~proxy_pass~ directive in your ~block~ configuration.
+		- The error was that I was trying to pass ~location~ ~/app~ to
+      the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
+      end of the address. To solve the problem, I add a ~/~ to the
+      ~proxy_pass~ address. My ~block~ configuration
+      ~/etc/nginx/sites-available/mydomain.conf~ contains the
+      following lines: 
+			#+BEGIN_SRC bash
+			location /app {
+        proxy_pass http://127.0.0.1:5000/;
+			}
+      #+END_SRC
 ** Connection
 *** Wifi connection
 		- Problem :: How can I restart my wifi connection?
