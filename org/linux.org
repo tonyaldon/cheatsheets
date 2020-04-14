@@ -583,6 +583,14 @@
 			#+BEGIN_SRC bash
 			browser-sync start --reload-delay=1000 -w --server
 			#+END_SRC
+*** httpd Apache rewrite rules
+		- Problem :: How can I rewrite apache rules?
+		- Use ~RewriteCond~ and ~RewriteRule~ directives.
+		- See examples [[https://httpd.apache.org/docs/trunk/fr/rewrite/intro.html][apache documentation on rewrite]].
+*** OVH config files
+		- Problem :: How can I configure ovh config file on server?
+		- Modify the ~.ovhconfig~ file.
+		- See examples [[https://docs.ovh.com/fr/hosting/configurer-fichier-ovhconfig/][ovh documentation on .ovhconfig file]].
 ** Connection
 *** Wifi connection
 		- Problem :: How can I restart my wifi connection?
@@ -592,6 +600,18 @@
 		- If you want to restart your wifi connection, run the command:
 			#+BEGIN_SRC bash
 			sudo service network-manager restart
+      #+END_SRC
+** ftp
+*** ftp session down once I run a command
+		- Problem :: Why do I get kicked out of a FTP session once I run a
+      command?
+		- Use ~ufw~ command.
+		- Program for managing a netfilter firewall.
+		- See examples [[https://unix.stackexchange.com/questions/90487/why-do-i-get-kicked-out-of-a-ftp-session-once-i-run-a-command/90501][ftp error due to firewall]].
+		- If you want to open all the port to not have problem of
+      firewall with ~ftp~, run the command:
+			#+BEGIN_SRC bash
+			sudo ufw disable
       #+END_SRC
 ** Miscellaneous
   curl, wget, ping, ftp
