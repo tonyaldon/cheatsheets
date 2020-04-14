@@ -7,15 +7,6 @@
 * [[file:./emacs.org][emacs]]
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
-** repository
-*** working with remotes
-		[working with remote]https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
-		$ git remote add <shortname> <url>
-		$ git remote
-		$ git fetch <remote>     # it doesn’t automatically merge it with any of your work
-		$ git push <remote> <branch>
-		$ git remote show <origin>
-
 * [[./linux.org][linux]]
 * [[./mysql.org][mysql]]
 * [[./video.org][video]]

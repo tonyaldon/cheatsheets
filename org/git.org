@@ -114,20 +114,25 @@
 ** git-remote
    #+BEGIN_SRC bash
      git remote add origin <remote-url>
-     git remote set-url origin <new-remote-url>
+		 git remote set-url origin <new-remote-url>
+     git remote add <shortname> <remote-url>
+		 git remote
+		 git remote show <remote>
    #+END_SRC
-** git-clone/git-pull/git-push
+** git-clone/git-pull
    #+BEGIN_SRC bash
      git clone <url-repository>
-     git push -u origin master
      git pull origin master
-     git push origin master
+		 git fetch <remote>
    #+END_SRC
-** git-tag
+** git-push
    #+BEGIN_SRC bash
+     git push -u origin master
+     git push origin master
      git push origin <tag-name>
      git push origin --tags
      git push origin --delete <tag-name>
+     git push origin --delete <branch-name>
    #+END_SRC
 * submodule
 ** git-submodule
