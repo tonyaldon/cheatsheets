@@ -81,7 +81,8 @@
    git rm --cached <my-file>
    #+END_SRC
 
-   First commit your current changes, or you will lose them.
+   [warning] First commit your current changes, or you will lose
+   them.
    #+BEGIN_SRC bash
    git rm -r --cached .
    git add .
@@ -99,6 +100,13 @@
    git checkout .
    git reset --hard
    #+END_SRC
+** revert back a git-merge
+	 [warning] This following action delete all the commits up to
+	 ~<commit-id>~, you can't go back. This is safe if the deleted
+	 commits are yet part of another branch.
+	 #+BEGIN_SRC bash
+   git reset --hard <commit-id>
+	 #+END_SRC
 * repository
 ** git-remote
    #+BEGIN_SRC bash
