@@ -871,6 +871,11 @@
 			#+BEGIN_SRC bash
 			feh --bg-fill path/to/images.jpg
 			#+END_SRC
+		- If you want to remove your background image set with ~feh~, run
+      the command:
+			#+BEGIN_SRC bash
+			xsetroot -solid black
+			#+END_SRC
 ** Manipulate images
 *** Convert images
 		- Problem :: How to convert images?
