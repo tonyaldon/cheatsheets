@@ -257,6 +257,63 @@
       id tony
 			id   # if you're logged as tony
 			#+END_SRC
+* Production
+** node app in production
+*** 0) tools
+		- ~git~
+		- ~npm~
+		- ~pm2~
+		- ~nginx~
+		- registered domain: ~mydomain.com~
+*** 1) A record
+		- On the webpage of your domain name registrar, add a ~A record~
+      that maps ~mydomain.com~ to the ~IP address~ (version 4) of your
+      production server.
+*** 2) node app development
+		- When you run ~npm start -- --port=5000~, your ~node~ app listen
+      at http://127.0.0.1:5000.
+*** 3) node app run on the production server
+		- Copy (~push~,~ssh~, ...) your code into the directory
+      ~/var/www/mydomain.com/~ on your server.
+		- Set your system to allow your app to run (install whatever it
+      require).
+		- Start and daemonize your node app on ~port 5000~ with ~pm2~ and
+      allow it to restart on boot/reboot. To do so run the commands:
+			#+BEGIN_SRC bash
+			pm2 start npm --name my-app -- start -- --port=5000
+			pm2 startup  #then copy/past the generated command 
+      pm2 save
+			#+END_SRC
+*** 4) Set nginx as a reverse proxy
+		- Create the ~block~
+      ~/etc/nginx/sites-available/mydomain.com.conf~ that contains at
+      least the following lines:
+			#+BEGIN_SRC bash
+			server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name www.mydomain.com mydomain.com;
+
+        location / {
+            proxy_pass http://127.0.0.1:5000;
+        }
+			}
+      #+END_SRC
+		- Make the following symlink by running the command:
+			#+BEGIN_SRC language
+      ln -s /etc/nginx/sites-available/mydomain.com.conf \
+			      /etc/nginx/sites-enable/mydomain.com.conf
+			#+END_SRC
+		- Reload ~nginx~ by running the command:
+			#+BEGIN_SRC language
+      sudo systemctl reload nginx
+			#+END_SRC
+*** 5) This should work
+		- Visit your site ~mydomain.com~, for instance visiting
+      ~http://mydomain.com~.
+*** 6) ssl/tls certificats
+		- [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
 * Process and system
 ** pm2
 *** pm2 install
