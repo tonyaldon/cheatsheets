@@ -10,8 +10,6 @@
 * basics
 ** git-init/git-add/git-commit
    #+BEGIN_SRC bash
-   #+END_SRC
-   #+BEGIN_SRC bash
    git init
    git commit --allow-empty -m "Initial commit"
    git add .
@@ -61,6 +59,7 @@
    git log -p
    git log -p -2
    git log --oneline
+	 git log --oneline --decorate --graph --all
    git reflog
    #+END_SRC
 ** git-show/git-diff
@@ -72,7 +71,8 @@
    #+BEGIN_SRC bash
    git tag
    git tag -l "v1.5.*"
-   git show <tag-name>
+   git tag -n
+	 git show <tag-name>
    #+END_SRC
 * delete
 ** git-rm
