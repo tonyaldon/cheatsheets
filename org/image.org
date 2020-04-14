@@ -13,3 +13,32 @@
 			#+BEGIN_SRC bash
 			inkscape --verb-list | grep -i revert
 			#+END_SRC
+* formats
+** ~png~ and ~jpg~
+*** difference between ~png~ and ~jpg~
+		- Problem :: What is the difference between ~png~ and ~jpg~
+      format?
+		- See examples [[http://www.differencebetween.net/technology/protocols-formats/difference-between-jpg-and-png/][differencebetween.net]] and [[https://www.howtogeek.com/howto/30941/whats-the-difference-between-jpg-png-and-gif/][howtogeek]].
+		- jpg :: lossy compression, very small file size, supports
+      embedding of EXIF, doesn't support transparency.
+		- png :: lossless compression, large file size, doesn't support
+      embedding EXIF, support transparency.
+* screenshot
+** screenshot
+*** screenshot with command lines
+		- Problem :: How can I take a screenshot of my screen with a
+      command line?
+		- Use ~import~ command.
+		- Saves any visible window on an X server and outputs it as an
+      image file.
+		- If you want to take a screenshot of your window or a part of
+      you window, run one of the commands:
+			#+BEGIN_SRC bash
+			import my-screenshot.png  #window on click or selection with mouse
+			import -window root -pause 3 my-whole-screen-after-3-seconds.png
+      #+END_SRC
+		- If you want to install ~import~, as it's a program member of the
+      ImageMagick suite of tools, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install imagemagick
+      #+END_SRC
