@@ -98,7 +98,7 @@
 		- Use ~apt-get upgrade~ command.
 		- This command installs the newest versions of all packages
       currently installed on the system from the sources enumerated in
-      /etc/apt/sources.list.
+      etc/apt/sources.list.
 *** Install a new linux package
 		- Problem :: How can I install a new linux package?
 		- Use ~apt-get install~ command.
@@ -240,7 +240,7 @@
       sudo apt install whois
 			#+END_SRC
 ** Miscellaneous
-  adduser, deluser, passwd addgroup, delgroup, chown, chgrp
+   adduser, deluser, passwd addgroup, delgroup, chown, chgrp
 *** Modify UID
 		- Problem :: How can I modify the UID of an user on linux?
 		- Use ~usermod~ command.
@@ -257,8 +257,138 @@
       id tony
 			id   # if you're logged as tony
 			#+END_SRC
+* Production
+** node app in production
+*** 0) tools
+		- ~git~
+		- ~npm~
+		- ~pm2~
+		- ~nginx~
+		- registered domain: ~mydomain.com~
+*** 1) A record
+		- On the webpage of your domain name registrar, add a ~A record~
+      that maps ~mydomain.com~ to the ~IP address~ (version 4) of your
+      production server.
+*** 2) node app development
+		- When you run ~npm start -- --port=5000~, your ~node~ app listen
+      at http://127.0.0.1:5000.
+*** 3) node app run on the production server
+		- Copy (~push~,~ssh~, ...) your code into the directory
+      ~/var/www/mydomain.com/~ on your server.
+		- Set your system to allow your app to run (install whatever it
+      require).
+		- Start and daemonize your node app on ~port 5000~ with ~pm2~ and
+      allow it to restart on boot/reboot. To do so run the commands:
+			#+BEGIN_SRC bash
+			pm2 start npm --name my-app -- start -- --port=5000
+			pm2 startup  #then copy/past the generated command 
+      pm2 save
+			#+END_SRC
+*** 4) Set nginx as a reverse proxy
+		- Create the ~block~
+      ~/etc/nginx/sites-available/mydomain.com.conf~ that contains at
+      least the following lines:
+			#+BEGIN_SRC bash
+			server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        server_name www.mydomain.com mydomain.com;
+
+        location / {
+            proxy_pass http://127.0.0.1:5000;
+        }
+			}
+      #+END_SRC
+		- Make the following symlink by running the command:
+			#+BEGIN_SRC language
+      ln -s /etc/nginx/sites-available/mydomain.com.conf \
+			      /etc/nginx/sites-enable/mydomain.com.conf
+			#+END_SRC
+		- Reload ~nginx~ by running the command:
+			#+BEGIN_SRC language
+      sudo systemctl reload nginx
+			#+END_SRC
+*** 5) This should work
+		- Visit your site ~mydomain.com~, for instance visiting
+      ~http://mydomain.com~.
+*** 6) ssl/tls certificats
+		- [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
 * Process and system
-  lscpu, hostnamectl, top, ps
+** pm2
+*** pm2 install
+		- Problem :: How can I install pm2?
+		- Use ~npm~ command.
+		- Javascript package manager.
+		- If you want to install ~pm2~ globaly, as it is a ~javascript~
+      package, you must have ~npm~ install and run the command:
+			#+BEGIN_SRC bash
+			npm install pm2 -g
+      #+END_SRC
+		- If you want to start your ~app.js~ application, run the command:
+			#+BEGIN_SRC bash
+			pm2 start app.js
+      #+END_SRC
+*** pm2 start application
+		- Problem :: How can I start and daemonize applications with ~pm2~?
+		- Use ~pm2 start~ command.
+		- Start and daemonize an app.
+		- See examples [[https://pm2.keymetrics.io/docs/usage/quick-start/][(documentation) quick start]].
+		- If you want to start and daemonize with ~pm2~ your application
+      that normally start by running ~npm start~, run the command:
+			#+BEGIN_SRC bash
+			pm2 start npm -- start
+      #+END_SRC
+		- If you want to start and daemonize with ~pm2~ your application
+      that normally start by running ~npm start -- --port=5000~, run
+      the command:
+			#+BEGIN_SRC bash
+			pm2 start npm -- start --port=5000
+      #+END_SRC
+		- If you want to start and daemonize with ~pm2~ your application
+      that normally start by running ~npm start~ and give it the
+      ~name~ ~my-app~ run the command:
+			#+BEGIN_SRC bash
+			pm2 start npm --name my-app -- start
+      #+END_SRC
+*** pm2 restart process on boot/reboot
+		- Problem :: How can I automatically restart application on
+      boot/reboot? 
+		- Use ~pm2 startup~ and ~pm2 save~ commands.
+		- Enable the pm2 startup hook (~pm2 startup~).
+		- Freeze a process list for automatic respawn (~pm2 save~).
+		- See examples [[https://pm2.keymetrics.io/docs/usage/quick-start/][(documentation) quick start]].
+		- If you want that ~pm2~ automatically ~restart~ on boot/reboot
+      and run the saved processes, you have to enable the ~pm2~
+      startup hook and freeze a list of the current running
+      processes. To do so, run the commands:
+			#+BEGIN_SRC bash
+			pm2 startup  #then copy/past the generated command
+			pm2 save
+      #+END_SRC
+		- If you want to revert the action ~pm2 startup~, run the command:
+			#+BEGIN_SRC bash
+			pm2 unstartup  #then copy/past the generated command
+      #+END_SRC
+*** pm2 bunch of commands and options
+		- Problem :: What are the common actions I want to do with ~pm2~?
+		- See examples [[https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/][documentation]] and ~pm2 --help~.
+		- List of commands, without description:
+			#+BEGIN_SRC bash
+			pm2 example
+			pm2 list
+			pm2 show <name|id>
+			pm2 stop <name|id>
+			pm2 delete <name|id>
+			pm2 restart <name|id>
+			pm2 status
+			pm2 start
+			pm2 logs
+      #+END_SRC
+		- List of options, without description: ~--watch~,
+      ~--ignore-watch~, ~--watch-delay~.
+** miscellaneous
+	 lscpu, hostnamectl, top, ps
 * Files
 ** View
    du, file, ls, cat, more, less, head, tail
@@ -288,48 +418,48 @@
 ** search
    locate, find, grep
 *** find files
-   - Problem :: How to find files that match string or regexp?
-   - Use the command ~find~.
-   - Search for files in a directory hierarchy.
-	 - See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
-   - If you want to find files recursively from your ~$HOME~
-     directory where the ~name~ match the global patern ~virtualenv*~,
-     run the command:
-     #+BEGIN_SRC bash
-     find ~/ -name "virtualenv*"
-     #+END_SRC
+		- Problem :: How to find files that match string or regexp?
+		- Use the command ~find~.
+		- Search for files in a directory hierarchy.
+		- See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
+		- If you want to find files recursively from your ~$HOME~
+			directory where the ~name~ match the global patern ~virtualenv*~,
+			run the command:
+			#+BEGIN_SRC bash
+			find ~/ -name "virtualenv*"
+			#+END_SRC
 ** Replace
 *** replace string in multiple files
-   - Problem :: How to replace string in multiple files?
-   - Use commands ~sed~, ~perl~ and ~find~.
-	 - Stream editor for filtering and transforming text (~sed~).
-   - See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
-	 - If you want to replace all occurrences of one string with another
-     in all files in the current directory (Non recursive, files in
-     this directory only.), run the command:
-		 #+BEGIN_SRC bash
-     sed -i -- 's/foo/bar/g' *
-		 #+END_SRC
-	 - If you want to replace all occurrences of one string with another
-     in all files in the current directory (Recursive, regular files
-     (including hidden ones) in this and all subdirectories), run the
-     command:
-		 #+BEGIN_SRC bash
-		 find . -type f -exec sed -i 's/foo/bar/g' {} +
-		 #+END_SRC
-	 - If you want to replace only if the file name matches another
-     string / has a specific extension / is of a certain type etc
-     (Non-recursive, files in this directory only), run the command:
-		 #+BEGIN_SRC bash
-     sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
-		 #+END_SRC
+		- Problem :: How to replace string in multiple files?
+		- Use commands ~sed~, ~perl~ and ~find~.
+		- Stream editor for filtering and transforming text (~sed~).
+		- See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
+		- If you want to replace all occurrences of one string with another
+			in all files in the current directory (Non recursive, files in
+			this directory only.), run the command:
+			#+BEGIN_SRC bash
+			sed -i -- 's/foo/bar/g' *
+			#+END_SRC
+		- If you want to replace all occurrences of one string with another
+			in all files in the current directory (Recursive, regular files
+			(including hidden ones) in this and all subdirectories), run the
+			command:
+			#+BEGIN_SRC bash
+			find . -type f -exec sed -i 's/foo/bar/g' {} +
+			#+END_SRC
 		- If you want to replace only if the file name matches another
-     string / has a specific extension / is of a certain type etc
-     (Non-recursive, files in this directory only), run the command:
-		 #+BEGIN_SRC bash
-		 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
-		 # all files whose name contains baz
-		 #+END_SRC
+			string / has a specific extension / is of a certain type etc
+			(Non-recursive, files in this directory only), run the command:
+			#+BEGIN_SRC bash
+			sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
+			#+END_SRC
+			- If you want to replace only if the file name matches another
+				string / has a specific extension / is of a certain type etc
+				(Non-recursive, files in this directory only), run the command:
+				#+BEGIN_SRC bash
+			 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
+			 # all files whose name contains baz
+				#+END_SRC
 ** directories
    mkdir, cd, tree
 * Network
@@ -465,6 +595,106 @@
 			#+BEGIN_SRC bash
       ssh-add -d ~/.ssh/id_rsa_jim
 			#+END_SRC
+*** Error connecting to agent
+		- Problem :: How can I solve the problem that give either message
+      ~Error connecting to agent: No such file or directory~ or ~Could
+      not open a connection to your authentication agent~ when I run
+      the command ~~/.ssh/id_rsa_some_key~?
+		- Use ~eval~ command.
+		- Execute arguments as a shell command.
+		- See example [[https://unix.stackexchange.com/questions/48863/ssh-add-complains-could-not-open-a-connection-to-your-authentication-agent/48868][open a connection to your authentication agent]].
+		- If you want to open a connection to your authentication agent
+      that is already running, run the command:
+			#+BEGIN_SRC bash
+			eval "$(ssh-agent)"
+      #+END_SRC
+*** Start authentication agent
+		- Problem :: How can I start my authentication agent ~ssh-agent~?
+		- Use ~ssh-agent~, ~eval~ and ~ssh-add~ commands.
+		- Hold private keys used for public key authentication
+      (~ssh-agent~).
+		- Execute arguments as a shell command (~eval~).
+		- Adds private key identities to the authentication agent
+      (~ssh-add~).
+		- If you want to start your authentication agent, open a
+      connection to the agent and add the key ~id_rsa_some_key~ to
+      the agent, run the commands:
+			#+BEGIN_SRC bash
+			ssh-agent
+			eval "$(ssh-agent)"
+			ssh-add ~/.ssh/id_rsa_some_key
+      #+END_SRC
+		- If you want to list the identities represented by the
+      authentication agent, run the command:
+			#+BEGIN_SRC bash
+			ssh-add -l
+      #+END_SRC
+		- If you want to Kill the current agent (given by the
+      SSH_AGENT_PID environment variable), run the command:
+			#+BEGIN_SRC bash
+			ssh-agent -k
+      #+END_SRC
+*** SSH private key automatically added to ssh-agent
+		- Problem :: how to get ssh private key automatically added to the
+      authentication agent?
+		- Use the keywords ~AddKeysToAgent~ and ~IdentityFile~ in the
+      ~~/.ssh/config~ user's configuration file.
+		- Specifies whether keys should be automatically added to a
+      running ssh-agent(1) (~AddKeysToAgent~).
+		- Specifies a file from which the user's RSA authentication
+      identity is read.
+		- See ~ssh_config~ ~man~ documentation.
+		- If you want to get ssh private keys ~~/.ssh/id_rsa_key_1~ and
+      ~~/.ssh/id_rsa_key_2~ automatically added to the authentication
+      agent, you have to add these following lines to the file
+      ~~/.ssh/config~:
+			#+BEGIN_SRC bash
+			Host *
+			    AddKeysToAgent yes
+					IdentityFile ~/.ssh/id_rsa_key_1
+					IdentityFile ~/.ssh/id_rsa_key_2
+      #+END_SRC
+*** Start ssh-agent on login
+		- Problem :: How can I start ~ssh-agent~ on login?
+		- Use ~systemd~ by adding a user sytemd unit for ~ssh-agent~.
+		- See examples [[https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login][start-ssh-agent-on-login]].
+		- If you want to start ~ssh-agent~ on login, you have to add a
+      ~ssh-agent.service~ user systemd unit, export ~SSH_AUTH_SOCK~
+      environment in the ~.bashrc~ file, ~enable~ and ~start~ the
+      ~ssh-agent~ unit, and specify (in the file ~~/.ssh/config~) that
+      keys should be automatically added to a running ~ssh-agent~.
+			1) file ~~/.config/systemd/user/ssh-agent.service~:
+				 #+BEGIN_SRC bash
+				 [Unit]
+				 Description=SSH key agent
+				 
+				 [Service]
+				 Type=forking
+				 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+				 ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+				 
+				 [Install]
+				 WantedBy=default.target
+			   #+END_SRC
+			2) file ~.bashrc~:
+				 #+BEGIN_SRC bash
+			   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+				 #+END_SRC
+			3) in a terminal, run the commands:
+				 #+BEGIN_SRC bash
+				 systemctl --user enable ssh-agent
+				 systemctl --user start ssh-agent
+				 #+END_SRC
+			4) file ~~./ssh/config~, if you have two private keys:
+				 #+BEGIN_SRC bash
+				 Host *
+			        AddKeysToAgent yes
+							IdentityFile ~/.ssh/id_rsa_key_1
+							IdentityFile ~/.ssh/id_rsa_key_2
+				 #+END_SRC
+		- Note that after login, before the first use of ~ssh~ (via
+      ~ssh~, ~git~, ...), your ~ssh-agent~ doesn't know about your keys,
+      so ~ssh-add -l~ lists anything.
 ** Servers
 *** php server
 		- Problem :: How to run a php server?
@@ -476,13 +706,128 @@
 			#+END_SRC
 *** Automatic reload server
 		- Problem :: How to run a server that automatically reload when
-                 files change on the system?
+      files change on the system?
 		- Use the command ~browser-sync~.
 		- If the directory contains a ~index.html~ file, to have the server
 			reload each second, run the command:
 			#+BEGIN_SRC bash
 			browser-sync start --reload-delay=1000 -w --server
 			#+END_SRC
+*** httpd Apache rewrite rules
+		- Problem :: How can I rewrite apache rules?
+		- Use ~RewriteCond~ and ~RewriteRule~ directives.
+		- See examples [[https://httpd.apache.org/docs/trunk/fr/rewrite/intro.html][apache documentation on rewrite]].
+*** OVH config files
+		- Problem :: How can I configure ovh config file on server?
+		- Modify the ~.ovhconfig~ file.
+		- See examples [[https://docs.ovh.com/fr/hosting/configurer-fichier-ovhconfig/][ovh documentation on .ovhconfig file]].
+*** nginx resources
+		- [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]]
+		- [[https://linuxize.com/post/nginx-reverse-proxy/][(linuxize) nginx reverse proxy]]
+		- [[https://linuxize.com/post/how-to-set-up-nginx-server-blocks-on-ubuntu-18-04/][(linuxize) nginx server block]]
+		- [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
+		- [[https://scaron.info/blog/improve-your-nginx-ssl-configuration.html][improve your nginx ssl]]
+		- [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][(nginx.com) reverse proxy]]
+		- [[https://www.nginx.com/blog/creating-nginx-rewrite-rules/][(nginx.com) nginx rewrite rules]]: Really good examples to
+      understand what are ~$uri~, ~$request_uri~, ~try_files~,
+      ~return~, ~rewrite~.
+		- [[https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/][(nginx.com) nginx config pitfalls]]
+		- [[https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/][(nginx.com) nginx serving statict content]]
+		- [[https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/][(nginx.com) ssl nginx / upstream server]]
+		- The *request URI* is the part of the request that comes after
+      the domain name or IP address/port.
+*** Install nginx
+		- Problem :: How can I install nginx on ubuntu?
+		- Use ~apt~ command.
+		- High-level commandline interface for the package management
+      system.
+		- See example [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]].
+		- If you want to install nginx on ubuntu and get ready to use,
+      update your packages with ~apt update~, install it with ~apt
+      install~ and open the ~ports~ used by nginx:
+			#+BEGIN_SRC bash
+			sudo apt update
+			sudo apt install nginx
+			sudo ufw allow 'Nginx Full'
+			sudo ufw enable
+      #+END_SRC
+		- If you want to check if ~nginx~ is running, run the command:
+			#+BEGIN_SRC bash
+			sudo systemctl status nginx
+      #+END_SRC
+		- Each time you modify your ~nginx~ configuration, you have to
+      ~reload~ ~nginx~. To do so, run the command:
+			#+BEGIN_SRC bash
+			sudo systemctl reload nginx
+      #+END_SRC
+*** nginx default configuration
+		- Problem :: What is the default configuration of ~nginx~ after
+      installing it?
+		- See example [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]].
+		- By default, ~nginx~ serves the file ~index.nginx-debian.html~ on
+      ~localhost~ (~127.0.0.1~) on ~port 80~. Just after intalling
+      ~nginx~, before any modification, you can visit the address
+      ~http://127.0.0.1~ on your browser.
+		- This happens because ~nginx~ looks at config files on the directory
+      ~/etc/nginx/sites-enabled~. It sees the file
+      ~/etc/nginx/sites-enabled/default~ that is a symlink of the file
+      ~/etc/nginx/sites-available/default~. This default file tells
+      ~nginx~ to serve the file ~index.nginx-debian.html~ that is in
+      the directory ~/var/www/html~. And the config file [[../linux/etc_nginx_sites-available_default.txt][default]],
+      after flushing the commented lines, is as follow:
+		  #+BEGIN_SRC bash
+			server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+			}
+      #+END_SRC
+*** nginx reverse proxy
+		- Problem :: How can I set nginx to be a reverse proxy?
+		- Use ~proxy_pass~ directive in your ~nginx block~ configuration.
+		- To pass a request to an HTTP proxied server, the ~proxy_pass~
+      directive is specified inside a ~location~.
+		- See examples [[https://linuxize.com/post/nginx-reverse-proxy/][(linuxize) nginx reverse proxy]], [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][(nginx.com) reverse proxy]] 
+		  and [[http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass][(documentation) proxy_pass]].
+		- If you want to serve at ~mydomain.com~ an application that is running as a http
+      server (node app, flask app,...) on ~http://127.0.0.1:5000~,
+      your ~nginx block~ for ~mydomain.com~ defined in the file
+      ~/etc/nginx/sites-available/mydomain.conf~ must contain the
+      following lines:
+			#+BEGIN_SRC bash
+			server {
+			  listen 80;
+				server_name www.mydomain.com mydomain.com;
+				
+				location / {
+				proxy_pass http://127.0.0.1:5000;
+				}
+			}
+      #+END_SRC
+*** error (nginx): cannot get
+		- Problem :: How can I fix the nginx error ~error (nginx): cannot
+      get /app~ related to proxy servers?
+		- See ~proxy_pass~ directive in your ~block~ configuration.
+		- The error was that I was trying to pass ~location~ ~/app~ to
+      the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
+      end of the address. To solve the problem, I add a ~/~ to the
+      ~proxy_pass~ address. My ~block~ configuration
+      ~/etc/nginx/sites-available/mydomain.conf~ contains the
+      following lines: 
+			#+BEGIN_SRC bash
+			location /app {
+        proxy_pass http://127.0.0.1:5000/;
+			}
+      #+END_SRC
 ** Connection
 *** Wifi connection
 		- Problem :: How can I restart my wifi connection?
@@ -492,6 +837,18 @@
 		- If you want to restart your wifi connection, run the command:
 			#+BEGIN_SRC bash
 			sudo service network-manager restart
+      #+END_SRC
+** ftp
+*** ftp session down once I run a command
+		- Problem :: Why do I get kicked out of a FTP session once I run a
+      command?
+		- Use ~ufw~ command.
+		- Program for managing a netfilter firewall.
+		- See examples [[https://unix.stackexchange.com/questions/90487/why-do-i-get-kicked-out-of-a-ftp-session-once-i-run-a-command/90501][ftp error due to firewall]].
+		- If you want to open all the port to not have problem of
+      firewall with ~ftp~, run the command:
+			#+BEGIN_SRC bash
+			sudo ufw disable
       #+END_SRC
 ** Miscellaneous
   curl, wget, ping, ftp
@@ -680,7 +1037,7 @@
 			#+BEGIN_SRC bash
 			idevicepair pair
 			mkdir /media/iphone
-			sudo ifuse
+			sudo ifuse /media/iphone
       #+END_SRC
 		- If you to list the medias on your mobile (in my case there were
       on the directory ~/media/iphone/DCIM/106APPLE~), run the
@@ -770,6 +1127,11 @@
 			background, run the command:
 			#+BEGIN_SRC bash
 			feh --bg-fill path/to/images.jpg
+			#+END_SRC
+		- If you want to remove your background image set with ~feh~, run
+      the command:
+			#+BEGIN_SRC bash
+			xsetroot -solid black
 			#+END_SRC
 ** Manipulate images
 *** Convert images
