@@ -7,9 +7,6 @@
 * [[file:./emacs.org][emacs]]
 * [[./frontend.org][frontend]]
 * [[./git.org][git]]
-** settings
-  # add a template commit message
-  $ git config --global commit.template ~/.gitmessage
 ** repository
 *** working with remotes
 		[working with remote]https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes

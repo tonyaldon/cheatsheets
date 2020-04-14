@@ -6,6 +6,9 @@
    #+BEGIN_SRC bash
    git config --global user.name "<my-name>"
    git config --global user.email "<my-email>"
+	 git config --global push.default matching
+	 git config --global push.default simple
+	 git config --global commit.template ~/.gitmessage
    #+END_SRC
 * basics
 ** git-init/git-add/git-commit
