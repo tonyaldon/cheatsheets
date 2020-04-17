@@ -136,6 +136,10 @@
 			 (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:" (getenv "PATH")))
 			 (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
 			 #+END_SRC
+			 Note: If ~tern~ has been install globaly with ~sudo npm install
+       -g tern~ and ~npm~ has been install with ~sudo apt install
+       nodejs~, ~tern~ is already in your ~PATH~ (~/usr/bin/tern~). So
+       you neither have to set ~"PATH"~ nor ~'exec-path~.
 		 - you have to enable the ~tern-mode~ in the ~js-mode-hook~. To do
        so, add the folling line to you emacs config file:
 			 #+BEGIN_SRC bash
