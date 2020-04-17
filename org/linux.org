@@ -248,12 +248,12 @@
 		- See examples [[https://www.tecmint.com/usermod-command-examples/][usermod command example]].
 		- If you want to modify the UID of the user ~tony~ to the number
       ~1050~ for instance, run the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			usermod -u 1050 tony
       #+END_SRC
 		- If you want to print the UID of the user ~tony~, run the
       command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
       id tony
 			id   # if you're logged as tony
 			#+END_SRC
@@ -301,12 +301,12 @@
 			}
       #+END_SRC
 		- Make the following symlink by running the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
       ln -s /etc/nginx/sites-available/mydomain.com.conf \
 			      /etc/nginx/sites-enable/mydomain.com.conf
 			#+END_SRC
 		- Reload ~nginx~ by running the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
       sudo systemctl reload nginx
 			#+END_SRC
 *** 5) This should work
@@ -413,8 +413,8 @@
 			cd ~/some-directory
 			stow -D -t $HOME my-dotfiles
       #+END_SRC
-** Compression/backup
-   tar, zip, unzip, unrar, rsync, zcat, zmore, zless
+** Compression
+   tar, zip, unzip, unrar, zcat, zmore, zless
 ** search
    locate, find, grep
 *** find files
@@ -517,13 +517,13 @@
 		- See examples [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
 		- If you want to connect to your Ubuntu machine over LAN with
       ~bob~ as username and ~192.168.1.100~, run the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			ssh bob@192.168.1.100
       #+END_SRC
 		- If you want to connect to your Ubuntu machine over Internet with
       ~bob~ as username and ~2a01:c50e:e911:9600:fc4d:b07d:d36f:6358~,
       run the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			ssh bob@2a01:c50e:e911:9600:fc4d:b07d:d36f:6358
       #+END_SRC
 *** Connected to SSH server
@@ -554,13 +554,13 @@
       on a remote host with IP address of *192.168.1.100*, create a
       directory ~~/remote-tony~ that will serve as a mount point and
       use ~sshfs~ command. To do so, run the commands:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			mkdir ~/remote-tony
 			sshfs tony@192.168.1.100:/home/tony ~/remote-tony
       #+END_SRC
 		- If you want to detach the mounted file system ~~/remote-tony~,
       run the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			sudo umount ~/remote-tony
       #+END_SRC
 *** Passwordless SSH login
@@ -910,12 +910,12 @@
 		- If you want to name (or rename) ~my-name~ your USB drive,
       assuming the target drive is ~/dev/sdb1~ and is unmounted, run
       the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			sudo e2label /dev/sdb1 my-name
       #+END_SRC
 		- I you want to check the name of your USB drive, assuming the
       target is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			sudo e2label /dev/sdb1
       #+END_SRC
 		- The name of an usb drive doesn't identify the usb drive. For
@@ -927,7 +927,7 @@
 		- See examples [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]].
 		- If you want to print the ~UUID~ of the block device wich
       partition is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			blkid -s UUID -o value /dev/sdb1
       #+END_SRC
 		- Filesystem partitions have UUIDs but physical devices do not.
@@ -942,7 +942,7 @@
       give it the ownership of the same username (same UID) your
       share accross linux system, assuming that ~/dev/sdb1~ is the
       partition and ~my-name~ is your username, run the commands:
-			#+BEGIN_SRC language
+			#+BEGIN_SRC bash
 			sudo mkfs.ext4 /dev/sdb1
 			sudo mount /dev/sdb1 /mnt
 			sudo chown my-name: /mnt
@@ -1165,6 +1165,7 @@
 			sudo apt install imagemagick
 			#+END_SRC
 * Backup
+** rsync
 ** Backup and archive
 *** Backup
 		- Problem :: What is a Backup?
