@@ -117,6 +117,78 @@
 ** speed up a video
 	 - https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video
 	 - ffmpeg -i _input.mp4 -an -filter:v "setpts=0.5*PTS" _output.mp4
+* kdenlive
+** Clip paths
+*** Modify clip path
+		- Problem :: How can I modify ~clip~ paths in ~kdenlive~?
+		- You can modify the paths that appears in the tags ~<property
+      name="resource">~ and ~<mlt ... root="...">~ in your
+      ~my-project.kdenlive~ file.
+		- Suppose your project ~my-project~ looks like this:
+			#+BEGIN_SRC bash
+			~/my-project/
+			    my-project.kdenlive
+					clip/
+					    video-1.mp4
+							video-2.mp4
+      #+END_SRC
+			On my machine, as my username is ~tony~, the file
+      ~my-project.kdenlive~ looks like this:
+			#+BEGIN_SRC nxml
+			<mlt title="Anonymous Submission" version="6.6.0"
+					 root="/home/tony/my-project" producer="main bin"
+					 LC_NUMERIC="en_US.UTF-8">
+				<!-- ... -->
+				<producer id="1" out="124" in="0">
+					<property name="resource">
+						/home/tony/my-project/clip/video-1.mp4
+					</property>
+					<!-- ... -->
+				</producer>
+				<producer id="2" out="124" in="0">
+					<property name="resource">
+						/home/tony/my-project/clip/video-2.mp4
+					</property>
+					<!-- ... -->
+				</producer>
+				<!-- ... -->
+			</mlt>
+			#+END_SRC
+			Now if you rename your project directory ~new-dir~ by running
+      the command ~mv ~/my-project ~/new-dir~, in ~kdenlive~ the links
+      (~paths~) to the clips will be broken and ~kdenlive~ will
+      complain about when opening you project
+      ~~/new-dir/my-project.kdenlive~. You have two solution to make
+      the project running:
+			- You can modify the paths manually when kdenlive ask you for at
+        opening the project (could be quite long if you have a lot of
+        clip),
+			- you can, before opening ~~/new-dir/my-project.kdenlive~ with
+        kdenlive, modify the paths that appears in the tags ~<property
+        name="resource">~ and ~<mlt ... root="...">~ with any text
+        editor. To do so, I replace ~my-project~ by ~new-dir~ in the
+        file ~~/new-dir/my-project.kdenlive~ and the file looks like
+        this:
+				#+BEGIN_SRC nxml
+				<mlt title="Anonymous Submission" version="6.6.0"
+						 root="/home/tony/new-dir" producer="main bin"
+						 LC_NUMERIC="en_US.UTF-8">
+					<!-- ... -->
+					<producer id="1" out="124" in="0">
+						<property name="resource">
+							/home/tony/new-dir/clip/video-1.mp4
+						</property>
+						<!-- ... -->
+					</producer>
+					<producer id="2" out="124" in="0">
+						<property name="resource">
+							/home/tony/new-dir/clip/video-2.mp4
+						</property>
+						<!-- ... -->
+					</producer>
+					<!-- ... -->
+				</mlt>
+			  #+END_SRC
 * Ideas
   - see: pavucontrol (to capture application (system) audio instead of
     microphone)
