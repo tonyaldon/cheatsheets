@@ -334,6 +334,33 @@
 			systemctl --user status emacs
 			systemctl --user stop emacs
       #+END_SRC
+** faces
+*** Check default font
+		- Problem :: How can I check the current default font use by emacs?
+		- Use ~customize-face~, ~describe-font~ or ~describe-char~ commands.
+		- See examples [[http://ergoemacs.org/emacs/emacs_list_and_set_font.html][list and set font]].
+		- If you want to check the current default font where you're
+      cursor is, run the command:
+			#+BEGIN_SRC bash
+			M-x describe-font RET RET
+      #+END_SRC
+			this will pop-up a help buffer with the ~name~, ~full name~ and
+      ~file name~ of the font use on the character under cursor.
+		- If you want to check the current default font where you're
+      cursor is, run the command:
+			#+BEGIN_SRC bash
+			M-x describe-char RET
+      #+END_SRC
+			this will pop-up a help buffer with a lot of informations about
+      the caracher under cursor, and the font name at the line in
+      ~display~.
+		- If you want to check the current default font and maybe modify
+      it in the interactive customize menu, enter the command:
+			#+BEGIN_SRC bash
+			M-x customize-face RET default RET
+      #+END_SRC
+			this will pop-up the buffer ~*Customize Face: Default*~, that
+      contains the information in line ~Font Family~.
 * Articles
 ** Ergoemacs/xahlee
    - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
