@@ -403,6 +403,9 @@
    - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
    - [[https://melpa.org/#/counsel-jq][counsel for jq]]
 	 - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
+	 - [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
+	 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with
+	GNU Emacs.
 ** ispell, flyspell, aspell (for text mode)
 	 - switch between English, French, Spanish
 	 - work with company (see: company-ispell)
