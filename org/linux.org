@@ -1067,7 +1067,7 @@
 			#+END_SRC
 		- If you want to unmount your Iphone, run the command:
 			#+BEGIN_SRC bash
-			sudo umount /media/iphone
+			sudo umount media/iphone
       #+END_SRC
 		- If you want to install ~idevicepair~ and ~ifuse~, run the
       command:
@@ -1133,7 +1133,7 @@
 			xrandr
       #+END_SRC
 ** Miscellaneous
-  xbindkey, xmodmap, xev, xdotools, wmctrl
+   xbindkey, xmodmap, xev, xdotools, wmctrl
 * Date
   date, crontab, sleep, at, atq, atrm
 * Images
@@ -1186,7 +1186,172 @@
 			#+END_SRC
 * Backup
 ** rsync
-
+*** rsync keep the file sent
+		- Problem :: How can I always replace the ~DEST~ file by the
+      ~SRC~ file?
+		- Use ~-a~ flag of ~rsync~.
+		- It is a quick way of saying you want recursion and want to
+      preserve almost everything.
+		- If you want to *always* replace all the files with the same
+      ~path~ on ~path/to/dest/~ by the files on ~path/to/src/~, run
+      the command:
+			#+BEGIN_SRC bash
+			rsync -a path/to/src/ path/to/dest/
+      #+END_SRC
+*** rsync keep only the newer file
+		- Problem :: How can I always replace the ~DEST~ file by the
+      ~SRC~ file *only* if the ~SRC~ file is newer than the ~DEST~
+      file?
+		- Use ~-au~ flags of ~rsync~.
+		- Skip files that are newer on the receiver (~-u~ flag).
+		- If you want to replace all the files with the same
+      ~path~ on ~path/to/dest/~ by the files on ~path/to/src/~ that
+      are *newer*, run the command:
+			#+BEGIN_SRC bash
+			rsync -au path/to/src/ path/to/dest/
+      #+END_SRC
+*** rsync keep the newer file and make a copy of the old
+		- Problem :: How can I keep the *newer* file between ~DEST~ and
+      ~SRC~ file on the receiver and keep a *copy* on the receiver of
+      the *older* of ~DEST~ file and ~SRC~ file?
+		- Use ~-aub~ flags of ~rsync~.
+		- Skip files that are newer on the receiver (~-u~ flag).
+		- With this option, preexisting destination files are renamed as
+      each file is transferred or deleted (~-b~ flag).
+		- If you want to keep the *newer* files between ~path/to/dest/~
+      and ~path/to/src/~ on the receiver (~path/to/dest/~) and keep a
+      *copy* on the receiver (~path/to/dest/~) of the *older* files
+      (by appending them a ~~~), run the command:
+			#+BEGIN_SRC bash
+			rsync -aub path/to/src/ path/to/dest/
+      #+END_SRC
+*** rsync synchronize (witout copy of older files)
+		- Problem :: How can I synchronize ~DEST~ directory and
+      ~SRC~ directory?
+		- Use ~-au~ flags of ~rsync~.
+		- It is a quick way of saying you want recursion and want to
+      preserve almost everything (~-a~ flag).
+		- Skip files that are newer on the receiver (~-u~ flag).
+		- If you want to synchronize ~path/to/src/~ and ~path/to/dest/~,
+      that is (~DEST~ and ~SRC~ become the same copy, keeping
+      all files that were on ~DEST~ but not on ~SRC~ and vice-versa,
+      and keeping the newer files (with the same ~path~) of the ~DEST~
+      and ~SRC~ directory), run the commands:
+			#+BEGIN_SRC bash
+			rsync -au path/to/src/ path/to/dest/
+			rsync -au path/to/dest/ path/to/src/
+      #+END_SRC
+*** rsync synchronize (with copy of older files and log file)
+		- Problem :: How can I synchronize ~DEST~ directory and ~SRC~
+      directory, keep a copy of the older files and generate a log
+      file?
+		- Use ~-aub~ and ~--backup-dir~ flags of ~rsync~.
+		- It is a quick way of saying you want recursion and want to
+      preserve almost everything (~-a~ flag).
+		- Skip files that are newer on the receiver (~-u~ flag).
+		- With this option, preexisting destination files are renamed as
+      each file is transferred or deleted (~-b~ flag).
+		- In  combination  with the ~--backup~ option, this tells rsync to
+      store all backups in the specified directory on the receiving
+      side (~--backup-dir~).
+		- If you want to synchronize ~path/to/src/~ and ~path/to/dest/~,
+      and keep a copy of the older files in a *specified directory*
+      ~backup~ (on both directorise ~path/to/src/~ and ~path/to/dest/~)
+      and a log file ~backup.log~ (available on both directorise ~path/to/src/~
+      and ~path/to/dest/~) that keep track of the synchronization
+      process , run the commands:
+			#+BEGIN_SRC bash
+			rsync -aub --backup-dir="backup" path/to/dest/ path/to/src/ \
+			  | tee -a path/to/src/backup.log
+			rsync -aub --backup-dir="backup" path/to/src/ path/to/dest/ \
+			  | tee -a path/to/src/backup.log
+			rsync -aub --backup-dir="backup" path/to/dest/ path/to/src/ \
+			  | tee -a path/to/src/backup.log
+			rsync path/to/src/backup.log path/to/dest/backup.log
+      #+END_SRC
+		- Note 1: In the file ~backup.log~, you can see what happen
+      during the synchronization. This way you can see the files that
+      have been deleted on the ~SRC~ directory but still present on
+      the ~DEST~ directory that you copied back into to the ~SRC~
+      directory.
+		- Note 2: The directory ~backup~ contains all older files.
+		- Note 3: If on the ~SRC~ and ~DEST~ you had the file ~path-to/some-file~
+      that differed, after the synchronization you can see the
+      difference (how the newer was changed from the older), by running
+      the command:
+			#+BEGIN_SRC bash
+      git diff path/to/src/backup/path-to/some-file path/to/src/path-to/some-file
+			#+END_SRC
+		- Note 4: After the synchronization, if you are happy, you can delete
+      on both side (~SRC~ and ~DEST~ directories), the file
+      ~backup.log~ and the directory ~backup~. To do so, run the
+      commands:
+      #+BEGIN_SRC bash
+      rm -rf path/to/src/backup path/to/src/backup.log
+      rm -rf path/to/dest/backup path/to/dest/backup.log
+			#+END_SRC
+*** rsync delete on remote what is not on local
+		- Problem :: How can I delete files on ~DEST~ that are not present
+      on ~SRC~?
+		- Use ~-a~, ~--delete~ flags of ~rsync~.
+		- It is a quick way of saying you want recursion and want to
+      preserve almost everything (~-a~ flag).
+		- This tells rsync to delete extraneous files from the receiving
+      side (ones  that  aren’t on  the  sending  side), but only for
+      the directories that are being synchronized.  You must have
+      asked rsync to send the whole directory (e.g. "dir" or "dir/")
+      without  using a  wildcard  for the directory’s contents
+      (e.g. "dir/*") since the wildcard is expanded by the shell and
+      rsync thus gets a request to transfer individual files, not the
+      files’ parent  directory (~--delete~ flag).
+		- If you want to delete files on ~path/to/dest/~ that are not present
+      on ~path/to/src/~, run the command:
+			#+BEGIN_SRC bash
+			rsync -a --delete path/to/src/ path/to/dest/
+      #+END_SRC
+*** rsync delete excluded file that you've not exclude first time
+		- Problem :: How can I delete files on ~DEST~ that I've note
+      ~exclude~ the first time with ~rsync~ ?
+		- Use ~-a~, ~--delete-excluded~, ~--exclude~ flags of ~rsync~.
+		- It is a quick way of saying you want recursion and want to
+      preserve almost everything (~-a~ flag).
+		- In  addition  to  deleting  the files on the receiving side that
+      are not on the sending side, this tells rsync to also delete any
+      files on the receiving side that are excluded with ~--exclude~
+      (~--delete-excluded~ flag).
+		- Exclude files matching a pattern (~--exclude~).
+		- If you first have send the  directories ~node_modules~
+      accidentally from the ~path/to/src/~ directory to the
+      ~path/to/dest/~ directory, you can delete them later. To do so,
+      run the command:
+			#+BEGIN_SRC bash
+			rsync -a --exclude="*node_modules*" --delete-excluded \
+			  path/to/src/ path/to/dest/
+      #+END_SRC
+*** rsync incremental backup
+		- Problem :: How can I do a incremental backup?
+		- Use ~-avz~, ~--exclude~ and ~--exclude-exclude~ flags of
+      ~rsync~.
+		- It is a quick way of saying you want recursion and want to
+      preserve almost everything (~-a~ flag).
+		- Increases the amount of information you are given during the
+      transfer (~-v~ flag).
+		- Compresses the file data as it is sent to the
+      destination machine (~-z~ flag).
+		- Exclude files matching a pattern (~--exclude~).
+		- In  addition  to  deleting  the files on the receiving side that
+      are not on the sending side, this tells rsync to also delete any
+      files on the receiving side that are excluded with ~--exclude~
+      (~--delete-excluded~ flag).
+		- If you want ~DEST~ directory to be the exact copy of ~SRC~
+      directory, but you just want to send the file that have changed
+      ~SRC~, delete on ~DEST~ the file you have deleted on ~SRC~, and
+      do not send (exclude) on ~DEST~ the ~node_modules~ directory on
+      ~SRC~, run the command:
+			#+BEGIN_SRC bash
+			rsync -avz --exclude="*node_modules*" --delete-exclude \
+			  path/to/src/ path/to/dest/
+      #+END_SRC
 ** Backup and archive
 *** Backup
 		- Problem :: What is a Backup?
