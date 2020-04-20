@@ -116,11 +116,31 @@
 			#+BEGIN_SRC bash
 			apt-get remove emacs
       #+END_SRC
-** Other packages
-*** Manage ~nodejs~ packages
-		npm
-*** Manage ~python~ packages
-		pip
+
+** npm for nodejs
+*** list nodejs installed packages
+		- Problem :: How can I list the the nodejs installed packages?
+		- Use ~ls~ subcommand of ~npm~.
+		- Print packages' version that are installed, as well as their
+      dependencies, in a tree-structure.
+		- If you want to list the installed packages in your ~node~
+      project, in root directory of your project run the command:
+			#+BEGIN_SRC bash
+			npm ls
+      #+END_SRC
+		- If you want to list the ~node~ installed packages globaly in
+      your machine, run the command:
+			#+BEGIN_SRC bash
+			npm ls -g
+      #+END_SRC
+		- If you want to list only the *name@version* of the installed
+      packages in your ~node~ project, you have to limite the depth of
+      the printed tree. To do so, run the command:
+			#+BEGIN_SRC bash
+			npm ls -g --depth=0
+      #+END_SRC
+** pip for python
+	 pip
 * Environment variables
 *** Print all environment variables
 		- Problem :: How can I print all environment variables?
@@ -1166,6 +1186,7 @@
 			#+END_SRC
 * Backup
 ** rsync
+
 ** Backup and archive
 *** Backup
 		- Problem :: What is a Backup?
