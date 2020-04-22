@@ -195,6 +195,31 @@
 			#+BEGIN_SRC bash
 			sudo deluser jim sudo
       #+END_SRC
+*** timeout of sudo
+		- Problem :: How can I the sudo password timeout?
+		- Use ~visudo~ command.
+		- Edit the sudoers file in a safe fashion.
+		- See example [[https://www.maketecheasier.com/change-the-sudo-password-timeout-in-ubuntu][sudo password timeout]].
+		- If you want to change the default (15mins) sudo password
+      timeout to ~30mins~, change the line ~Defaults  env_reset~ to
+      the line ~Defaults  env_reset, timestamp_timeout=30~ in the
+      file ~/etc/sudoers~, not directly, but by running the command:
+			#+BEGIN_SRC bash
+			sudo visudo
+      #+END_SRC
+		- If you want to check the existing sudoers file for syntax,
+      errors, and mode, run the command:
+			#+BEGIN_SRC bash
+      sudo visudo -c
+			#+END_SRC
+		- If you want that the system prompt you for password everytime
+      you use ~sudo~, set the sudo password
+      timeout to ~0~, by changing the line ~Defaults  env_reset~ to
+      the line ~Defaults  env_reset, timestamp_timeout=0~ in the
+      file ~/etc/sudoers~, not directly, but by running the command:
+			#+BEGIN_SRC bash
+			sudo visudo
+      #+END_SRC
 ** Groups
 *** Users' groups
 		- Problem :: How can I list all groups a user is a member of?
@@ -1042,6 +1067,13 @@
 			#+BEGIN_SRC bash
 			df -h /dev/sdb1
       #+END_SRC
+*** read-only usb drive
+		- Problem :: Why the file system of my usb drive suddenly becomes
+      ~read-only~?
+		- See example [[https://superuser.com/questions/1125282/what-can-i-do-if-my-usb-flash-drive-is-write-protected-or-read-only][usb drive write protected or read only]].
+		- This is probably because the drive has probably experienced a
+      fault condition. That is your usb drive is not safe. So you must
+      backup your data and change your usb drive.
 ** Iphone
 *** Mount Iphone on Linux Ubuntu
 		- Problem :: How can I mount my Iphone on my linux machine?
@@ -1441,11 +1473,11 @@
 		- See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and
 		[[https://lwn.net/Articles/774125/][large files with git (article)]].
 
-* Sensitive actions
-  rm, kill, killall, gparted
 * Miscellaneous
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
   split, iconv, diff, patch, man ascii, man utf-8, fpp
   (https://github.com/facebook/PathPicker), history, ffmpeg, ;,
   \&\&, \&, nohup, |, grip, pdflatex, pdftk, docker, source, dpkg,
-  debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload
+  debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload,
+  rm, kill, killall, gparted
+
