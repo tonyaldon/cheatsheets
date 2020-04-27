@@ -1476,6 +1476,37 @@
 		- See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and
 		[[https://lwn.net/Articles/774125/][large files with git (article)]].
 
+* UI
+** GTK (miscellaneous)
+	 Create interfaces that users just love.
+	 - If you want that ~chromium~ uses ~GTK~, allow ~GTK+~ theme in:
+     Settings > Preferences > Appearence > Use ~GTK+~ theme.
+	 - ~GTK~ config files:
+		 - ~~/.gtkrc-2.0~ for ~gtk2~,
+		 - ~~/.config/gtk-3.0/settings.ini~ for ~gtk-3~,
+		 - ~/etc/gtk-3.0/settings.ini~.
+	 - How to get information on the ~gtk~ settings? Run the command:
+		 #+BEGIN_SRC bash
+			gtk-query-settings
+      #+END_SRC
+	 - Find ~GTK~ themes in the directory: ~/usr/share/themes/~.
+	 - To add ~emacs~ like keybinding in ~GTK~ (~gtk-3~) applications (like
+     chromium), add the line ~gtk-key-theme-name = Emacs~
+     in your ~GTK~ config file
+     ~/home/tony/.config/gtk-3.0/settings.ini~. The implemented ~emacs~ keybinding
+     can be found in the file
+     ~/usr/share/themes/Emacs/gtk-3.0/gtk-keys.css~.
+	 - to switch between ~GTK~ theme you can use the command
+     ~gtk-theme-switch~.
+	 - To modify text size of ~GTK~ (~gtk-3~)applications like ~chromium~, add
+     the line ~gtk-font-name=Sans 12~ (~12~ is the size), in your ~GTK~ config file
+     ~/home/tony/.config/gtk-3.0/settings.ini~.
+	 - links:
+     - [[https://wiki.archlinux.org/index.php/GTK][GTK (archlinux)]]
+     - [[https://www.gtk.org][GTK (home page)]]
+     - [[https://developer.gnome.org/gtk3/stable/][GTK+ 3 Reference Manual]]
+     - [[https://developer.gnome.org/gtk3/stable/GtkSettings.html][GTK+ 3 Settings (Reference Manual)]]
+     - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
 * Miscellaneous
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
   split, iconv, diff, patch, man ascii, man utf-8, fpp
