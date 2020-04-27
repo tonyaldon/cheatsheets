@@ -7,6 +7,7 @@
 	- [[https://whatismyipaddress.com/hostname][hostname (article)]]
 	- [[https://en.wikipedia.org/wiki/Passwd][password (article)]]
 	- [[https://askubuntu.com/questions/394067/why-use-sticky-bit][sticky bit (article)]]
+	- [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
 ** Linuxize
 	- [[https://linuxize.com/post/scheduling-cron-jobs-with-crontab/][cron jobs (linuxize)]]
 	- [[https://linuxize.com/post/how-to-setup-a-git-server/][setup git server (linuxize)]]
@@ -23,6 +24,8 @@
   - [[https://link.springer.com/content/pdf/bbm\%3A978-1-4302-0137-3\%2F1.pdf][spinger: glossary of linux terms]]
   - [[https://github.com/jlevy/the-art-of-command-line][github: the art of command lines]]
 	- [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
+  - [[https://wiki.archlinux.org/index.php/Desktop_environment][Desktop_environment]]
+  - [[https://wiki.archlinux.org/index.php/Window_manager][Window_manager]]
 * Info
   type, which, help, man, apropos, whatis, whereis
 ** latex
