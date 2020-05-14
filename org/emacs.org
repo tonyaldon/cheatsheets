@@ -361,6 +361,28 @@
       #+END_SRC
 			this will pop-up the buffer ~*Customize Face: Default*~, that
       contains the information in line ~Font Family~.
+** utf-8
+*** links
+    - [[https://en.wikipedia.org/wiki/UTF-8][utf-8 (wikipedia)]]
+    - [[http://ergoemacs.org/emacs/emacs_line_ending_char.html][emacs line ending char (ergoemacs)]]
+    - [[https://stackoverflow.com/questions/17862846/whats-the-difference-among-various-types-of-utf-8-in-emacs][difference among utf-8 types in emacs (stackoverflow)]]
+*** commands
+		- ~M-x describe-variable RET buffer-file-coding-system~,
+		- ~C-q~ : ~quoted-insert~,
+		- ~find-file-literally~ : Visit file FILENAME with no conversion
+      of any kind,
+		- ~hexl-mode~ : A mode for editing binary files in hex dump
+      format,
+		- ~M-x set-buffer-file-coding-system RET utf-8-unix~.
+*** utf-8-unix-with-signature-dos and utf-8-unix-with-signature-unix
+		- I change my file ~file.txt~ from ~utf-8-unix-with-signature-dos~
+		to ~utf-8-unix-with-signature-unix~ by running ~M-x
+		set-buffer-file-coding-system RET utf-8-unix-with-signature-unix~
+		in a buffer with ~file.txt~ open.
+		- This changed the end of line character ~^M^J~ (stand for carriage
+      return and line feed) by ~^J~ (only line feed). Notes that ~^J~
+      is not printed when you open the file literally with
+      ~find-file-literally~.
 * Articles
 ** Ergoemacs/xahlee
    - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
