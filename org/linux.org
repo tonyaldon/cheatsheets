@@ -435,8 +435,194 @@
       #+END_SRC
 		- List of options, without description: ~--watch~,
       ~--ignore-watch~, ~--watch-delay~.
+** CPU
+*** CPU number of cores
+		- Problem :: How can I know the caracteristic of my CPU?
+		- Use ~lscpu~ command.
+		- Display information about the CPU architecture.
+		- See example [[https://unix.stackexchange.com/questions/218074/how-to-know-number-of-cores-of-a-system-in-linux][number of cores of as system]].
+		- If you want to know how many physical CPU do you have, run the
+      command ~lscpu~ and see the line which starts with ~Socket(s):~.
+		- If you want to know how many core per socket do you have, run the
+      command ~lscpu~ and see the line which starts with ~CPU(s):~.
+		- After running the command ~lscpu~, I get this output:
+		  #+BEGIN_SRC bash
+			Architecture:        x86_64
+			CPU op-mode(s):      32-bit, 64-bit
+			Byte Order:          Little Endian
+			CPU(s):              4
+			On-line CPU(s) list: 0-3
+			Thread(s) per core:  2
+			Core(s) per socket:  2
+			Socket(s):           1
+			NUMA node(s):        1
+			Vendor ID:           GenuineIntel
+			CPU family:          6
+			Model:               69
+			Model name:          Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz
+			Stepping:            1
+			CPU MHz:             1046.894
+			CPU max MHz:         2900.0000
+			CPU min MHz:         800.0000
+			BogoMIPS:            4988.47
+			Virtualization:      VT-x
+			L1d cache:           32K
+			L1i cache:           32K
+			L2 cache:            256K
+			L3 cache:            3072K
+			NUMA node0 CPU(s):   0-3
+			Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep
+			mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss
+			ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon
+			pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni
+			pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16
+			xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer
+			aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb invpcid_single
+			pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad
+			fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm
+			ida arat pln pts md_clear flush_l1d
+      #+END_SRC
+** hardware
+*** RAM informations
+		- Problem :: How can I get the characteristics of your RAM?
+		- Use ~lshw~ command.
+		- Extract detailed information on the hardware configuration of the machine.
+		- See example [[https://askubuntu.com/questions/391173/how-to-find-the-frequency-and-type-of-my-current-ram][frequency and type of my current RAM]].
+		- If you want to get characteristics of your RAM, run the command:
+			#+BEGIN_SRC bash
+			sudo lshw -C memory
+      #+END_SRC
+			On my computer, this gave me this output:
+			#+BEGIN_SRC bash
+			*-firmware
+					 description: BIOS
+					 vendor: Hewlett-Packard
+					 physical id: c
+					 version: L71 Ver. 01.07
+					 date: 02/09/2014
+					 size: 64KiB
+					 capacity: 8128KiB
+					 capabilities: pci pcmcia upgrade shadowing
+					 cdboot bootselect edd int5printscreen int9keyboard
+					 int14serial int17printer acpi usb smartbattery
+					 biosbootspecification netboot uefi
+			*-cache:0
+					 description: L1 cache
+					 physical id: 2
+					 slot: Unknown
+					 size: 32KiB
+					 capacity: 32KiB
+					 capabilities: asynchronous internal write-back instruction
+					 configuration: level=1
+			*-cache:1
+					 description: L2 cache
+					 physical id: 3
+					 slot: Unknown
+					 size: 256KiB
+					 capacity: 256KiB
+					 capabilities: asynchronous internal write-back unified
+					 configuration: level=2
+			*-cache:2
+					 description: L3 cache
+					 physical id: 4
+					 slot: Unknown
+					 size: 3MiB
+					 capacity: 3MiB
+					 capabilities: asynchronous internal write-back unified
+					 configuration: level=3
+			*-cache
+					 description: L1 cache
+					 physical id: 1
+					 slot: Unknown
+					 size: 32KiB
+					 capacity: 32KiB
+					 capabilities: asynchronous internal write-back data
+					 configuration: level=1
+			*-memory
+					 description: System Memory
+					 physical id: 7
+					 slot: System board or motherboard
+					 size: 4GiB
+				 *-bank:0
+							description: SODIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+							product: HMT351S6EFR8A-PB
+							vendor: Hynix/Hyundai
+							physical id: 0
+							serial: 00821224
+							slot: Bottom-Slot 1(left)
+							size: 4GiB
+							width: 64 bits
+							clock: 1600MHz (0.6ns)
+				 *-bank:1
+							description: DIMM [empty]
+							physical id: 1
+							slot: Bottom-Slot 2(right)
+
+      #+END_SRC
+*** Hardware informations
+		- Problem :: How can I list the hardwares of your system?
+		- Use ~lshw~ command.
+		- Extract detailed information on the hardware configuration of the machine.
+		- I you want to list the hardwares of your system, run the
+      command:
+			#+BEGIN_SRC bash
+			sudo lshw -short
+      #+END_SRC
+			On my computer, this gave me this output:
+			#+BEGIN_SRC bash
+			H/W path         Device     Class          Description
+			======================================================
+																	system         HP EliteBook 840 G1 (F9X37UP#ABF)
+			/0                          bus            198F
+			/0/c                        memory         64KiB BIOS
+			/0/0                        processor      Intel(R) Core(TM) i5-4300U CPU @ 1.90GHz
+			/0/0/2                      memory         32KiB L1 cache
+			/0/0/3                      memory         256KiB L2 cache
+			/0/0/4                      memory         3MiB L3 cache
+			/0/1                        memory         32KiB L1 cache
+			/0/7                        memory         4GiB System Memory
+			/0/7/0                      memory         4GiB SODIMM DDR3 Synchronous 1600 MHz (0.6 ns)
+			/0/7/1                      memory         DIMM [empty]
+			/0/100                      bridge         Haswell-ULT DRAM Controller
+			/0/100/2                    display        Haswell-ULT Integrated Graphics Controller
+			/0/100/3                    multimedia     Haswell-ULT HD Audio Controller
+			/0/100/14                   bus            8 Series USB xHCI HC
+			/0/100/14/0      usb2       bus            xHCI Host Controller
+			/0/100/14/0/3               bus            USB2134B
+			/0/100/14/0/3/3             input          USB OPTICAL MOUSE
+			/0/100/14/0/3/4             input          USB Keyboard
+			/0/100/14/0/5               generic        VFS495 Fingerprint Reader
+			/0/100/14/0/7               multimedia     HP HD Webcam
+			/0/100/14/1      usb3       bus            xHCI Host Controller
+			/0/100/14/1/3               bus            USB5534B
+			/0/100/16                   communication  8 Series HECI #0
+			/0/100/16.3                 communication  8 Series HECI KT
+			/0/100/19        enp0s25    network        Ethernet Connection I218-LM
+			/0/100/1b                   multimedia     8 Series HD Audio Controller
+			/0/100/1c                   bridge         8 Series PCI Express Root Port 1
+			/0/100/1c.3                 bridge         8 Series PCI Express Root Port 4
+			/0/100/1c.3/0    wlo1       network        Wireless 7260
+			/0/100/1c.5                 bridge         8 Series PCI Express Root Port 6
+			/0/100/1c.5/0               generic        RTS5227 PCI Express Card Reader
+			/0/100/1d                   bus            8 Series USB EHCI #1
+			/0/100/1d/1      usb1       bus            EHCI Host Controller
+			/0/100/1d/1/1               bus            USB hub
+			/0/100/1f                   bridge         8 Series LPC Controller
+			/0/100/1f.2                 storage        8 Series SATA Controller 1 [AHCI mode]
+			/0/100/1f.3                 bus            8 Series SMBus Controller
+			/0/2             scsi0      storage
+			/0/2/0.0.0       /dev/sda   disk           180GB INTEL SSDSC2BF18
+			/0/2/0.0.0/1     /dev/sda1  volume         167GiB EXT4 volume
+			/1                          power          CM03050XL
+      #+END_SRC
+*** links on RAM
+	- [[https://forums.tomshardware.com/threads/dimm-and-dual-channel-memory.3287403/][dimm and dual channel memory]]
+	- [[https://h30434.www3.hp.com/t5/Notebook-Hardware-and-Upgrade-Questions/confusion-over-max-RAM-memory-supported-by-DDR3L-dual/m-p/7109977#M512599][max RAM memory]]
+	- [[http://www.laptopmemoryupgrades.co.uk/laptop-memory-faqs/just-what-exactly-is-dual-channel-memory][what is dual channel memory]]
+	- [[https://www.howtogeek.com/346541/how-to-upgrade-or-replace-your-pcs-ram/][how to upgrade or replace pc RAM (howtogeek)]]
 ** miscellaneous
 	 lscpu, hostnamectl, top, ps
+
 * Files
 ** View
    du, file, ls, cat, more, less, head, tail
