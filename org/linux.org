@@ -7,7 +7,6 @@
 	- [[https://whatismyipaddress.com/hostname][hostname (article)]]
 	- [[https://en.wikipedia.org/wiki/Passwd][password (article)]]
 	- [[https://askubuntu.com/questions/394067/why-use-sticky-bit][sticky bit (article)]]
-	- [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
 ** Linuxize
 	- [[https://linuxize.com/post/scheduling-cron-jobs-with-crontab/][cron jobs (linuxize)]]
 	- [[https://linuxize.com/post/how-to-setup-a-git-server/][setup git server (linuxize)]]
@@ -26,6 +25,7 @@
 	- [[https://linoxide.com/linux-how-to/linux-commands-brief-outline-examples/][linux-commands-brief-outline-examples]]
   - [[https://wiki.archlinux.org/index.php/Desktop_environment][Desktop_environment]]
   - [[https://wiki.archlinux.org/index.php/Window_manager][Window_manager]]
+	- [[https://github.com/bbc/REST-API-example][REST API examples (github)]]
 * Info
   type, which, help, man, apropos, whatis, whereis
 ** latex
@@ -1507,11 +1507,55 @@
      - [[https://developer.gnome.org/gtk3/stable/][GTK+ 3 Reference Manual]]
      - [[https://developer.gnome.org/gtk3/stable/GtkSettings.html][GTK+ 3 Settings (Reference Manual)]]
      - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
+** Xft
+*** Scale up my screen view
+		- Problem :: How can I scale up my screen view?
+		- Use ~~/.Xresources~ file and/or ~xrdb~ command.
+		- Many desktop environments use ~xrdb~ to load ~~/.Xresources~
+      files on session startup to initialize the resource database.
+		- See examples [[https://wiki.archlinux.org/index.php/x_resources][Xresources (archlinux)]] and [[https://wiki.archlinux.org/index.php/HiDPI][HiDPX]].
+		- If you want to scale up what you see on your screen, saying that
+      your ~dpi~ (dot per inch) is equal to ~96~ and you want to
+      raise up to ~144 dpi~ (dpi must be a multiple of 96), you can
+      add this line ~Xft.dpi: 144~ to the file ~~/.Xresources~, and
+      run the command:
+			#+BEGIN_SRC bash
+			xrdb -merge ~/.Xresources
+      #+END_SRC
+		- If you want to check the currently loaded resources, run the
+      command:
+			#+BEGIN_SRC bash
+			xrdb -query all
+      #+END_SRC
+		- To see the default settings for your installed ~X11 apps~, look in
+      ~/etc/X11/app-defaults/~.
+
+** i3 window manager
+*** file content and i3status
+		- Problem :: How can I add some text on the i3bar via i3status?
+		- Use ~~/.i3status.conf~ file, ~i3status~ command, ~read_file~
+      module of ~i3status~.
+		- Generates a status line for i3bar (~i3status~).
+		- i3status looks for configuration file ~~/.i3status.conf~ among other.
+		- See section ~File content~ of the ~man~ page of ~i3status~.
+		- If you want to add the text ~tony~ into the ~i3bar~, put ~tony~
+      in the file ~path-to-tony-file~ and add this lines to the
+      ~~/.i3status.conf~ file:
+			#+BEGIN_SRC bash
+			order += "read_file tony"
+			read_file tony {
+					format = "%content"
+					path = "path-to-tony-file"
+					max_characters = 10
+			}
+      #+END_SRC
+*** miscellaneous
+		- [[https://www.reddit.com/r/i3wm/comments/3u3d7b/what_is_scratchpad/][what_is_scratchpad (i3wm)]]
 * Miscellaneous
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
   split, iconv, diff, patch, man ascii, man utf-8, fpp
   (https://github.com/facebook/PathPicker), history, ffmpeg, ;,
   \&\&, \&, nohup, |, grip, pdflatex, pdftk, docker, source, dpkg,
   debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload,
-  rm, kill, killall, gparted
+  rm, kill, killall, gparted,
 
