@@ -1478,7 +1478,6 @@
 
 * UI
 ** GTK (miscellaneous)
-	 Create interfaces that users just love.
 	 - If you want that ~chromium~ uses ~GTK~, allow ~GTK+~ theme in:
      Settings > Preferences > Appearence > Use ~GTK+~ theme.
 	 - ~GTK~ config files:
@@ -1488,7 +1487,7 @@
 	 - How to get information on the ~gtk~ settings? Run the command:
 		 #+BEGIN_SRC bash
 			gtk-query-settings
-      #+END_SRC
+     #+END_SRC
 	 - Find ~GTK~ themes in the directory: ~/usr/share/themes/~.
 	 - To add ~emacs~ like keybinding in ~GTK~ (~gtk-3~) applications (like
      chromium), add the line ~gtk-key-theme-name = Emacs~
@@ -1496,6 +1495,14 @@
      ~/home/tony/.config/gtk-3.0/settings.ini~. The implemented ~emacs~ keybinding
      can be found in the file
      ~/usr/share/themes/Emacs/gtk-3.0/gtk-keys.css~.
+		 See [[../linux/Emacs--gtk-3.0--gtk-keys.css][Emacs gtk-key.css]] file.
+	 - To add ~emacs~ like keybinding in ~GTK~ (~gtk-3~) applications (like
+     chromium), add the line ~gtk-key-theme-name = "Emacs"~
+     in your ~GTK~ config file
+     ~/home/tony/.gtkrc-2.0~. The implemented ~emacs~ keybinding
+     can be found in the file
+     ~/usr/share/themes/Emacs/gtk-2.0-key/gtkrc~.
+		 See [[../linux/Emacs--gtk-2.0-key--gtkrc.txt][Emacs gtkrc]] file.
 	 - to switch between ~GTK~ theme you can use the command
      ~gtk-theme-switch~.
 	 - To modify text size of ~GTK~ (~gtk-3~)applications like ~chromium~, add
@@ -1507,6 +1514,25 @@
      - [[https://developer.gnome.org/gtk3/stable/][GTK+ 3 Reference Manual]]
      - [[https://developer.gnome.org/gtk3/stable/GtkSettings.html][GTK+ 3 Settings (Reference Manual)]]
      - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
+		 - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/popover.html][python GTK 3 (popover)]]
+     - [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
+	 - ~GTK inspector~: If you want to test/debug the element (component) of an application
+     that uses ~gtk~ for the UI, you can use ~GTK inspector~. To do
+     so, run the command:
+		 #+BEGIN_SRC bash
+     GTK_DEBUG=interactive <app-name>
+		 #+END_SRC
+		 See [[https://wiki.gnome.org/action/show/Projects/GTK/Inspector?action=show&redirect=Projects%2FGTK%2B%2FInspector][GTK inspector (gnome)]].
+		 To install ~GTK inspector~, you have to install the package
+     ~libgtk-3-dev~, to do so, run the command:
+		 #+BEGIN_SRC bash
+     sudo apt install libgtk-3-dev
+		 #+END_SRC
+	 - If you want to switch between ~gtk theme~, you can use the
+     command ~gtk-theme-switch~. To install it, run the command:
+		 #+BEGIN_SRC bash
+     sudo apt install gtk-theme-switch
+		 #+END_SRC
 ** Xft
 *** Scale up my screen view
 		- Problem :: How can I scale up my screen view?
