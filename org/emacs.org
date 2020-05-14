@@ -228,6 +228,18 @@
    * The package ~company-emoji~ only if the list defined in file
      ~company-emoji-list.el~ in the function
      ~company-emoji-list-create~ is ordered.
+		 before:
+		 #+BEGIN_SRC emacs-lisp
+		 (defconst company-emojis (company-emoji-list-create)
+			 "Cached list of propertized emojis.")
+			#+END_SRC
+			after:
+		 #+BEGIN_SRC emacs-lisp
+		 (require 'dash)
+		 (defconst company-emojis (-sort 'string-lessp
+																		 (company-emoji-list-create))
+			 "Cached list of propertized emojis.")
+		 #+END_SRC
    * Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
      to bind ~kmacro~ if needed.
 	 * If you want to mute warning messages, add this line ~(setq
