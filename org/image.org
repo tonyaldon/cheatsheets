@@ -42,3 +42,22 @@
 			#+BEGIN_SRC bash
 			sudo apt install imagemagick
       #+END_SRC
+* Free content
+** svg
+	 - [[https://commons.wikimedia.org/wiki/Category:SVG_icons_by_subject][SVG_icons_by_subject]]
+	 - [[https://commons.wikimedia.org/wiki/Category:SVG_arrow_icons][SVG_arrow_icons]]
+* ideas
+** inkscape custom keybindings
+	 - /usr/include/gtk-3.0/gdk/gdkkeysyms.h
+	 - /home/tony/.config/inkscape/keys
+	 - /usr/share/inkscape/keys/
+	 - /usr/share/inkscape/keys/default.xml
+	 - /usr/share/inkscape/ui/keybindings.rc
+
+	 - https://gitlab.gnome.org/GNOME/gtk/raw/master/gdk/gdkkeysyms.h
+	 - https://gitlab.gnome.org/GNOME/gtk/
+	 - https://gitlab.com/inkscape/inkscape
+	 - https://wiki.inkscape.org/wiki/index.php/Customizing_Inkscape
+	 - https://inkscape.org/doc/keys.html
+** bridge between emacs and inkscape
+	 - https://github.com/jave/inkmacs
