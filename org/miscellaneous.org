@@ -18,3 +18,102 @@
    - [[https://en.wikipedia.org/wiki/Color_constancy][color constancy]]
    - [[https://en.wikipedia.org/wiki/Spectral_sensitivity][spectral sensitivity]]
    - [[https://en.wikipedia.org/wiki/Cone_cell][cone cell]]
+* Chromium
+** Source code
+*** Build Chromium from source
+		- Problem :: How can I build Chromium from source?
+		- Use ~ninja~ build system.
+		- Ninja is a small build system with a focus on speed.
+		- See documents [[https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md][chromium build instructions]] and [[https://ninja-build.org/][ninja-build]].
+		- If you want to build Chromium frome source follow the
+      instructions [[https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md][chromium build instructions]]. The outline is:
+      clone the ~depot_tools~ (helpers to build chromium), export
+      ~path/to/depot_tools~ to ~PATH~ environment variable, checkout
+      the code and its dependencies with ~fetch~ (provide by
+      ~depot_tools~), install the build dependencies with
+      ~install-build-deps.sh~, run the Chromium-specific hooks, create
+      the build directory ~out/Default~ with ~gn~ and build Chromium
+      (the Chrome target) with ~autoninja~. To do so run the commands:
+			#+BEGIN_SRC bash
+			git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+			export PATH="$PATH:/path/to/depot_tools"
+			mkdir ~/chromium && cd ~/chromium
+			fetch --nohooks --no-history chromium
+			cd src
+			./build/install-build-deps.sh
+			gclient runhooks
+			gn gen out/Default
+			autoninja -C out/Default chrome
+      #+END_SRC
+		- Once you've build chromium, you can run the browser, to do so,
+      run the command:
+			#+BEGIN_SRC bash
+			out/Default/chrome
+      #+END_SRC
+		- Files of interest:
+			- [[../chromium/build_instructions.md][path-to-chromium/docs/linux/build_instructions.md]]
+
+*** Chromium color of find_in_page
+		- Problem :: How can I change the colors orange and yellow of the
+      ~find_in_page~ command?
+		- I don't find an easy way to do it. I figure it out by hard
+      coding the code source of chromium where these colors are
+      defined and building chromium from source whith these changes.
+		- See documents [[https://www.chromium.org/developers/design-documents/find-bar][find-bar (design documents)]],
+      [[https://chromium.googlesource.com/chromium/src/+/1e6a4d7b28fd05a89633df971483970b6b8d8e2c/ios/chrome/browser/find_in_page/resources/find_in_page.js][ios/chrome/browser/find_in_page/resources/find_in_page.js]],
+      [[https://chromium.googlesource.com/chromium/src/+/1e6a4d7b28fd05a89633df971483970b6b8d8e2c/ios/web/web_state/js/resources/find_in_page.js][ios/web/web_state/js/resources/find_in_page.js]] 
+		- If you want to change the background colors orange and yellow of
+      the ~find_in_page~ command, get the source code of chromium,
+      replace the color ~#ffff00~ and ~#ff9632~ in the following chunk
+      of code that appears in the files
+      [[../chromium/ios--web--web_state--js--resources--find_in_page.js][ios/web/web_state/js/resources/find_in_page.js]],
+      [[../chromium/ios--chrome--browser--find_in_page--resources--find_in_page.js][ios/chrome/browser/find_in_page/resources/find_in_page.js]] and
+      build chromuim:
+			#+BEGIN_SRC javascript
+			function addDocumentStyle_(thisDocument) {
+				let styleContent = [];
+				function addCSSRule(name, style) {
+					styleContent.push(name, '{', style, '}');
+				};
+				let scale = getPageScale_();
+				let zoom = (1.0 / scale);
+				let left = ((1 - scale) / 2 * 100);
+				addCSSRule(
+						'.' + CSS_CLASS_NAME,
+						'background-color:#ffff00 !important;' +
+								'padding:0px;margin:0px;' +
+								'overflow:visible !important;');
+				addCSSRule(
+						'.findysel',
+						'background-color:#ff9632 !important;' +
+								'padding:0px;margin:0px;' +
+								'overflow:visible !important;');
+				styleElement_ = thisDocument.createElement('style');
+				styleElement_.id = CSS_STYLE_ID;
+				styleElement_.setAttribute('type', 'text/css');
+				styleElement_.appendChild(thisDocument.createTextNode(styleContent.join('')));
+				thisDocument.body.appendChild(styleElement_);
+			}
+      #+END_SRC
+** Customize Chromium
+*** Chromium user interface using GTK
+		- Problem :: How can I modify the user interface of Chromium?
+		- Use ~~/.config/gtk-3.0/gtk.css~ file.
+		- See documents [[https://chromium.googlesource.com/chromium/src.git/+/master/docs/linux/gtk_theme_integration.md][gtk theme integration]].
+		- If you want to change the color of the selected background and
+      selected foreground, tell chromium to use ~GTK+ theme~
+      (~Settings > Appearence > themes > GTK+~) and add
+      the following lines to the file ~~/.config/gtk-3.0/gtk.css~:
+			#+BEGIN_SRC css
+			@define-color selected_bg_color #458b74;
+			@define-color selected_fg_color #dedede;
+      #+END_SRC
+		- Files of interest:
+			- [[../chromium/gtk_theme_integration.md][path-to-chromium/docs/linux/gtk_theme_integration.md]]
+			- [[../chromium/color_palette.h][path-to-chromium/ui/gfx/color_palette.h]]
+			- [[../chromium/native_theme_gtk.cc][path-to-chromium/ui/gtk/native_theme_gtk.cc]]
+** Chrome extensions
+*** links
+    - [[https://developer.chrome.com/extensions/][extensions]]
+    - [[https://developer.chrome.com/extensions/getstarted][getstarted]]
+    - [[https://developer.chrome.com/extensions/webRequest][webRequest]]
