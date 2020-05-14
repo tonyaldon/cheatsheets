@@ -79,13 +79,7 @@
 		  pactl set-source-volume @DEFAULT_SOURCE@ +5%
 		  pactl set-source-volume @DEFAULT_SOURCE@ -5%
 		  #+END_SRC
-* Links
-  - [[https://www.youtube.com/watch?v=jSqv8Z9IMg0][Kdenlive: Speed Up Or Slow Down A Video Clip]]
-  - [[https://www.ffmpeg.org/][ffmpeg website]]
-  - [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
-  - [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
-	- [[https://www.youtube.com/watch?v=vLIznXy27Pc][(youtube) video bit rate]]
-	- [[https://www.youtube.com/watch?v=J8EdjrZ1zFw][(youtube) What is a key frame]]
+
 * ffmpeg
 ** errors
 *** Too many packets buffered
@@ -189,6 +183,38 @@
 					<!-- ... -->
 				</mlt>
 			  #+END_SRC
+* Download videos
+** youtube-dl
+*** download audio of a youtube video
+		- Problem :: How can I download the audio of a youtube video?
+		- Use ~youtube-dl~ command.
+		- Command-line program to download videos from YouTube.com
+		- See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]].
+		- If you want to download the audio of the video
+      ~https://www.youtube.com/watch?v=VQkzba7xRhs~ from Youtube, run
+      the command:
+			#+BEGIN_SRC bash
+			youtube-dl -x --audio-format "mp3" https://www.youtube.com/watch?v=VQkzba7xRhs
+      #+END_SRC
+*** HTTP Error 403: Forbidden - using youtube-dl
+		- Problem :: I get the error ~HTTP Error 403: Forbidden~ when I
+      try to download videos from youtube with ~youtube-dl~?
+		- Use ~--rm-cache-dir~ tag of the ~youtube-dl~ command.
+		- See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]].
+		- See [[https://github.com/ytdl-org/youtube-dl/issues/24794][HTTP Error 403: Forbidden]].
+		- To not receive the error ~HTTP Error 403: Forbidden~ when trying
+      to download youtube video, remove the ~youtube-dl~ cache directory.
+      To do so, run the command:
+			#+BEGIN_SRC bash
+			youtube-dl --rm-cache-dir
+      #+END_SRC
+* Links
+  - [[https://www.youtube.com/watch?v=jSqv8Z9IMg0][Kdenlive: Speed Up Or Slow Down A Video Clip]]
+  - [[https://www.ffmpeg.org/][ffmpeg website]]
+  - [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
+  - [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
+	- [[https://www.youtube.com/watch?v=vLIznXy27Pc][(youtube) video bit rate]]
+	- [[https://www.youtube.com/watch?v=J8EdjrZ1zFw][(youtube) What is a key frame]]
 * Ideas
   - see: pavucontrol (to capture application (system) audio instead of
     microphone)
