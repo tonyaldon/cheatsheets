@@ -144,5 +144,8 @@
 	 git commit -m "Add my-submodule"
 	 #+END_SRC
 * links
-  [[https://git-scm.com/book/en/v2][git-scm.com: the book]]
-  [[https://semver.org/][semver.org: semantic versioning]]
+  - [[https://git-scm.com/book/en/v2][git-scm.com: the book]]
+  - [[https://semver.org/][semver.org: semantic versioning]]
+	- [[https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/][mind the end of your line]]
+	- [[https://linuxize.com/post/how-to-install-and-configure-gitlab-on-ubuntu-18-04/][how-to-install-and-configure-gitlab-on-ubuntu-18-04 (linuxize)]]
+	- [[https://docs.gitlab.com/omnibus/settings/smtp.html][settings smtp (gitlab doc)]]
