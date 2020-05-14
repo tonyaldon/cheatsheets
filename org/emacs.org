@@ -438,8 +438,20 @@
    - [[https://melpa.org/#/counsel-jq][counsel for jq]]
 	 - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
 	 - [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
-	 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with
-	GNU Emacs.
+	 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
+	 - search engine
+		 - [[https://xapian.org/][xapian]]
+     - [[https://xapian.org/docs/omega/overview.html][omega]]
+     - [[https://www.lesbonscomptes.com/recoll/][recoll]]
+     - [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]]
+     - [[http://angel-de-vicente.blogspot.com/2017/11/emacs-interface-to-recoll.html][emacs interface to recoll]]
+		 - [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll usermanual]]
+	 - [[https://github.com/Alexander-Miller/treemacs][treemacs]]
+	 - see ~watchr~ to automatically reload test when file changes on
+     disk.
+		 - [[https://github.com/mynyml/watchr][watchr (github)]]
+		 - emacs rocks -> butcher mode (how to use ~watchr~)
+		 - ~s.el~ repository to see a script to be used with ~watchr~
 ** ispell, flyspell, aspell (for text mode)
 	 - switch between English, French, Spanish
 	 - work with company (see: company-ispell)
