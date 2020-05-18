@@ -144,6 +144,13 @@
       #+END_SRC
 ** pip for python
 	 pip
+** brew for missing packages on macOS
+	 - [[https://brew.sh/][brew]]
+	 - To install ~brew~, run the command:
+			#+BEGIN_SRC bash
+			/bin/bash -c "$(curl -fsSL \
+			  https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+      #+END_SRC
 * Environment variables
 *** Print all environment variables
 		- Problem :: How can I print all environment variables?
@@ -696,6 +703,28 @@
 				#+END_SRC
 ** directories
    mkdir, cd, tree
+** watch file
+*** trigger test with ~watchman~
+		- Problem :: How can I automatically run test when some files
+      change on disk?
+		- Use ~watchman-make~ command.
+		- ~watchman-make~ waits for changes to files and then invokes a
+      build tool (by default, ~make~) or provided script to process
+      those changes.
+		- See [[https://facebook.github.io/watchman/][watchman (homepage)]].
+		- If you want to run ~pytest~ on a python project each time the
+      subdirectories ~./src~ and ~./tests/~ change on your disk, in
+      the root of your project, run the command:
+			#+BEGIN_SRC bash
+			watchman-make -p 'src/**' 'tests/**' -r 'pytest'
+      #+END_SRC
+		- To install ~watchman-make~ which is part of the package
+      ~watchman~, use the package manager ~homebrew~ and run the
+      command:
+			#+BEGIN_SRC bash
+			brew install watchman
+      #+END_SRC
+			Get more information [[https://facebook.github.io/watchman/docs/install][watchman (install documentation)]].
 * Network
 ** DNS
 *** A record of an url
