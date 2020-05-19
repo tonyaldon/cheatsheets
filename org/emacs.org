@@ -332,10 +332,26 @@
          distribution. Run ~locate emacs.service~ in your terminal to
          find the path.
 			2) Then you have to copy ~emacs.service~ file to a standard
-         directory such as ~~/.config/systemd/user/~.
+         directory such as ~~/.config/systemd/user/~. This file looks
+         like this:
+				 #+BEGIN_SRC bash
+				 [Unit]
+				 Description=Emacs text editor
+				 Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+
+				 [Service]
+				 Type=notify
+				 ExecStart=/usr/bin/emacs --fg-daemon
+				 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+				 Restart=on-failure
+
+				 [Install]
+				 WantedBy=default.target
+         #+END_SRC
 			3) Finally, activate it by running the command:
 			#+BEGIN_SRC bash 
 			systemctl --user enable emacs
+			systemctl --user start emacs
       #+END_SRC
 		- ~systemctl~ comes with standard commands as ~enable~, ~start~,
       ~status~, ~stop~. So to interact with ~emacs systemd unit~, you
@@ -419,7 +435,9 @@
    - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
    - [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
 	 - ~swiper-all~ (search in all open buffers)
+	 - [[https://github.com/abo-abo/lpy][lpy (python minor-mode)]]
 ** Other
+	 - [[https://github.com/articuluxe/parsenv][parsenv]]
 	 - [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
    - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
    - [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
