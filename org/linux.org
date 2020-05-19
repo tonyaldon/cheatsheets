@@ -1384,6 +1384,87 @@
       #+END_SRC
 ** Miscellaneous
    xbindkey, xmodmap, xev, xdotools, wmctrl
+** Autokey
+*** Install ~autokey~
+		- Problem :: How can I install ~autokey~?
+		- Use ~git~ and ~pip3~ commands.
+		- A tool for installing and managing Python packages (~pin3~).
+		- The stupid content tracker (~git~).
+		- See the [[https://github.com/autokey/autokey/wiki/Installing][Installing (wiki)]] and [[https://pygobject.readthedocs.io/en/latest/getting_started.html][PyGObject (getting started page)]].
+		- If you want to install ~autokey~ with ~pip3~, clone the
+      repository, install dependencies that are not in ~setup.py~
+      files as ~wheel~, ~dbus-python~ and ~PyGObject~, and, install
+      ~autokey~ from the cloned repository. We do every needed steps
+      in a ~python~ virtual environment. Finally, we make a symlink of
+      ~autokey-gtk~ executable in ~~/.local/bin/~ directory to be able
+      to use ~autokey~ widely without enter in the ~python~ virtual
+      environment. To do so, we run the commands:
+			#+BEGIN_SRC bash
+			$ git clone https://github.com/autokey/autokey.git
+			$ cd autokey
+			$ python3 -m venv ~/.py-venv/autokey/
+			$ source ~/.py-venv/autokey/bin/activate
+			(autokey) $ pip3 install wheel dbus-python
+			(autokey) $ sudo apt install libgirepository1.0-dev gcc \
+			            libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 \
+									# for PyGObject
+			(autokey) $ pip3 install pycairo
+			(autokey) $ pip3 install PyGObject
+			(autokey) $ pip3 install .
+			(autokey) $ ln -s ~/.py-venv/autokey/bin/autokey-gtk \
+                  ~/.local/bin/autokey-gtk
+			(autokey) $ deactivate
+      #+END_SRC
+		- To start ~autokey~ whith the GUI, run the command:
+			#+BEGIN_SRC bash
+			autokey-gtk -c
+      #+END_SRC
+		- To start ~autokey~ in backgroun, run the command ~autokey-gtk~
+      without any command line arguments:
+			#+BEGIN_SRC bash
+			autokey-gtk
+      #+END_SRC
+*** systemd service for ~autokey~
+		- Problem :: How can I have ~autokey~ run in background and start
+      at login to your linux session?
+		- Use ~systemctl~, ~autokey-gtk~ and ~exec~ commands.
+		- Control the ~systemd~ system and ~service manager~
+      (~systemctl~).
+		- ~exec~ execut bash commands in the ~i3wm~ config file
+      ~~/.config/i3/config~.
+		- If you want to ~autokey~ start in background when you login to
+      your linux session, we use the ~systemd~ and add it a ~systemd
+      unit file~, ~enable~ and ~start~ the service:
+			1) The systemd unit file,
+         ~~/.config/systemd/user/autokey.service~:
+         #+BEGIN_SRC bash
+				 [Unit]
+				 Description=Desktop automation for Linux and X11
+				 Documentation=https://github.com/autokey/autokey
+
+				 [Service]
+				 Type=notify
+				 ExecStart=/home/tony/.local/bin/autokey-gtk
+				 ExecStop=/bin/systemctl show --property MainPID --value emacs --user | kill
+				 Restart=always
+
+				 [Install]
+				 WantedBy=default.target
+         #+END_SRC
+			2) Enable and start the ~autokey~ service by running the command:
+				 #+BEGIN_SRC bash
+         systemctl --user enable autokey
+				 systemctl --user start autokey
+				 #+END_SRC
+*** autokey configuration
+		- files are in ~~/.config/autokey/~ directory.
+*** ~autokey~ links
+	  - [[https://github.com/autokey/autokey][autokey]]
+    - [[https://github.com/autokey/autokey/wiki/Installing][autokey/wiki/Installing]]
+    - [[https://github.com/autokey/autokey/wiki/FAQ][autokey/wiki/FAQ]]
+    - [[https://github.com/autokey/autokey/wiki/Scripting][autokey/wiki/Scripting]]
+		- [[https://github.com/autokey/autokey/wiki/API-Examples][autokey/wiki/API-Examples]]
+    - [[https://github.com/hobbs/autokey-emacs-osx][autokey-emacs-osx (examples)]]
 * Date
   date, crontab, sleep, at, atq, atrm
 * Images
