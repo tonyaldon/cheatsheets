@@ -136,6 +136,58 @@
      git push origin --delete <tag-name>
      git push origin --delete <branch-name>
    #+END_SRC
+** github fork (workflow)
+	 Example with ~company-emoji~
+	 (https://github.com/dunn/company-emoji).
+	 A complete fork workflow is broken in several steps.
+	 - Visit the ~company-emoji~ repository and click in the top-right
+     button ~fork~. (The ~forked~ repository will created on your
+     ~github~ repository).
+	 - Create a locale clone of the ~forked~ repository and add the
+     original repository as remote named ~upstream~. To do so, run the
+     command:
+		 #+BEGIN_SRC bash
+		 git clone git@github.com:tonyaldon/company-emoji.git
+		 cd company-emoji
+		 git remote add upstream https://github.com/dunn/company-emoji.git
+		 git fetch upstream
+     #+END_SRC
+	 - Know you can work on your ~master~ branch that is synchronized
+     with your ~forked~ repository.
+	 - To view the ~diff~ between your ~forked~ repository and the
+     ~upstream~ repository, run the commands:
+		 #+BEGIN_SRC bash
+		 git fetch upstream
+		 git diff upstream/master master
+     #+END_SRC
+	 - To merge the master branch of the ~upstream~ repository into
+     the (your) master branch of the ~forked~ repository, run the
+     commands:
+		 #+BEGIN_SRC bash
+		 git fetch upstream
+		 git checkout master
+		 git merge upstream/master
+     #+END_SRC
+	 - Pull request (part 1): To make a ~pull request~ to the ~upstream~
+     repository, create a ~feature~ branch named ~my-feature~ into
+     your local clone of the ~forked~ repository, make changes,
+     commit the changes, push the changes (~my-feature~ branch) to
+     your ~forked~ repository. To do so, run the commands:
+		 #+BEGIN_SRC bash
+		 git checkout -b my-feature
+		 # do stuff
+		 git add .
+		 git commit -m "Add my-feature"
+		 git push
+     #+END_SRC
+		 In the terminal you'd see a link where you can make a pull
+     request.
+	 - Pull request (part 2): To make a pull request of ~my-feature~
+     branch into the master branch of the ~upstream~ repository, visit
+     the pull request tab of the ~upstream~ repository, on top-right
+     corner, click on ~new pull request~, in the menu, choose ~base -
+     master~ and ~compare - my-feature~, write a message and click on
+     create pull request.
 * submodule
 ** git-submodule
 	 #+BEGIN_SRC bash
@@ -149,3 +201,4 @@
 	- [[https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/][mind the end of your line]]
 	- [[https://linuxize.com/post/how-to-install-and-configure-gitlab-on-ubuntu-18-04/][how-to-install-and-configure-gitlab-on-ubuntu-18-04 (linuxize)]]
 	- [[https://docs.gitlab.com/omnibus/settings/smtp.html][settings smtp (gitlab doc)]]
+	- [[https://mincong.io/2019/07/23/prepare-commit-message-using-git-hook/][prepare-commit-message hook (example)]]
