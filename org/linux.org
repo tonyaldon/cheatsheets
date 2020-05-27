@@ -134,6 +134,26 @@
 			apt-get remove emacs
       #+END_SRC
 
+*** library dependencies of commands
+		- Problem :: How can I get the list of the libraries a command
+      depends on?
+		- Use ~ldd~ command.
+		- Print shared object dependencies.
+		- If you want to list the library dependencies of the ~ls~
+      command, run the command:
+			#+BEGIN_SRC bash
+			ldd /bin/ls
+      #+END_SRC
+			On my computer I get this output:
+			#+BEGIN_SRC bash
+			linux-vdso.so.1 (0x00007ffeeb143000)
+			libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007f2203fc5000)
+			libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2203bd4000)
+			libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f2203962000)
+			libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f220375e000)
+			/lib64/ld-linux-x86-64.so.2 (0x00007f220440f000)
+			libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f220353f000)
+			#+END_SRC
 ** npm for nodejs
 *** list nodejs installed packages
 		- Problem :: How can I list the the nodejs installed packages?
@@ -787,6 +807,16 @@
 			brew install watchman
       #+END_SRC
 			Get more information [[https://facebook.github.io/watchman/docs/install][watchman (install documentation)]].
+*** trigger a command when a file was opened
+		- Problem :: How can I whatch a file and trigger a command when it
+      was opened?
+		- Use ~inotifywait~ command.
+		- Wait for changes to files using inotify.
+		- If you want to print ~hey~ in the ~stdout~ after the file
+      ~path/to/watched-file~ was opened, run the command:
+			#+BEGIN_SRC bash
+			inotifywait -qq -e open path/to/watched-file && echo "hey"
+      #+END_SRC
 * Network
 ** DNS
 *** A record of an url
@@ -1163,6 +1193,16 @@
 			#+BEGIN_SRC bash
 			sudo service network-manager restart
       #+END_SRC
+*** Address of wireless network
+		- Problem :: How can I check if I'm connected to a wireless network?
+		- Use ~iwgetid~ command.
+		- Report ESSID, NWID or AP/Cell Address of wireless network.
+		- If you want to check if you are connected to a wireless
+      newtork, run the command:
+			#+BEGIN_SRC bash
+			iwgetid
+      #+END_SRC
+			If you get nothing, you are not connected.
 ** ftp
 *** ftp session down once I run a command
 		- Problem :: Why do I get kicked out of a FTP session once I run a
