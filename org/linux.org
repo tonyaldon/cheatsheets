@@ -1567,6 +1567,10 @@
     - [[https://github.com/autokey/autokey/wiki/Scripting][autokey/wiki/Scripting]]
 		- [[https://github.com/autokey/autokey/wiki/API-Examples][autokey/wiki/API-Examples]]
     - [[https://github.com/hobbs/autokey-emacs-osx][autokey-emacs-osx (examples)]]
+*** writing autokey script
+		- see [[../linux/autokey--lib--autokey--scripting.py][autokey/lib/autokey/scripting.py]].
+		- the ~GtkDialog~ class use ~zenity~ command line programm. See
+      ~man zenity~.
 * Date
   date, crontab, sleep, at, atq, atrm
 * Images
