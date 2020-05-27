@@ -1036,7 +1036,7 @@
       ~/etc/nginx/sites-enabled/default~ that is a symlink of the file
       ~/etc/nginx/sites-available/default~. This default file tells
       ~nginx~ to serve the file ~index.nginx-debian.html~ that is in
-      the directory ~/var/www/html~. And the config file [[../linux/etc_nginx_sites-available_default.txt][default]],
+      the directory ~/var/www/html~. And the config file [[../linux/etc--nginx--sites-available--default.txt][default]],
       after flushing the commented lines, is as follow:
 		  #+BEGIN_SRC bash
 			server {
