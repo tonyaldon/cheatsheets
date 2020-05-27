@@ -26,6 +26,7 @@
   - [[https://wiki.archlinux.org/index.php/Desktop_environment][Desktop_environment]]
   - [[https://wiki.archlinux.org/index.php/Window_manager][Window_manager]]
 	- [[https://github.com/bbc/REST-API-example][REST API examples (github)]]
+	- [[https://www.linuxprogrammingblog.com/all-about-linux-signals?page=9][what is SIGRTMIN]]
 * Info
   type, which, help, man, apropos, whatis, whereis
 ** latex
@@ -56,6 +57,19 @@
 		- When a bash function completes, its return value is the status
       of the last statement executed in the function, *0* for *success*
       and non-zero decimal number in the *1 - 255* range for *failure*.
+** format outputs
+*** format numbers in bash
+		- Problem :: How can I format numbers in bash script?
+		- Use ~printf~ command.
+		- Format and print data.
+		- See example [[https://unix.stackexchange.com/questions/404100/formatting-numerical-output-in-bash-to-have-exactly-4-decimal-places][formatting numerical output in bash]].
+		- If you want to transform ~12.3~ to ~12~ and ~3.62~ to ~03~, the
+      ~printf~ format to use is ~"%02.0f"~. So, running the following
+      command gives you the expected results:
+			#+BEGIN_SRC bash
+			printf "%02.0f" 12.3
+			printf "%02.0f" 3.62
+      #+END_SRC
 * Packages management
 ** Linux packages
 *** List available linux packages related to a regexp
@@ -151,6 +165,14 @@
 			/bin/bash -c "$(curl -fsSL \
 			  https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
       #+END_SRC
+** nix
+	 - [[https://nixos.org/][nixos (homepage)]]
+   - [[https://nixos.org/nixos/nix-pills/why-you-should-give-it-a-try.html][why you should give it a try]]
+   - [[https://engineering.shopify.com/blogs/engineering/what-is-nix][what is nix]]
+   - [[https://edolstra.github.io/pubs/phd-thesis.pdf][phd-thesis (on nix)]]
+   - [[https://nix.dev/][nix.dev]]
+   - [[https://nixcloud.io/main/en/][nixcloud]]
+   - [[https://github.com/rycee/home-manager][home-manager (nix)]]
 * Environment variables
 *** Print all environment variables
 		- Problem :: How can I print all environment variables?
@@ -627,14 +649,33 @@
 	- [[https://h30434.www3.hp.com/t5/Notebook-Hardware-and-Upgrade-Questions/confusion-over-max-RAM-memory-supported-by-DDR3L-dual/m-p/7109977#M512599][max RAM memory]]
 	- [[http://www.laptopmemoryupgrades.co.uk/laptop-memory-faqs/just-what-exactly-is-dual-channel-memory][what is dual channel memory]]
 	- [[https://www.howtogeek.com/346541/how-to-upgrade-or-replace-your-pcs-ram/][how to upgrade or replace pc RAM (howtogeek)]]
+** systemd
+	 - When you modify a ~myservice.service~ in ~systemd~, you have to
+     ~disable~ and ~enable~ the service that to take into account.
+	 - Common command lines using ~systemctl~:
+			#+BEGIN_SRC bash
+			systemctl list-unit-files --user
+			systemctl show --property MainPID --value emacs --user
+			systemctl status emacs --user
+      #+END_SRC
+	 - ~journalctl~: Query the systemd journal.
 ** miscellaneous
 	 lscpu, hostnamectl, top, ps
-
 * Files
 ** View
    du, file, ls, cat, more, less, head, tail
 ** Links
    ln, stow, alias, unalias
+*** target of a symbolic link
+*** target of a symbolic link
+		- Problem :: How can I get the path (target) of a symbolic link?
+		- Use ~readlink~ command.
+		- Print resolved symbolic links or canonical file names.
+		- If you want to get the path (target) of the current ~python~,
+      run the command:
+			#+BEGIN_SRC bash
+			readlink $(which python)
+      #+END_SRC
 *** Stow links
 		- Problem :: How can I manage symbolic links of whole directory tree?
 		- Use ~stow~ command.
