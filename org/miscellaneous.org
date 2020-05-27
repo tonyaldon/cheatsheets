@@ -6,6 +6,7 @@
    - [[https://www.colorhexa.com/f92672][colorhexa]]
    - [[http://hslpicker.com/#fff,0][hslpicker]]
    - [[https://yuilibrary.com/yui/docs/color/hsl-picker.html][yuilibrary: hsl picker]]
+	 - [[https://mycolor.space/][mycolor space]]
 ** shell colors
    - [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
    - [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
@@ -143,3 +144,6 @@
 ** JavaScript
 	 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
 	 - [[https://v8.dev/docs][V8 documentation]]
+* links
+	- [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
+	- [[https://fmt.dev/latest/index.html][fmt (homepage)]] A modern formatting library
