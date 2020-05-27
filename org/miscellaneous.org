@@ -118,6 +118,136 @@
     - [[https://developer.chrome.com/extensions/][extensions]]
     - [[https://developer.chrome.com/extensions/getstarted][getstarted]]
     - [[https://developer.chrome.com/extensions/webRequest][webRequest]]
+** chrome devtools
+*** keyboard shortcuts (default)
+		- [[https://developers.google.com/web/tools/chrome-devtools/shortcuts][chrome devtools shortcuts]]
+		| shortcut        | action                                  | scope          |
+		|-----------------+-----------------------------------------+----------------|
+		| C-S-i (f12)     | open last panel                         | browser        |
+		| C-S-j           | open console panel                      | browser        |
+		| C-S-c           | open element panel                      | browser        |
+		|-----------------+-----------------------------------------+----------------|
+		| C-]             | focus next panel                        | devtools       |
+		| C-[             | focus previous panel                    | devtools       |
+		| C-S-d           | switch back to last docking position    | devtools       |
+		| C-S-c           | toggle Inspect Element Mode             | devtools       |
+		| C-S-p           | open command menu panel (with ~>~ sign) | devtools       |
+		| C-o             | open command menu                       | devtools       |
+		| C-f             | search for text in current panel        | devtools       |
+		|-----------------+-----------------------------------------+----------------|
+		| C-z             | undo change                             | elements panel |
+		| C-y             | redo change                             | elements panel |
+		| up/down         | previou/next node                       | elements panel |
+		| left/right      | collapse/expand                         | elements panel |
+		| M-mouse-1       | expand node and all its children        | elements panel |
+		| RET             | toggle edit attribute node              | elements panel |
+		| TAB/S-TAB       | previous/next attribute                 | elements panel |
+		| h               | toggle hide element                     | elements panel |
+		| F2              | toggle edit as HTML                     | elements panel |
+		|-----------------+-----------------------------------------+----------------|
+		| C-mouse-1       | go to the line (source file) where the  | styles panel   |
+		|                 | where property value is declared        |                |
+		| (S/M/C) up/down | increment/decrement attribute value     | styles panel   |
+		|                 | (0.1/1/10/100)                          |                |
+		|-----------------+-----------------------------------------+----------------|
+		| C-m             | go to mathching bracket                 | code editor    |
+		| C-d/C-u         | mark/unmark next occurence of word      | code editor    |
+		|                 | the cursor is on                        |                |
+		| C-mouse-1       | multiple cursor                         | code editor    |
+		| C-g             | go to line                              | source panel   |
+		| C-S-o           | go to function declaration              | source panel   |
+		| M-w             | close active tab                        | source panel   |
+		|-----------------+-----------------------------------------+----------------|
+*** run snippets
+		- in command menu, type ~!~ followed by the name of the snippet.
+*** designMode
+		- in console: > document.designMode="on"
+*** snippets
+		- [[https://github.com/bgrins/devtools-snippets][devtools snippets list (github)]]
+		- Add a snippet:
+			- in source panel, click on snippet, the click on new
+        snippet. Write your snippet and save it.
+			- in command menu, run command ~Create new snippet~. Write your
+        snippet and save it.
+		- Run a snippet:
+			- in source panel, select the snippet and ~C-RET~ will run the
+        snippet.
+			- in command menu, run ~!snippet-name~.
+		- [[https://support.google.com/chrome/thread/42226725?hl=en][Can't access my code Snippets from devtools shortcut (known error)]]
+*** node screenshot
+		1) select a node
+		2) fire command menu
+		3) run ~Capture Node Screenshot~
+*** command menu
+		- open command menu with ~C-o~
+		  - to find a file:
+		    - type the file name
+		  - to fire a command:
+				- type ~>~ followed by the name of the command
+        - comman categories: Panel, Drawer, Appearence, Console, Debugger,
+          DevTools, Elements, Help, Inputs, Mobile, Navigation,
+          Network, Performance, Persistence, Rendering, Resources,
+          Screenshot, Settings, Sources
+		  - to run a snippet:
+				- type ~!~ followed by the name of the snippet.
+			- to go to line (in sources panel):
+				- type ~:~ followed by line number
+			- to go to line and column (in source panel):
+				- type ~:line-number:column-number~
+			- to go to a symbol (in sources panel):
+				- type ~@~ followed by name of the symbol.
+*** copy element style
+		1) select an element
+		2) in the element panel, click right and choose copy style
+*** add some style to an element
+		1) select an element
+		2) in styles panel, fill:
+			 #+BEGIN_SRC css
+			 element.style {
+					 /* fill here */
+			 }
+			 #+END_SRC
+*** xpath search in console
+		- XPath (XML Path Language) is a query language for selecting
+      nodes from an XML document.
+		- [[https://devhints.io/xpath][xpath cheatsheet (devhints)]] and [[https://www.w3schools.com/xml/xpath_syntax.asp][xpath syntax (w3schools)]].
+		- In the console, ~$x~ is the function to use to do an ~xpath~
+      search.
+		- In the console, to search for the ~div~ elements, run this
+      command:
+			#+BEGIN_SRC bash
+			$x("//div")
+      #+END_SRC
+*** extend chrome devtools
+		- [[https://developer.chrome.com/extensions/devtools][chrome devtools extension (homepage)]]
+*** pretty format in sources panel
+		- When visiting a file in the sources panel, Click on ~{}~
+      to make a minified file human-readable.
+*** column selection in sources panel
+		- You can make a column selection in the Sources Panel editor by
+      holding Alt while dragging the mouse
+*** $_, $0-$4, $(), $$(), $x() console utilities
+		- see [[https://developers.google.com/web/tools/chrome-devtools/console/utilities][console utilies (documentation)]]
+		- ~$_~: returns the value of the most recently evaluated
+      expression.
+		- ~$0~ to ~$4~: ~$0~ returns the most recently selected element or
+      JavaScript object, ~$1~ returns the second most recently selected
+      one, and so on.
+		- ~$()~: returns the reference to the first DOM element with the
+      specified CSS selector. This function is an alias for the
+      ~document.querySelector()~ function.
+		- ~$$()~: returns an array of elements that match the given CSS
+      selector. This command is equivalent to calling
+      ~document.querySelectorAll()~.
+		- ~$x()~:  returns an array of DOM elements that match the given
+      XPath expression.
+*** debug nodejs wich chrome devtools
+		- see [[https://nodejs.org/en/docs/guides/debugging-getting-started/][debugging nodejs (get started)]].
+*** links
+- [[https://chromedevtools.github.io/devtools-protocol/][devtools-protocol (documentation)]]
+- [[https://developers.google.com/web/tools/chrome-devtools/][chrome-devtools (homepage)]]
+- [[https://github.com/ChromeDevTools/awesome-chrome-devtools][awesome-chrome-devtools (github)]]
+- [[https://github.com/binaryage/cljs-devtools][cljs-devtools (github)]]
 * Programming language
 ** Programming language (PL)
 	 What do you have to figure out when you switch to a new PL?
