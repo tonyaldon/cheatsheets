@@ -145,6 +145,23 @@
   <meta property="twitter:url" content="url">
   #+END_SRC
 * CSS
+** debug css
+	 - To debug ~css~ code of a web page, in the corresponding ~html~
+     file, import (uncomment) the stylesheet [[../frontend/debug.css][debug.css]] with the line:
+		 #+BEGIN_SRC html
+		 <link rel="stylesheet" href="debug.css">
+	   #+END_SRC
+		 The file ~debug.css~ contains this chunk of code:
+		 #+BEGIN_SRC css
+		 *:not(path):not(g) {
+			 color:                    hsla(210, 100%, 100%, 0.9) !important;
+			 background:               hsla(210, 100%,  50%, 0.5) !important;
+			 outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+			 box-shadow: none !important;
+		 }
+	   #+END_SRC
+		 This will help to see structure of your page (padding, margin,
+     flex, grid).
 ** SASS
    See [[https://sass-lang.com/][SASS]] a powerful CSS extension language.
 ** CSS grid
