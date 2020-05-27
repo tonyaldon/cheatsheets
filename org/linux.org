@@ -669,6 +669,27 @@
 			#+BEGIN_SRC bash
 			find ~/ -name "virtualenv*"
 			#+END_SRC
+*** recoll
+		- ~recoll~ is a desktop full-text search tool.
+		- To use it, you first have to index the ~xiapan~ database with
+      ~recollindex~.
+		- [[https://www.lesbonscomptes.com/recoll/][recoll (homepage)]]
+		- [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll (usermanual)]]
+		- To install ~recoll~, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install recoll
+			#+END_SRC
+		- [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]] is an emacs interface for ~recoll~.
+		- ~~/.recoll/~ is the default config directory.
+		- ~~/.recoll/recoll.conf~ is the ~recoll~ main configuration
+      file.
+		- ~~/.recoll/xapiandb/~ is the default directory for the index
+      data.
+		- To index the ~xiapan~ database of for ~recoll~ according to the
+      the config file ~~/.recoll/recoll.conf~, run the command:
+			#+BEGIN_SRC bash
+			recollindex
+			#+END_SRC
 ** Replace
 *** replace string in multiple files
 		- Problem :: How to replace string in multiple files?
