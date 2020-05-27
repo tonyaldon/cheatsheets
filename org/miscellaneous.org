@@ -117,3 +117,29 @@
     - [[https://developer.chrome.com/extensions/][extensions]]
     - [[https://developer.chrome.com/extensions/getstarted][getstarted]]
     - [[https://developer.chrome.com/extensions/webRequest][webRequest]]
+* Programming language
+** Programming language (PL)
+	 What do you have to figure out when you switch to a new PL?
+	 1) How to write test?
+	 2) How to read/write into files?
+	 3) How to work with pathes and directories (work with the file system)?
+	 4) How to run a script?
+	 5) What is the main package manager?
+	 6) How to package a project?
+	 7) How to share packages?
+	 8) How to import packages?
+	 9) How to run a server?
+	 10) How to run command lines from the language?
+	 11) How to read/write environment variables?
+	 12) How to expose functions as command lines?
+	 13) How to expose functions as (web) REST api?
+	 14) How to communicate with database (mysql)?
+	 15) How to parse input script argument?
+	 16) How to print to stdout?
+	 17) How works logs/error messages?
+	 18) What is the basic structure of a typical project?
+	 19) Where is the official documentation?
+	 20) Can I have access to the source code?
+** JavaScript
+	 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
+	 - [[https://v8.dev/docs][V8 documentation]]
