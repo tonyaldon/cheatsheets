@@ -1933,8 +1933,38 @@
 					max_characters = 10
 			}
       #+END_SRC
-*** miscellaneous
-		- [[https://www.reddit.com/r/i3wm/comments/3u3d7b/what_is_scratchpad/][what_is_scratchpad (i3wm)]]
+*** debug i3status and i3blocks
+		- Problem :: How can I debug i3status (i3blocks) config file?
+		- Use ~i3status~ or ~i3bloks~ commands.
+		- A flexible scheduler for your i3bar blocks (~i3blocks~).
+		- Generates a status line for i3bar (~i3status~)
+		- If you want to debug ~i3status~ config file, run the command:
+			#+BEGIN_SRC bash
+			i3status ~/config/i3/config
+      #+END_SRC
+		- If you want to debug ~i3blocks~ config file, run the command:
+			#+BEGIN_SRC bash
+      i3blocks -c ~/.config/i3blocks/config
+			#+END_SRC
+*** guess key name use by i3 config file
+		- Problem :: How can I know the key name use by i3 config file for
+      a specific key?
+		- Use ~xev~ command.
+		- Print contents of X events.
+		- If you want to get information about a specific key on your
+      keyboard, that you can use in your i3 config file, run the
+      command ~xev~ in your terminal, a (Event tester) window popup, then press the
+      key from which you want to get information. For instance,
+      pressing the ~space~ key on my keyboard, I get this output:
+			#+BEGIN_SRC bash
+			KeyRelease event, serial 34, synthetic NO, window 0x1400001,
+					root 0x14f, subw 0x0, time 713381482, (524,452), root:(528,472),
+					state 0x0, keycode 65 (keysym 0x20, space), same_screen YES,
+					XLookupString gives 1 bytes: (20) " "
+					XFilterEvent returns: False
+      #+END_SRC
+			~keycode 65 (keysym 0x20, space)~ is the interesting part and
+      the name to use in i3 config file is ~space~.
 * Miscellaneous
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
   split, iconv, diff, patch, man ascii, man utf-8, fpp
