@@ -61,3 +61,6 @@
 	 - https://inkscape.org/doc/keys.html
 ** bridge between emacs and inkscape
 	 - https://github.com/jave/inkmacs
+* Links
+	- [[https://logosbynick.com/gimp-delete-background-to-transparent/][gimp delete background to transparent]]
+  - [[https://logosbynick.com/hidden-secrets-in-inkscape/][hidden secrets in inkscape]]
