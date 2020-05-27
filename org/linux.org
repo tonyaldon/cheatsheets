@@ -1966,10 +1966,47 @@
 			~keycode 65 (keysym 0x20, space)~ is the interesting part and
       the name to use in i3 config file is ~space~.
 * Miscellaneous
+** Miscellaneous commands
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
   split, iconv, diff, patch, man ascii, man utf-8, fpp
   (https://github.com/facebook/PathPicker), history, ffmpeg, ;,
   \&\&, \&, nohup, |, grip, pdflatex, pdftk, docker, source, dpkg,
   debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload,
   rm, kill, killall, gparted,
-
+** terminal
+*** Current terminal
+		- Problem :: How can I check which terminal I'm using?
+		- Use ~cat~ and ~grep~ commands.
+		- Concatenate files and print on the standard output (~cat~).
+		- Print lines matching a pattern (~grep~).
+		- See examples [[https://askubuntu.com/questions/640096/how-do-i-check-which-terminal-i-am-using][how do i check which terminal i am using]].
+		- If you want to check which terminal you are using, run the
+      command:
+			#+BEGIN_SRC bash
+			cat /etc/alternatives/x-terminal-emulator | grep exec
+      #+END_SRC
+** desktop
+*** desktop notification
+		- Problem :: How can I send a desktop notification?
+		- Use ~notify-send~ command.
+		- A program to send desktop notifications.
+		- If you want to send the message ~hey tony~ to the desktop and
+      that the popup window notification keep alive 3 seconds, run
+      the command:
+			#+BEGIN_SRC bash
+			notify-send -t 3000 "hey tony"
+      #+END_SRC
+** font
+*** list font
+		- Problem :: How can I list all available font on my system?
+		- Use ~fc-list~ command.
+		- list available fonts.
+		- If you want to list all available font, run the command:
+			#+BEGIN_SRC bash
+			fc-list
+      #+END_SRC
+		- The font ~symbola~ allow you to print all ~unicode~ character.
+** ideas
+	 - [[https://github.com/sharkdp/bat][bat (a cat clone with wings)]]
+	 - define a 'up 3' command or 'u ...': see
+	   [[https://askubuntu.com/questions/791888/how-to-quickly-move-into-and-from-deeply-nested-directories-through-cli][moove through deeply nested directories]]
