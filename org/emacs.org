@@ -80,17 +80,26 @@
       if/loop, library,...),
    6) *Réparer*: yank, fill, write,...,
    7) *Coudre*: save and run.
+* org-mode
+** Default keybindings
+	 | ~C-c SPC~ | ~org-table-blank-field~ |
+	 | ~S-RET    | ~org-table-copy-down~   |
+	 | ~M-RET    | ~org-meta-return~   |
 * dired-mode
 ** Default keybindings
   | ~A~ | ~dired-do-search~               |
   | ~Q~ | ~dired-do-query-replace-regexp~ |
   | ~/~ | ~dired-narrow~                  |
   | ~g~ | ~revert-buffer~                 |
+  | ~k~ | ~dired-do-kill-lines~           |
 * ibuffer
 ** Default keybindings
   | ~/ n~ | filter by name     |
   | ~/ p~ | remove last filter |
   | ~/ /~ | remove all filters |
+** ideas
+	 - see: ibuffer-vc
+	 - see: ibuffer with projectile
 * ivy/counsel/swiper
 ** Default keybindings
 *** In ~ivy-mode-map~:
