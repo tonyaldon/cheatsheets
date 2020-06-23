@@ -3,41 +3,41 @@
 
 * Emacs workflow
 ** Keybindings phylosophy
-	 -  Recommended :: use ~hydra~ for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
-	 -  If any alternative :: use ~key-chords~ (2 fingers in
-				the same hand used as one finger) [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
-	 -  Banned :: long term key-chords,
-	 -  Banned :: bind commands with low use.
+   -  Recommended :: use ~hydra~ for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
+   -  If any alternative :: use ~key-chords~ (2 fingers in
+     the same hand used as one finger) [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
+   -  Banned :: long term key-chords,
+   -  Banned :: bind commands with low use.
 ** A good setup
-	 Either to write *code* or just *text*, I need:
-  - a good completion sytem :: [[https://company-mode.github.io/][company-mode]], [[https://github.com/abo-abo/swiper][ivy]],
-  - a good linting system :: [[https://www.flycheck.org/en/latest/][flycheck]],
-  - a good snippets system :: [[https://github.com/joaotavora/yasnippet][yasnippet]],
-  - an enhanced UI :: [[https://github.com/tumashu/posframe][posframe]],
-  - an unified layout :: indentation, color, highlight.
+   Either to write *code* or just *text*, I need:
+	 - a good completion sytem :: [[https://company-mode.github.io/][company-mode]], [[https://github.com/abo-abo/swiper][ivy]],
+	 - a good linting system :: [[https://www.flycheck.org/en/latest/][flycheck]],
+	 - a good snippets system :: [[https://github.com/joaotavora/yasnippet][yasnippet]],
+	 - an enhanced UI :: [[https://github.com/tumashu/posframe][posframe]],
+	 - an unified layout :: indentation, color, highlight.
 ** Settings guide lines
 *** File types
-		Each file should be either a:
-		* setup file :: where we set stuff - mainly a ~mode~ - (file
-			prefixed by ~setup-~),
-		* keybinding file :: where we mainly set keybindings (files
-			prefixed by ~kb-~),
-		* util file :: where we define functions and variables that can be
-			use in many ~setup~ or ~kb~ files (files prefixed by ~util-~).
+    Each file should be either a:
+    * setup file :: where we set stuff - mainly a ~mode~ - (file
+      prefixed by ~setup-~),
+    * keybinding file :: where we mainly set keybindings (files
+      prefixed by ~kb-~),
+    * util file :: where we define functions and variables that can be
+      use in many ~setup~ or ~kb~ files (files prefixed by ~util-~).
 *** Files' skeleton
-		In those files, things should be ordered in the following way:
-		1) ~require~,
-		2) ~defvar~,
-		3) ~setq~,
-		4) ~defun~,
-		5) ~defadvice~,
-		6) ~add-hook~,
-		7) ~define-key~.
+    In those files, things should be ordered in the following way:
+    1) ~require~,
+    2) ~defvar~,
+    3) ~setq~,
+    4) ~defun~,
+    5) ~defadvice~,
+    6) ~add-hook~,
+    7) ~define-key~.
 * Programming Paradigm
   Lorsque l'on fait un travail de programmation, il faut distinguer
   deux états:
-	1) Je suis *perdu* et,
-	2) Je ne suis *pas perdu*.
+  1) Je suis *perdu* et,
+  2) Je ne suis *pas perdu*.
 ** Je suis perdu
    Lorsque l'on est perdu, les actions suivantes peuvent nous aider à
    retrouver notre chemin:
@@ -49,11 +49,11 @@
    6) Chercher dans github,
    7) Lire différents post liés au sujet,
    8) Lire la documentation du langage, module (library), system
-			(linux),
+      (linux),
    9) Lire le code source du langage, module, ...,
    10) S'acharner jusqu'à ce que le problème saute (soit solutionné),
    11) Penser à changer de paradigme (ne pas confondre les moyens avec
-			 les résultats attendus).
+       les résultats attendus).
 ** Je ne suis pas perdu
    Lorsque l'on sait ce que l'on veut faire, alors programmer se réduit à
    de *l'édition de text* que ce soit soit au niveau des *fichiers* (écrire
@@ -82,24 +82,84 @@
    7) *Coudre*: save and run.
 * org-mode
 ** Default keybindings
-	 | ~C-c SPC~ | ~org-table-blank-field~ |
-	 | ~S-RET    | ~org-table-copy-down~   |
-	 | ~M-RET    | ~org-meta-return~   |
+   | ~C-c SPC~ | ~org-table-blank-field~ |
+   | ~S-RET~   | ~org-table-copy-down~   |
+   | ~M-RET~   | ~org-meta-return~       |
+   | ~C-c ;~   | ~org-toggle-comment~    |
+   | ~C-c C-e~ | ~org-export-dispatch~   |
+** export file
+	 - ~org-export-backends~, ~(require 'ox-man)~
+*** info file
+		- Problem :: How can I produce an *info* file?
+		- Use ~makeinfo~ command.
+		- Translate  Texinfo  source  documentation  to various other
+      formats (~makeinfo~).
+		- If you want to produce ~my-file.info~ from a ~my-file.texi~,
+      run the command:
+			#+BEGIN_SRC bash
+			makeinfo my-file.texi
+      #+END_SRC
+		- Note: Translate  Texinfo  source  documentation  to various
+      other formats, by default Info files suitable for reading online
+      with Emacs or standalone GNU Info.
+		- If you want to produce ~my-file.info~ file, you can write
+      ~my-file.org~ org file and from inside emacs export it by
+      running the command ~org-texinfo-export-to-info~.
+*** org html themes
+		- Problem :: How can I quickly give a style to my ~org~ document
+      when exported as an ~html~ document?
+		- Use the ~css/js~ themes ~theme-readtheorg~ or ~theme-bigblow~
+      provide by *fniessen* at [[https://github.com/fniessen/org-html-themes][org-html-theme (github)]].
+		- If you want to use the ~css/js~ themes ~theme-readtheorg~, add
+      the following line at the top of your ~org~ document, and
+      export it within ~emacs~ with the keys ~C-c C-e h h~:
+			#+BEGIN_SRC org
+			#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+      #+END_SRC
+		- If you prefer using the theme ~theme-bigblow~, in the above
+      line, switch ~theme-readtheorg~ by ~theme-bigblow~.
+** ideas
+   - https://github.com/DanielDe/org-web
+   - https://github.com/200ok-ch/organice/
+   - https://github.com/200ok-ch/org-parser
+   - https://github.com/fniessen/orgmk
+   - https://organice.200ok.ch/documentation.html#building_docs
+   - https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+   - https://github.com/fniessen
+   - https://github.com/fniessen/org-html-themes
 * dired-mode
+** ideas
+	 - [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
+   - [[https://github.com/emacsorphanage/dired-k][dired-k]]
+	 - use ~dired-actual-switches~ modify sorting in dired
 ** Default keybindings
-  | ~A~ | ~dired-do-search~               |
-  | ~Q~ | ~dired-do-query-replace-regexp~ |
-  | ~/~ | ~dired-narrow~                  |
-  | ~g~ | ~revert-buffer~                 |
-  | ~k~ | ~dired-do-kill-lines~           |
+   | ~A~   | ~dired-do-search~               |
+   | ~Q~   | ~dired-do-query-replace-regexp~ |
+   | ~/~   | ~dired-narrow~                  |
+   | ~g~   | ~revert-buffer~                 |
+   | ~k~   | ~dired-do-kill-lines~           |
+   | ~F~   | ~dired-do-find-marked-files~    |
+   | ~M-(~ | ~dired-mark-sexp~               |
+   | ~I~   | ~dired-info~                    |
 * ibuffer
 ** Default keybindings
-  | ~/ n~ | filter by name     |
-  | ~/ p~ | remove last filter |
-  | ~/ /~ | remove all filters |
+   | ~/ n~ | filter by name     |
+   | ~/ p~ | remove last filter |
+   | ~/ /~ | remove all filters |
 ** ideas
-	 - see: ibuffer-vc
-	 - see: ibuffer with projectile
+   - see: ibuffer-vc
+   - see: ibuffer with projectile
+	 - https://github.com/jojojames/ibuffer-sidebar
+	 - https://github.com/purcell/ibuffer-projectile
+* magit
+** Default keybindings
+   | ~c~ | magit-commit |
+   | ~l~ | magit-log    |
+   | ~z~ | magit-stash  |
+   | ~r~ | magit-rebase |
+* projectile
+	To refresh the cache of a project.
+	- M-x projectile-invalidate-cache
 * ivy/counsel/swiper
 ** Default keybindings
 *** In ~ivy-mode-map~:
