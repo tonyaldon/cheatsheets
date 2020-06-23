@@ -176,91 +176,145 @@
     | ~M-o j~ | ~open in other window~ |
 * js-mode
 ** Completion with ~tern~
-	 - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
+   - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
      editor-independent JavaScript analyzer that can be used to
      improve the JavaScript integration of existing editors. I use it
      to perfom completion in ~js-mode~.
-	 - See [[https://ternjs.net/doc/manual.html#emacs][tern (into emacs)]].
-	 - If you want to install ~tern~, run the command:
-		 #+BEGIN_SRC bash
+   - See [[https://ternjs.net/doc/manual.html#emacs][tern (into emacs)]].
+   - If you want to install ~tern~, run the command:
+     #+BEGIN_SRC bash
      npm install -g tern
-		 #+END_SRC
-	 - If you want to use ~tern~ within emacs in the ~js-mode~:
-		 - you have to install the emacs package ~tern~ (or ~company-tern~
+     #+END_SRC
+   - If you want to use ~tern~ within emacs in the ~js-mode~:
+     - you have to install the emacs package ~tern~ (or ~company-tern~
        that have ~tern~ as a dependency). To do so, add the line
        ~(depends-on "company-tern")~ to the ~Cask~ file of the emacs
        configuration in the directory ~~/.emacs.d~,
-		 - you have to add the directory where the ~tern~ executable
+     - you have to add the directory where the ~tern~ executable
        resides to the ~PATH~ and ~exec-path~ emacs variables. As it
        depends on the way you've installed ~node~ (either with ~apt~
        or ~nvm~), first find it with ~whereis~ command, then add
        it. To do so, run the command:
-			 #+BEGIN_SRC bash
+       #+BEGIN_SRC bash
        whereis tern
-			 #+END_SRC
-			 And for instance, if you get
+       #+END_SRC
+       And for instance, if you get
        ~/home/tony/.nvm/versions/node/v8.9.0/bin/tern~, add the
        following lines to your emacs config file:
-			 #+BEGIN_SRC emacs-lisp
-			 (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:" (getenv "PATH")))
-			 (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
-			 #+END_SRC
-			 Note: If ~tern~ has been install globaly with ~sudo npm install
+       #+BEGIN_SRC emacs-lisp
+       (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:" (getenv "PATH")))
+       (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
+       #+END_SRC
+       Note: If ~tern~ has been install globaly with ~sudo npm install
        -g tern~ and ~npm~ has been install with ~sudo apt install
        nodejs~, ~tern~ is already in your ~PATH~ (~/usr/bin/tern~). So
        you neither have to set ~"PATH"~ nor ~'exec-path~.
-		 - you have to enable the ~tern-mode~ in the ~js-mode-hook~. To do
+     - you have to enable the ~tern-mode~ in the ~js-mode-hook~. To do
        so, add the folling line to you emacs config file:
-			 #+BEGIN_SRC bash
-			 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-			 #+END_SRC
-		 - Finally, to work, ~tern~ looks for a file named ~.tern-config~
+       #+BEGIN_SRC bash
+       (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+       #+END_SRC
+     - Finally, to work, ~tern~ looks for a file named ~.tern-config~
        either in the directory where the file ~my-file.js~ resides, or
        in the chain of the parents directories, until the ~$HOME~ home
        directory. The ~.tern-config~ must contain at list the
        following content:
-			 #+BEGIN_SRC js
-			 {
-				 "libs": [
-					 "browser",
-					 "ecmascript"
-				 ],
-				 "plugins": {
-					 "node": {}
-				 }
-			 }
-			 #+END_SRC
+       #+BEGIN_SRC js
+       {
+         "libs": [
+           "browser",
+           "ecmascript"
+         ],
+         "plugins": {
+           "node": {}
+         }
+       }
+       #+END_SRC
+* latex
+** code completion with lsp, digestif & company
+   #+BEGIN_SRC emacs-lisp
+	 ;; LSP / DIGESTIF (via 'lua')
+	 ;; https://github.com/astoff/digestif
+	 ;; https://github.com/emacs-lsp/lsp-mode
+	 ;; https://github.com/tigersoldier/company-lsp
+	 ;; https://luarocks.org/
+	 (require 'lsp-mode)
+	 (require 'company-lsp)
+
+	 ;; installation of 'digestif'
+	 ;; -- I had to remove 'lua' from the system
+	 ;; $ sudo apt remove lua
+	 ;; $ sudo apt install lua5.3
+	 ;; $ sudo apt install liblua5.3-dev
+	 ;; -- and I install it from the source available here: https://luarocks.org/
+	 ;; $ wget https://luarocks.org/releases/luarocks-3.2.1.tar.gz
+	 ;; $ tar zxpf luarocks-3.2.1.tar.gz
+	 ;; $ cd luarocks-3.2.1
+	 ;; $ ./configure && make && sudo make install
+	 ;; $ sudo luarocks install luasocket
+	 ;; -- then I have installed 'digest' localy (in 'luacrocks-3.2.1' directory)
+	 ;; $ sudo luarocks install –server digestif
+	 ;; -- And finally, 'digestif' has been installed localy here:
+	 ;; luacrocks-3.2.1/lua_modules/bin/digestif
+
+	 ;; next few lines adapted from "lsp-clients.el" file
+	 (defcustom lsp-clients-digestif-executable
+		 "~/Downloads/luarocks-3.2.1/lua_modules/bin/digestif"
+		 "Command to start the Digestif language server."
+		 :group 'lsp-tex)
+
+	 (lsp-register-client
+		(make-lsp-client :new-connection (lsp-stdio-connection lsp-clients-digestif-executable)
+										 :major-modes '(plain-tex-mode LaTeX-mode latex-mode)
+										 :priority -1
+										 :server-id 'digestif))
+
+	 (defun ta-company-latex-mode ()
+		 "Setup `company-mode' for `latex-mode-hook'"
+		 (set (make-local-variable 'company-backends)
+					'((company-lsp
+						 company-yasnippet
+						 company-dabbrev-code
+						 company-files)
+						company-dabbrev
+						company-capf)))
+
+	 ;; lsp must be added last in LaTeX hook
+	 (add-hook 'LaTeX-mode-hook 'ta-company-latex-mode)
+	 (add-hook 'LaTeX-mode-hook #'lsp)
+	 #+END_SRC
 * Learn emacs/emacs-lisp
   The best way to learn to code is to *read* a lot of *good
   code*. Thanks to every open-source projects, we can do it. Here a
   list of files, packages or people in the emacs world that I think
   they are worth reading to understand ~emacs~ and ~emacs-lisp~.
 ** Emacs internals
-	 1) The best way to understand *Emacs internals* is to read the
+   1) The best way to understand *Emacs internals* is to read the
       code ([[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]). Some source files, such as
       ~xdisp.c~, have extensive comments describing the design and
       implementation.
-	 2) The *Tips* an *GNU Emacs Internals* may also help. To go to the
+   2) The *Tips* an *GNU Emacs Internals* may also help. To go to the
       respective info nodes, eval the ~emacs-lisp~ expressions:
-			#+BEGIN_SRC emacs-lisp
-			(info "(elisp)Tips")
-			(info "(elisp)GNU Emacs Internals").
-			#+END_SRC
-	 3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
+      #+BEGIN_SRC emacs-lisp
+      (info "(elisp)Tips")
+      (info "(elisp)GNU Emacs Internals").
+      #+END_SRC
+   3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
 ** Emacs built-in (emacs-lisp)
-	 - [[../emacs/built-in/thingatpt.el][thingatpt.el]]: get the thing at point.
-	 - [[../emacs/built-in/mhtml-mode.el][mhtml-mode.el]]: HTML editing mode that handles CSS and JS.
-	 - [[../emacs/built-in/syntax.el][syntax.el]]: helper functions to find syntactic context. See the
+   - [[../emacs/built-in/thingatpt.el][thingatpt.el]]: get the thing at point.
+   - [[../emacs/built-in/mhtml-mode.el][mhtml-mode.el]]: HTML editing mode that handles CSS and JS.
+   - [[../emacs/built-in/syntax.el][syntax.el]]: helper functions to find syntactic context. See the
      function ~syntax-ppss-context~.
+   - [[../emacs/built-in/project.el][project.el]]: Operations on the current project.
 ** Emacs external packages
-	 - [[../emacs/external/ace-window/][ace-window]]: Quickly switch windows,
-	 - [[../emacs/external/company/][company]]: Modular text completion framework,
-	 - [[../emacs/external/avy/][avy]]: Jump to arbitrary positions in visible text and select text
+   - [[../emacs/external/ace-window/][ace-window]]: Quickly switch windows,
+   - [[../emacs/external/company/][company]]: Modular text completion framework,
+   - [[../emacs/external/avy/][avy]]: Jump to arbitrary positions in visible text and select text
      quickly,
-	 - [[../emacs/external/expand-region/][expand-region]]: Increase selected region by semantic units,
-	 - [[../emacs/external/iedit/][iedit]]: Edit multiple regions in the same way simultaneously,
-	 - [[../emacs/external/multiple-cursors/][multiple-cursors]]: Multiple cursors for emacs,
-	 - [[../emacs/external/s/][s]]: The long lost Emacs string manipulation library.
+   - [[../emacs/external/expand-region/][expand-region]]: Increase selected region by semantic units,
+   - [[../emacs/external/iedit/][iedit]]: Edit multiple regions in the same way simultaneously,
+   - [[../emacs/external/multiple-cursors/][multiple-cursors]]: Multiple cursors for emacs,
+   - [[../emacs/external/s/][s]]: The long lost Emacs string manipulation library.
 ** Emacs community
    - [[https://github.com/danielmartin/dotfiles][github: daniel martin dotfiles]]
    - [[https://github.com/abo-abo][github (abo-abo)]]
@@ -270,48 +324,59 @@
    - [[https://github.com/magnars][github (magnars)]]
 ** Test emacs-lisp code and emacs
 *** tools
-		- ~ert~: see the info node ~(info "ert")~,
-		- ~ecukes~: see the [[https://github.com/ecukes/ecukes][github page]].
+    - ~ert~: see the info node ~(info "ert")~,
+    - ~ecukes~: see the [[https://github.com/ecukes/ecukes][github page]].
 *** To understand testing whith *ecukes*
-		1) [[https://github.com/magnars/expand-region.el][expand region]],
-		2) [[https://github.com/magnars/multiple-cursors.el][multiple-cusors]],
-		3) [[https://github.com/niligulmohar/buster-mode][buster-mode (github)]] or [[http://emacsrocks.com/][buster mode (emacsrocks)]].
+    1) [[https://github.com/magnars/expand-region.el][expand region]],
+    2) [[https://github.com/magnars/multiple-cursors.el][multiple-cusors]],
+    3) [[https://github.com/niligulmohar/buster-mode][buster-mode (github)]] or [[http://emacsrocks.com/][buster mode (emacsrocks)]].
 *** To understand testing whith *ert*
 **** simple.el (emacs built-in)
-		 1) [[../emacs/built-in/simple.el][simple.el]] and [[../emacs/built-in/simple-tests.el][simple-tests.el]]
-		 2) test of the ~open-line~ function:
-				- [[file:../emacs/built-in/simple.el::582][open-line]] definition
-				- [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
-				- [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
+     1) [[../emacs/built-in/simple.el][simple.el]] and [[../emacs/built-in/simple-tests.el][simple-tests.el]]
+     2) test of the ~open-line~ function:
+        - [[file:../emacs/built-in/simple.el::582][open-line]] definition
+        - [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
+        - [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
 ** How to define ~derived-mode~
-	 - [[../emacs/built-in/elisp-mode.el][elisp-mode.el]]
-	 - [[../emacs/built-in/conf-mode.el][conf-mode.el]]
+   - [[../emacs/built-in/elisp-mode.el][elisp-mode.el]]
+   - [[../emacs/built-in/conf-mode.el][conf-mode.el]]
+** Buffer/Windows/Frame
+   Worth reading info node.
+*** displaying buffers
+    - ~(info "(elisp) Precedence of Action Functions")~
+    - ~(info "(elisp) Frame Layouts with Side Windows")~
+    - ~(info "(elisp) Buffer Display Action Functions")~
+*** Window configuration
+    - ~(info "(elisp) Window Configurations")~
+    - ~(info "(elisp) Coordinates and Windows")~
+    - ~(info "(elisp) Basic Windows")~
+    - ~(info "(elisp) Windows and Frames")~
 * Tips
 ** Commands
    * ~M-x re-builder~ : build regular expression
    * ~C-u C-x =~ : pop a buffer with information at point
    * ~M-x list-faces-display~ : list all available faces on current emacs session
    * ~M-:~ : interactive ~eval-expression~
-	 * ~c~ : in ~Info-mode~ run ~Info-copy-current-node-name~.
+   * ~c~ : in ~Info-mode~ run ~Info-copy-current-node-name~.
 ** emacs setup
    * The package ~company-emoji~ only if the list defined in file
      ~company-emoji-list.el~ in the function
      ~company-emoji-list-create~ is ordered.
-		 before:
-		 #+BEGIN_SRC emacs-lisp
-		 (defconst company-emojis (company-emoji-list-create)
-			 "Cached list of propertized emojis.")
-			#+END_SRC
-			after:
-		 #+BEGIN_SRC emacs-lisp
-		 (require 'dash)
-		 (defconst company-emojis (-sort 'string-lessp
-																		 (company-emoji-list-create))
-			 "Cached list of propertized emojis.")
-		 #+END_SRC
+     before:
+     #+BEGIN_SRC emacs-lisp
+     (defconst company-emojis (company-emoji-list-create)
+       "Cached list of propertized emojis.")
+     #+END_SRC
+     after:
+     #+BEGIN_SRC emacs-lisp
+     (require 'dash)
+     (defconst company-emojis (-sort 'string-lessp
+                                     (company-emoji-list-create))
+       "Cached list of propertized emojis.")
+     #+END_SRC
    * Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
      to bind ~kmacro~ if needed.
-	 * If you want to mute warning messages, add this line ~(setq
+   * If you want to mute warning messages, add this line ~(setq
      warning-minimum-level :emergency)~ to your emacs configuration.
 ** miscellaneous
    * [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
@@ -328,15 +393,15 @@
    * Don't rebind ~(kbd "ESC")~ , it doesn't work and break some
      internal emacs stuff. Better to bind ~[escape]~.
      See: [[https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key][escape prefix key]]
-	 * To open a file as ~sudo~, emacs use ~tramp~. To do so:
-		 1) with ~counsel-find-file~: give the path of the file,
-				- run ~counsel-find-file~,
-				- in ~ivy-minibuffer~, give the path of the file,
-				- in ~ivy-minibuffer~, run ~ivy-dispatching-done~,
-				- in ~ivy-minibuffer~, type ~r~ key to open as root.
-		 2) in ~dired-mode~, see the package ~dired-toggle-sudo~
+   * To open a file as ~sudo~, emacs use ~tramp~. To do so:
+     1) with ~counsel-find-file~: give the path of the file,
+        - run ~counsel-find-file~,
+        - in ~ivy-minibuffer~, give the path of the file,
+        - in ~ivy-minibuffer~, run ~ivy-dispatching-done~,
+        - in ~ivy-minibuffer~, type ~r~ key to open as root.
+     2) in ~dired-mode~, see the package ~dired-toggle-sudo~
         ([[https://lists.gnu.org/archive/html/help-gnu-emacs/2014-02/msg00268.html][switching dired using sudo]]).
-	 * If you get the error ~<dead-acute> is undefined~, try adding the
+   * If you get the error ~<dead-acute> is undefined~, try adding the
      package ~iso-transl~ to your ~.emacs~. Add this ~(require
      'iso-transl')~ to your ~.emacs~.
 ** byte compilation
@@ -350,113 +415,113 @@
    emacs version.
 ** emacs command line in terminal
 *** --eval
-		- Problem :: How can I write in a file with ~emacs~ use as a command line?
-		- Use the options ~--eval~, ~--batch~, ~-f~ of ~emacs~ considered
+    - Problem :: How can I write in a file with ~emacs~ use as a command line?
+    - Use the options ~--eval~, ~--batch~, ~-f~ of ~emacs~ considered
       as a command line.
-		- See example: ~(info "(emacs) Command Example")~.
-		- If you want write ~"blabla"~ into the file ~some-file~,
+    - See example: ~(info "(emacs) Command Example")~.
+    - If you want write ~"blabla"~ into the file ~some-file~,
       run the command:
-			#+BEGIN_SRC bash
-			emacs --batch some-file --eval '(insert "blabla")' -f save-buffer >& log
-			#+END_SRC
+      #+BEGIN_SRC bash
+      emacs --batch some-file --eval '(insert "blabla")' -f save-buffer >& log
+      #+END_SRC
 ** bugs
-	 * In terminal (emacs without Xwindow), emacs adds some strange
+   * In terminal (emacs without Xwindow), emacs adds some strange
      characters when:(copying stuff frome the clipboard into
      emacs, when switching between emacs (in terminal) and other
      Xwindows, when lauching emacs.)
-		 Problem solved by removing the binding ~M-[~. See
+     Problem solved by removing the binding ~M-[~. See
      [[https://superuser.com/questions/729366/emacs-adding-strange-characters-at-the-beginning-of-files][stackoverflow thread]].
 
 ** emacs server/client
 *** start emacs faster
-		- Problem :: How can I run emacs faster at startup?
-		- Use ~--fg-daemon~ flag of ~emacs~ and ~emacsclient~.
-		- Start a server in the foreground (~--fg-daemon~).
-		- Tells a running Emacs to visit a file (~emacsclient~).
-		- See examples [[http://wikemacs.org/wiki/Emacs_server][emacs server (wikemacs)]], [[https://stackoverflow.com/questions/1167484/how-to-gracefully-shutdown-emacs-daemon][emacs server (stackoverflow)]],
-			 [[https://www.emacswiki.org/emacs/EmacsAsDaemon][emacs server (emacswiki)]], [[https://emacs.stackexchange.com/questions/39484/speed-up-emacs-start-up-time][emacs daemon]].
-		- If you want to start emacs faster, the best way is to run
+    - Problem :: How can I run emacs faster at startup?
+    - Use ~--fg-daemon~ flag of ~emacs~ and ~emacsclient~.
+    - Start a server in the foreground (~--fg-daemon~).
+    - Tells a running Emacs to visit a file (~emacsclient~).
+    - See examples [[http://wikemacs.org/wiki/Emacs_server][emacs server (wikemacs)]], [[https://stackoverflow.com/questions/1167484/how-to-gracefully-shutdown-emacs-daemon][emacs server (stackoverflow)]],
+      [[https://www.emacswiki.org/emacs/EmacsAsDaemon][emacs server (emacswiki)]], [[https://emacs.stackexchange.com/questions/39484/speed-up-emacs-start-up-time][emacs daemon]].
+    - If you want to start emacs faster, the best way is to run
       ~emacs~ as server and connect client ~emacsclient~ to this
       server. To do so, run the following commands:
-			#+BEGIN_SRC bash
-			emacs --fg-daemon
-			emacsclient -nc
+      #+BEGIN_SRC bash
+      emacs --fg-daemon
+      emacsclient -nc
       #+END_SRC
-		- Your ~.emacs~ configuration is loaded once with ~emacs
-      --fg-daemon~. 
-		- Your can start as many client ~emacsclient~ as you want. As they
+    - Your ~.emacs~ configuration is loaded once with ~emacs
+      --fg-daemon~.
+    - Your can start as many client ~emacsclient~ as you want. As they
       run with the server you have started before, they all share
       buffers, a command history, or other kinds of information with
       any existing Emacs process.
 *** emacs daemon
-		- Problem :: How can I start ~emacs~ in daemon mode when you login
+    - Problem :: How can I start ~emacs~ in daemon mode when you login
       to your linux session?
-		- Use ~systemctl~ command.
-		- Control the ~systemd~ system and ~service manager~.
-		- See examples: ~(info "(emacs) Emacs Server")~.
-		- If you want to ~emacs~ start in daemon mode when you login to
+    - Use ~systemctl~ command.
+    - Control the ~systemd~ system and ~service manager~.
+    - See examples: ~(info "(emacs) Emacs Server")~.
+    - If you want to ~emacs~ start in daemon mode when you login to
       your linux session, we use the ~systemd~ and add it a ~systemd
       unit file~. To do so:
-			1) Locate the ~emacs.service~ files that comes with your ~emacs~
+      1) Locate the ~emacs.service~ files that comes with your ~emacs~
          distribution. Run ~locate emacs.service~ in your terminal to
          find the path.
-			2) Then you have to copy ~emacs.service~ file to a standard
+      2) Then you have to copy ~emacs.service~ file to a standard
          directory such as ~~/.config/systemd/user/~. This file looks
          like this:
-				 #+BEGIN_SRC bash
-				 [Unit]
-				 Description=Emacs text editor
-				 Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+         #+BEGIN_SRC bash
+         [Unit]
+         Description=Emacs text editor
+         Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
-				 [Service]
-				 Type=notify
-				 ExecStart=/usr/bin/emacs --fg-daemon
-				 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
-				 Restart=on-failure
+         [Service]
+         Type=notify
+         ExecStart=/usr/bin/emacs --fg-daemon
+         ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+         Restart=on-failure
 
-				 [Install]
-				 WantedBy=default.target
+         [Install]
+         WantedBy=default.target
          #+END_SRC
-			3) Finally, activate it by running the command:
-			#+BEGIN_SRC bash 
-			systemctl --user enable emacs
-			systemctl --user start emacs
+      3) Finally, activate it by running the command:
+      #+BEGIN_SRC bash
+      systemctl --user enable emacs
+      systemctl --user start emacs
       #+END_SRC
-		- ~systemctl~ comes with standard commands as ~enable~, ~start~,
+    - ~systemctl~ comes with standard commands as ~enable~, ~start~,
       ~status~, ~stop~. So to interact with ~emacs systemd unit~, you
       can use the following commands:
-			#+BEGIN_SRC bash
-			systemctl --user enable emacs
-			systemctl --user start emacs
-			systemctl --user status emacs
-			systemctl --user stop emacs
+      #+BEGIN_SRC bash
+      systemctl --user enable emacs
+      systemctl --user start emacs
+      systemctl --user status emacs
+      systemctl --user stop emacs
       #+END_SRC
 ** faces
 *** Check default font
-		- Problem :: How can I check the current default font use by emacs?
-		- Use ~customize-face~, ~describe-font~ or ~describe-char~ commands.
-		- See examples [[http://ergoemacs.org/emacs/emacs_list_and_set_font.html][list and set font]].
-		- If you want to check the current default font where you're
+    - Problem :: How can I check the current default font use by emacs?
+    - Use ~customize-face~, ~describe-font~ or ~describe-char~ commands.
+    - See examples [[http://ergoemacs.org/emacs/emacs_list_and_set_font.html][list and set font]].
+    - If you want to check the current default font where you're
       cursor is, run the command:
-			#+BEGIN_SRC bash
-			M-x describe-font RET RET
+      #+BEGIN_SRC bash
+      M-x describe-font RET RET
       #+END_SRC
-			this will pop-up a help buffer with the ~name~, ~full name~ and
+      this will pop-up a help buffer with the ~name~, ~full name~ and
       ~file name~ of the font use on the character under cursor.
-		- If you want to check the current default font where you're
+    - If you want to check the current default font where you're
       cursor is, run the command:
-			#+BEGIN_SRC bash
-			M-x describe-char RET
+      #+BEGIN_SRC bash
+      M-x describe-char RET
       #+END_SRC
-			this will pop-up a help buffer with a lot of informations about
+      this will pop-up a help buffer with a lot of informations about
       the caracher under cursor, and the font name at the line in
       ~display~.
-		- If you want to check the current default font and maybe modify
+    - If you want to check the current default font and maybe modify
       it in the interactive customize menu, enter the command:
-			#+BEGIN_SRC bash
-			M-x customize-face RET default RET
+      #+BEGIN_SRC bash
+      M-x customize-face RET default RET
       #+END_SRC
-			this will pop-up the buffer ~*Customize Face: Default*~, that
+      this will pop-up the buffer ~*Customize Face: Default*~, that
       contains the information in line ~Font Family~.
 ** utf-8
 *** links
@@ -464,26 +529,26 @@
     - [[http://ergoemacs.org/emacs/emacs_line_ending_char.html][emacs line ending char (ergoemacs)]]
     - [[https://stackoverflow.com/questions/17862846/whats-the-difference-among-various-types-of-utf-8-in-emacs][difference among utf-8 types in emacs (stackoverflow)]]
 *** commands
-		- ~M-x describe-variable RET buffer-file-coding-system~,
-		- ~C-q~ : ~quoted-insert~,
-		- ~find-file-literally~ : Visit file FILENAME with no conversion
+    - ~M-x describe-variable RET buffer-file-coding-system~,
+    - ~C-q~ : ~quoted-insert~,
+    - ~find-file-literally~ : Visit file FILENAME with no conversion
       of any kind,
-		- ~hexl-mode~ : A mode for editing binary files in hex dump
+    - ~hexl-mode~ : A mode for editing binary files in hex dump
       format,
-		- ~M-x set-buffer-file-coding-system RET utf-8-unix~.
+    - ~M-x set-buffer-file-coding-system RET utf-8-unix~.
 *** utf-8-unix-with-signature-dos and utf-8-unix-with-signature-unix
-		- I change my file ~file.txt~ from ~utf-8-unix-with-signature-dos~
-		to ~utf-8-unix-with-signature-unix~ by running ~M-x
-		set-buffer-file-coding-system RET utf-8-unix-with-signature-unix~
-		in a buffer with ~file.txt~ open.
-		- This changed the end of line character ~^M^J~ (stand for carriage
+    - I change my file ~file.txt~ from ~utf-8-unix-with-signature-dos~
+    to ~utf-8-unix-with-signature-unix~ by running ~M-x
+    set-buffer-file-coding-system RET utf-8-unix-with-signature-unix~
+    in a buffer with ~file.txt~ open.
+    - This changed the end of line character ~^M^J~ (stand for carriage
       return and line feed) by ~^J~ (only line feed). Notes that ~^J~
       is not printed when you open the file literally with
       ~find-file-literally~.
 ** font
-	 - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
-	 - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
-	 - with the font ~symbola~ you can print all ~unicode~ character.
+   - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
+   - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
+   - with the font ~symbola~ you can print all ~unicode~ character.
 * Articles
 ** Ergoemacs/xahlee
    - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
@@ -507,14 +572,42 @@
    - [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
    - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
    - [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
-	 - ~swiper-all~ (search in all open buffers)
-	 - [[https://github.com/abo-abo/lpy][lpy (python minor-mode)]]
+   - ~swiper-all~ (search in all open buffers)
+   - [[https://github.com/abo-abo/lpy][lpy (python minor-mode)]]
+** org-mode
+   - [[http://juanreyero.com/article/emacs/org-teams.html][org-teams]]
+   - [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
+   - [[https://github.com/alphapapa/org-graph-view][org-graph-view]]
+   - [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
+   - [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
+   - [[https://github.com/200ok-ch/org-parser][org-parser]]
+   - [[https://github.com/ndwarshuis/org-sql][org-sql]]
+   - see function: org-element-parse-buffer
 ** Other
-	 - [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
-	 - see: counsel-recentf
-	 - [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
-	 - [[https://github.com/articuluxe/parsenv][parsenv]]
-	 - [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
+   - subword package [[/home/tony/work/apps/emacs/lisp/progmodes/subword.el]]
+   - diff-hl.el package -> Diff highlights in the fringe (https://protesilaos.com/dotemacs/)
+   - column-number-mode
+   - https://github.com/benma/emacs.d/blob/master/init.el (section fill-column-indicator & company/fill-column-indicator)
+	 - javascript:
+		 - https://www.npmjs.com/package/indium
+     - https://github.com/NicolasPetton/Indium
+     - https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-js.html
+	 - (shell-command-to-string "ls -l")
+	 - https://github.com/leoliu/easy-kill
+	 - https://github.com/joodland/bm (bookmark)
+	 - company-statistics, company-suggest, company-tabnine
+	 - [[https://github.com/alphapapa/bufler.el][bufler.el]]
+   - [[https://github.com/ahungry/fast-scroll][fast-scroll]]
+   - [[https://github.com/fourier/ztree][ztree]] (Directory tree comparison mode for Emacs)
+   - [[https://github.com/emacs-tw/awesome-emacs][awesome-emacs]] (list of emacs packages)
+   - see: bm.el package (bm.el provides visible, buffer local,
+     bookmarks and the ability to jump forward and backward to the
+     next bookmark.)
+   - [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
+   - see: counsel-recentf
+   - [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
+   - [[https://github.com/articuluxe/parsenv][parsenv]]
+   - [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
    - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
    - [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
    - ~mode-line~: To modify what appears in mode-line, you can modify
@@ -530,25 +623,35 @@
    - [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
    - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
    - [[https://melpa.org/#/counsel-jq][counsel for jq]]
-	 - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
-	 - [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
-	 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
-	 - search engine
-		 - [[https://xapian.org/][xapian]]
+   - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
+   - [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
+   - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
+   - search engine
+     - [[https://xapian.org/][xapian]]
      - [[https://xapian.org/docs/omega/overview.html][omega]]
      - [[https://www.lesbonscomptes.com/recoll/][recoll]]
      - [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]]
      - [[http://angel-de-vicente.blogspot.com/2017/11/emacs-interface-to-recoll.html][emacs interface to recoll]]
-		 - [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll usermanual]]
-	 - [[https://github.com/Alexander-Miller/treemacs][treemacs]]
-	 - [[https://github.com/amake/orgro][orgro]] (org-mode file viewer for iOS and android)
-	 - [[https://symmetricaldatasecurity.blogspot.com/2020/05/prettifying-org-mode-with-css.html][prettifying-org-mode-with-css]]
+     - [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll usermanual]]
+   - [[https://github.com/Alexander-Miller/treemacs][treemacs]]
+   - [[https://github.com/amake/orgro][orgro]] (org-mode file viewer for iOS and android)
+   - [[https://symmetricaldatasecurity.blogspot.com/2020/05/prettifying-org-mode-with-css.html][prettifying-org-mode-with-css]]
+   - [[/home/tony/work/apps/emacs/lisp/delim-col.el]] (interesting to modify rectangle)
+   - https://github.com/benma/visual-regexp.el
+   - goto-last-change package
+   - goto-last-point package
+   - https://github.com/joostkremers/writeroom-mode
+   - https://github.com/rnkn/olivetti
+   - rainbow-mode package
+   - immortal-scratch package
+   - scratch package
+   - ivy-emoji package
 ** ispell, flyspell, aspell (for text mode)
-	 - switch between English, French, Spanish
-	 - work with company (see: company-ispell)
-	 - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][company example (redguardtoo)]]
-	 - [[http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html][auto completion for non programmers]]
-	 - [[http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html][spell check set up]]
-	 - [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
-	 - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
-	 - [[http://aspell.net/][aspell (homepage)]]
+   - switch between English, French, Spanish
+   - work with company (see: company-ispell)
+   - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][company example (redguardtoo)]]
+   - [[http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html][auto completion for non programmers]]
+   - [[http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html][spell check set up]]
+   - [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
+   - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
+   - [[http://aspell.net/][aspell (homepage)]]
