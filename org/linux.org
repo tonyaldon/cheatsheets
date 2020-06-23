@@ -2130,5 +2130,6 @@
 		- The font ~symbola~ allow you to print all ~unicode~ character.
 ** ideas
 	 - [[https://github.com/sharkdp/bat][bat (a cat clone with wings)]]
-	 - define a 'up 3' command or 'u ...': see
-	   [[https://askubuntu.com/questions/791888/how-to-quickly-move-into-and-from-deeply-nested-directories-through-cli][moove through deeply nested directories]]
+	 - https://github.com/evmar/webtreemap
+	 - https://www.npmjs.com/package/source-map-explorer
+	 - https://github.com/AlDanial/cloc
