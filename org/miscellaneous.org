@@ -121,43 +121,44 @@
 ** chrome devtools
 *** keyboard shortcuts (default)
 		- [[https://developers.google.com/web/tools/chrome-devtools/shortcuts][chrome devtools shortcuts]]
-		| shortcut        | action                                  | scope          |
-		|-----------------+-----------------------------------------+----------------|
-		| C-S-i (f12)     | open last panel                         | browser        |
-		| C-S-j           | open console panel                      | browser        |
-		| C-S-c           | open element panel                      | browser        |
-		|-----------------+-----------------------------------------+----------------|
-		| C-]             | focus next panel                        | devtools       |
-		| C-[             | focus previous panel                    | devtools       |
-		| C-S-d           | switch back to last docking position    | devtools       |
-		| C-S-c           | toggle Inspect Element Mode             | devtools       |
-		| C-S-p           | open command menu panel (with ~>~ sign) | devtools       |
-		| C-o             | open command menu                       | devtools       |
-		| C-f             | search for text in current panel        | devtools       |
-		|-----------------+-----------------------------------------+----------------|
-		| C-z             | undo change                             | elements panel |
-		| C-y             | redo change                             | elements panel |
-		| up/down         | previou/next node                       | elements panel |
-		| left/right      | collapse/expand                         | elements panel |
-		| M-mouse-1       | expand node and all its children        | elements panel |
-		| RET             | toggle edit attribute node              | elements panel |
-		| TAB/S-TAB       | previous/next attribute                 | elements panel |
-		| h               | toggle hide element                     | elements panel |
-		| F2              | toggle edit as HTML                     | elements panel |
-		|-----------------+-----------------------------------------+----------------|
-		| C-mouse-1       | go to the line (source file) where the  | styles panel   |
-		|                 | where property value is declared        |                |
-		| (S/M/C) up/down | increment/decrement attribute value     | styles panel   |
-		|                 | (0.1/1/10/100)                          |                |
-		|-----------------+-----------------------------------------+----------------|
-		| C-m             | go to mathching bracket                 | code editor    |
-		| C-d/C-u         | mark/unmark next occurence of word      | code editor    |
-		|                 | the cursor is on                        |                |
-		| C-mouse-1       | multiple cursor                         | code editor    |
-		| C-g             | go to line                              | source panel   |
-		| C-S-o           | go to function declaration              | source panel   |
-		| M-w             | close active tab                        | source panel   |
-		|-----------------+-----------------------------------------+----------------|
+		| default shortcuts | own shortcuts | action                                   | scope          |
+		|-------------------+---------------+------------------------------------------+----------------|
+		| C-S-i (f12)       | ---           | open last panel                          | browser        |
+		| C-S-j             | M-c           | open console panel                       | browser        |
+		| C-S-c             | C-i           | open element panel                       | browser        |
+		|-------------------+---------------+------------------------------------------+----------------|
+		| ESC               | M-q           | toggle console at the bottom of devtools | devtools       |
+		| C-]               | ???           | focus next panel                         | devtools       |
+		| C-[               | ???           | focus previous panel                     | devtools       |
+		| C-S-d             | M-t           | switch back to last docking position     | devtools       |
+		| C-S-c             | C-i           | toggle Inspect Element Mode              | devtools       |
+		| C-S-p             | ???           | open command menu panel (with ~>~ sign)  | devtools       |
+		| C-o               | ---           | open command menu                        | devtools       |
+		| C-f               | ---           | search for text in current panel         | devtools       |
+		|-------------------+---------------+------------------------------------------+----------------|
+		| C-z               | M--           | undo change                              | elements panel |
+		| C-y               | M-+           | redo change                              | elements panel |
+		| up/down           |               | previou/next node                        | elements panel |
+		| left/right        |               | collapse/expand                          | elements panel |
+		| M-mouse-1         | F6            | expand node and all its children         | elements panel |
+		| RET               |               | toggle edit attribute node               | elements panel |
+		| TAB/S-TAB         |               | previous/next attribute                  | elements panel |
+		| h                 |               | toggle hide element                      | elements panel |
+		| F2                |               | toggle edit as HTML                      | elements panel |
+		|-------------------+---------------+------------------------------------------+----------------|
+		| C-mouse-1         |               | go to the line (source file) where the   | styles panel   |
+		|                   |               | where property value is declared         |                |
+		| (S/M/C) up/down   |               | increment/decrement attribute value      | styles panel   |
+		|                   |               | (0.1/1/10/100)                           |                |
+		|-------------------+---------------+------------------------------------------+----------------|
+		| C-m               |               | go to mathching bracket                  | code editor    |
+		| C-d/C-u           |               | mark/unmark next occurence of word       | code editor    |
+		|                   |               | the cursor is on                         |                |
+		| C-mouse-1         |               | multiple cursor                          | code editor    |
+		| C-g               |               | go to line                               | source panel   |
+		| C-S-o             |               | go to function declaration               | source panel   |
+		| M-w               |               | close active tab                         | source panel   |
+		|-------------------+---------------+------------------------------------------+----------------|
 *** run snippets
 		- in command menu, type ~!~ followed by the name of the snippet.
 *** designMode
