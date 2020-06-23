@@ -346,3 +346,5 @@
    - [[https://materialdesignicons.com/][material design icons (homepage)]]
 ** tools
 	 - [[https://github.com/4d11/csskrt-csskrt][csskrt - automatically add css to html tags (github)]]
+** ideas
+	 - [[https://htmx.org/][htmx]]
