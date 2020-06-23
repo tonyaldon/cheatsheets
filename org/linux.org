@@ -2054,6 +2054,39 @@
       #+END_SRC
 			~keycode 65 (keysym 0x20, space)~ is the interesting part and
       the name to use in i3 config file is ~space~.
+** Gnome
+*** Reset all gnome settings
+		- Problem :: How can I reset all gnome settings?
+		- Use ~gnome-tweaks~ command.
+		- Customize your Ubuntu Gnome desktop (~gnome-tweaks~).
+		- See example [[https://www.linuxuprising.com/2019/03/how-to-reset-gnome-desktop-settings-to.html][how-to-reset-gnome-desktop-settings]].
+		- If you want to reset all gnome desktop settings to default,
+      launch ~gnome-tweak~ and in its gnome menu click ~Reset to
+      Defaults~.
+		- if you want to install ~gnome-tweaks~, run the command:
+			#+BEGIN_SRC bash
+			sudo apt install gnome-tweaks
+      #+END_SRC
+*** Dpi and text-scaling in Gnome
+		- Problem :: How can I modify the text size on Gnome desktop?
+		- Use ~gsettings~ command.
+		- GSettings configuration tool (~gsettings~).
+		- See example [[https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi][find and change the screen dpi]].
+		- If you want to change the ~dpi~ in Ubuntu Gnome desktop, you
+      can't because it's hard coded to a value of ~96 dpi~. But you
+      can change the text size of the applications. For instance, to
+      increase the text size by ~1.2~ (of the hard coded ~96 dpi~,
+      i.e. ~1.2*96~), *set* to ~1.2~ the value of the *key*
+      ~text-scaling-factor~ of the *shema* ~org.gnome.desktop.interface~
+      run the command:
+			#+BEGIN_SRC bash
+			gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
+      #+END_SRC
+		- If you want to go back to the default text size, *reset* the
+      value of *key* ~text-scaling-factor~. To do so, run the command:
+			#+BEGIN_SRC bash
+			gsettings reset org.gnome.desktop.interface text-scaling-factor
+			#+END_SRC
 * Miscellaneous
 ** Miscellaneous commands
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
