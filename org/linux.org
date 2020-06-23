@@ -849,7 +849,7 @@
 		- Problem :: How can I to enable SSH (server) on ubuntu?
 		- Use ~openssh-server~ package.
 		- Secure shell (SSH) server, for secure access from remote machines.
-		- See examples [[linkhttps://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
+		- See examples [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
 		- If you want to enable SSH server on the standard port 22, you
       have to *start* ~ssh~ service with ~systemctl~ command and
       *allow* incomming SSH connection by *opening* (allowing) the
@@ -1485,7 +1485,51 @@
 			xrandr
       #+END_SRC
 ** Miscellaneous
-   xbindkey, xmodmap, xev, xdotools, wmctrl
+   xbindkey, xmodmap, xev, xdotool, wmctrl
+*** list opened windows
+		- Problem :: How can I list the open windows?
+		- Use ~wmctrl~ command.
+		- Interact with a EWMH/NetWM compatible X Window Manager
+      (~wmctrl~).
+		- If you want to list the windows being managed by the window
+      manager, run the command:
+			#+BEGIN_SRC bash
+			wmctrl -l
+      #+END_SRC
+*** simultaneous key + click from command line
+		- Problem :: How can I simulate a key plus mouse click from
+      commande line?
+		- Use ~xdotool~ command.
+		- Command-line X11 automation tool.
+		- See [[https://stackoverflow.com/questions/49066062/keymouse-click-simultaneous-xdotool][simultaneous key + mouse click]] and [[http://manpages.ubuntu.com/manpages/trusty/man1/xdotool.1.html][xdotool (man page)]].
+		- If you want to simulate ~alt+mouse-1~ simultaneously from
+      command line, run the command:
+			#+BEGIN_SRC bash
+			xdotool keydown alt click 1 keyup alt
+      #+END_SRC
+*** mouse coordinates from command line
+		- Problem :: How can I get current mouse coordinates from bash?
+		- Use ~xdotool~ command.
+		- Command-line X11 automation tool.
+		- See [[https://stackoverflow.com/questions/8480073/how-would-i-get-the-current-mouse-coordinates-in-bash][get current mouse coordinates from command line]].
+		- If you want to get the current mouse coordinates location from
+      command line, run the command:
+			#+BEGIN_SRC bash
+			xdotool getmouselocation
+      #+END_SRC
+		- If you want to get the current mouse coordinates location and
+      set the variables ~X~ and ~Y~ to hold respectively the
+      horizontal and vertical position, run the command:
+			#+BEGIN_SRC bash
+			eval $(xdotool getmouselocation --shell)
+      #+END_SRC
+*** xdotool (to sort)
+		$ xdotool getactivewindow
+    27263352
+    $ xdotool getactivewindow getwindowname
+    Terminal
+    $ xdotool getactivewindow | xprop -id 27263352 WM_CLASS
+    WM_CLASS(STRING) = "gnome-terminal-server", "Gnome-terminal"
 ** Autokey
 *** Install ~autokey~
 		- Problem :: How can I install ~autokey~?
@@ -1566,6 +1610,7 @@
     - [[https://github.com/autokey/autokey/wiki/FAQ][autokey/wiki/FAQ]]
     - [[https://github.com/autokey/autokey/wiki/Scripting][autokey/wiki/Scripting]]
 		- [[https://github.com/autokey/autokey/wiki/API-Examples][autokey/wiki/API-Examples]]
+		- [[https://github.com/autokey/autokey/wiki/Special-Keys][autokey/wiki/Special-Keys]]
     - [[https://github.com/hobbs/autokey-emacs-osx][autokey-emacs-osx (examples)]]
 *** writing autokey script
 		- see [[../linux/autokey--lib--autokey--scripting.py][autokey/lib/autokey/scripting.py]].
