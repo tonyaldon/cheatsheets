@@ -276,5 +276,25 @@
 	 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
 	 - [[https://v8.dev/docs][V8 documentation]]
 * links
+** miscellaneous
 	- [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
 	- [[https://fmt.dev/latest/index.html][fmt (homepage)]] A modern formatting library
+	- [[https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts#Comparison_of_keyboard_shortcuts][comparison of keyboard shortcut (wikipedia)]]
+** uncle bob (article)
+  - [[http://blog.cleancoder.com/uncle-bob/2019/08/22/WhyClojure.html][WhyClojure.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2019/06/16/ObjectsAndDataStructures.html][ObjectsAndDataStructures.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html][FPvsOO.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2017/12/18/Excuses.html][Excuses.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2017/10/04/CodeIsNotTheAnswer.html][CodeIsNotTheAnswer.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.html][TestDefinitions.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html][TypeWars.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2015/08/06/LetTheMagicDie.html][LetTheMagicDie.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html][TheCyclesOfTDD.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html][WhenToMock.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2014/03/11/when-to-think.html][when-to-think.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2013/12/10/Thankyou-Kent.html][Thankyou-Kent.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2013/03/05/TheStartUpTrap.html][TheStartUpTrap.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2012/12/19/Three-Paradigms.html][Three-Paradigms.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2012/05/15/NODB.html][NODB.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2011/10/20/Simple-Hickey.html][Simple-Hickey.html]]
+  - [[http://blog.cleancoder.com/uncle-bob/2011/01/17/software-craftsmanship-is-about.html][software-craftsmanship-is-about.html]]
