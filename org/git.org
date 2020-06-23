@@ -91,11 +91,20 @@
    git add .
    git commit -m "fixed untracked files"
    #+END_SRC
-** git-commit/git-tag/git-branch/git-rebase
+** git-commit/git-tag/git-branch
    #+BEGIN_SRC bash
    git commit -a --amend -m "<my-new-message>"
    git tag -d <tag-name>
    git branch -d <my-branch>
+   git rebase --help
+   #+END_SRC
+** git-rebase
+	 Note: When you rebase your history, the git hook
+	 ~prepare-commit-msg~ may interfer and insert text in commit you do
+	 not want.  A workaround can be to skip the ~prepare-commit-msg~ by
+	 rename it temporarily as backup file (with a trailing ~~~) before
+	 you start your ~git rebase~.
+	 #+BEGIN_SRC bash
    git rebase --help
    #+END_SRC
 ** uncommitted
