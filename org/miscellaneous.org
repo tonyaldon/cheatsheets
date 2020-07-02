@@ -275,6 +275,12 @@
 ** JavaScript
 	 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
 	 - [[https://v8.dev/docs][V8 documentation]]
+* prettier
+	- https://prettier.io/docs/en/install.html
+	- https://prettier.io/docs/en/cli.html
+	- ~npm install -g prettier~
+	- ~prettier --write my-file.html~
+
 * links
 ** miscellaneous
 	- [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
