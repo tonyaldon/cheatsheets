@@ -230,6 +230,50 @@
          }
        }
        #+END_SRC
+** Completion with ~company~ and ~ac-html-csswatcher~
+For a specific project, you get after evalute ~(find-file
+ac-html-csswatcher-source-dir)~, you get:
+/home/tony/.emacs.d/ac-html-csswatcher/completion/fc0158b84ee6522297baf9d3f79cc242/html-attributes-complete/
+In this directory the file ~global-class~ store all css classes
+defined in "css" files of your specific project, this file and the
+others in the directory ~html-attributes-complete~ are produced by
+~ac-html-csswatcher+~.
+First line of ~global-class~ file is ~App-id Defined in
+src/App.css\n~, that is, when you are in a ~html~ file of this
+specific project, and ~(point)~ is after the ~A~ in a the attribute
+~class~ of a any ~html~ tag, for instance: ~<h1 class="A"><h1>~,
+with ~company-web-html~ and ~ac-html-csswatcher~, you get the
+completion ~App-id~ (~sexp~ starting one of the line of ~global-class~
+file) proposed.
+
+to use ~ac-html-csswatcher~ in ~js-jsx-mode~ (ie: React JS):
+  1. modified ~company-web-html~, enable its use in other mode than
+     ~derived from html and web-mode~
+	2. Add ~company-web-html~ backend to ~company-backends~ in
+     ~js-jsx-mode~.
+	3. modified or advice after function
+     ~ac-html-csswatcher-setup-html-stuff-async~ in order to copy file
+     ~global-class~ to ~global-className~. (because in React, in
+     ~html tag~   or ~react component~, to specify ~css~ classes we
+     use the attribute ~className~)
+** completion with ~tide~ (js and jsx)
+	 - [[https://github.com/ananthakumaran/tide][tide (github)]]
+	 - add ~jsconfig.json~ file in the root of the project:
+		 see: https://code.visualstudio.com/docs/languages/jsconfig
+		 #+BEGIN_SRC js
+		 {
+			 "compilerOptions": {
+				 "target": "es2017",
+				 "allowSyntheticDefaultImports": true,
+				 "noEmit": true,
+				 "checkJs": true,
+				 "jsx": "react",
+				 "lib": [ "dom", "es2017" ]
+			 }
+		 }
+		 #+END_SRC
+	 - see example: [[https://patrickskiba.com/emacs/2019/09/07/emacs-for-react-dev.html][react dev (patrickskiba)]] and [[https://wdicc.com/emacs-as-react-native-ide/][react native ide]].
+	 - ~company-fuzzy~ doesn't work with ~company-tide~ provide by ~tide~.
 * latex
 ** code completion with lsp, digestif & company
    #+BEGIN_SRC emacs-lisp
