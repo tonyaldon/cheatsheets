@@ -127,6 +127,21 @@
    - https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
    - https://github.com/fniessen
    - https://github.com/fniessen/org-html-themes
+** parsing
+	- ~sudo apt install pandoc~
+	- ~pandoc -f org -t json _org-export-small.org > _pandoc-json.json~
+	- ~prettier --write pandoc-json.json~
+	- [[https://hg.sr.ht/~zck/org-parser][org-parser]]
+	- org-code ??? faces and functions
+	- with org-parser (clojure)
+		- ~lein run file.org~
+		- ~./target/org-parser.js file.org~
+	- [seems to be a good option] [[https://github.com/jlumpe/ox-json][ox-json]], [[https://github.com/jlumpe/pyorg][pyorg]] & [[https://github.com/jlumpe/pyorg-flask][pyorg-flask]] by jlumpe (github)
+	- [seems to be the best option] [[https://github.com/orgapp/orgajs][orgajs]], [[http://unifiedjs.com/][unifiedjs]]
+	- https://github.com/mattduck/org-toggl-py/blob/master/org-export-json.el
+	- https://www.reddit.com/r/emacs/comments/ccwl4r/i_made_a_json_export_back_end_for_org_mode/
+	- https://www.reddit.com/r/orgmode/comments/7wjmwr/orga_the_ultimate_orgmode_parser_in_javascript/
+	- https://lihautan.com/manipulating-ast-with-javascript/
 * dired-mode
 ** ideas
 	 - [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
