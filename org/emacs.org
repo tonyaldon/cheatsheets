@@ -431,7 +431,16 @@
      Xwindows, when lauching emacs.)
      Problem solved by removing the binding ~M-[~. See
      [[https://superuser.com/questions/729366/emacs-adding-strange-characters-at-the-beginning-of-files][stackoverflow thread]].
-
+	 * Problem with lockfiles when using ~create-react-app~ to write
+     React js App. Seems to be a conflict with ~watchman~ that stop
+     the app whenever it detect a new file. But when you edit a file,
+     for instance ~file.js~, while it is not saved, emacs (by
+     default) create a temporary file ~#file.js~ that is a
+     symlink. And that symlink cause ~watchman~ to stop the
+     application.
+		 Problem solved by setting the variable ~create-lockfiles~ to
+     ~nil~, by evaluating the code ~(setq create-lockfiles nil)~.
+		 See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][emacs creates temporary symbolic link]]
 ** emacs server/client
 *** start emacs faster
     - Problem :: How can I run emacs faster at startup?
@@ -566,6 +575,19 @@
    - [[http://dreamsongs.com/RiseOfWorseIsBetter.html][the rise of worse is better]]
    - [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]: emacs-lisp example, see ~logand~.
 * Ideas
+** skeleton directory for some config file
+	 files:
+	  - ~.csswatcher~: package ~ac-html-csswatcher~
+			#+BEGIN_SRC bash
+      # ignore all css
+			ignore: \.css$
+			# except app.css
+			use: app\.css
+			# and skip recursive scanning node_modules, it may be slow!
+			skip: node_modules
+			#+END_SRC
+		- ~.projectile~: package ~projectile~
+		- ~jsconfig.json~: package ~tide~
 ** Abo-Abo
    - [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
    - [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
@@ -584,10 +606,8 @@
    - [[https://github.com/ndwarshuis/org-sql][org-sql]]
    - see function: org-element-parse-buffer
 ** Other
-   - subword package [[/home/tony/work/apps/emacs/lisp/progmodes/subword.el]]
+   - have a look on ~company-lsp~ and ~lsp-mode~
    - diff-hl.el package -> Diff highlights in the fringe (https://protesilaos.com/dotemacs/)
-   - column-number-mode
-   - https://github.com/benma/emacs.d/blob/master/init.el (section fill-column-indicator & company/fill-column-indicator)
 	 - javascript:
 		 - https://www.npmjs.com/package/indium
      - https://github.com/NicolasPetton/Indium
