@@ -281,6 +281,13 @@
 	- ~npm install -g prettier~
 	- ~prettier --write my-file.html~
 
+* Make code documentation
+-- projectile website doc use algolia
+- https://github.com/bbatsov/docs.projectile.mx
+- https://github.com/bbatsov/projectile
+- https://docs.projectile.mx/projectile/
+- https://antora.org/
+- https://github.com/yashi/org-asciidoc
 * links
 ** miscellaneous
 	- [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
