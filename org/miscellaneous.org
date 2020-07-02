@@ -275,6 +275,52 @@
 ** JavaScript
 	 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
 	 - [[https://v8.dev/docs][V8 documentation]]
+** installation Clojure & leiningen
+*** installation clojure
+	 - [[https://clojure.org/guides/getting_started][clojure (getting started)]]
+	 - ~java~ installed ??
+		 #+BEGIN_SRC bash
+	   java --version
+		 #+END_SRC
+		 give me:
+		 #+BEGIN_SRC bash
+		 openjdk 11.0.7 2020-04-14
+		 OpenJDK Runtime Environment (build 11.0.7+10-post-Ubuntu-2ubuntu218.04)
+		 OpenJDK 64-Bit Server VM (build 11.0.7+10-post-Ubuntu-2ubuntu218.04, mixed mode, sharing)
+		 #+END_SRC
+	 - install ~rlwrap~:
+		 #+BEGIN_SRC bash
+	   sudo apt install rlwrap
+		 #+END_SRC
+	 - install ~clojure~ with ~homebrew~:
+		 #+BEGIN_SRC bash
+	   brew install clojure/tools/clojure
+		 #+END_SRC
+		 give me:
+		 #+BEGIN_SRC bash
+		 ==> Caveats
+		 ==> perl
+		 By default non-brewed cpan modules are installed to the Cellar. If you wish
+		 for your modules to persist across updates we recommend using `local::lib`.
+
+		 You can set that up like this:
+			 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+			 echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"' >> ~/.profile
+		 ==> ruby
+		 By default, binaries installed by gem will be placed into:
+			 /home/tony/.linuxbrew/lib/ruby/gems/2.7.0/bin
+
+		 You may want to add this to your PATH.
+
+		 Emacs Lisp files have been installed to:
+			 /home/tony/.linuxbrew/share/emacs/site-lisp/ruby
+		 #+END_SRC
+*** installation leiningen
+	 - [[https://leiningen.org/][leiningen]]
+	 - install with ~apt~:
+		 #+BEGIN_SRC bash
+	   sudo apt install leiningen
+		 #+END_SRC
 * prettier
 	- https://prettier.io/docs/en/install.html
 	- https://prettier.io/docs/en/cli.html
