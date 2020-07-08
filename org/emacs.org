@@ -87,6 +87,8 @@
    | ~M-RET~   | ~org-meta-return~       |
    | ~C-c ;~   | ~org-toggle-comment~    |
    | ~C-c C-e~ | ~org-export-dispatch~   |
+   | ???       | ~org-move-subtree-up~   |
+   | ???       | ~org-move-subtree-down~ |
 ** export file
 	 - ~org-export-backends~, ~(require 'ox-man)~
 *** info file
@@ -172,6 +174,9 @@
    | ~l~ | magit-log    |
    | ~z~ | magit-stash  |
    | ~r~ | magit-rebase |
+* subword-mode
+	- subword-mode intersting to use in js-mode.
+	- subword-mode is a builtin package.
 * projectile
 	To refresh the cache of a project.
 	- M-x projectile-invalidate-cache
@@ -665,7 +670,9 @@ to use ~ac-html-csswatcher~ in ~js-jsx-mode~ (ie: React JS):
    - [[https://github.com/ndwarshuis/org-sql][org-sql]]
    - see function: org-element-parse-buffer
 ** Other
-   - have a look on ~company-lsp~ and ~lsp-mode~
+	 - https://github.com/benma/emacs.d/blob/master/init.el
+	   (section fill-column-indicator & company/fill-column-indicator)
+	 - have a look on ~company-lsp~ and ~lsp-mode~
    - diff-hl.el package -> Diff highlights in the fringe (https://protesilaos.com/dotemacs/)
 	 - javascript:
 		 - https://www.npmjs.com/package/indium
@@ -734,3 +741,6 @@ to use ~ac-html-csswatcher~ in ~js-jsx-mode~ (ie: React JS):
    - [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
    - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
    - [[http://aspell.net/][aspell (homepage)]]
+* Discard packages
+** fill-column-indicator
+	 - Conflict with my use of ~avy-goto-end-of-line~ command.
