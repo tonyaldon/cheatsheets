@@ -1,149 +1,5 @@
-#+title: Video Tricks
+#+title: Media Tricks
 #+author: Tony Aldon
-
-* Video project skeleton
-
-#+BEGIN_SRC text
-project/
-  audacity/          # edited audios
-  images/            # edited images
-  kdenlive/          # edited videos
-  r-audios/          # raw audios
-  r-images/          # raw images
-  r-videos/          # raw videos
-  src/               # code and docs to generate videos
-    README.md
-#+END_SRC
-
-* Alsa card
-You can find out what alsa devices are usable with the command
-~arecord~. For instance: ~arecord -l~ gives me:
-
-#+BEGIN_SRC text
-card 1: PCH [HDA Intel PCH], device 0: 92HD91BXX Analog [92HD91BXX Analog]
-Subdevices: 1/1
-Subdevice #0: subdevice #0
-#+END_SRC
-
-So with ~ffmpeg~ I can use the flag ~-i~ like this ~-i hw:1,0~.
-* Audio
-** Links
-- [[https://www.youtube.com/watch?v=10FFKl_0GSA][How to remove background noise in audacity]]
-- [[https://www.youtube.com/watch?v=O5H7xRzjVkw][How to Make Your Voice Sound Better in Audacity]]
-- [[https://www.youtube.com/watch?v=Liqm7AO9HgM][Setting audio recording levels]]
-** Recording
-1) Turn off your fan,
-2) Check the Microphone position,
-3) Use a pop filter,
-4) Check the audio input level with  *audacity*. It should be in
-   the range *[-18,-6]*. And modify the audio input level in the
-   *system preferences* of the OS.
-** Editing whith *audacity*
-1) Noise
-
-| noise reduction     | 22 |
-| sensitivity         |  6 |
-| frequency smoothing |  0 |
-
-2) Compressor
-
-| threshold    | -15 |
-| noise floor  | -40 |
-| ratio        | 2:1 |
-| attack time  | 0.2 |
-| release time |   1 |
-
-3) Equalization
-   - bass boost (deeper voice)
-   - trebble boost (more presence)
-4) Normalize (make a little louder)
-5) Hard limiter (-3db). And after you can normalize once more, in
-   order to make the sound louder.
-** ~pactl~
-*** How can I manage my audio volume with command lines?
-- Use ~pactl~ command.
-- ~pactl~: Control a running PulseAudio sound server.
-- See examples  [[https://askubuntu.com/questions/97936/terminal-command-to-set-audio-volume][terminal command to set audio volume]],
-  [[https://unix.stackexchange.com/questions/260981/what-do-the-sink-and-source-keywords-mean-in-pulseaudio][sink and source keywords in pulseaudio]].
-- ~pactl~ keywords:
-
-| keywords | stands for           |
-|----------+----------------------|
-| Sink     | speakers, headphones |
-| Source   | microphone           |
-
-- volume:
-
-#+BEGIN_SRC bash
-pactl set-sink-volume 0 50%   # or pactl set-sink-volume @DEFAULT_SINK@ 50%
-pactl set-sink-volume 0 +10%
-pactl set-sink-volume 0 -10%
-pactl set-sink-mute 0 1  # mute
-pactl set-sink-mute 0 0 # unmute
-#+END_SRC
-
-- get informations:
-
-#+BEGIN_SRC bash
-pactl list short sinks
-pactl list short sources
-#+END_SRC
-
-- volume input microphone:
-
-#+BEGIN_SRC bash
-pactl set-source-volume @DEFAULT_SOURCE@ 15%
-pactl set-source-volume @DEFAULT_SOURCE@ +5%
-pactl set-source-volume @DEFAULT_SOURCE@ -5%
-#+END_SRC
-
-* ~ffmpeg~
-** Errors
-*** When I try to convert ~mkv~ file to ~mp4~ file I get the error ~Too many packets buffered for output stream 0:1~?
-- Use ~-max_muxing_queue_size~ flag of ~ffmpeg~.
-- The problem was solved by running the command:
-
-#+BEGIN_SRC bash
-ffmpeg -i input.mkv -max_muxing_queue_size 9999 output.mp4
-#+END_SRC
-
-*** After grabbing a screencast, I had codecs message error when playing with ~vlc~?
-- The problem was solved by changing the video codec when
-  grabbing the screencast (~libx265~) and I run this command:
-
-#+BEGIN_SRC bash
-ffmpeg -video_size 1024x768 -framerate 60 -f x11grab -i :0.0 -f \
-  pulse -ac 2 -i default -c:v libx265  p4.mkv
-#+END_SRC
-
-** Codecs
-*** How can I get information on the ~ffmpeg~ ~codecs~?
-- If you want to browse the list of the ~ffmpeg~ ~codecs~, run
-  the command:
-
-#+BEGIN_SRC bash
-ffmpeg -encoders | grep -e "^ V\..*" | less # video codecs
-ffmpeg -encoders | grep -e "^ A\..*" | less # audio codecs
-#+END_SRC
-
-** Speed
-*** How can I speed up a video?
-- Use ~setpts~ filter for the video (frames).
-- Use ~atempo~ filter for audio.
-- See example [[https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video][how to speed up a video/audio (wiki)]].
-- If you want to double the speed of the video (frames) and disable
-  the audio, run the command:
-
-#+BEGIN_SRC bash
-ffmpeg -i input.mp4 -an -filter:v "setpts=0.5*PTS" output.mp4
-#+END_SRC
-
-- If you want to double the speed of the audio and disable
-  the video (frames), run the command:
-
-#+BEGIN_SRC bash
-ffmpeg -i input.mp4 -filter:a "atempo=2.0" -vn output.mp4
-#+END_SRC
 
 * *Kdenlive*
 ** Effects
@@ -262,9 +118,176 @@ ffmpeg -i input.mp4 -filter:a "atempo=2.0" -vn output.mp4
   <!-- ... -->
 </mlt>
 #+END_SRC
+* *Inkscape*
+** Revert svg
+*** How to revert ~svg~ file from last saved version of the document?
+- See example here [[https://bugs.launchpad.net/inkscape/+bug/804068][revert svg from last saved version]].
+- You have two ways to do it:
+  - With the mouse ~File > Revert~,
+  - With keyboard shortcut ~M-f v~,
+- If you want the verb's ID for revert action, run the command:
 
-* Download videos
-** youtube-dl
+#+BEGIN_SRC bash
+inkscape --verb-list | grep -i revert
+#+END_SRC
+** Custom keybindings
+- /usr/include/gtk-3.0/gdk/gdkkeysyms.h
+- /home/tony/.config/inkscape/keys
+- /usr/share/inkscape/keys/
+- /usr/share/inkscape/keys/default.xml
+- /usr/share/inkscape/ui/keybindings.rc
+
+- https://gitlab.gnome.org/GNOME/gtk/raw/master/gdk/gdkkeysyms.h
+- https://gitlab.gnome.org/GNOME/gtk/
+- https://gitlab.com/inkscape/inkscape
+- https://wiki.inkscape.org/wiki/index.php/Customizing_Inkscape
+- https://inkscape.org/doc/keys.html
+* *Audacity*
+** Links
+- [[https://www.youtube.com/watch?v=10FFKl_0GSA][How to remove background noise in audacity]]
+- [[https://www.youtube.com/watch?v=O5H7xRzjVkw][How to Make Your Voice Sound Better in Audacity]]
+- [[https://www.youtube.com/watch?v=Liqm7AO9HgM][Setting audio recording levels]]
+** Recording
+1) Turn off your fan,
+2) Check the Microphone position,
+3) Use a pop filter,
+4) Check the audio input level with  *audacity*. It should be in
+   the range *[-18,-6]*. And modify the audio input level in the
+   *system preferences* of the OS.
+** Editing with *audacity*
+1) Noise
+
+| noise reduction     | 22 |
+| sensitivity         |  6 |
+| frequency smoothing |  0 |
+
+2) Compressor
+
+| threshold    | -15 |
+| noise floor  | -40 |
+| ratio        | 2:1 |
+| attack time  | 0.2 |
+| release time |   1 |
+
+3) Equalization
+   - bass boost (deeper voice)
+   - trebble boost (more presence)
+4) Normalize (make a little louder)
+5) Hard limiter (-3db). And after you can normalize once more, in
+   order to make the sound louder.
+* *ffmpeg*
+** Errors
+*** When I try to convert ~mkv~ file to ~mp4~ file I get the error ~Too many packets buffered for output stream 0:1~?
+- Use ~-max_muxing_queue_size~ flag of ~ffmpeg~.
+- The problem was solved by running the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mkv -max_muxing_queue_size 9999 output.mp4
+#+END_SRC
+
+*** After grabbing a screencast, I had codecs message error when playing with ~vlc~?
+- The problem was solved by changing the video codec when
+  grabbing the screencast (~libx265~) and I run this command:
+
+#+BEGIN_SRC bash
+ffmpeg -video_size 1024x768 -framerate 60 -f x11grab -i :0.0 -f \
+  pulse -ac 2 -i default -c:v libx265  p4.mkv
+#+END_SRC
+
+** Codecs
+*** How can I get information on the ~ffmpeg~ ~codecs~?
+- If you want to browse the list of the ~ffmpeg~ ~codecs~, run
+  the command:
+
+#+BEGIN_SRC bash
+ffmpeg -encoders | grep -e "^ V\..*" | less # video codecs
+ffmpeg -encoders | grep -e "^ A\..*" | less # audio codecs
+#+END_SRC
+
+** Speed
+*** How can I speed up a video?
+- Use ~setpts~ filter for the video (frames).
+- Use ~atempo~ filter for audio.
+- See example [[https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video][how to speed up a video/audio (wiki)]].
+- If you want to double the speed of the video (frames) and disable
+  the audio, run the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mp4 -an -filter:v "setpts=0.5*PTS" output.mp4
+#+END_SRC
+
+- If you want to double the speed of the audio and disable
+  the video (frames), run the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mp4 -filter:a "atempo=2.0" -vn output.mp4
+#+END_SRC
+
+* Audio
+** ALSA cards
+*** How can I find the usable ALSA devices?
+- Use ~arecord~ command.
+- ~arecord~: Command-line soundfile recorder for the
+  ALSA soundcard driver.
+- If you want to find out what alsa devices are usable, run the
+  command:
+
+#+BEGIN_SRC bash
+arecord -l
+#+END_SRC
+
+- On my laptop it gives me:
+
+#+BEGIN_SRC text
+card 1: PCH [HDA Intel PCH], device 0: 92HD91BXX Analog [92HD91BXX Analog]
+Subdevices: 1/1
+Subdevice #0: subdevice #0
+#+END_SRC
+
+- So with ~ffmpeg~ I can use the flag ~-i~ like this ~-i hw:1,0~.
+** Pulse Audio sound server
+*** How can I manage my audio volume with command lines?
+- Use ~pactl~ command.
+- ~pactl~: Control a running PulseAudio sound server.
+- See examples  [[https://askubuntu.com/questions/97936/terminal-command-to-set-audio-volume][terminal command to set audio volume]],
+  [[https://unix.stackexchange.com/questions/260981/what-do-the-sink-and-source-keywords-mean-in-pulseaudio][sink and source keywords in pulseaudio]].
+- ~pactl~ keywords:
+
+| keywords | stands for           |
+|----------+----------------------|
+| Sink     | speakers, headphones |
+| Source   | microphone           |
+
+- volume:
+
+#+BEGIN_SRC bash
+pactl set-sink-volume 0 50%   # or pactl set-sink-volume @DEFAULT_SINK@ 50%
+pactl set-sink-volume 0 +10%
+pactl set-sink-volume 0 -10%
+pactl set-sink-mute 0 1  # mute
+pactl set-sink-mute 0 0 # unmute
+#+END_SRC
+
+- get informations:
+
+#+BEGIN_SRC bash
+pactl list short sinks
+pactl list short sources
+#+END_SRC
+
+- volume input microphone:
+
+#+BEGIN_SRC bash
+pactl set-source-volume @DEFAULT_SOURCE@ 15%
+pactl set-source-volume @DEFAULT_SOURCE@ +5%
+pactl set-source-volume @DEFAULT_SOURCE@ -5%
+#+END_SRC
+* Content
+** Links
+- [[https://commons.wikimedia.org/wiki/Category:SVG_icons_by_subject][SVG_icons_by_subject (wikimedia)]]
+- [[https://commons.wikimedia.org/wiki/Category:SVG_arrow_icons][SVG_arrow_icons (wikimedia)]]
+- [[https://pixabay.com/][free images,videos,... (pixabay)]]
+** Download videos
 *** How can I download the audio of a youtube video?
 - Use ~youtube-dl~ command.
 - ~youtube-dl~: Command-line program to download videos from
@@ -294,12 +317,59 @@ youtube-dl --rm-cache-dir
 - [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
 - [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
 - [[https://videojs.com/][videojs (js library)]]
-* Video hosting
+- [[https://logosbynick.com/gimp-delete-background-to-transparent/][gimp delete background to transparent]]
+- [[https://logosbynick.com/hidden-secrets-in-inkscape/][hidden secrets in inkscape]]
+- [[https://www.wpbeginner.com/beginners-guide/how-to-resize-and-make-images-larger-without-losing-quality/][make image without losing quality]]
+* Miscellaneous
+** Video project skeleton
+
+#+BEGIN_SRC text
+project/
+  audacity/          # edited audios
+  images/            # edited images
+  kdenlive/          # edited videos
+  r-audios/          # raw audios
+  r-images/          # raw images
+  r-videos/          # raw videos
+  src/               # code and docs to generate videos
+    README.md
+#+END_SRC
+** Screenshot
+*** How can I take a screenshot of my screen with a command line?
+- Use ~import~ command.
+- ~import~: Saves any visible window on an X server and outputs it as
+  an image file.
+- If you want to take a screenshot of your window or a part of
+  your window, run one of the commands:
+
+#+BEGIN_SRC bash
+import my-screenshot.png  #window on click or selection with mouse
+import -window root -pause 3 my-whole-screen-after-3-seconds.png
+#+END_SRC
+
+- If you want to install ~import~, as it's a program member of the
+  *ImageMagick* suite of tools, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install imagemagick
+#+END_SRC
+** PNG and JPG formats
+*** What is the difference between ~png~ and ~jpg~ format?
+- See examples [[http://www.differencebetween.net/technology/protocols-formats/difference-between-jpg-and-png/][differencebetween.net]] and [[https://www.howtogeek.com/howto/30941/whats-the-difference-between-jpg-png-and-gif/][howtogeek]].
+
+| jpg | lossy compression, very small file size, |
+|     | supports embedding of EXIF, doesn't      |
+|     | support transparency.                    |
+|-----+------------------------------------------|
+| png | lossless compression, large file size,   |
+|     | doesn't support embedding EXIF, support  |
+|     | transparency.                            |
+** Video hosting
 - [[https://tyler.io/diy-video-hosting/][diy video hosting (article)]]
 - [[https://s3tools.org/s3cmd][s3cmd (s3 tools)]]
 - [[https://s3tools.org/s3_about][s3 about (s3 tools)]]
 - [[https://bunnycdn.com/][bunny CDN]]
-* Miscellaneous
+** Notes
 - TikTok video format: 540x960
 - To see: ~pavucontrol~ (to capture application (system) audio instead of
   microphone)
