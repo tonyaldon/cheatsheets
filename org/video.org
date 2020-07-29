@@ -290,13 +290,17 @@ youtube-dl --rm-cache-dir
 #+END_SRC
 
 * Links
-- [[https://www.youtube.com/watch?v=jSqv8Z9IMg0][Kdenlive: Speed Up Or Slow Down A Video Clip]]
 - [[https://www.ffmpeg.org/][ffmpeg website]]
 - [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
 - [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
-- [[https://www.youtube.com/watch?v=vLIznXy27Pc][(youtube) video bit rate]]
-- [[https://www.youtube.com/watch?v=J8EdjrZ1zFw][(youtube) What is a key frame]]
-* Ideas
-- see: ~pavucontrol~ (to capture application (system) audio instead of
+- [[https://videojs.com/][videojs (js library)]]
+* Video hosting
+- [[https://tyler.io/diy-video-hosting/][diy video hosting (article)]]
+- [[https://s3tools.org/s3cmd][s3cmd (s3 tools)]]
+- [[https://s3tools.org/s3_about][s3 about (s3 tools)]]
+- [[https://bunnycdn.com/][bunny CDN]]
+* Miscellaneous
+- TikTok video format: 540x960
+- To see: ~pavucontrol~ (to capture application (system) audio instead of
   microphone)
-- see: cloud transcoding
+- To see: cloud transcoding
