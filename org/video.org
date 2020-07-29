@@ -1,222 +1,261 @@
 #+title: Video Tricks
 #+author: Tony Aldon
 
-* video project skeleton
-	project/
-    README.md
-    audacity/          # edited audio
-    images/            # edited images
-    kdenlive/          # edited videos
-    r-audios/          # raw audios
-    r-images/          # raw images
-    r-videos/          # raw videos
-    src/               # code and docs to generate videos...
-* Alsa card
-  You can find out what alsa devices are usable with the command
-  ~arecord~. For instance: ~arecord -l~ gives me:
-  #+BEGIN_SRC bash
-  card 1: PCH [HDA Intel PCH], device 0: 92HD91BXX Analog [92HD91BXX Analog]
-  Subdevices: 1/1
-  Subdevice #0: subdevice #0
-  #+END_SRC
+* Video project skeleton
 
-  So with *ffmpeg* I can use property: ~-i hw:1,0~.
+#+BEGIN_SRC text
+project/
+  audacity/          # edited audios
+  images/            # edited images
+  kdenlive/          # edited videos
+  r-audios/          # raw audios
+  r-images/          # raw images
+  r-videos/          # raw videos
+  src/               # code and docs to generate videos
+    README.md
+#+END_SRC
+
+* Alsa card
+You can find out what alsa devices are usable with the command
+~arecord~. For instance: ~arecord -l~ gives me:
+
+#+BEGIN_SRC text
+card 1: PCH [HDA Intel PCH], device 0: 92HD91BXX Analog [92HD91BXX Analog]
+Subdevices: 1/1
+Subdevice #0: subdevice #0
+#+END_SRC
+
+So with ~ffmpeg~ I can use the flag ~-i~ like this ~-i hw:1,0~.
 * Audio
 ** Links
-   [[https://www.youtube.com/watch?v=10FFKl_0GSA][How to remove background noise in audacity]]
-   [[https://www.youtube.com/watch?v=O5H7xRzjVkw][How to Make Your Voice Sound Better in Audacity]]
-   [[https://www.youtube.com/watch?v=Liqm7AO9HgM][Setting audio recording levels]]
+- [[https://www.youtube.com/watch?v=10FFKl_0GSA][How to remove background noise in audacity]]
+- [[https://www.youtube.com/watch?v=O5H7xRzjVkw][How to Make Your Voice Sound Better in Audacity]]
+- [[https://www.youtube.com/watch?v=Liqm7AO9HgM][Setting audio recording levels]]
 ** Recording
-   1) Turn off your fan,
-   2) Check the Microphone position,
-   3) Use a pop filter,
-   4) Check the audio input level with  *audacity*. It should be in
-      the range *[-18,-6]*. And modify the audio input level in the
-      *system preferences* of the OS.
-** Editing
-   Audio edited with *audacity*.
-   1) Noise
-      | noise reduction     | 22 |
-      | sensitivity         |  6 |
-      | frequency smoothing |  0 |
-   2) Compressor
-      | threshold    | -15 |
-      | noise floor  | -40 |
-      | ratio        | 2:1 |
-      | attack time  | 0.2 |
-      | release time | 1 |
-   3) Equalization
-      * bass boost (deeper voice)
-      * trebble boost (more presence)
-   4) Normalize (make a little louder)
-   5) Hard limiter (-3db). And after you can normalize once more, in
-      order to make the sound louder.
-** command line
-*** pactl
-		- Problem :: How can I manage my audio volume with command line?
-		- Use ~pactl~ command.
-		- Control a running PulseAudio sound server.
-		- See examples  [[https://askubuntu.com/questions/97936/terminal-command-to-set-audio-volume][terminal command to set audio volume]],
-		  [[https://unix.stackexchange.com/questions/260981/what-do-the-sink-and-source-keywords-mean-in-pulseaudio][sink and source keywords in pulseaudio]]. 
-    - (keywords with ~pactl~) Sink = speakers, headphones
-	  - (keywords with ~pactl~) Source = mic
-	  - volume:
-	    #+BEGIN_SRC bash		 
-	    pactl set-sink-volume 0 50%   # or pactl set-sink-volume @DEFAULT_SINK@ 50%
-	    pactl set-sink-volume 0 +10%
-	    pactl set-sink-volume 0 -10%
-	    pactl set-sink-mute 0 1  # mute
-	    pactl set-sink-mute 0 0 # unmute
-	    #+END_SRC
-	  - get informations:
-      #+BEGIN_SRC bash
-		  pactl list short sinks
-		  pactl list short sources
-		  #+END_SRC
-	  - volume input microphone:
-      #+BEGIN_SRC bash
-		  pactl set-source-volume @DEFAULT_SOURCE@ 15%
-		  pactl set-source-volume @DEFAULT_SOURCE@ +5%
-		  pactl set-source-volume @DEFAULT_SOURCE@ -5%
-		  #+END_SRC
+1) Turn off your fan,
+2) Check the Microphone position,
+3) Use a pop filter,
+4) Check the audio input level with  *audacity*. It should be in
+   the range *[-18,-6]*. And modify the audio input level in the
+   *system preferences* of the OS.
+** Editing whith *audacity*
+1) Noise
 
-* ffmpeg
-** errors
-*** Too many packets buffered
-		- Problem :: When I try to convert ~mkv~ file to ~mp4~ file I get
-      the error ~Too many packets buffered for output stream 0:1~?
-		- Use ~-max_muxing_queue_size~ flag of ~ffmpeg~.
-		- The problem was solved by running the command:
-			#+BEGIN_SRC bash
-			ffmpeg -i input.mkv -max_muxing_queue_size 9999 output.mp4
-      #+END_SRC
-*** codecs error with vlc
-		- Problem :: After grabbing a screencast, I had codecs message
-      error when playing with ~vlc~?
-		- The problem was solved by changing the video codec when
-      grabbing the screencast (~libx265~) and I run this command:
-			#+BEGIN_SRC bash
-			ffmpeg -video_size 1024x768 -framerate 60 -f x11grab -i :0.0 -f \
-			  pulse -ac 2 -i default -c:v libx265  p4.mkv
-      #+END_SRC
-** codecs
-*** codecs list
-		- Problem :: How can I get information on the ~ffmpeg~ ~codecs~?
-		- If you want to browse the list of the ~ffmpeg~ ~codecs~, run
-      the command:
-			#+BEGIN_SRC bash
-			ffmpeg -encoders | grep -e "^ V\..*" | less # video codecs
-			ffmpeg -encoders | grep -e "^ A\..*" | less # audio codecs
-      #+END_SRC
-** speed up a video
-	 - https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video
-	 - ffmpeg -i _input.mp4 -an -filter:v "setpts=0.5*PTS" _output.mp4
-* kdenlive
+| noise reduction     | 22 |
+| sensitivity         |  6 |
+| frequency smoothing |  0 |
+
+2) Compressor
+
+| threshold    | -15 |
+| noise floor  | -40 |
+| ratio        | 2:1 |
+| attack time  | 0.2 |
+| release time |   1 |
+
+3) Equalization
+   - bass boost (deeper voice)
+   - trebble boost (more presence)
+4) Normalize (make a little louder)
+5) Hard limiter (-3db). And after you can normalize once more, in
+   order to make the sound louder.
+** ~pactl~
+*** How can I manage my audio volume with command lines?
+- Use ~pactl~ command.
+- ~pactl~: Control a running PulseAudio sound server.
+- See examples  [[https://askubuntu.com/questions/97936/terminal-command-to-set-audio-volume][terminal command to set audio volume]],
+  [[https://unix.stackexchange.com/questions/260981/what-do-the-sink-and-source-keywords-mean-in-pulseaudio][sink and source keywords in pulseaudio]].
+- ~pactl~ keywords:
+
+| keywords | stands for           |
+|----------+----------------------|
+| Sink     | speakers, headphones |
+| Source   | microphone           |
+
+- volume:
+
+#+BEGIN_SRC bash
+pactl set-sink-volume 0 50%   # or pactl set-sink-volume @DEFAULT_SINK@ 50%
+pactl set-sink-volume 0 +10%
+pactl set-sink-volume 0 -10%
+pactl set-sink-mute 0 1  # mute
+pactl set-sink-mute 0 0 # unmute
+#+END_SRC
+
+- get informations:
+
+#+BEGIN_SRC bash
+pactl list short sinks
+pactl list short sources
+#+END_SRC
+
+- volume input microphone:
+
+#+BEGIN_SRC bash
+pactl set-source-volume @DEFAULT_SOURCE@ 15%
+pactl set-source-volume @DEFAULT_SOURCE@ +5%
+pactl set-source-volume @DEFAULT_SOURCE@ -5%
+#+END_SRC
+
+* ~ffmpeg~
+** Errors
+*** When I try to convert ~mkv~ file to ~mp4~ file I get the error ~Too many packets buffered for output stream 0:1~?
+- Use ~-max_muxing_queue_size~ flag of ~ffmpeg~.
+- The problem was solved by running the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mkv -max_muxing_queue_size 9999 output.mp4
+#+END_SRC
+
+*** After grabbing a screencast, I had codecs message error when playing with ~vlc~?
+- The problem was solved by changing the video codec when
+  grabbing the screencast (~libx265~) and I run this command:
+
+#+BEGIN_SRC bash
+ffmpeg -video_size 1024x768 -framerate 60 -f x11grab -i :0.0 -f \
+  pulse -ac 2 -i default -c:v libx265  p4.mkv
+#+END_SRC
+
+** Codecs
+*** How can I get information on the ~ffmpeg~ ~codecs~?
+- If you want to browse the list of the ~ffmpeg~ ~codecs~, run
+  the command:
+
+#+BEGIN_SRC bash
+ffmpeg -encoders | grep -e "^ V\..*" | less # video codecs
+ffmpeg -encoders | grep -e "^ A\..*" | less # audio codecs
+#+END_SRC
+
+** Speed
+*** How can I speed up a video?
+- Use ~setpts~ filter for the video (frames).
+- Use ~atempo~ filter for audio.
+- See example [[https://trac.ffmpeg.org/wiki/How%20to%20speed%20up%20/%20slow%20down%20a%20video][how to speed up a video/audio (wiki)]].
+- If you want to double the speed of the video (frames) and disable
+  the audio, run the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mp4 -an -filter:v "setpts=0.5*PTS" output.mp4
+#+END_SRC
+
+- If you want to double the speed of the audio and disable
+  the video (frames), run the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mp4 -filter:a "atempo=2.0" -vn output.mp4
+#+END_SRC
+
+* Kdenlive
 ** Clip paths
-*** Modify clip path
-		- Problem :: How can I modify ~clip~ paths in ~kdenlive~?
-		- You can modify the paths that appears in the tags ~<property
-      name="resource">~ and ~<mlt ... root="...">~ in your
-      ~my-project.kdenlive~ file.
-		- Suppose your project ~my-project~ looks like this:
-			#+BEGIN_SRC bash
-			~/my-project/
-			    my-project.kdenlive
-					clip/
-					    video-1.mp4
-							video-2.mp4
-      #+END_SRC
-			On my machine, as my username is ~tony~, the file
-      ~my-project.kdenlive~ looks like this:
-			#+BEGIN_SRC nxml
-			<mlt title="Anonymous Submission" version="6.6.0"
-					 root="/home/tony/my-project" producer="main bin"
-					 LC_NUMERIC="en_US.UTF-8">
-				<!-- ... -->
-				<producer id="1" out="124" in="0">
-					<property name="resource">
-						/home/tony/my-project/clip/video-1.mp4
-					</property>
-					<!-- ... -->
-				</producer>
-				<producer id="2" out="124" in="0">
-					<property name="resource">
-						/home/tony/my-project/clip/video-2.mp4
-					</property>
-					<!-- ... -->
-				</producer>
-				<!-- ... -->
-			</mlt>
-			#+END_SRC
-			Now if you rename your project directory ~new-dir~ by running
-      the command ~mv ~/my-project ~/new-dir~, in ~kdenlive~ the links
-      (~paths~) to the clips will be broken and ~kdenlive~ will
-      complain about when opening you project
-      ~~/new-dir/my-project.kdenlive~. You have two solution to make
-      the project running:
-			- You can modify the paths manually when kdenlive ask you for at
-        opening the project (could be quite long if you have a lot of
-        clip),
-			- you can, before opening ~~/new-dir/my-project.kdenlive~ with
-        kdenlive, modify the paths that appears in the tags ~<property
-        name="resource">~ and ~<mlt ... root="...">~ with any text
-        editor. To do so, I replace ~my-project~ by ~new-dir~ in the
-        file ~~/new-dir/my-project.kdenlive~ and the file looks like
-        this:
-				#+BEGIN_SRC nxml
-				<mlt title="Anonymous Submission" version="6.6.0"
-						 root="/home/tony/new-dir" producer="main bin"
-						 LC_NUMERIC="en_US.UTF-8">
-					<!-- ... -->
-					<producer id="1" out="124" in="0">
-						<property name="resource">
-							/home/tony/new-dir/clip/video-1.mp4
-						</property>
-						<!-- ... -->
-					</producer>
-					<producer id="2" out="124" in="0">
-						<property name="resource">
-							/home/tony/new-dir/clip/video-2.mp4
-						</property>
-						<!-- ... -->
-					</producer>
-					<!-- ... -->
-				</mlt>
-			  #+END_SRC
+*** How can I modify ~clip~ paths in ~kdenlive~?
+- You can modify the paths that appears in the tags ~<property
+  name="resource">~ and ~<mlt ... root="...">~ in your
+  ~project.kdenlive~ file.
+- Suppose your project ~project~ looks like this:
+
+#+BEGIN_SRC text
+~/project/
+  project.kdenlive
+  clip/
+    video-1.mp4
+    video-2.mp4
+#+END_SRC
+
+-  On my machine, as my username is ~tony~, the file
+  ~project.kdenlive~ looks like this:
+
+#+BEGIN_SRC nxml
+<mlt title="Anonymous Submission" version="6.6.0"
+     root="/home/tony/project" producer="main bin"
+     LC_NUMERIC="en_US.UTF-8">
+  <!-- ... -->
+  <producer id="1" out="124" in="0">
+    <property name="resource">
+      /home/tony/project/clip/video-1.mp4
+    </property>
+    <!-- ... -->
+  </producer>
+  <producer id="2" out="124" in="0">
+    <property name="resource">
+      /home/tony/project/clip/video-2.mp4
+    </property>
+    <!-- ... -->
+  </producer>
+  <!-- ... -->
+</mlt>
+#+END_SRC
+
+- Now if you rename your project directory ~new-dir~ by running
+  the command ~mv ~/project ~/new-dir~, in ~kdenlive~ the links
+  (~paths~) to the clips will be broken and ~kdenlive~ will
+  complain about when opening you project
+  ~~/new-dir/project.kdenlive~. You have two solution to make
+  the project running:
+  - You can modify the paths manually when kdenlive ask you for at
+    opening the project (could be quite long if you have a lot of
+    clips),
+  - you can, before opening ~~/new-dir/project.kdenlive~ with
+    kdenlive, modify the paths that appears in the tags ~<property
+    name="resource">~ and ~<mlt ... root="...">~ with any text
+    editor. To do so, I replace ~project~ by ~new-dir~ in the
+    file ~~/new-dir/project.kdenlive~ and the file looks like
+    this:
+
+#+BEGIN_SRC nxml
+<mlt title="Anonymous Submission" version="6.6.0"
+     root="/home/tony/new-dir" producer="main bin"
+     LC_NUMERIC="en_US.UTF-8">
+  <!-- ... -->
+  <producer id="1" out="124" in="0">
+    <property name="resource">
+      /home/tony/new-dir/clip/video-1.mp4
+    </property>
+    <!-- ... -->
+  </producer>
+  <producer id="2" out="124" in="0">
+    <property name="resource">
+      /home/tony/new-dir/clip/video-2.mp4
+    </property>
+    <!-- ... -->
+  </producer>
+  <!-- ... -->
+</mlt>
+#+END_SRC
+
 * Download videos
 ** youtube-dl
-*** download audio of a youtube video
-		- Problem :: How can I download the audio of a youtube video?
-		- Use ~youtube-dl~ command.
-		- Command-line program to download videos from YouTube.com
-		- See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]].
-		- If you want to download the audio of the video
-      ~https://www.youtube.com/watch?v=VQkzba7xRhs~ from Youtube, run
-      the command:
-			#+BEGIN_SRC bash
-			youtube-dl -x --audio-format "mp3" https://www.youtube.com/watch?v=VQkzba7xRhs
-      #+END_SRC
-*** HTTP Error 403: Forbidden - using youtube-dl
-		- Problem :: I get the error ~HTTP Error 403: Forbidden~ when I
-      try to download videos from youtube with ~youtube-dl~?
-		- Use ~--rm-cache-dir~ tag of the ~youtube-dl~ command.
-		- See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]].
-		- See [[https://github.com/ytdl-org/youtube-dl/issues/24794][HTTP Error 403: Forbidden]].
-		- To not receive the error ~HTTP Error 403: Forbidden~ when trying
-      to download youtube video, remove the ~youtube-dl~ cache directory.
-      To do so, run the command:
-			#+BEGIN_SRC bash
-			youtube-dl --rm-cache-dir
-      #+END_SRC
+*** How can I download the audio of a youtube video?
+- Use ~youtube-dl~ command.
+- ~youtube-dl~: Command-line program to download videos from
+  YouTube.com.
+- See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]].
+- If you want to download the audio of the video
+  ~https://www.youtube.com/watch?v=VQkzba7xRhs~ from Youtube, run
+  the command:
+
+#+BEGIN_SRC bash
+youtube-dl -x --audio-format "mp3" https://www.youtube.com/watch?v=VQkzba7xRhs
+#+END_SRC
+
+*** I get the error ~HTTP Error 403: Forbidden~ when I try to download videos from youtube with ~youtube-dl~?
+- Use ~--rm-cache-dir~ tag of the ~youtube-dl~ command.
+- See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]] and [[https://github.com/ytdl-org/youtube-dl/issues/24794][HTTP Error 403: Forbidden]].
+- To not receive the error ~HTTP Error 403: Forbidden~ when trying
+  to download youtube video, remove the ~youtube-dl~ cache directory.
+  To do so, run the command:
+
+#+BEGIN_SRC bash
+youtube-dl --rm-cache-dir
+#+END_SRC
+
 * Links
-  - [[https://www.youtube.com/watch?v=jSqv8Z9IMg0][Kdenlive: Speed Up Or Slow Down A Video Clip]]
-  - [[https://www.ffmpeg.org/][ffmpeg website]]
-  - [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
-  - [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
-	- [[https://www.youtube.com/watch?v=vLIznXy27Pc][(youtube) video bit rate]]
-	- [[https://www.youtube.com/watch?v=J8EdjrZ1zFw][(youtube) What is a key frame]]
+- [[https://www.youtube.com/watch?v=jSqv8Z9IMg0][Kdenlive: Speed Up Or Slow Down A Video Clip]]
+- [[https://www.ffmpeg.org/][ffmpeg website]]
+- [[https://doc.ubuntu-fr.org/ffmpeg][ffmpeg ubuntu]]
+- [[https://trac.ffmpeg.org/wiki/Capture/Desktop][ffmpeg screen recording]]
+- [[https://www.youtube.com/watch?v=vLIznXy27Pc][(youtube) video bit rate]]
+- [[https://www.youtube.com/watch?v=J8EdjrZ1zFw][(youtube) What is a key frame]]
 * Ideas
-  - see: pavucontrol (to capture application (system) audio instead of
-    microphone)
-  - see: cloud trascoding
-	- [[https://www.youtube.com/watch?v=OiostfSkgs8][(youtube) FFMPEG Atempo - Speed Up and Slow Down Audio]]
+- see: ~pavucontrol~ (to capture application (system) audio instead of
+  microphone)
+- see: cloud transcoding
