@@ -145,7 +145,48 @@ ffmpeg -i input.mp4 -an -filter:v "setpts=0.5*PTS" output.mp4
 ffmpeg -i input.mp4 -filter:a "atempo=2.0" -vn output.mp4
 #+END_SRC
 
-* Kdenlive
+* *Kdenlive*
+** Effects
+*** How can I cut part of a video and move it on the frame?
+- Use ~Crop, Scale and Tilt~ effect.
+- See [[https://www.youtube.com/watch?v=0-Jg4xdP-lY][Kdenlive: Compositing Multiple Videos Into One Video]].
+- The default parameters of this effect should be:
+
+| Crop left   |   0 |
+| Crop right  |   0 |
+| Crop top    |   0 |
+| Crop bottom |   0 |
+| Scale X     |  50 |
+| Scale Y     |  50 |
+| Tilt X      | 960 |
+| Tilt Y      | 540 |
+
+** Shortcuts
+*** How can I modify keyboard shortcuts in *Kdenlive*?
+- Use ~command~ command.
+- One line description.
+- See [[https://community.kde.org/Kdenlive/Development/keyboardShortcuts][keyboard shortcuts (community.kde)]].
+- In *Kdenlive* you can manage ~schemes~ (a scheme is a set of
+  keyboard shortcuts). Go to ~Settings > Configure Shortcuts > Manage
+  Schemes~.
+- When you save your scheme in *Kdenlive*, it save in
+  the directory ~/.local/share/kdenlive/shortcuts/~.
+- A keyboard scheme file looks like this:
+
+#+BEGIN_SRC nxml
+<gui name="kdenlive" version="1">
+  <ActionProperties>
+    <Action name="file_open" shortcut="Ctrl+O"/>
+    <Action name="file_save_as" shortcut="Ctrl+Shift+S"/>
+    <Action name="file_new" shortcut="Ctrl+N"/>
+    <Action name="rename" shortcut="F2"/>
+  </ActionProperties>
+</gui>
+#+END_SRC
+
+- The ~name~ property is defined inside Kdenlive. Most of the action
+  names can be found in the file ~kdenliveui.rc~. On my computer it is
+  store in the directory ~/usr/share/kxmlgui5/kdenlive~.
 ** Clip paths
 *** How can I modify ~clip~ paths in ~kdenlive~?
 - You can modify the paths that appears in the tags ~<property
