@@ -1,17 +1,17 @@
 # About
 Some valuable computing tricks.
 
-Tricks are organize by theme and store as plain text format. To browse
-and take all the power of these notes, I use 
-[org mode](https://orgmode.org/) inside
-[emacs](https://www.gnu.org/software/emacs/). But if you prefer you
-can export these notes either as pdf or html document.
+Tricks are organize by theme and store as plain text. I use
+[org-mode](https://orgmode.org/) inside
+[emacs](https://www.gnu.org/software/emacs/) to write and organize these
+notes.
+
+You can read these notes with any text editor thought the experience
+should be better with `emacs` and `org-mode`.
+
+If you prefer you can export these notes either as `pdf` or `html` documents.
 
 # Covered themes
-[tricks](org/tricks.org) is the main entry for all my computing
-tricks. Here you have the only truth of my computing notes. By type on
-the heading, you enter on the differents themes. 
-
 Up until now I've started to cover part of the following themes:
 
 1. emacs, see [emacs](org/emacs.org),
@@ -19,27 +19,25 @@ Up until now I've started to cover part of the following themes:
 3. git, see [git](org/git.org),
 4. linux, see [linux](org/linux.org),
 5. mysql, see [mysql](org/mysql.org),
-6. video, see [video](org/video.org),
+6. media, see [video](org/video.org),
 
-# Motivation 
+# Motivation
 * **Fact 1**: "I can't remember everything".
 * **Fact 2**: "When you are working in an computer environment that use a
-   lot of softwares that provide the rights stuff you need to perform
-   your own given tasks, you need some reminder to do the tasks
-   effectively."
+lot of softwares that provide the rights stuff you need to perform
+your own given tasks, you need some reminder to do the tasks
+effectively."
 * **Fact 3**: "You have to concentrate on getting things done, not how
-      things are done."
+things are done."
 * **Fact 4**: "Improve any kind of performance comes from every little
-   things you do everyday."
+things you do everyday."
 
 # Contact
 
 Do you have any question or suggestion? Please, feel free to:
 * leave me a message on twitter <a
-href="http://www.twitter.com/tonyaldon">@tonyaldon</a> 
-* or to email me at aldon.tony@gmail.com. 
-
-I use to reply within 48 hours.
+href="http://www.twitter.com/tonyaldon">@tonyaldon</a>
+* or to email me at tony.aldon.adm@gmail.com.
 
 # License
 Project under MIT license
