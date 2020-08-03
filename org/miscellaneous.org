@@ -3,248 +3,251 @@
 
 * Colors
 ** tools
-   - [[https://www.colorhexa.com/f92672][colorhexa]]
-   - [[http://hslpicker.com/#fff,0][hslpicker]]
-   - [[https://yuilibrary.com/yui/docs/color/hsl-picker.html][yuilibrary: hsl picker]]
-	 - [[https://mycolor.space/][mycolor space]]
-   - [[https://css.land/lch/][lch color picker]]
+- [[https://www.colorhexa.com/f92672][colorhexa]]
+- [[http://hslpicker.com/#fff,0][hslpicker]]
+- [[https://yuilibrary.com/yui/docs/color/hsl-picker.html][yuilibrary: hsl picker]]
+- [[https://mycolor.space/][mycolor space]]
+- [[https://css.land/lch/][lch color picker]]
 ** shell colors
-   - [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
-   - [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
-   - [[https://github.com/dieggsy/eterm-256color][emacs: eterm-256color]]
+- [[https://misc.flogisoft.com/bash/tip_colors_and_formatting][bash: colors and formatting]]
+- [[https://misc.flogisoft.com/bash/tip_customize_the_shell_prompt][bash: customize the shell prompt]]
+- [[https://github.com/dieggsy/eterm-256color][emacs: eterm-256color]]
 ** Vocabulary
-   - [[https://www.youtube.com/watch?v=0IIb0tnLIcU][What is HUE, Saturation, Brightness and Luminance!]]
-   - [[https://en.wikipedia.org/wiki/Hue][color: HUE]]
-   - [[https://en.wikipedia.org/wiki/Web_colors][web color]]
-   - [[https://en.wikipedia.org/wiki/Color_vision][color vision]]
-   - [[https://en.wikipedia.org/wiki/Color_constancy][color constancy]]
-   - [[https://en.wikipedia.org/wiki/Spectral_sensitivity][spectral sensitivity]]
-   - [[https://en.wikipedia.org/wiki/Cone_cell][cone cell]]
+- [[https://www.youtube.com/watch?v=0IIb0tnLIcU][What is HUE, Saturation, Brightness and Luminance!]]
+- [[https://en.wikipedia.org/wiki/Hue][color: HUE]]
+- [[https://en.wikipedia.org/wiki/Web_colors][web color]]
+- [[https://en.wikipedia.org/wiki/Color_vision][color vision]]
+- [[https://en.wikipedia.org/wiki/Color_constancy][color constancy]]
+- [[https://en.wikipedia.org/wiki/Spectral_sensitivity][spectral sensitivity]]
+- [[https://en.wikipedia.org/wiki/Cone_cell][cone cell]]
 * Chromium
 ** Source code
-*** Build Chromium from source
-		- Problem :: How can I build Chromium from source?
-		- Use ~ninja~ build system.
-		- Ninja is a small build system with a focus on speed.
-		- See documents [[https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md][chromium build instructions]] and [[https://ninja-build.org/][ninja-build]].
-		- If you want to build Chromium frome source follow the
-      instructions [[https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md][chromium build instructions]]. The outline is:
-      clone the ~depot_tools~ (helpers to build chromium), export
-      ~path/to/depot_tools~ to ~PATH~ environment variable, checkout
-      the code and its dependencies with ~fetch~ (provide by
-      ~depot_tools~), install the build dependencies with
-      ~install-build-deps.sh~, run the Chromium-specific hooks, create
-      the build directory ~out/Default~ with ~gn~ and build Chromium
-      (the Chrome target) with ~autoninja~. To do so run the commands:
-			#+BEGIN_SRC bash
-			git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-			export PATH="$PATH:/path/to/depot_tools"
-			mkdir ~/chromium && cd ~/chromium
-			fetch --nohooks --no-history chromium
-			cd src
-			./build/install-build-deps.sh
-			gclient runhooks
-			gn gen out/Default
-			autoninja -C out/Default chrome
-      #+END_SRC
-		- Once you've build chromium, you can run the browser, to do so,
-      run the command:
-			#+BEGIN_SRC bash
-			out/Default/chrome
-      #+END_SRC
-		- Files of interest:
-			- [[../chromium/build_instructions.md][path-to-chromium/docs/linux/build_instructions.md]]
+*** How can I build Chromium from source?
+- Use ~ninja~ build system.
+- ~ninja~: is a small build system with a focus on speed.
+- See documents [[https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md][chromium build instructions]] and [[https://ninja-build.org/][ninja-build]].
+- If you want to build Chromium frome source follow the instructions
+  [[https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md][chromium build instructions]]. The outline is: clone the ~depot_tools~
+  (helpers to build chromium), export ~path/to/depot_tools~ to ~PATH~
+  environment variable, checkout the code and its dependencies with
+  ~fetch~ (provide by ~depot_tools~), install the build dependencies
+  with ~install-build-deps.sh~, run the Chromium-specific hooks,
+  create the build directory ~out/Default~ with ~gn~ and build
+  Chromium (the Chrome target) with ~autoninja~. To do so run the
+  commands:
 
-*** Chromium color of find_in_page
-		- Problem :: How can I change the colors orange and yellow of the
-      ~find_in_page~ command?
-		- I don't find an easy way to do it. I figure it out by hard
-      coding the code source of chromium where these colors are
-      defined and building chromium from source whith these changes.
-		- See documents [[https://www.chromium.org/developers/design-documents/find-bar][find-bar (design documents)]],
-      [[https://chromium.googlesource.com/chromium/src/+/1e6a4d7b28fd05a89633df971483970b6b8d8e2c/ios/chrome/browser/find_in_page/resources/find_in_page.js][ios/chrome/browser/find_in_page/resources/find_in_page.js]],
-      [[https://chromium.googlesource.com/chromium/src/+/1e6a4d7b28fd05a89633df971483970b6b8d8e2c/ios/web/web_state/js/resources/find_in_page.js][ios/web/web_state/js/resources/find_in_page.js]] 
-		- If you want to change the background colors orange and yellow of
-      the ~find_in_page~ command, get the source code of chromium,
-      replace the color ~#ffff00~ and ~#ff9632~ in the following chunk
-      of code that appears in the files
-      [[../chromium/ios--web--web_state--js--resources--find_in_page.js][ios/web/web_state/js/resources/find_in_page.js]],
-      [[../chromium/ios--chrome--browser--find_in_page--resources--find_in_page.js][ios/chrome/browser/find_in_page/resources/find_in_page.js]] and
-      build chromuim:
-			#+BEGIN_SRC javascript
-			function addDocumentStyle_(thisDocument) {
-				let styleContent = [];
-				function addCSSRule(name, style) {
-					styleContent.push(name, '{', style, '}');
-				};
-				let scale = getPageScale_();
-				let zoom = (1.0 / scale);
-				let left = ((1 - scale) / 2 * 100);
-				addCSSRule(
-						'.' + CSS_CLASS_NAME,
-						'background-color:#ffff00 !important;' +
-								'padding:0px;margin:0px;' +
-								'overflow:visible !important;');
-				addCSSRule(
-						'.findysel',
-						'background-color:#ff9632 !important;' +
-								'padding:0px;margin:0px;' +
-								'overflow:visible !important;');
-				styleElement_ = thisDocument.createElement('style');
-				styleElement_.id = CSS_STYLE_ID;
-				styleElement_.setAttribute('type', 'text/css');
-				styleElement_.appendChild(thisDocument.createTextNode(styleContent.join('')));
-				thisDocument.body.appendChild(styleElement_);
-			}
-      #+END_SRC
+#+BEGIN_SRC bash
+git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+export PATH="$PATH:/path/to/depot_tools"
+mkdir ~/chromium && cd ~/chromium
+fetch --nohooks --no-history chromium
+cd src
+./build/install-build-deps.sh
+gclient runhooks
+gn gen out/Default
+autoninja -C out/Default chrome
+#+END_SRC
+
+- Once you've build chromium, you can run the browser, to do so, run
+  the command:
+
+#+BEGIN_SRC bash
+out/Default/chrome
+#+END_SRC
+
+- Files of interest: [[../chromium/build_instructions.md][path-to-chromium/docs/linux/build_instructions.md]].
+
+*** How can I change the colors orange and yellow of the ~find_in_page~ command?
+- I didn't find an easy way to do it. I figure it out by hard coding
+  the code source of chromium where these colors are defined and
+  building chromium from source whith these changes.
+- See documents [[https://www.chromium.org/developers/design-documents/find-bar][find-bar (design documents)]],
+  [[https://chromium.googlesource.com/chromium/src/+/1e6a4d7b28fd05a89633df971483970b6b8d8e2c/ios/chrome/browser/find_in_page/resources/find_in_page.js][ios/chrome/browser/find_in_page/resources/find_in_page.js]],
+  [[https://chromium.googlesource.com/chromium/src/+/1e6a4d7b28fd05a89633df971483970b6b8d8e2c/ios/web/web_state/js/resources/find_in_page.js][ios/web/web_state/js/resources/find_in_page.js]].
+- If you want to change the background colors orange and yellow of the
+  ~find_in_page~ command, get the source code of chromium, replace the
+  color ~#ffff00~ and ~#ff9632~ in the following chunk of code that
+  appears in the files [[../chromium/ios--web--web_state--js--resources--find_in_page.js][ios/web/web_state/js/resources/find_in_page.js]],
+  [[../chromium/ios--chrome--browser--find_in_page--resources--find_in_page.js][ios/chrome/browser/find_in_page/resources/find_in_page.js]] and build
+  chromuim:
+
+#+BEGIN_SRC javascript
+function addDocumentStyle_(thisDocument) {
+	let styleContent = [];
+	function addCSSRule(name, style) {
+		styleContent.push(name, '{', style, '}');
+	};
+	let scale = getPageScale_();
+	let zoom = (1.0 / scale);
+	let left = ((1 - scale) / 2 * 100);
+	addCSSRule(
+			'.' + CSS_CLASS_NAME,
+			'background-color:#ffff00 !important;' +
+					'padding:0px;margin:0px;' +
+					'overflow:visible !important;');
+	addCSSRule(
+			'.findysel',
+			'background-color:#ff9632 !important;' +
+					'padding:0px;margin:0px;' +
+					'overflow:visible !important;');
+	styleElement_ = thisDocument.createElement('style');
+	styleElement_.id = CSS_STYLE_ID;
+	styleElement_.setAttribute('type', 'text/css');
+	styleElement_.appendChild(thisDocument.createTextNode(styleContent.join('')));
+	thisDocument.body.appendChild(styleElement_);
+}
+#+END_SRC
 ** Customize Chromium
-*** Chromium user interface using GTK
-		- Problem :: How can I modify the user interface of Chromium?
-		- Use ~~/.config/gtk-3.0/gtk.css~ file.
-		- See documents [[https://chromium.googlesource.com/chromium/src.git/+/master/docs/linux/gtk_theme_integration.md][gtk theme integration]].
-		- If you want to change the color of the selected background and
-      selected foreground, tell chromium to use ~GTK+ theme~
-      (~Settings > Appearence > themes > GTK+~) and add
-      the following lines to the file ~~/.config/gtk-3.0/gtk.css~:
-			#+BEGIN_SRC css
-			@define-color selected_bg_color #458b74;
-			@define-color selected_fg_color #dedede;
-      #+END_SRC
-		- Files of interest:
-			- [[../chromium/gtk_theme_integration.md][path-to-chromium/docs/linux/gtk_theme_integration.md]]
-			- [[../chromium/color_palette.h][path-to-chromium/ui/gfx/color_palette.h]]
-			- [[../chromium/native_theme_gtk.cc][path-to-chromium/ui/gtk/native_theme_gtk.cc]]
+*** How can I modify the user interface of Chromium?
+- Use ~~/.config/gtk-3.0/gtk.css~ file.
+- See documents [[https://chromium.googlesource.com/chromium/src.git/+/master/docs/linux/gtk_theme_integration.md][gtk theme integration]].
+- If you want to change the color of the selected background and
+  selected foreground, tell chromium to use ~GTK+ theme~ (~Settings >
+  Appearence > themes > GTK+~) and add the following lines to the file
+  ~~/.config/gtk-3.0/gtk.css~:
+
+#+BEGIN_SRC css
+@define-color selected_bg_color #458b74;
+@define-color selected_fg_color #dedede;
+#+END_SRC
+
+- Files of interest:
+  - [[../chromium/gtk_theme_integration.md][path-to-chromium/docs/linux/gtk_theme_integration.md]]
+  - [[../chromium/color_palette.h][path-to-chromium/ui/gfx/color_palette.h]]
+  - [[../chromium/native_theme_gtk.cc][path-to-chromium/ui/gtk/native_theme_gtk.cc]]
 ** Chrome extensions
 *** links
-    - [[https://developer.chrome.com/extensions/][extensions]]
-    - [[https://developer.chrome.com/extensions/getstarted][getstarted]]
-    - [[https://developer.chrome.com/extensions/webRequest][webRequest]]
+- [[https://developer.chrome.com/extensions/][extensions]]
+- [[https://developer.chrome.com/extensions/getstarted][getstarted]]
+- [[https://developer.chrome.com/extensions/webRequest][webRequest]]
 ** chrome devtools
 *** keyboard shortcuts (default)
-		- [[https://developers.google.com/web/tools/chrome-devtools/shortcuts][chrome devtools shortcuts]]
-		| default shortcuts | own shortcuts | action                                   | scope          |
-		|-------------------+---------------+------------------------------------------+----------------|
-		| C-S-i (f12)       | ---           | open last panel                          | browser        |
-		| C-S-j             | M-c           | open console panel                       | browser        |
-		| C-S-c             | C-i           | open element panel                       | browser        |
-		|-------------------+---------------+------------------------------------------+----------------|
-		| ESC               | M-q           | toggle console at the bottom of devtools | devtools       |
-		| C-]               | ???           | focus next panel                         | devtools       |
-		| C-[               | ???           | focus previous panel                     | devtools       |
-		| C-S-d             | M-t           | switch back to last docking position     | devtools       |
-		| C-S-c             | C-i           | toggle Inspect Element Mode              | devtools       |
-		| C-S-p             | ???           | open command menu panel (with ~>~ sign)  | devtools       |
-		| C-o               | ---           | open command menu                        | devtools       |
-		| C-f               | ---           | search for text in current panel         | devtools       |
-		|-------------------+---------------+------------------------------------------+----------------|
-		| C-z               | M--           | undo change                              | elements panel |
-		| C-y               | M-+           | redo change                              | elements panel |
-		| up/down           |               | previou/next node                        | elements panel |
-		| left/right        |               | collapse/expand                          | elements panel |
-		| M-mouse-1         | F6            | expand node and all its children         | elements panel |
-		| RET               |               | toggle edit attribute node               | elements panel |
-		| TAB/S-TAB         |               | previous/next attribute                  | elements panel |
-		| h                 |               | toggle hide element                      | elements panel |
-		| F2                |               | toggle edit as HTML                      | elements panel |
-		|-------------------+---------------+------------------------------------------+----------------|
-		| C-mouse-1         |               | go to the line (source file) where the   | styles panel   |
-		|                   |               | where property value is declared         |                |
-		| (S/M/C) up/down   |               | increment/decrement attribute value      | styles panel   |
-		|                   |               | (0.1/1/10/100)                           |                |
-		|-------------------+---------------+------------------------------------------+----------------|
-		| C-m               |               | go to mathching bracket                  | code editor    |
-		| C-d/C-u           |               | mark/unmark next occurence of word       | code editor    |
-		|                   |               | the cursor is on                         |                |
-		| C-mouse-1         |               | multiple cursor                          | code editor    |
-		| C-g               |               | go to line                               | source panel   |
-		| C-S-o             |               | go to function declaration               | source panel   |
-		| M-w               |               | close active tab                         | source panel   |
-		|-------------------+---------------+------------------------------------------+----------------|
+- [[https://developers.google.com/web/tools/chrome-devtools/shortcuts][chrome devtools shortcuts]]
+| default shortcuts | own shortcuts | action                                   | scope          |
+|-------------------+---------------+------------------------------------------+----------------|
+| C-S-i (f12)       | ---           | open last panel                          | browser        |
+| C-S-j             | M-c           | open console panel                       | browser        |
+| C-S-c             | C-i           | open element panel                       | browser        |
+|-------------------+---------------+------------------------------------------+----------------|
+| ESC               | M-q           | toggle console at the bottom of devtools | devtools       |
+| C-]               | ???           | focus next panel                         | devtools       |
+| C-[               | ???           | focus previous panel                     | devtools       |
+| C-S-d             | M-t           | switch back to last docking position     | devtools       |
+| C-S-c             | C-i           | toggle Inspect Element Mode              | devtools       |
+| C-S-p             | ???           | open command menu panel (with ~>~ sign)  | devtools       |
+| C-o               | ---           | open command menu                        | devtools       |
+| C-f               | ---           | search for text in current panel         | devtools       |
+|-------------------+---------------+------------------------------------------+----------------|
+| C-z               | M--           | undo change                              | elements panel |
+| C-y               | M-+           | redo change                              | elements panel |
+| up/down           |               | previou/next node                        | elements panel |
+| left/right        |               | collapse/expand                          | elements panel |
+| M-mouse-1         | F6            | expand node and all its children         | elements panel |
+| RET               |               | toggle edit attribute node               | elements panel |
+| TAB/S-TAB         |               | previous/next attribute                  | elements panel |
+| h                 |               | toggle hide element                      | elements panel |
+| F2                |               | toggle edit as HTML                      | elements panel |
+|-------------------+---------------+------------------------------------------+----------------|
+| C-mouse-1         |               | go to the line (source file) where the   | styles panel   |
+|                   |               | where property value is declared         |                |
+| (S/M/C) up/down   |               | increment/decrement attribute value      | styles panel   |
+|                   |               | (0.1/1/10/100)                           |                |
+|-------------------+---------------+------------------------------------------+----------------|
+| C-m               |               | go to mathching bracket                  | code editor    |
+| C-d/C-u           |               | mark/unmark next occurence of word       | code editor    |
+|                   |               | the cursor is on                         |                |
+| C-mouse-1         |               | multiple cursor                          | code editor    |
+| C-g               |               | go to line                               | source panel   |
+| C-S-o             |               | go to function declaration               | source panel   |
+| M-w               |               | close active tab                         | source panel   |
+|-------------------+---------------+------------------------------------------+----------------|
 *** run snippets
-		- in command menu, type ~!~ followed by the name of the snippet.
+- in command menu, type ~!~ followed by the name of the snippet.
 *** designMode
-		- in console: > document.designMode="on"
+- in console: > document.designMode="on"
 *** snippets
-		- [[https://github.com/bgrins/devtools-snippets][devtools snippets list (github)]]
-		- Add a snippet:
-			- in source panel, click on snippet, the click on new
-        snippet. Write your snippet and save it.
-			- in command menu, run command ~Create new snippet~. Write your
-        snippet and save it.
-		- Run a snippet:
-			- in source panel, select the snippet and ~C-RET~ will run the
-        snippet.
-			- in command menu, run ~!snippet-name~.
-		- [[https://support.google.com/chrome/thread/42226725?hl=en][Can't access my code Snippets from devtools shortcut (known error)]]
+- [[https://github.com/bgrins/devtools-snippets][devtools snippets list (github)]]
+- Add a snippet:
+  - in source panel, click on snippet, the click on new snippet. Write
+    your snippet and save it.
+  - in command menu, run command ~Create new snippet~. Write your
+    snippet and save it. 
+- Run a snippet:
+  - in source panel, select the snippet and ~C-RET~ will run the
+    snippet.
+  - in command menu, run ~!snippet-name~.
+- [[https://support.google.com/chrome/thread/42226725?hl=en][Can't access my code Snippets from devtools shortcut (known error)]]
 *** node screenshot
-		1) select a node
-		2) fire command menu
-		3) run ~Capture Node Screenshot~
+1) select a node
+2) fire command menu
+3) run ~Capture Node Screenshot~
 *** command menu
-		- open command menu with ~C-o~
-		  - to find a file:
-		    - type the file name
-		  - to fire a command:
-				- type ~>~ followed by the name of the command
+- open command menu with ~C-o~
+  - to find a file:
+    - type the file name
+  - to fire a command:
+    - type ~>~ followed by the name of the command
         - comman categories: Panel, Drawer, Appearence, Console, Debugger,
           DevTools, Elements, Help, Inputs, Mobile, Navigation,
           Network, Performance, Persistence, Rendering, Resources,
           Screenshot, Settings, Sources
-		  - to run a snippet:
-				- type ~!~ followed by the name of the snippet.
-			- to go to line (in sources panel):
-				- type ~:~ followed by line number
-			- to go to line and column (in source panel):
-				- type ~:line-number:column-number~
-			- to go to a symbol (in sources panel):
-				- type ~@~ followed by name of the symbol.
+  - to run a snippet:
+    - type ~!~ followed by the name of the snippet.
+  - to go to line (in sources panel):
+    - type ~:~ followed by line number
+  - to go to line and column (in source panel):
+    - type ~:line-number:column-number~
+  - to go to a symbol (in sources panel):
+    - type ~@~ followed by name of the symbol.
 *** copy element style
-		1) select an element
-		2) in the element panel, click right and choose copy style
+1) select an element
+2) in the element panel, click right and choose copy style
 *** add some style to an element
-		1) select an element
-		2) in styles panel, fill:
-			 #+BEGIN_SRC css
-			 element.style {
-					 /* fill here */
-			 }
-			 #+END_SRC
+1) select an element
+2) in styles panel, fill:
+
+#+BEGIN_SRC css
+element.style {
+  /* fill here */
+}
+#+END_SRC
+
 *** xpath search in console
-		- XPath (XML Path Language) is a query language for selecting
-      nodes from an XML document.
-		- [[https://devhints.io/xpath][xpath cheatsheet (devhints)]] and [[https://www.w3schools.com/xml/xpath_syntax.asp][xpath syntax (w3schools)]].
-		- In the console, ~$x~ is the function to use to do an ~xpath~
-      search.
-		- In the console, to search for the ~div~ elements, run this
-      command:
-			#+BEGIN_SRC bash
-			$x("//div")
-      #+END_SRC
+- XPath (XML Path Language) is a query language for selecting nodes
+  from an XML document.
+- [[https://devhints.io/xpath][xpath cheatsheet (devhints)]] and [[https://www.w3schools.com/xml/xpath_syntax.asp][xpath syntax (w3schools)]].
+- In the console, ~$x~ is the function to use to do an ~xpath~
+  search.
+- In the console, to search for the ~div~ elements, run this command:
+
+#+BEGIN_SRC bash
+$x("//div")
+#+END_SRC
+
 *** extend chrome devtools
-		- [[https://developer.chrome.com/extensions/devtools][chrome devtools extension (homepage)]]
+- [[https://developer.chrome.com/extensions/devtools][chrome devtools extension (homepage)]]
 *** pretty format in sources panel
-		- When visiting a file in the sources panel, Click on ~{}~
-      to make a minified file human-readable.
+- When visiting a file in the sources panel, Click on ~{}~ to make a
+  minified file human-readable.
 *** column selection in sources panel
-		- You can make a column selection in the Sources Panel editor by
-      holding Alt while dragging the mouse
+- You can make a column selection in the Sources Panel editor by
+  holding Alt while dragging the mouse.
 *** $_, $0-$4, $(), $$(), $x() console utilities
-		- see [[https://developers.google.com/web/tools/chrome-devtools/console/utilities][console utilies (documentation)]]
-		- ~$_~: returns the value of the most recently evaluated
-      expression.
-		- ~$0~ to ~$4~: ~$0~ returns the most recently selected element or
-      JavaScript object, ~$1~ returns the second most recently selected
-      one, and so on.
-		- ~$()~: returns the reference to the first DOM element with the
-      specified CSS selector. This function is an alias for the
-      ~document.querySelector()~ function.
-		- ~$$()~: returns an array of elements that match the given CSS
-      selector. This command is equivalent to calling
-      ~document.querySelectorAll()~.
-		- ~$x()~:  returns an array of DOM elements that match the given
-      XPath expression.
+- see [[https://developers.google.com/web/tools/chrome-devtools/console/utilities][console utilies (documentation)]]
+- ~$_~: returns the value of the most recently evaluated expression.
+- ~$0~ to ~$4~: ~$0~ returns the most recently selected element or
+  JavaScript object, ~$1~ returns the second most recently selected
+  one, and so on.
+- ~$()~: returns the reference to the first DOM element with the
+  specified CSS selector. This function is an alias for the
+  ~document.querySelector()~ function.
+- ~$$()~: returns an array of elements that match the given CSS
+  selector. This command is equivalent to calling
+  ~document.querySelectorAll()~.
+- ~$x()~:  returns an array of DOM elements that match the given XPath
+  expression.
 *** debug nodejs wich chrome devtools
-		- see [[https://nodejs.org/en/docs/guides/debugging-getting-started/][debugging nodejs (get started)]].
+- see [[https://nodejs.org/en/docs/guides/debugging-getting-started/][debugging nodejs (get started)]].
 *** links
 - [[https://chromedevtools.github.io/devtools-protocol/][devtools-protocol (documentation)]]
 - [[https://developers.google.com/web/tools/chrome-devtools/][chrome-devtools (homepage)]]
@@ -252,81 +255,106 @@
 - [[https://github.com/binaryage/cljs-devtools][cljs-devtools (github)]]
 * Programming language
 ** Programming language (PL)
-	 What do you have to figure out when you switch to a new PL?
-	 1) How to write test?
-	 2) How to read/write into files?
-	 3) How to work with pathes and directories (work with the file system)?
-	 4) How to run a script?
-	 5) What is the main package manager?
-	 6) How to package a project?
-	 7) How to share packages?
-	 8) How to import packages?
-	 9) How to run a server?
-	 10) How to run command lines from the language?
-	 11) How to read/write environment variables?
-	 12) How to expose functions as command lines?
-	 13) How to expose functions as (web) REST api?
-	 14) How to communicate with database (mysql)?
-	 15) How to parse input script argument?
-	 16) How to print to stdout?
-	 17) How works logs/error messages?
-	 18) What is the basic structure of a typical project?
-	 19) Where is the official documentation?
-	 20) Can I have access to the source code?
+What do you have to figure out when you switch to a new PL?
+1) How to write test?
+2) How to read/write into files?
+3) How to work with pathes and directories (work with the file system)?
+4) How to run a script?
+5) What is the main package manager?
+6) How to package a project?
+7) How to share packages?
+8) How to import packages?
+9) How to run a server?
+10) How to run command lines from the language?
+11) How to read/write environment variables?
+12) How to expose functions as command lines?
+13) How to expose functions as (web) REST api?
+14) How to communicate with database (mysql)?
+15) How to parse input script argument?
+16) How to print to stdout?
+17) How works logs/error messages?
+18) What is the basic structure of a typical project?
+19) Where is the official documentation?
+20) Can I have access to the source code?
 ** JavaScript
-	 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
-	 - [[https://v8.dev/docs][V8 documentation]]
+- [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
+- [[https://v8.dev/docs][V8 documentation]]
 ** installation Clojure & leiningen
 *** installation clojure
-	 - [[https://clojure.org/guides/getting_started][clojure (getting started)]]
-	 - ~java~ installed ??
-		 #+BEGIN_SRC bash
-	   java --version
-		 #+END_SRC
-		 give me:
-		 #+BEGIN_SRC bash
-		 openjdk 11.0.7 2020-04-14
-		 OpenJDK Runtime Environment (build 11.0.7+10-post-Ubuntu-2ubuntu218.04)
-		 OpenJDK 64-Bit Server VM (build 11.0.7+10-post-Ubuntu-2ubuntu218.04, mixed mode, sharing)
-		 #+END_SRC
-	 - install ~rlwrap~:
-		 #+BEGIN_SRC bash
-	   sudo apt install rlwrap
-		 #+END_SRC
-	 - install ~clojure~ with ~homebrew~:
-		 #+BEGIN_SRC bash
-	   brew install clojure/tools/clojure
-		 #+END_SRC
-		 give me:
-		 #+BEGIN_SRC bash
-		 ==> Caveats
-		 ==> perl
-		 By default non-brewed cpan modules are installed to the Cellar. If you wish
-		 for your modules to persist across updates we recommend using `local::lib`.
+- [[https://clojure.org/guides/getting_started][clojure (getting started)]]
+- Check if ~java~ is installed:
 
-		 You can set that up like this:
-			 PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
-			 echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"' >> ~/.profile
-		 ==> ruby
-		 By default, binaries installed by gem will be placed into:
-			 /home/tony/.linuxbrew/lib/ruby/gems/2.7.0/bin
+#+BEGIN_SRC bash
+java --version
+#+END_SRC
 
-		 You may want to add this to your PATH.
+This gave me:
 
-		 Emacs Lisp files have been installed to:
-			 /home/tony/.linuxbrew/share/emacs/site-lisp/ruby
-		 #+END_SRC
+#+BEGIN_SRC text
+openjdk 11.0.7 2020-04-14
+OpenJDK Runtime Environment (build 11.0.7+10-post-Ubuntu-2ubuntu218.04)
+OpenJDK 64-Bit Server VM (build 11.0.7+10-post-Ubuntu-2ubuntu218.04, mixed mode, sharing)
+#+END_SRC
+
+- install ~rlwrap~:
+
+#+BEGIN_SRC bash
+sudo apt install rlwrap
+#+END_SRC
+
+- install ~clojure~ with ~homebrew~:
+
+#+BEGIN_SRC bash
+brew install clojure/tools/clojure
+#+END_SRC
+
+This gave me:
+
+#+BEGIN_SRC text
+==> Caveats
+==> perl
+By default non-brewed cpan modules are installed to the Cellar. If you wish
+for your modules to persist across updates we recommend using `local::lib`.
+
+You can set that up like this:
+  PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+  echo 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"' >> ~/.profile
+==> ruby
+By default, binaries installed by gem will be placed into:
+  /home/tony/.linuxbrew/lib/ruby/gems/2.7.0/bin
+
+You may want to add this to your PATH.
+
+Emacs Lisp files have been installed to:
+  /home/tony/.linuxbrew/share/emacs/site-lisp/ruby
+#+END_SRC
+
 *** installation leiningen
-	 - [[https://leiningen.org/][leiningen]]
-	 - install with ~apt~:
-		 #+BEGIN_SRC bash
-	   sudo apt install leiningen
-		 #+END_SRC
+- See [[https://leiningen.org/][leiningen]].
+- install with ~apt~:
+
+#+BEGIN_SRC bash
+sudo apt install leiningen
+#+END_SRC
+
 * prettier
-	- https://prettier.io/docs/en/install.html
-	- https://prettier.io/docs/en/cli.html
-	- ~npm install -g prettier~
-	- ~prettier --write my-file.html~
+- [[https://prettier.io][prettier]]
+** How to install prettier?
+- Use ~npm~.
+- ~npm~: javascript package manager.
+- [[https://prettier.io/docs/en/install.html][prettier (install - documentation)]]
+- To install prettier globaly, run the command:
+
+#+BEGIN_SRC bash
+npm install -g prettier
+#+END_SRC
+** prettier cli
+- See [[https://prettier.io/docs/en/cli.html][prettier cli (documentation)]].
+- If you want to format ~file.html~ html file, run the command:
+
+#+BEGIN_SRC bash
+prettier --write file.html
+#+END_SRC
 
 * Make code documentation
 - projectile website doc use algolia
@@ -338,27 +366,27 @@
 - https://jsdoc.app/about-getting-started.html
 * links
 ** miscellaneous
-	- [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
-	- [[https://fmt.dev/latest/index.html][fmt (homepage)]] A modern formatting library
-	- [[https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts#Comparison_of_keyboard_shortcuts][comparison of keyboard shortcut (wikipedia)]]
+- [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
+- [[https://fmt.dev/latest/index.html][fmt (homepage)]] A modern formatting library
+- [[https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts#Comparison_of_keyboard_shortcuts][comparison of keyboard shortcut (wikipedia)]]
 ** uncle bob (article)
-  - [[http://blog.cleancoder.com/uncle-bob/2019/08/22/WhyClojure.html][WhyClojure.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2019/06/16/ObjectsAndDataStructures.html][ObjectsAndDataStructures.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html][FPvsOO.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2017/12/18/Excuses.html][Excuses.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2017/10/04/CodeIsNotTheAnswer.html][CodeIsNotTheAnswer.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.html][TestDefinitions.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html][TypeWars.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2015/08/06/LetTheMagicDie.html][LetTheMagicDie.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html][TheCyclesOfTDD.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html][WhenToMock.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2014/03/11/when-to-think.html][when-to-think.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2013/12/10/Thankyou-Kent.html][Thankyou-Kent.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2013/03/05/TheStartUpTrap.html][TheStartUpTrap.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2012/12/19/Three-Paradigms.html][Three-Paradigms.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2012/05/15/NODB.html][NODB.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2011/10/20/Simple-Hickey.html][Simple-Hickey.html]]
-  - [[http://blog.cleancoder.com/uncle-bob/2011/01/17/software-craftsmanship-is-about.html][software-craftsmanship-is-about.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2019/08/22/WhyClojure.html][WhyClojure.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2019/06/16/ObjectsAndDataStructures.html][ObjectsAndDataStructures.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2018/04/13/FPvsOO.html][FPvsOO.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2017/12/18/Excuses.html][Excuses.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2017/10/04/CodeIsNotTheAnswer.html][CodeIsNotTheAnswer.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.html][TestDefinitions.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html][TypeWars.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2015/08/06/LetTheMagicDie.html][LetTheMagicDie.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html][TheCyclesOfTDD.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html][WhenToMock.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2014/03/11/when-to-think.html][when-to-think.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2013/12/10/Thankyou-Kent.html][Thankyou-Kent.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2013/03/05/TheStartUpTrap.html][TheStartUpTrap.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2012/12/19/Three-Paradigms.html][Three-Paradigms.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2012/05/15/NODB.html][NODB.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2011/10/20/Simple-Hickey.html][Simple-Hickey.html]]
+- [[http://blog.cleancoder.com/uncle-bob/2011/01/17/software-craftsmanship-is-about.html][software-craftsmanship-is-about.html]]
 ** robots.txt
 - [[https://en.wikipedia.org/wiki/Robots_exclusion_standard][robots.txt (wikipedia)]]
 - [[https://developers.google.com/search/reference/robots_txt?hl=en][robots.txt (google developers)]]
