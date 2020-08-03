@@ -249,146 +249,180 @@ dircolors --print-database
 
 * Users and groups
 ** Sudo and Root
-*** Run interactive shell as root
-		- Problem :: How can I switch to root User?
-		- Use ~su~ command.
-		- Change user ID or become superuser.
-		- See examples [[https://linuxize.com/post/su-command-in-linux/][su command]].
-		- If you want to run an interactive shell as root, when root's
-      password is already defined, run the command:
-			#+BEGIN_SRC bash
-			su
-      #+END_SRC
-		- If you want to run an interactive shell as root, when root's
-      password is not defined, run the command:
-			#+BEGIN_SRC bash
-			sudo su -
-			#+END_SRC
-*** Add user to sudo Group
-		- Problem :: How can I add a user to the ~sudo~ group?
-		- Use ~usermod~ command.
-		- Modify a user account.
-		- If you want to add the user ~jim~ to the group ~sudo~, run the
-      command:
-			#+BEGIN_SRC bash
-			sudo usermod -aG sudo jim
-      #+END_SRC
-*** Remove user from sudo Group
-		- Problem :: How can I remove a user from the ~sudo~ group?
-		- Use ~deluser~ command.
-		- Remove a user from the system.
-		- If you want to remove the user ~jim~ from the group ~sudo~, run the
-      command:
-			#+BEGIN_SRC bash
-			sudo deluser jim sudo
-      #+END_SRC
-*** timeout of sudo
-		- Problem :: How can I the sudo password timeout?
-		- Use ~visudo~ command.
-		- Edit the sudoers file in a safe fashion.
-		- See example [[https://www.maketecheasier.com/change-the-sudo-password-timeout-in-ubuntu][sudo password timeout]].
-		- If you want to change the default (15mins) sudo password
-      timeout to ~30mins~, change the line ~Defaults  env_reset~ to
-      the line ~Defaults  env_reset, timestamp_timeout=30~ in the
-      file ~/etc/sudoers~, not directly, but by running the command:
-			#+BEGIN_SRC bash
-			sudo visudo
-      #+END_SRC
-		- If you want to check the existing sudoers file for syntax,
-      errors, and mode, run the command:
-			#+BEGIN_SRC bash
-      sudo visudo -c
-			#+END_SRC
-		- If you want that the system prompt you for password everytime
-      you use ~sudo~, set the sudo password
-      timeout to ~0~, by changing the line ~Defaults  env_reset~ to
-      the line ~Defaults  env_reset, timestamp_timeout=0~ in the
-      file ~/etc/sudoers~, not directly, but by running the command:
-			#+BEGIN_SRC bash
-			sudo visudo
-      #+END_SRC
+*** How can I switch to ~root~ User?
+- Use ~su~ command.
+- ~su~: change user ID or become superuser.
+- See [[https://linuxize.com/post/su-command-in-linux/][su command]] by linuxize.
+- If you want to run an interactive shell as root, when root's
+  password is already defined, run the command:
+
+#+BEGIN_SRC bash
+su
+#+END_SRC
+
+- If you want to run an interactive shell as root, when root's
+  password is not defined, run the command:
+
+#+BEGIN_SRC bash
+sudo su -
+#+END_SRC
+
+*** How can I add a user to the ~sudo~ group?
+- Use ~usermod~ command.
+- ~usermod~: modify a user account.
+- If you want to add the user ~jim~ to the group ~sudo~, run the
+  command:
+
+#+BEGIN_SRC bash
+sudo usermod -aG sudo jim
+#+END_SRC
+
+*** How can I remove a user from the ~sudo~ group?
+- Use ~deluser~ command.
+- ~deluser~: remove a user from the system.
+- If you want to remove the user ~jim~ from the group ~sudo~, run the
+  command:
+
+#+BEGIN_SRC bash
+sudo deluser jim sudo
+#+END_SRC
+
+*** How can I modify the sudo password timeout?
+- Use ~visudo~ command.
+- ~visudo~: edit the sudoers file in a safe fashion.
+- See [[https://www.maketecheasier.com/change-the-sudo-password-timeout-in-ubuntu][sudo password timeout]] by maketecheasier.
+- If you want to change the default (15mins) sudo password timeout to
+  ~30mins~, change the line ~Defaults  env_reset~ to the line
+  ~Defaults  env_reset, timestamp_timeout=30~ in the file
+  ~/etc/sudoers~, not directly, but by running the command:
+
+#+BEGIN_SRC bash
+sudo visudo
+#+END_SRC
+
+- If you want to check the existing sudoers file for syntax, errors
+  and mode, run the command:
+
+#+BEGIN_SRC bash
+sudo visudo -c
+#+END_SRC
+
+- If you want that the system prompt you for password everytime you
+  use ~sudo~, set the sudo password timeout to ~0~, by changing the
+  line ~Defaults  env_reset~ to the line ~Defaults  env_reset,
+  timestamp_timeout=0~ in the file ~/etc/sudoers~, not directly, but
+  by running the command:
+
+#+BEGIN_SRC bash
+sudo visudo
+#+END_SRC
+
 ** Groups
-*** Users' groups
-		- Problem :: How can I list all groups a user is a member of?
-		- Use ~groups~ command.
-		- print the groups a user is in.
-		- See examples [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]].
-		- If you want to list the groups the user ~jim~ is a membre of,
-      run the command:
-			#+BEGIN_SRC bash
-			groups jim
-			groups # if you're logged as jim
-      #+END_SRC
-*** List all groups
-		- Problem :: How can I list all groups present on the system?
-		- Use ~getent~ command.
-		- Get entries from Name Service Switch libraries.
-		- See examples [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]].
-		- If you want to list all groups present on the system, run the
-      command:
-			#+BEGIN_SRC bash
-			getent group
-      #+END_SRC
+*** How can I list all groups a user is a member of?
+- Use ~groups~ command.
+- ~groups~: print the groups a user is in.
+- See [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]] by linuxize.
+- If you want to list the groups the user ~jim~ is a member of, run
+  the command:
+
+#+BEGIN_SRC bash
+groups jim
+groups # if you're logged as jim
+#+END_SRC
+
+*** How can I list all groups present on the system?
+- Use ~getent~ command.
+- ~getent~: get entries from Name Service Switch libraries.
+- See [[https://linuxize.com/post/how-to-list-groups-in-linux/][how to list groups in linux]] by linuxize.
+- If you want to list all groups present on the system, run the command:
+
+#+BEGIN_SRC bash
+getent group
+#+END_SRC
+
 ** Passwords
-*** Enable root user account
-		- Problem :: How can I enable root user account?
-		- Use ~passwd~ command.
-		- Change user password.
-		- See examples [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]].
-		- If you want to enable the root user account and you have the
-      sudo privileges, run the command:
-			#+BEGIN_SRC bash
-			sudo passwd root
-      #+END_SRC
-		- If you want to disable the root user account and you have the
-      sudo privileges, run the command:
-			#+BEGIN_SRC bash
-			sudo passwd -l root
-      #+END_SRC
-*** Encrypt password into SHA 512 hash
-		- Problem :: How can I encrypt a password that can be used in the
-      ~/etc/shadow~ file?
-		- Use ~mkpasswd~ command.
-		- Encrypts the given password with the crypt(3) libc function using the given salt.
-		- See examples [[https://superuser.com/questions/371442/how-to-use-mkpasswd-to-generate-a-password-in-shadow-file-in-ubuntu-10-lucid][generate a password in shadow file]].
-		- If you want to encrypt a password into SHA 512 hash with the
-      given *salt* ~saltsalt~, run the command (and type your password):
-			#+BEGIN_SRC bash
-			mkpasswd -m sha-512 -S saltsalt
-      #+END_SRC
-		- If you want to encrypt a password into SHA 512 hash without
-      specifying the *salt* (a random one will be provide), run the
-      command (and type your password):
-			#+BEGIN_SRC bash
-			mkpasswd -m sha-512
-      #+END_SRC
-		- I you want to list all the encryption methods, run the command:
-			#+BEGIN_SRC bash
-			mkpasswd -m help
-      #+END_SRC
-		- I you want to install the ~mkpasswd~ command, you have to
-      install the package ~whois~. To do so, run the command:
-			#+BEGIN_SRC bash
-      sudo apt install whois
-			#+END_SRC
+*** How can I enable root user account?
+- Use ~passwd~ command.
+- ~passwd~: change user password.
+- See [[https://linuxize.com/post/how-to-enable-and-disable-root-user-account-in-ubuntu/][root user account]] by linuxize.
+- If you want to enable the root user account and you have the sudo
+  privileges, run the command:
+
+#+BEGIN_SRC bash
+sudo passwd root
+#+END_SRC
+
+- If you want to disable the root user account and you have the sudo
+  privileges, run the command:
+
+#+BEGIN_SRC bash
+sudo passwd -l root
+#+END_SRC
+
+*** How can I encrypt a password that can be used in the ~/etc/shadow~ file?
+- Use ~mkpasswd~ command.
+- ~mkpasswd~: Encrypts the given password with the crypt(3) libc
+  function using the given salt.
+- See examples [[https://superuser.com/questions/371442/how-to-use-mkpasswd-to-generate-a-password-in-shadow-file-in-ubuntu-10-lucid][generate a password in shadow file]] on stackexchange.
+- If you want to encrypt a password into ~SHA 512~ hash with the
+  given /salt/ ~saltsalt~, run the command (and type your password):
+
+#+BEGIN_SRC bash
+mkpasswd -m sha-512 -S saltsalt
+#+END_SRC
+
+- If you want to encrypt a password into ~SHA 512~ hash without
+  specifying the /salt/ (a random one will be provide), run the
+  command (and type your password):
+
+#+BEGIN_SRC bash
+mkpasswd -m sha-512
+#+END_SRC
+
+- I you want to list all the encryption methods, run the command:
+
+#+BEGIN_SRC bash
+mkpasswd -m help
+#+END_SRC
+
+- I you want to install the ~mkpasswd~ command, you have to
+  install the package ~whois~. To do so, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install whois
+#+END_SRC
+
+** UID
+*** How can I modify the UID of an user on linux?
+- Use ~usermod~ command.
+- ~usermod~: modify a user account.
+- See [[https://www.tecmint.com/usermod-command-examples/][usermod command example]] by linuxize.
+- If you want to modify the UID of the user ~tony~ to the number
+  ~1050~ for instance, run the command:
+
+#+BEGIN_SRC bash
+usermod -u 1050 tony
+#+END_SRC
+
+- If you want to print the UID of the user ~tony~, run the command:
+
+#+BEGIN_SRC bash
+id tony
+id   # if you're logged as tony
+#+END_SRC
+
 ** Miscellaneous
-   adduser, deluser, passwd addgroup, delgroup, chown, chgrp
-*** Modify UID
-		- Problem :: How can I modify the UID of an user on linux?
-		- Use ~usermod~ command.
-		- Modify a user account.
-		- See examples [[https://www.tecmint.com/usermod-command-examples/][usermod command example]].
-		- If you want to modify the UID of the user ~tony~ to the number
-      ~1050~ for instance, run the command:
-			#+BEGIN_SRC bash
-			usermod -u 1050 tony
-      #+END_SRC
-		- If you want to print the UID of the user ~tony~, run the
-      command:
-			#+BEGIN_SRC bash
-      id tony
-			id   # if you're logged as tony
-			#+END_SRC
+*** What is ~adduser~?
+- ~adduser~: add a user to the system.
+*** What is ~addgroup~?
+- ~addgroup~: add a group to the system.
+*** What is ~delgroup~?
+- ~delgroup~: remove a user from the system.
+*** What is ~chown~?
+- ~chown~: change file owner and group.
+*** What is ~chgrp~?
+- ~chgrp~: change group ownership.
+
 * Production
 ** node app in production
 *** 0) tools
