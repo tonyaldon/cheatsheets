@@ -25,7 +25,7 @@
 <a href="https://twitter.com/tonyaldon" target="_blank">Tony Aldon</a>
 #+END_SRC
 
-** ~meta~ tag
+** ~<meta>~ tag
 *** social media cards
 - You have to put some extra lines into the ~<head>~ that allow social
   media to render in a pretty way (cards) some information about your
@@ -45,7 +45,21 @@
 <meta property="twitter:image" content="path-to-image">
 <meta property="twitter:url" content="url">
 #+END_SRC
+** ~<details>~ tag
+- The ~<details>~ tag specifies additional details that the user can
+  open and close on demand.
+- See [[https://www.w3schools.com/tags/tag_details.asp][tag detail (w3schools)]].
+- Try the code:
+
+#+BEGIN_SRC html
+<details>
+  <summary>Visible part</summary>
+  <p>Hidden part that can be visible when the user click on "Visible part".</p>
+</details>
+#+END_SRC
 * CSS
+** CSS documentation
+- [[https://developer.mozilla.org/en-US/docs/Web/CSS/Reference][css reference (mozilla)]]
 ** Bulma framework
 *** main information
 - [[https://bulma.io/][bulma (homepage)]]
@@ -54,6 +68,43 @@
 *** templates
 - [[https://github.com/aldi/awesome-bulma-templates][awesome bulma templates (github)]]
 - [[https://github.com/BulmaTemplates/bulma-templates][bulma templates (github)]]
+*** How can I have horizontal navbar on mobile (Bulma)?
+- see [[https://github.com/jgthms/bulma/issues/1445][horizontal navbar on mobile (github issue)]].
+- First way:
+#+BEGIN_SRC css
+.navbar-item {
+  display: flex;
+}
+
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+  align-items: stretch;
+  display: flex;
+  padding: 0;
+}
+
+.navbar-menu{
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+.navbar-start{
+  justify-content: flex-start;
+  margin-right: auto;
+}
+.navbar-end{
+  justify-content: flex-end;
+  margin-left: auto;
+}
+#+END_SRC
+
+- Second way: modify the ~sass~ variable ~$navbar-breakpoint~:
+
+#+BEGIN_SRC scss
+$navbar-breakpoint:0;
+#+END_SRC
+
 ** SASS
 See [[https://sass-lang.com/][SASS]] a powerful CSS extension language.
 ** Centering elements
@@ -207,10 +258,69 @@ div {
 }
 #+END_SRC
 
+** Hover
+*** How to zoom on hover?
+- Use properties ~transition~ and ~transform~.
+- see [[https://www.w3schools.com/howto/howto_css_zoom_hover.asp][zoom hover]].
+- If you want to zoom by 150% a green square at the speed ~.2s~ when
+  you hover the mouse, run the code:
+
+#+BEGIN_SRC css
+.zoom {
+  padding: 50px;
+  margin: 0 auto;
+  background-color: green;
+  width: 200px;
+  height: 200px;
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  transform: scale(1.5);
+}
+#+END_SRC
+
+#+BEGIN_SRC html
+<div class="zoom"></div>
+#+END_SRC
+
+** Animation
+- [[https://www.w3schools.com/css/css3_animations.asp][css animation]]
+** Media queries
+*** How can I test media queries progammatically?
+- Use the ~MediaQueryList~ interface provide by the ~DOM~.
+- See [[https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Testing_media_queries][testing media queries (mozilla)]].
+** CSS Custom properties (variables)
+- A CSS custom properties is defined inside a ruleset, scoped by the
+  selector, start with a ~--~ and is use via the function ~var()~.
+- See [[https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties][Using_CSS_custom_properties]].
+- Declaring a custom property:
+
+#+BEGIN_SRC css
+element {
+  --main-bg-color: brown;
+}
+#+END_SRC
+
+- Using a custom property:
+
+#+BEGIN_SRC css
+element {
+  background-color: var(--main-bg-color);
+}
+#+END_SRC
+
+** Dark mode
+- [[https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/][complete guide dark-mode (css-tricks)]]
+- [[https://material.io/design/color/dark-theme.html][dark-theme (material design)]]
+- [[https://css-tricks.com/dark-mode-and-variable-fonts/][dark-mode and variable font (css-tricks)]]
+- [[https://northflank.com/][northflank (cool dark design)]]
+** CSS modules
+- [[https://css-tricks.com/css-modules-part-1-need/][css modules tutorials (css-tricks)]]
 * Javascript
 ** Javascript questions
-[[https://github.com/sudheerj/javascript-interview-questions/blob/master/README.md][javascript interview question]]
-[[https://github.com/lydiahallie/javascript-questions][javascript questions]]
+- [[https://github.com/sudheerj/javascript-interview-questions/blob/master/README.md][javascript interview question]]
+- [[https://github.com/lydiahallie/javascript-questions][javascript questions]]
 ** higlightjs
 *** How can I colors code block according to a given programming language?
 - Use [[https://highlightjs.org/][highlightjs]] javascript library.
@@ -249,24 +359,20 @@ div {
 
 * React js
 * Links
-** Inspiring
-- [[https://css-transform.moro.es/][css-transform]]
-- [[https://cssfx.dev/][cssfx]]
-- [[https://codepen.io/ainalem/pen/byqBNK][css gradient/svg]]
-- [[https://codepen.io/ainalem/pen/ZdVywW][toggle button]]
-- [[https://codepen.io/][codepen.io]]
-- [[https://github.com/bradtraversy/design-resources-for-developers][design resources for developers (traversy media)]]
-** to sort
-[[https://fonts.google.com][Google Fonts]]
-[[https://frontendmasters.com/books/front-end-handbook/2019/][frontend handbook]], [[https://www.w3schools.com/howto/howto_css_zoom_hover.asp][zoom hover]], [[https://www.w3schools.com/css/css3_animations.asp][css animation]], [[https://www.w3schools.com/css/css3_variables.asp][css3 variables]],
-[[https://www.w3schools.com/jsref/met_win_matchmedia.asp][js and media queries]], [[https://www.youtube.com/watch?v=vs34f9FiHps][css tricks video]], [[https://davidwalsh.name/pseudo-element][javascript get/set pseudo element]],
-[[http://mcgivery.com/htmlelement-pseudostyle-settingmodifying-before-and-after-in-javascript/][javascript get/set pseudo element]], [[https://www.w3schools.com/html/html_forms.asp][html forms]], [[https://www.w3schools.com/howto/howto_css_responsive_text.asp][text css responsive]],
-[[https://css-tricks.com/snippets/css/a-guide-to-flexbox/][css flexbox]], [[https://www.w3schools.com/cssref/css_units.asp][css units]], [[https://www.w3schools.com/cssref/css3_pr_mediaquery.asp][css @media]]
-** icons
-- [[https://github.com/refldactoringui/heroicons][heroicons (github)]]
-- [[https://ionicons.com/][ionicons (homepage)]]
-- [[https://materialdesignicons.com/][material design icons (homepage)]]
-** tools
-- [[https://github.com/4d11/csskrt-csskrt][csskrt - automatically add css to html tags (github)]]
-** ideas
-- [[https://htmx.org/][htmx]]
+** Learning
+- [[https://frontendmasters.com/books/front-end-handbook/2019/][frontend handbook]]: book on frontend (2019) by Cody Lindley
+- [[https://github.com/sudheerj/javascript-interview-questions/blob/master/README.md][javascript interview questions]]: by SudheerJonna
+- [[https://github.com/lydiahallie/javascript-questions][javascript questions]]: by Lydia Hallie
+- [[https://codepen.io/][codepen.io]]: CodePen is a social development environment for
+  front-end designers and developers.
+** Tools and library
+- [[https://css-transform.moro.es/][css-transform]]: 2D & 3D CSS Transform functions visualizer.
+- [[https://github.com/4d11/csskrt-csskrt][csskrt]]: automatically add css to html tags.
+- [[https://htmx.org/][htmx]]: allows you to access AJAX, WebSockets and Server Sent Events
+  directly in HTML, using attributes.
+- [[https://fonts.google.com][Google Fonts]]: free font hosted by Google.
+- [[https://materialdesignicons.com/][Material design icons]]: growing icon collection.
+- [[https://github.com/bradtraversy/design-resources-for-developers][design resources for developers]]
+** Good designs
+- [[https://northflank.com/][northflank]]: The fullstack cloud platform. Regain the initiative and
+  ship smarter. Reduce stress, time and cost.
