@@ -86,129 +86,147 @@ printf "%02.0f" 12.3
 printf "%02.0f" 3.62
 #+END_SRC
 
-* Packages management
+* Package management
 ** Linux packages
-*** List available linux packages related to a regexp
-		- Problem :: How can I list linux package related to a regexp?
-		- Use ~apt-cache search~ command.
-		- search performs a full text search on all available package lists for
-           the POSIX regex pattern given
-		- If you want to search linux packages related to emacs, run the
-      command: 
-			#+BEGIN_SRC bash
-			apt-cache search emacs
-      #+END_SRC
-*** Show linux package information
-		- Problem :: How can I show linux package information?
-		- Use ~apt-cache show~ command.
-		- Display the package records for the named packages.
-		- If you want to show the information of the installed ~emacs~
-      emacs package, run the command:
-			#+BEGIN_SRC bash
-			apt-cache show emacs
-      #+END_SRC
-*** Update list of available linux packages
-		- Problem :: How can I update the list of available linux packages?
-		- Use ~apt-get update~ command.
-		- This command is used to resynchronize the package index files from
-      their sources.
-*** list of installed packages
-		- Problem :: How can I list the installed packages?
-		- Use ~apt list~ command.
-		- List package satifying certain criteria.
-		- See examples [[https://linuxize.com/post/how-to-list-installed-packages-on-ubuntu/][list installed packages]].
-		- If you want to list all installed packages, run the command:
-			#+BEGIN_SRC bash
-			apt list --installed
-      #+END_SRC
-		- If you want to check if the package ~emacs~ is install, run the
-      command:
-			#+BEGIN_SRC bash
-			apt list --installed | grep emacs
-      #+END_SRC
-*** Install newest version of all packages
-		- Problem :: How can I install newest version of all my packages?
-		- Use ~apt-get upgrade~ command.
-		- This command installs the newest versions of all packages
-      currently installed on the system from the sources enumerated in
-      etc/apt/sources.list.
-*** Install a new linux package
-		- Problem :: How can I install a new linux package?
-		- Use ~apt-get install~ command.
-		- Install new one or more linux packages.
-		- If you want to install ~emacs~, run the command:
-			#+BEGIN_SRC bash
-			apt-get install emacs
-      #+END_SRC
-*** Remove a linux package
-		- Problem :: How can I remove a linux package?
-		- Use ~apt-get remove~ command.
-		- Remove linux packages. Note that removing a package leaves its
-      configuration files on the system. 
-		- If you want to remove ~emacs~, run the command:
-			#+BEGIN_SRC bash
-			apt-get remove emacs
-      #+END_SRC
+*** How can I list linux packages related to a regexp?
+- Use ~apt-cache search~ command.
+- ~apt-cache search~: search performs a full text search on all
+  available package lists for the POSIX regex pattern given.
+- If you want to search linux packages related to ~emacs~, run the
+  command:
 
-*** library dependencies of commands
-		- Problem :: How can I get the list of the libraries a command
-      depends on?
-		- Use ~ldd~ command.
-		- Print shared object dependencies.
-		- If you want to list the library dependencies of the ~ls~
-      command, run the command:
-			#+BEGIN_SRC bash
-			ldd /bin/ls
-      #+END_SRC
-			On my computer I get this output:
-			#+BEGIN_SRC bash
-			linux-vdso.so.1 (0x00007ffeeb143000)
-			libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007f2203fc5000)
-			libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2203bd4000)
-			libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f2203962000)
-			libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f220375e000)
-			/lib64/ld-linux-x86-64.so.2 (0x00007f220440f000)
-			libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f220353f000)
-			#+END_SRC
+#+BEGIN_SRC bash
+apt-cache search emacs
+#+END_SRC
+
+*** How can I show linux package information?
+- Use ~apt-cache show~ command.
+- ~apt-cache show~: display the package records for the named
+  packages.
+- If you want to show the information of the installed ~emacs~
+  package, run the command:
+
+#+BEGIN_SRC bash
+apt-cache show emacs
+#+END_SRC
+
+*** How can I update the list of available linux packages?
+- Use ~apt-get update~ command.
+- ~apt-get update~: this command is used to resynchronize the package
+  index files from their sources.
+*** How can I list the installed packages?
+- Use ~apt list~ command.
+- ~apt list~: list package satifying certain criteria.
+- See [[https://linuxize.com/post/how-to-list-installed-packages-on-ubuntu/][list installed packages]] by linuxize.
+- If you want to list all installed packages, run the command:
+
+#+BEGIN_SRC bash
+apt list --installed
+#+END_SRC
+
+- If you want to check if the package ~emacs~ is install, run the
+  command:
+
+#+BEGIN_SRC bash
+apt list --installed | grep emacs
+#+END_SRC
+
+*** How can I install newest versions of all my packages?
+- Use ~apt-get upgrade~ command.
+- This command installs the newest versions of all packages currently
+  installed on the system from the sources enumerated in
+  ~etc/apt/sources.list~ file.
+*** How can I install a new linux package?
+- Use ~apt-get install~ command.
+- ~apt-get install~: install new one or more linux packages.
+- If you want to install ~emacs~, run the command:
+
+#+BEGIN_SRC bash
+apt-get install emacs
+#+END_SRC
+
+*** How can I remove a linux package?
+- Use ~apt-get remove~ command.
+- ~apt-get remove~: remove linux packages. Note that removing a package leaves its configuration files on the system.
+- If you want to remove ~emacs~, run the command:
+
+#+BEGIN_SRC bash
+apt-get remove emacs
+#+END_SRC
+
+*** How can I get the list of the libraries a command depends on?
+- Use ~ldd~ command.
+- ~ldd~: print shared object dependencies.
+- If you want to list the library dependencies of the ~ls~ command,
+  run the command:
+
+#+BEGIN_SRC bash
+ldd /bin/ls
+#+END_SRC
+
+On my computer I get this output:
+
+#+BEGIN_SRC text
+linux-vdso.so.1 (0x00007ffeeb143000)
+libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007f2203fc5000)
+libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f2203bd4000)
+libpcre.so.3 => /lib/x86_64-linux-gnu/libpcre.so.3 (0x00007f2203962000)
+libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f220375e000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f220440f000)
+libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f220353f000)
+#+END_SRC
+
 ** npm for nodejs
-*** list nodejs installed packages
-		- Problem :: How can I list the the nodejs installed packages?
-		- Use ~ls~ subcommand of ~npm~.
-		- Print packages' version that are installed, as well as their
-      dependencies, in a tree-structure.
-		- If you want to list the installed packages in your ~node~
-      project, in root directory of your project run the command:
-			#+BEGIN_SRC bash
-			npm ls
-      #+END_SRC
-		- If you want to list the ~node~ installed packages globaly in
-      your machine, run the command:
-			#+BEGIN_SRC bash
-			npm ls -g
-      #+END_SRC
-		- If you want to list only the *name@version* of the installed
-      packages in your ~node~ project, you have to limite the depth of
-      the printed tree. To do so, run the command:
-			#+BEGIN_SRC bash
-			npm ls -g --depth=0
-      #+END_SRC
+*** How can I list the the nodejs installed packages?
+- Use ~ls~ subcommand of ~npm~.
+- ~npm ls~: Print packages' version that are installed, as well as
+  their dependencies, in a tree-structure.
+- If you want to list the installed packages in your ~node~ project,
+  in root directory of your project run the command:
+
+#+BEGIN_SRC bash
+npm ls
+#+END_SRC
+
+- If you want to list the ~node~ installed packages globaly in your
+  machine, run the command:
+
+#+BEGIN_SRC bash
+npm ls -g
+#+END_SRC
+
+- If you want to list only the /name@version/ of the installed
+  packages in your ~node~ project, you have to limite the depth of the
+  printed tree. To do so, run the command:
+
+#+BEGIN_SRC bash
+npm ls -g --depth=0
+#+END_SRC
+
 ** pip for python
-	 pip
+*** What is ~pip~?
+- ~pip~ is package installer for python. You can use ~pip~ to install
+  packages from the Python Package Index and other indexes.
+- See [[https://pypi.org/project/pip/][pip]] on pypi.
 ** brew for missing packages on macOS
-	 - [[https://brew.sh/][brew]]
-	 - To install ~brew~, run the command:
-			#+BEGIN_SRC bash
-			/bin/bash -c "$(curl -fsSL \
-			  https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-      #+END_SRC
+*** How can I install ~brew~?
+- See [[https://brew.sh/][brew]] homepage.
+- To install ~brew~, run the command:
+
+#+BEGIN_SRC bash
+/bin/bash -c "$(curl -fsSL \
+  https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+#+END_SRC
+
 ** nix
-	 - [[https://nixos.org/][nixos (homepage)]]
-   - [[https://nixos.org/nixos/nix-pills/why-you-should-give-it-a-try.html][why you should give it a try]]
-   - [[https://engineering.shopify.com/blogs/engineering/what-is-nix][what is nix]]
-   - [[https://edolstra.github.io/pubs/phd-thesis.pdf][phd-thesis (on nix)]]
-   - [[https://nix.dev/][nix.dev]]
-   - [[https://nixcloud.io/main/en/][nixcloud]]
-   - [[https://github.com/rycee/home-manager][home-manager (nix)]]
+*** What is ~nix~?
+- [[https://nixos.org/][nixos (homepage)]]
+- [[https://nixos.org/nixos/nix-pills/why-you-should-give-it-a-try.html][why you should give it a try]]
+- [[https://engineering.shopify.com/blogs/engineering/what-is-nix][what is nix]]
+- [[https://edolstra.github.io/pubs/phd-thesis.pdf][phd-thesis (on nix)]]
+- [[https://nix.dev/][nix.dev]]
+- [[https://nixcloud.io/main/en/][nixcloud]]
+- [[https://github.com/rycee/home-manager][home-manager (nix)]]
 * Environment variables
 *** Print all environment variables
 		- Problem :: How can I print all environment variables?
