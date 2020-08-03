@@ -38,38 +38,54 @@
 			#+BEGIN_SRC bash
 			texdoc tikz
       #+END_SRC
-* Script
+* Scripts
 ** Makefile
-	- [[https://makefiletutorial.com/][makefile tutorial]]
-	- [[https://opensource.com/article/18/8/what-how-makefile][how does a makefile work]]
-	- [[https://stackoverflow.com/questions/11184389/what-does-wildcard-mean-in-makefile][wildcard in makefile]]
-** bash script
-  - [[https://devhints.io/bash][devhints.io: bash scripting]]
-*** status in bash
-		- Problem :: How can I know the status of the last command run?
-		- Use ~$?~ symbols.
-		- See examples [[https://linuxize.com/post/bash-functions/][bash functions]].
-		- If you want to print the status of the last command run, run
-      the command:
-			#+BEGIN_SRC bash
-			echo $?
-      #+END_SRC
-		- When a bash function completes, its return value is the status
-      of the last statement executed in the function, *0* for *success*
-      and non-zero decimal number in the *1 - 255* range for *failure*.
-** format outputs
-*** format numbers in bash
-		- Problem :: How can I format numbers in bash script?
-		- Use ~printf~ command.
-		- Format and print data.
-		- See example [[https://unix.stackexchange.com/questions/404100/formatting-numerical-output-in-bash-to-have-exactly-4-decimal-places][formatting numerical output in bash]].
-		- If you want to transform ~12.3~ to ~12~ and ~3.62~ to ~03~, the
-      ~printf~ format to use is ~"%02.0f"~. So, running the following
-      command gives you the expected results:
-			#+BEGIN_SRC bash
-			printf "%02.0f" 12.3
-			printf "%02.0f" 3.62
-      #+END_SRC
+*** Where can I find a good tutorial on Makefile?
+- See [[https://makefiletutorial.com/][makefile tutorial]].
+*** What is a Makefile?
+- See [[https://opensource.com/article/18/8/what-how-makefile][What is a Makefile?]] by Sachin Patil.
+*** How to use wildcard in Makefile?
+- Use the function ~wildcard~ of the ~make~ syntax.
+- See [[https://stackoverflow.com/questions/11184389/what-does-wildcard-mean-in-makefile][wildcard in makefile]] on stackoverflow.
+- If you have two source files ~foo.c~ and ~bar.c~, to set the value
+  of the variable ~programs~ with ~foo.c bar.c~, add this line to your
+  ~Makefile~:
+
+#+BEGIN_SRC makefile
+programs:=$(wildcard *.c)
+#+END_SRC
+
+** ~bash~ script
+*** Where can I find a good cheatsheet about bash scripting?
+- See bash scripting cheatsheet on [[https://devhints.io/bash][devhints.io]].
+*** How can I know the status of the last command run in my terminal?
+- Use ~$?~ symbol and ~echo~ command.
+- ~echo~: display a line of text.
+- See [[https://linuxize.com/post/bash-functions/][bash functions]].
+- If you want to print the status of the last command run in your
+  terminal, run the command:
+
+#+BEGIN_SRC bash
+echo $?
+#+END_SRC
+
+- When a bash function completes, its return value is the *status* of
+  the last statement executed in the function, ~0~ for /success/ and
+  non-zero decimal number in the ~1 - 255~ range for /failure/.
+** Format outputs
+*** How can I format numbers in bash script?
+- Use ~printf~ command.
+- ~printf~: format and print data.
+- See [[https://unix.stackexchange.com/questions/404100/formatting-numerical-output-in-bash-to-have-exactly-4-decimal-places][formatting numerical output in bash]].
+- If you want to transform ~12.3~ to ~12~ and ~3.62~ to ~03~, the
+  ~printf~ format to use is ~"%02.0f"~. So, running the following
+  command gives you the expected results:
+
+#+BEGIN_SRC bash
+printf "%02.0f" 12.3
+printf "%02.0f" 3.62
+#+END_SRC
+
 * Packages management
 ** Linux packages
 *** List available linux packages related to a regexp
