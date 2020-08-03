@@ -3,214 +3,257 @@
 
 * settings
 ** git-config
-   #+BEGIN_SRC bash
-   git config --global user.name "<my-name>"
-   git config --global user.email "<my-email>"
-	 git config --global push.default matching
-	 git config --global push.default simple
-	 git config --global commit.template ~/.gitmessage
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git config --global user.name "<my-name>"
+git config --global user.email "<my-email>"
+git config --global push.default matching
+git config --global push.default simple
+git config --global commit.template ~/.gitmessage
+#+END_SRC
+
 * basics
 ** git-init/git-add/git-commit
-   #+BEGIN_SRC bash
-   git init
-   git commit --allow-empty -m "Initial commit"
-   git add .
-	 git add -p <file>
-   git commit -a -m "<my-message>"
-   git commit -F <my-file>
-	 #+END_SRC
+
+#+BEGIN_SRC bash
+git init
+git commit --allow-empty -m "Initial commit"
+git add .
+git add -p <file>
+git commit -a -m "<my-message>"
+git commit -F <my-file>
+#+END_SRC
+
 ** git-branch/git-checkout
-   #+BEGIN_SRC bash
-   git branch <my-branch>
-   git checkout <my-branch>
-   git checkout -b <my-branch>
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git branch <my-branch>
+git checkout <my-branch>
+git checkout -b <my-branch>
+#+END_SRC
+
 ** git-stash
-   #+BEGIN_SRC bash
-   git stash
-   git stash pop
-   git stash pop stash@{1}
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git stash
+git stash pop
+git stash pop stash@{1}
+#+END_SRC
+
 ** git-merge
-   #+BEGIN_SRC bash
-   git merge <my-branch>
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git merge <my-branch>
+#+END_SRC
+
 ** git-tag
-   #+BEGIN_SRC bash
-   git tag -a <tag-name> -m "<tag-message>"
-   git tag -a <tag-name> <past-commit-ref>
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git tag -a <tag-name> -m "<tag-message>"
+git tag -a <tag-name> <past-commit-ref>
+#+END_SRC
+
 * list
 ** git-status/git-config/git-ls-tree
-   #+BEGIN_SRC bash
-   git status
-   git config -l
-   git ls-tree -r master --name-only
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git status
+git config -l
+git ls-tree -r master --name-only
+#+END_SRC
+
 ** git-stash/git-branch
-   #+BEGIN_SRC bash
-   git stash list
-   git branch
-   git branch --merged
-   git branch --merged master
-   git branch --no-merged
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git stash list
+git branch
+git branch --merged
+git branch --merged master
+git branch --no-merged
+#+END_SRC
+
 ** git-log/git-reflog
-   #+BEGIN_SRC bash
-   git log
-   git log --stat
-   git log -p
-   git log -p -2
-   git log --oneline
-	 git log --oneline --decorate --graph --all
-   git reflog
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git log
+git log --stat
+git log -p
+git log -p -2
+git log --oneline
+git log --oneline --decorate --graph --all
+git reflog
+#+END_SRC
+
 ** git-show/git-diff
-   #+BEGIN_SRC bash
-  git show
-  git diff
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git show
+git diff
+#+END_SRC
+
 ** git-tag/git-show
-   #+BEGIN_SRC bash
-   git tag
-   git tag -l "v1.5.*"
-   git tag -n
-	 git show <tag-name>
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git tag
+git tag -l "v1.5.*"
+git tag -n
+git show <tag-name>
+#+END_SRC
+
 * delete
 ** git-rm
-   #+BEGIN_SRC bash
-   git rm --cached <my-file>
-   #+END_SRC
 
-   [warning] First commit your current changes, or you will lose
-   them.
-   #+BEGIN_SRC bash
-   git rm -r --cached .
-   git add .
-   git commit -m "fixed untracked files"
-   #+END_SRC
+#+BEGIN_SRC bash
+git rm --cached <my-file>
+#+END_SRC
+
+[warning] First commit your current changes, or you will lose them.
+
+#+BEGIN_SRC bash
+git rm -r --cached .
+git add .
+git commit -m "fixed untracked files"
+#+END_SRC
+
 ** git-commit/git-tag/git-branch
-   #+BEGIN_SRC bash
-   git commit -a --amend -m "<my-new-message>"
-   git tag -d <tag-name>
-   git branch -d <my-branch>
-   git rebase --help
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git commit -a --amend -m "<my-new-message>"
+git tag -d <tag-name>
+git branch -d <my-branch>
+git rebase --help
+#+END_SRC
+
 ** git-rebase
-	 Note: When you rebase your history, the git hook
-	 ~prepare-commit-msg~ may interfer and insert text in commit you do
-	 not want.  A workaround can be to skip the ~prepare-commit-msg~ by
-	 rename it temporarily as backup file (with a trailing ~~~) before
-	 you start your ~git rebase~.
-	 #+BEGIN_SRC bash
-   git rebase --help
-   #+END_SRC
+Note: When you rebase your history, the git hook ~prepare-commit-msg~
+may interfer and insert text in commit you do not want.  A workaround
+can be to skip the ~prepare-commit-msg~ by rename it temporarily as
+backup file (with a trailing ~~~) before you start your ~git rebase~.
+
+#+BEGIN_SRC bash
+git rebase --help
+#+END_SRC
+
 ** uncommitted
-   #+BEGIN_SRC bash
-   git checkout .
-   git reset --hard
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git checkout .
+git reset --hard
+#+END_SRC
+
 ** revert back a git-merge
-	 [warning] This following action delete all the commits up to
-	 ~<commit-id>~, you can't go back. This is safe if the deleted
-	 commits are yet part of another branch.
-	 #+BEGIN_SRC bash
-   git reset --hard <commit-id>
-	 #+END_SRC
-** git-remote
+[warning] This following action delete all the commits up to ~<commit-id>~, you can't go back. This is safe if the deleted commits are yet part of another branch.
+
+#+BEGIN_SRC bash
+git reset --hard <commit-id>
+#+END_SRC
+
 * repository
-   #+BEGIN_SRC bash
-     git remote add origin <remote-url>
-		 git remote set-url origin <new-remote-url>
-     git remote add <shortname> <remote-url>
-		 git remote
-		 git remote show <remote>
-   #+END_SRC
+** git-remote
+
+#+BEGIN_SRC bash
+git remote add origin <remote-url>
+git remote set-url origin <new-remote-url>
+git remote add <shortname> <remote-url>
+git remote
+git remote show <remote>
+#+END_SRC
+
 ** git-clone/git-pull
-   #+BEGIN_SRC bash
-     git clone <url-repository>
-     git pull origin master
-		 git fetch <remote>
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git clone <url-repository>
+git pull origin master
+git fetch <remote>
+#+END_SRC
+
 ** git-push
-   #+BEGIN_SRC bash
-     git push -u origin master
-     git push
-		 git push origin master
-		 git push origin --all
-     git push origin <tag-name>
-     git push origin --tags
-     git push origin --delete <tag-name>
-     git push origin --delete <branch-name>
-   #+END_SRC
+
+#+BEGIN_SRC bash
+git push -u origin master
+git push
+git push origin master
+git push origin --all
+git push origin <tag-name>
+git push origin --tags
+git push origin --delete <tag-name>
+git push origin --delete <branch-name>
+#+END_SRC
+
 ** github fork (workflow)
-	 Example with ~company-emoji~
-	 (https://github.com/dunn/company-emoji).
-	 A complete fork workflow is broken in several steps.
-	 - Visit the ~company-emoji~ repository and click in the top-right
-     button ~fork~. (The ~forked~ repository will created on your
-     ~github~ repository).
-	 - Create a locale clone of the ~forked~ repository and add the
-     original repository as remote named ~upstream~. To do so, run the
-     command:
-		 #+BEGIN_SRC bash
-		 git clone git@github.com:tonyaldon/company-emoji.git
-		 cd company-emoji
-		 git remote add upstream https://github.com/dunn/company-emoji.git
-		 git fetch upstream
-     #+END_SRC
-	 - Know you can work on your ~master~ branch that is synchronized
-     with your ~forked~ repository.
-	 - To view the ~diff~ between your ~forked~ repository and the
-     ~upstream~ repository, run the commands:
-		 #+BEGIN_SRC bash
-		 git fetch upstream
-		 git diff upstream/master master
-     #+END_SRC
-	 - To merge the master branch of the ~upstream~ repository into
-     the (your) master branch of the ~forked~ repository, run the
-     commands:
-		 #+BEGIN_SRC bash
-		 git fetch upstream
-		 git checkout master
-		 git merge upstream/master
-     #+END_SRC
-	 - Pull request (part 1): To make a ~pull request~ to the ~upstream~
-     repository, create a ~feature~ branch named ~my-feature~ into
-     your local clone of the ~forked~ repository, make changes,
-     commit the changes, push the changes (~my-feature~ branch) to
-     your ~forked~ repository. To do so, run the commands:
-		 #+BEGIN_SRC bash
-		 git checkout -b my-feature
-		 # do stuff
-		 git add .
-		 git commit -m "Add my-feature"
-		 git push
-     #+END_SRC
-		 In the terminal you'd see a link where you can make a pull
-     request.
-	 - Pull request (part 2): To make a pull request of ~my-feature~
-     branch into the master branch of the ~upstream~ repository, visit
-     the pull request tab of the ~upstream~ repository, on top-right
-     corner, click on ~new pull request~, in the menu, choose ~base -
-     master~ and ~compare - my-feature~, write a message and click on
-     create pull request.
+Example with ~company-emoji~ (https://github.com/dunn/company-emoji).
+
+A complete fork workflow is broken in several steps.
+- Visit the ~company-emoji~ repository and click in the top-right
+  button ~fork~. (The ~forked~ repository will created on your
+  ~github~ repository).
+- Create a locale clone of the ~forked~ repository and add the
+  original repository as remote named ~upstream~. To do so, run the
+  commands:
+
+#+BEGIN_SRC bash
+git clone git@github.com:tonyaldon/company-emoji.git
+cd company-emoji
+git remote add upstream https://github.com/dunn/company-emoji.git
+git fetch upstream
+#+END_SRC
+
+- Know you can work on your ~master~ branch that is synchronized with
+  your ~forked~ repository.
+- To view the ~diff~ between your ~forked~ repository and the
+  ~upstream~ repository, run the commands:
+
+#+BEGIN_SRC bash
+git fetch upstream
+git diff upstream/master master
+#+END_SRC
+
+- To merge the master branch of the ~upstream~ repository into the
+  (your) master branch of the ~forked~ repository, run the commands:
+
+#+BEGIN_SRC bash
+git fetch upstream
+git checkout master
+git merge upstream/master
+#+END_SRC
+
+- Pull request (part 1): To make a ~pull request~ to the ~upstream~
+  repository, create a ~feature~ branch named ~my-feature~ into your
+  local clone of the ~forked~ repository, make changes, commit the
+  changes, push the changes (~my-feature~ branch) to your ~forked~
+  repository. To do so, run the commands:
+
+#+BEGIN_SRC bash
+git checkout -b my-feature
+# do stuff
+git add .
+git commit -m "Add my-feature"
+git push
+#+END_SRC
+
+In the terminal you'd see a link where you can make a pull request.
+- Pull request (part 2): To make a pull request of ~my-feature~ branch
+  into the master branch of the ~upstream~ repository, visit the pull
+  request tab of the ~upstream~ repository, on top-right corner, click
+  on ~new pull request~, in the menu, choose ~base - master~ and
+  ~compare - my-feature~, write a message and click on create pull
+  request.
 * submodule
 ** git-submodule
-	 #+BEGIN_SRC bash
-   git submodule add ./my-submodule/
-	 git submodule init
-	 git commit -m "Add my-submodule"
-	 #+END_SRC
+
+#+BEGIN_SRC bash
+git submodule add ./my-submodule/
+git submodule init
+git commit -m "Add my-submodule"
+#+END_SRC
+
 * links
-  - [[https://git-scm.com/book/en/v2][git-scm.com: the book]]
-  - [[https://semver.org/][semver.org: semantic versioning]]
-	- [[https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/][mind the end of your line]]
-	- [[https://linuxize.com/post/how-to-install-and-configure-gitlab-on-ubuntu-18-04/][how-to-install-and-configure-gitlab-on-ubuntu-18-04 (linuxize)]]
-	- [[https://docs.gitlab.com/omnibus/settings/smtp.html][settings smtp (gitlab doc)]]
-	- [[https://mincong.io/2019/07/23/prepare-commit-message-using-git-hook/][prepare-commit-message hook (example)]]
+- [[https://git-scm.com/book/en/v2][git-scm.com: the book]]
+- [[https://semver.org/][semver.org: semantic versioning]]
+- [[https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/][mind the end of your line]]
+- [[https://linuxize.com/post/how-to-install-and-configure-gitlab-on-ubuntu-18-04/][how-to-install-and-configure-gitlab-on-ubuntu-18-04 (linuxize)]]
+- [[https://docs.gitlab.com/omnibus/settings/smtp.html][settings smtp (gitlab doc)]]
+- [[https://mincong.io/2019/07/23/prepare-commit-message-using-git-hook/][prepare-commit-message hook (example)]]
 * ideas
-	- In a github repository, you can search for files by clicking on
-    the button ~find file~ on the left of ~clone~ button.
+- In a github repository, you can search for files by clicking on
+  the button ~find file~ on the left of ~clone~ button.
