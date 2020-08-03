@@ -321,6 +321,7 @@ element {
 ** Javascript questions
 - [[https://github.com/sudheerj/javascript-interview-questions/blob/master/README.md][javascript interview question]]
 - [[https://github.com/lydiahallie/javascript-questions][javascript questions]]
+- [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript][A re-introduction to JavaScript]]
 ** higlightjs
 *** How can I colors code block according to a given programming language?
 - Use [[https://highlightjs.org/][highlightjs]] javascript library.
@@ -357,7 +358,64 @@ element {
   ...some text <span class="hljs-keyword">function</span> some text...
   #+END_SRC
 
+** js regexp
+- See [[https://developer.mozilla.org/fr/docs/Web/JavaScript/Guide/Expressions_r%C3%A9guli%C3%A8res][javascript regex (mozilla)]].
 * React js
+** Documentation
+- [[https://reactjs.org/][reactjs]]
+- [[https://reactjs.org/tutorial/tutorial.html][tutorial (reactjs)]]
+- [[https://reactjs.org/docs/getting-started.html][getting-started (reactjs)]]
+- [[https://reactjs.org/docs/hello-world.html][hello-world (reactjs)]]
+- [[https://reactjs.org/docs/thinking-in-react.html][thinking-in-react (reactjs)]]
+** create-react-app
+- [[https://create-react-app.dev/docs/][create react app (documentation)]]
+- To start writting a ~react~ web app using ~create-react-app~, run
+  the command:
+
+#+BEGIN_SRC bash
+npx create-react-app app
+#+END_SRC
+*** How to fix "Error: ENOSPC: System limit for number of file watchers reached,..."?
+- See [[https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached][error enospc system limit (stackoverflow)]] and [[https://github.com/facebook/create-react-app/issues/7612][create react app - issue 7612]].
+- To solve the problem, run the commands:
+
+#+BEGIN_SRC bash
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
+#+END_SRC
+
+** testing
+*** react testing library
+- [[https://kentcdodds.com/blog/testing-implementation-details][testing-implementation-details (article)]]
+- [[https://kentcdodds.com/blog/making-your-ui-tests-resilient-to-change][making-your-ui-tests-resilient-to-change (article)]]
+- [[https://www.npmjs.com/package/@testing-library/react][@testing-library/react (npm)]]
+- [[https://testing-library.com/docs/react-testing-library/intro][react-testing-library (documentation)]]
+- [[https://testing-library.com/docs/react-testing-library/cheatsheet][react-testing-library (cheatsheet)]]
+- [[https://www.robinwieruch.de/react-testing-library][react-testing-library (tutorial)]]
+*** Jest
+- See [[https://jestjs.io/docs/en/snapshot-testing][snapshot testing (Jest)]].
+- Inline snapshot use ~prettier~ that isn't installed by default when
+  using ~create-react-app~. To install it, in your project root
+  directory, run the command:
+
+#+BEGIN_SRC bash
+npm install --save-dev --save-exact prettier
+#+END_SRC
+
+- Focusing and Excluding Tests: You can replace ~it()~ with ~xit()~ to
+  temporarily exclude a test from being executed. Similarly, ~fit()~
+  lets you focus on a specific test without running any other tests.
+- See [[https://jestjs.io/docs/en/expect.html][jestjs/expect (documentation)]].
+- See [[https://github.com/testing-library/jest-dom][jest-dom (github)]].
+*** create-react-app
+- [[https://create-react-app.dev/docs/running-tests/][running test (create-react-app)]]
+** js modules
+- [[https://www.npmjs.com/package/magic-string][magic-string]]
+- [[https://github.com/rexxars/react-markdown][react-markdown]]
+- [[https://www.npmjs.com/package/classnames][classnames]]
+- [[https://www.npmjs.com/package/react-collapse][react-collapse]]
+** ~super(props)~ in class declaration
+- See [[https://stackoverflow.com/questions/30571875/whats-the-difference-between-super-and-superprops-in-react-when-using-e][difference-between-super-and-super(props)]].
 * Links
 ** Learning
 - [[https://frontendmasters.com/books/front-end-handbook/2019/][frontend handbook]]: book on frontend (2019) by Cody Lindley
