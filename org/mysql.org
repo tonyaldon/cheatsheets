@@ -2,48 +2,51 @@
 #+author: Tony Aldon
 
 * links
-  [[https://gist.github.com/hofmannsven/9164408][mysql cheatsheet]], [[https://dev.mysql.com/doc/refman/8.0/en/][documentation]], [[https://dev.mysql.com/doc/refman/8.0/en/tutorial.html][tutorial]], [[https://dev.mysql.com/doc/refman/8.0/en/examples.html][common queries]]
+[[https://gist.github.com/hofmannsven/9164408][mysql cheatsheet]], [[https://dev.mysql.com/doc/refman/8.0/en/][documentation]], [[https://dev.mysql.com/doc/refman/8.0/en/tutorial.html][tutorial]], [[https://dev.mysql.com/doc/refman/8.0/en/examples.html][common queries]]
 * mysql with node.js
-  [[https://github.com/mysqljs/mysql][mysqljs]]
+[[https://github.com/mysqljs/mysql][mysqljs]]
 * user
-  [[https://dev.mysql.com/doc/refman/8.0/en/password-logging.html][password-logging]]
-  [[https://dev.mysql.com/doc/refman/8.0/en/show-grants.html][show grants]]
+- [[https://dev.mysql.com/doc/refman/8.0/en/password-logging.html][password-logging]]
+- [[https://dev.mysql.com/doc/refman/8.0/en/show-grants.html][show grants]]
 
-	#+BEGIN_SRC mysql
-  mysql> FLUSH PRIVILEGES; -- reload privileges
-  mysql> SYSTEM mysql -u user -p; -- switch user
-  mysql> SELECT user,host,authentication_string FROM mysql.user;
-  mysql> show grants for 'test'@'localhost';
-	#+END_SRC
+#+BEGIN_SRC sql
+mysql> FLUSH PRIVILEGES; -- reload privileges
+mysql> SYSTEM mysql -u user -p; -- switch user
+mysql> SELECT user,host,authentication_string FROM mysql.user;
+mysql> show grants for 'test'@'localhost';
+#+END_SRC
+
 * mysql script
-  [[https://dev.mysql.com/doc/refman/8.0/en/batch-mode.html][mysql batch mode]]
+[[https://dev.mysql.com/doc/refman/8.0/en/batch-mode.html][mysql batch mode]]
 
-	#+BEGIN_SRC bash
-  mysql < batch-file
-  mysql -h host -u user -p < batch-file
-  mysql -u user -p dbname < batch-file
-	#+END_SRC
+#+BEGIN_SRC bash
+mysql < batch-file
+mysql -h host -u user -p < batch-file
+mysql -u user -p dbname < batch-file
+#+END_SRC
+
 * mysqldump
-  [[https://dev.mysql.com/doc/mysql-backup-excerpt/8.0/en/mysqldump-sql-format.html][mysqldump]], [[https://dev.mysql.com/doc/mysql-backup-excerpt/8.0/en/reloading-sql-format-dumps.html][reload database]]
+[[https://dev.mysql.com/doc/mysql-backup-excerpt/8.0/en/mysqldump-sql-format.html][mysqldump]], [[https://dev.mysql.com/doc/mysql-backup-excerpt/8.0/en/reloading-sql-format-dumps.html][reload database]]
 
-	#+BEGIN_SRC bash
-  mysqldump -u root -p --databases contact > dump-2019-09-28-contact.sql
-  mysql -u root -p < my-dump.sql
-	#+END_SRC
+#+BEGIN_SRC bash
+mysqldump -u root -p --databases contact > dump-2019-09-28-contact.sql
+mysql -u root -p < my-dump.sql
+#+END_SRC
+
 * import csv
-  [[https://dev.mysql.com/doc/refman/8.0/en/mysqlimport.html][mysqlimport]], [[https://stackoverflow.com/questions/3635166/how-to-import-csv-file-to-mysql-table][import  csv]], [[https://dev.mysql.com/doc/refman/8.0/en/load-data.html][load data]], [[https://stackoverflow.com/questions/32737478/how-should-i-tackle-secure-file-priv-in-mysql][load data (local option)]]
+[[https://dev.mysql.com/doc/refman/8.0/en/mysqlimport.html][mysqlimport]], [[https://stackoverflow.com/questions/3635166/how-to-import-csv-file-to-mysql-table][import  csv]], [[https://dev.mysql.com/doc/refman/8.0/en/load-data.html][load data]], [[https://stackoverflow.com/questions/32737478/how-should-i-tackle-secure-file-priv-in-mysql][load data (local option)]].
 * mysql utf8
-  [[https://dev.mysql.com/doc/refman/8.0/en/data-types.html][data types]], [[https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html][data type default value]], [[https://dev.mysql.com/doc/refman/8.0/en/charset-applications.html][charset utf8]], [[https://stackoverflow.com/questions/202205/how-to-make-mysql-handle-utf-8-properly][handle utf8]],
-  [[https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql][utf8mb4 vs utf8]]
+[[https://dev.mysql.com/doc/refman/8.0/en/data-types.html][data types]], [[https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html][data type default value]], [[https://dev.mysql.com/doc/refman/8.0/en/charset-applications.html][charset utf8]], [[https://stackoverflow.com/questions/202205/how-to-make-mysql-handle-utf-8-properly][handle utf8]], [[https://stackoverflow.com/questions/30074492/what-is-the-difference-between-utf8mb4-and-utf8-charsets-in-mysql][utf8mb4 vs utf8]].
 
-	#+BEGIN_SRC mysql
-  mysql> CREATE DATABASE dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-  mysql> ALTER DATABASE dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-	#+END_SRC
+#+BEGIN_SRC sql
+mysql> CREATE DATABASE dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+mysql> ALTER DATABASE dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+#+END_SRC
+
 * alter table
-  [[https://stackoverflow.com/questions/689746/altering-a-column-null-to-not-null][null -> not null]]
+[[https://stackoverflow.com/questions/689746/altering-a-column-null-to-not-null][null -> not null]]
 
-	#+BEGIN_SRC mysql
-  mysql> UPDATE [Table] SET [Column]=0 WHERE [Column] IS NULL;
-  mysql> ALTER TABLE [Table] ALTER COLUMN [Column] INTEGER NOT NULL;
-	#+END_SRC
+#+BEGIN_SRC sql
+mysql> UPDATE [Table] SET [Column]=0 WHERE [Column] IS NULL;
+mysql> ALTER TABLE [Table] ALTER COLUMN [Column] INTEGER NOT NULL;
+#+END_SRC
