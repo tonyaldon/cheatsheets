@@ -733,141 +733,387 @@ systemctl status emacs --user
 *** What is ~ps~?
 -~ps~: report a snapshot of the current processes.
 * Files
-** View
-   du, file, ls, cat, more, less, head, tail
+** Get info
+*** How can I recursively list a directory in a tree-like format?
+- Use ~tree~ command.
+- ~tree~: list contents of directories in a tree-like format.
+- In the root directory of an ~React~ app, limiting the max display
+  depth of the directory tree to one by running the command
+  ~tree -L 1 .~, I get this output:
+
+#+BEGIN_SRC text
+.
+├── jsconfig.json
+├── node_modules
+├── package.json
+├── package-lock.json
+├── public
+├── README.md
+└── src
+
+3 directories, 4 files
+#+END_SRC
+
+- In the root directory of an ~React~ app, limiting the max display
+  depth of the directory tree to one and ignoring file in the
+  ~node_modules~ directory, by running the command
+  ~tree -I node_modules -L 2 .~, I get this output:
+
+#+BEGIN_SRC text
+.
+├── jsconfig.json
+├── package.json
+├── package-lock.json
+├── public
+│   ├── discreet-theme.css
+│   ├── icon-tricks192.png
+│   ├── icon-tricks512.png
+│   ├── index.html
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+└── src
+    ├── App.js
+    ├── App.scss
+    ├── App.test.js
+    ├── astUtils.js
+    ├── astUtils.test.js
+    ├── index.js
+    ├── _myBulma.scss
+    ├── orgContent.js
+    ├── serviceWorker.js
+    └── setupTests.js
+
+2 directories, 20 files
+#+END_SRC
+
+*** How can I check the space usage of a directory?
+- Use ~du~ command.
+- ~du~: estimate file space usage.
+- If you want to check the space usage of your ~$HOME~ directory in
+  a human readable way, run the command:
+
+#+BEGIN_SRC bash
+du -sh $HOME
+#+END_SRC
+
+*** How can I check the file type of a file?
+- Use ~file~ command.
+- ~file~: determine file type.
+- If you want to check the file type of the files ~elisp.el~ and
+  ~video.mp4~, that respectively contain ~emacs-lisp~ code and ~mp4~
+  video, run the command:
+
+#+BEGIN_SRC bash
+file elisp.el video.mp4
+#+END_SRC
+
+This gave me this output:
+
+#+BEGIN_SRC text
+elisp.el:  Lisp/Scheme program, ASCII text
+video.mp4: ISO Media, MP4 Base Media v1 [IS0 14496-12:2003]
+#+END_SRC
+
+*** How can I get a detailed information about audio/video files?
+- Use ~mediainfo~ command.
+- ~mediainfo~: command line utility to display information about
+  audio/video files.
+- After running the command ~mediainfo video.mp4~, I got the output:
+
+#+BEGIN_SRC text
+General
+Complete name                 : video.mp4
+Format                        : MPEG-4
+Format profile                : Base Media
+Codec ID                      : isom (isom/iso2/mp41)
+File size                     : 186 KiB
+Duration                      : 11 s 603 ms
+Overall bit rate mode         : Constant
+Overall bit rate              : 131 kb/s
+Writing application           : Lavf57.83.100
+
+Audio
+ID                            : 1
+Format                        : AAC
+Format/Info                   : Advanced Audio Codec
+Format profile                : LC
+Codec ID                      : mp4a-40-2
+Duration                      : 11 s 603 ms
+Duration_LastFrame            : -3 ms
+Bit rate mode                 : Constant
+Bit rate                      : 129 kb/s
+Channel(s)                    : 2 channels
+Channel positions             : Front: L R
+Sampling rate                 : 48.0 kHz
+Frame rate                    : 46.875 FPS (1024 SPF)
+Compression mode              : Lossy
+Stream size                   : 183 KiB (98%)
+Default                       : Yes
+Alternate group               : 1
+#+END_SRC
+
+- After running the command ~mediainfo audio.mp3~, I got the output:
+
+#+BEGIN_SRC text
+General
+Complete name                 : audio.mp3
+Format                        : MPEG Audio
+File size                     : 2.31 MiB
+Duration                      : 2 min 45 s
+Overall bit rate mode         : Variable
+Overall bit rate              : 117 kb/s
+Writing library               : Lavf57.83.100
+
+Audio
+Format                        : MPEG Audio
+Format version                : Version 1
+Format profile                : Layer 3
+Format settings               : Joint stereo
+Duration                      : 2 min 45 s
+Bit rate mode                 : Variable
+Bit rate                      : 117 kb/s
+Channel(s)                    : 2 channels
+Sampling rate                 : 48.0 kHz
+Frame rate                    : 41.667 FPS (1152 SPF)
+Compression mode              : Lossy
+Stream size                   : 2.31 MiB (100%)
+#+END_SRC
+
+** View files
+*** What is ~cat~, ~head~ and ~tail~?
+- ~cat~: concatenate files and print on the standard output.
+- ~head~: output the first part of files.
+- ~tail~: output the last part of files.
+*** What is ~less~?
+- ~less~: a filter for paging through text one screenful at a time.
 ** Links
-   ln, stow, alias, unalias
-*** target of a symbolic link
-*** target of a symbolic link
-		- Problem :: How can I get the path (target) of a symbolic link?
-		- Use ~readlink~ command.
-		- Print resolved symbolic links or canonical file names.
-		- If you want to get the path (target) of the current ~python~,
-      run the command:
-			#+BEGIN_SRC bash
-			readlink $(which python)
-      #+END_SRC
-*** Stow links
-		- Problem :: How can I manage symbolic links of whole directory tree?
-		- Use ~stow~ command.
-		- software package installation manager.
-		- .
-		- If you want to link all my ~dotfiles~ files in my ~$HOME~
-      directory to a versioned directory ~my-dotfiles~ that contained
-      all my ~dotfiles~, assuming ~my-dotfiles~ directory is a
-      subdirectory of ~~/some-directory~, run the commands:
-			#+BEGIN_SRC bash
-			cd ~/some-directory
-			stow -t $HOME my-dotfiles
-      #+END_SRC
-		- If you want to unlink the ~stow~ links made in the previous
-      section, run the commands:
-			#+BEGIN_SRC bash
-			cd ~/some-directory
-			stow -D -t $HOME my-dotfiles
-      #+END_SRC
+*** How can make a symbolic link?
+- Use ~ln~ command.
+- ~ln~: make links between files.
+- If you want to make a link to the file ~/home/tony/videos/video.mp4~
+  (/TARGET/) with the name ~video.mp4~ (/LINK_NAME/) living in the
+  directory ~linked-video~, run the commands:
+
+#+BEGIN_SRC bash
+cd linked-video
+ln -s /absolute-path-to/video.mp4 video.mp4
+#+END_SRC
+
+- If the ~linked-video~ was empty before making the link above and if
+  you run the command ~ls -l~ in the directory ~linked-video~ you
+  obtain something like this:
+
+#+BEGIN_SRC text
+lrwxrwxrwx  1 tony tony 37 Jul 24 08:24 video.mp4 -> /home/tony/videos/video.mp4
+#+END_SRC
+
+*** How can I get the path (target) of a symbolic link?
+- Use ~readlink~ command.
+- ~readlink~: print resolved symbolic links or canonical file names.
+- If you want to get the path (target) of the current ~python~,
+  run the command:
+
+  #+BEGIN_SRC bash
+  readlink $(which python)
+  #+END_SRC
+
+*** How can I manage symbolic links of whole directory tree?
+- Use ~stow~ command.
+- ~stow~: software package installation manager.
+- If you want to link all your /dotfiles/ files in your ~$HOME~
+  directory to a versioned directory ~dotfiles~, assuming
+  ~dotfiles~ directory is a subdirectory of ~~/some-directory~, run
+  the commands:
+
+  #+BEGIN_SRC bash
+  cd ~/some-directory
+  stow -t $HOME dotfiles
+  #+END_SRC
+
+- If you want to unlink the ~stow~ links made in the previous
+  section, run the commands:
+
+  #+BEGIN_SRC bash
+  cd ~/some-directory
+  stow -D -t $HOME dotfiles
+  #+END_SRC
+
 ** Compression
-   tar, zip, unzip, unrar, zcat, zmore, zless
-** search
-   locate, find, grep
-*** find files
-		- Problem :: How to find files that match string or regexp?
-		- Use the command ~find~.
-		- Search for files in a directory hierarchy.
-		- See examples [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]].
-		- If you want to find files recursively from your ~$HOME~
-			directory where the ~name~ match the global patern ~virtualenv*~,
-			run the command:
-			#+BEGIN_SRC bash
-			find ~/ -name "virtualenv*"
-			#+END_SRC
-*** recoll
-		- ~recoll~ is a desktop full-text search tool.
-		- To use it, you first have to index the ~xiapan~ database with
-      ~recollindex~.
-		- [[https://www.lesbonscomptes.com/recoll/][recoll (homepage)]]
-		- [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll (usermanual)]]
-		- To install ~recoll~, run the command:
-			#+BEGIN_SRC bash
-			sudo apt install recoll
-			#+END_SRC
-		- [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]] is an emacs interface for ~recoll~.
-		- ~~/.recoll/~ is the default config directory.
-		- ~~/.recoll/recoll.conf~ is the ~recoll~ main configuration
-      file.
-		- ~~/.recoll/xapiandb/~ is the default directory for the index
-      data.
-		- To index the ~xiapan~ database of for ~recoll~ according to the
-      the config file ~~/.recoll/recoll.conf~, run the command:
-			#+BEGIN_SRC bash
-			recollindex
-			#+END_SRC
-** Replace
-*** replace string in multiple files
-		- Problem :: How to replace string in multiple files?
-		- Use commands ~sed~, ~perl~ and ~find~.
-		- Stream editor for filtering and transforming text (~sed~).
-		- See examples here [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][stackoverflow: replace string]].
-		- If you want to replace all occurrences of one string with another
-			in all files in the current directory (Non recursive, files in
-			this directory only.), run the command:
-			#+BEGIN_SRC bash
-			sed -i -- 's/foo/bar/g' *
-			#+END_SRC
-		- If you want to replace all occurrences of one string with another
-			in all files in the current directory (Recursive, regular files
-			(including hidden ones) in this and all subdirectories), run the
-			command:
-			#+BEGIN_SRC bash
-			find . -type f -exec sed -i 's/foo/bar/g' {} +
-			#+END_SRC
-		- If you want to replace only if the file name matches another
-			string / has a specific extension / is of a certain type etc
-			(Non-recursive, files in this directory only), run the command:
-			#+BEGIN_SRC bash
-			sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
-			#+END_SRC
-			- If you want to replace only if the file name matches another
-				string / has a specific extension / is of a certain type etc
-				(Non-recursive, files in this directory only), run the command:
-				#+BEGIN_SRC bash
-			 find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
-			 # all files whose name contains baz
-				#+END_SRC
-** directories
-   mkdir, cd, tree
-** watch file
-*** trigger test with ~watchman~
-		- Problem :: How can I automatically run test when some files
-      change on disk?
-		- Use ~watchman-make~ command.
-		- ~watchman-make~ waits for changes to files and then invokes a
-      build tool (by default, ~make~) or provided script to process
-      those changes.
-		- See [[https://facebook.github.io/watchman/][watchman (homepage)]].
-		- If you want to run ~pytest~ on a python project each time the
-      subdirectories ~./src~ and ~./tests/~ change on your disk, in
-      the root of your project, run the command:
-			#+BEGIN_SRC bash
-			watchman-make -p 'src/**' 'tests/**' -r 'pytest'
-      #+END_SRC
-		- To install ~watchman-make~ which is part of the package
-      ~watchman~, use the package manager ~homebrew~ and run the
-      command:
-			#+BEGIN_SRC bash
-			brew install watchman
-      #+END_SRC
-			Get more information [[https://facebook.github.io/watchman/docs/install][watchman (install documentation)]].
-*** trigger a command when a file was opened
-		- Problem :: How can I whatch a file and trigger a command when it
-      was opened?
-		- Use ~inotifywait~ command.
-		- Wait for changes to files using inotify.
-		- If you want to print ~hey~ in the ~stdout~ after the file
-      ~path/to/watched-file~ was opened, run the command:
-			#+BEGIN_SRC bash
-			inotifywait -qq -e open path/to/watched-file && echo "hey"
-      #+END_SRC
+*** How can I (archive) store multiple files in a single file?
+- Use ~tar~ command.
+- ~tar~: an archive utility.
+- If you want to store all files frome the directory ~/etc~ into the
+  archive file ~etc.tar~ verbosely listing the files being archived,
+  run the command:
+
+#+BEGIN_SRC bash
+tar -cfv etc.tar /etc
+#+END_SRC
+*** How can I extract all files from a ~tar~ archive?
+- Use ~tar~ command.
+- ~tar~: an archive utility.
+- If you want extract all files from the archive ~archive.tar~, run
+  the command:
+
+#+BEGIN_SRC bash
+tar -xf archive.tar
+#+END_SRC
+*** What is the difference between ~zip~ and ~gzip~?
+- See [[http://www.differencebetween.net/technology/difference-between-zip-and-gzip/][difference between zip and gzip]] from differencebetween.net.
+- ~gzip~ can achieve better compression compared to ~zip~.
+- ~zip~ is capable of /archiving/ and /compressing/ multiple files, while
+  ~gzip~ is only capable of compression.
+- You can easily /extract/ individual files from a large ~zip~ file,
+  but not from a ~gzip~ tarball.
+** Search
+*** What is ~locate~?
+- ~locate~: find files by name.
+*** What is ~grep~?
+- ~grep~: Search for pattern in files.
+- If you want to search the sequence ~hello world~ in the files
+  ~menu.h~ and ~main.c~ ignoring the case, run the command:
+
+#+BEGIN_SRC bash
+grep -i 'hello world' menu.h main.c
+#+END_SRC
+*** How to find files that match string or regexp?
+- Use ~find~ command.
+- ~find~: search for files in a directory hierarchy.
+- See [[https://alvinalexander.com/unix/edu/examples/find.shtml][example of command find]] by Alvin Alexander.
+- If you want to find files recursively from your ~$HOME~
+  directory where the ~name~ match the global patern ~virtualenv*~,
+  run the command:
+
+  #+BEGIN_SRC bash
+  find ~/ -name "virtualenv*"
+  #+END_SRC
+
+*** What is ~recoll~?
+- ~recoll~ is a desktop full-text search tool.
+- See [[https://www.lesbonscomptes.com/recoll/][recoll]] homepage, [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll]] usermanual and [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]] if you
+  want use it with emacs.
+- To install ~recoll~, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install recoll
+#+END_SRC
+
+- ~~/.recoll/~ is the default config directory.
+- ~~/.recoll/recoll.conf~ is the ~recoll~ main configuration file.
+- ~~/.recoll/xapiandb/~ is the default directory for the index data.
+- To use it, you first have to index the ~xiapan~ database with ~recollindex~.
+- To index the ~xiapan~ database of ~recoll~ according to the
+  the config file ~~/.recoll/recoll.conf~, run the command:
+
+#+BEGIN_SRC bash
+recollindex
+#+END_SRC
+
+** Replace string
+*** How to replace string in multiple files?
+- Use commands ~sed~, ~perl~ and ~find~.
+- ~sed~: stream editor for filtering and transforming text.
+- ~perl~: the Perl 5 language interpreter.
+- ~find~: search for files in a directory hierarchy.
+- See [[https://unix.stackexchange.com/questions/112023/how-can-i-replace-a-string-in-a-files][replace string]] on stackoverflow.
+- If you want to replace all occurrences of one string with another
+  in all files in the current directory (Non recursive, files in
+  this directory only.), run the command:
+
+#+BEGIN_SRC bash
+sed -i -- 's/foo/bar/g' *
+#+END_SRC
+
+- If you want to replace all occurrences of one string with another
+  in all files in the current directory (Recursive, regular files
+  (including hidden ones) in this and all subdirectories), run the
+  command:
+
+#+BEGIN_SRC bash
+find . -type f -exec sed -i 's/foo/bar/g' {} +
+#+END_SRC
+
+- If you want to replace only if the file name matches another
+  string / has a specific extension / is of a certain type etc
+  (Non-recursive, files in this directory only), run the command:
+
+#+BEGIN_SRC bash
+sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
+#+END_SRC
+
+- If you want to replace only if the file name matches another string
+  / has a specific extension / is of a certain type etc
+  (Non-recursive, files in this directory only), run the command:
+
+#+BEGIN_SRC bash
+find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
+# all files whose name contains baz
+#+END_SRC
+
+** Directories
+*** How can I list the directories first when using ~ls~?
+- Use ~--group-directories-first~ flag of ~ls~ command.
+- ~ls~: list directory contents.
+- If you want to list the directories first when using ~ls~, run the
+  command:
+
+#+BEGIN_SRC bash
+ls --group-directories-first
+#+END_SRC
+
+*** How can I create a directory with its parents?
+- Use ~mkdir~ command.
+- ~mkdir~: make directories.
+- If you want to create this nested directories ~dir-1/dir-2/dir-3~ from
+  the directory you are in, run the command:
+
+#+BEGIN_SRC bash
+mkdir -p dir-1/dir-2/dir-3
+#+END_SRC
+
+*** How can I go back to the last directory I was in?
+- Use ~cd~ command.
+- ~cd~: change the shell working directory.
+- I you want to go back to the last directory you were in, run the
+  command:
+
+#+BEGIN_SRC bash
+cd -
+#+END_SRC
+
+** Watch files
+*** How can I automatically run test when some files change on disk?
+- Use ~watchman-make~ command that come with ~watchman~.
+- ~watchman-make~ : waits for changes to files and then invokes a
+  build tool (by default, ~make~) or provided script to process those
+  changes.
+- See [[https://facebook.github.io/watchman/][watchman]] documentation and  [[https://facebook.github.io/watchman/docs/install][watchman]] install documentation.
+- If you want to run ~pytest~ on a python project each time the
+  subdirectories ~./src~ and ~./tests/~ change on your disk, in
+  the root of your project, run the command:
+
+#+BEGIN_SRC bash
+watchman-make -p 'src/**' 'tests/**' -r 'pytest'
+#+END_SRC
+
+- To install ~watchman-make~ which is part of the package ~watchman~,
+  use the package manager ~homebrew~ and run the command:
+
+#+BEGIN_SRC bash
+brew install watchman
+#+END_SRC
+
+*** How can I whatch a file and trigger a command when it was opened?
+- Use ~inotifywait~ command.
+- ~inotifywait~: wait for changes to files using inotify.
+- If you want to print ~hey~ in the ~stdout~ after the file
+  ~path/to/watched-file~ was opened, run the command:
+
+#+BEGIN_SRC bash
+inotifywait -qq -e open path/to/watched-file && echo "hey"
+#+END_SRC
+
 * Network
 ** DNS
 *** A record of an url
@@ -2145,7 +2391,7 @@ systemctl status emacs --user
   (https://github.com/facebook/PathPicker), history, ffmpeg, ;,
   \&\&, \&, nohup, |, grip, pdflatex, pdftk, docker, source, dpkg,
   debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload,
-  rm, kill, killall, gparted,
+  rm, kill, killall, gparted, alias, unalias
 ** terminal
 *** Current terminal
 		- Problem :: How can I check which terminal I'm using?
