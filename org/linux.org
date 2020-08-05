@@ -1770,195 +1770,207 @@ sudo ufw disable
 			sudo apt install libimobiledevice6 libimobiledevice-utils ifuse
       #+END_SRC
 * X window system
-** Kill window
-*** Kill a window
-		- Problem :: How can I kill a window that I can't kill with i3?
-		- Use ~xkill~ command.
-		- Kill a client by its X resource.
-		- If you want to kill a window that do no respond, run the
-      command ~xkill~ and click on the window you want to kill:
-			#+BEGIN_SRC bash
-			xkill  # and click on the window you want to kill
-      #+END_SRC
 ** Get X information
-*** Global X information
-		- Problem :: How can I print all X information on a selected window?
-		- Use ~xwininfo~ command.
-		- Window information utility for X.
-		- If you want to to print all X information on a selected window,
-      run the command ~xwininfo -all~ and click on the window you want
-      the information from:
-			#+BEGIN_SRC bash
-			xwininfo -all  # and click on the window you want the information from
-      #+END_SRC
+*** How can I print all X information on a selected window?
+- Use ~xwininfo~ command.
+- ~xwininfo~: window information utility for X.
+- If you want to to print all X information on a selected window,
+  run the command ~xwininfo -all~ and click on the window you want
+  the information from:
+
+#+BEGIN_SRC bash
+xwininfo -all  # and click on the window you want the information from
+#+END_SRC
+
 ** X and i3
-*** Instance and class of a X window
-		- Problem :: How can I get the instance and class of X window that
-      are used with ~i3~?
-		- Use ~xprop~ command.
-		- Property displayer for X.
-		- If you want to get the instance and class of an X window in
-      order to use them with ~i3~, run the command ~xprop~ and click on
-      the window you want the information from and inspect the line
-      starting by ~WM_CLASS(STRING):~. For example on clicking on a
-      window running ~chromium-browser~ application, I get the line:
-			- ~WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"~
-      - first  ~"chromium-browser"~ is the *instance*,
-      - second ~"Chromium-browser"~ is the *class*.:
-			#+BEGIN_SRC bash
-			xprop  # and click on the window you want the information from
-      #+END_SRC
+*** How can I kill a window that I can't kill with ~i3~?
+- Use ~xkill~ command.
+- ~xkill~: kill a client by its X resource.
+- If you want to kill a window that doesn't respond, run the
+  command ~xkill~ and click on the window you want to kill:
+
+#+BEGIN_SRC bash
+xkill  # and click on the window you want to kill
+#+END_SRC
+
+*** How can I get the instance and class of X window that are used with ~i3~?
+- Use ~xprop~ command.
+- ~xprop~: property displayer for X.
+- If you want to get the instance and class of an X window in
+  order to use them with ~i3~, run the command ~xprop~ and click on
+  the window you want the information from and inspect the line
+  starting by ~WM_CLASS(STRING):~.
+
+#+BEGIN_SRC bash
+xprop  # and click on the window you want the information from
+#+END_SRC
+
+
+- For example with a window running ~chromium-browser~ application, I
+  get the following line where ~"chromium-browser"~ is the /instance/,
+  second ~"Chromium-browser"~ is the /class/:
+
+#+BEGIN_SRC text
+WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"
+#+END_SRC
+
 ** Multiple monitors
-*** Display 2 monitors
-    - Problem :: How can I display a monitor on the left of the other monitor?
-    - Use ~xrandr~ command.
-		- Set the size, orientation and/or reflection of the outputs for a screen.
-		- If you want to display the monitor ~DP-2~ on the left of the
-      monitor ~<eDP-1>~, run the command:
-			#+BEGIN_SRC bash
-			xrandr --output DP-2 --left-of eDP-1
-      #+END_SRC
-		- If you want to get the names of the outputs you want to display
-      with ~xrandr~, run the command ~xrandr~ and seek for lines like
-      these ones (in my case ~eDP-1~ and ~DP-2~ are the monitors I want
-      to display side by side):
-      1) ~eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm~
-      2) ~DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm x 270mm~
-			#+BEGIN_SRC bash
-			xrandr
-      #+END_SRC
+*** How can I display a monitor on the left of the other monitor?
+- Use ~xrandr~ command.
+- ~xrandr~: set the size, orientation and/or reflection of the outputs
+  for a screen.
+- If you want to display the monitor ~DP-2~ on the left of the
+  monitor ~<eDP-1>~, run the command:
+
+#+BEGIN_SRC bash
+xrandr --output DP-2 --left-of eDP-1
+#+END_SRC
+
+- If you want to get the names of the outputs you want to display
+  with ~xrandr~, run the command ~xrandr~ and seek for lines like
+  those ones (in my case ~eDP-1~ and ~DP-2~ are the monitors I want
+  to display side by side):
+
+#+BEGIN_SRC text
+eDP-1 connected primary 1366x768+0+0 (normal left inverted right x axis y axis) 309mm x 173mm
+DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm x 270mm
+#+END_SRC
+
 ** Miscellaneous
-   xbindkey, xmodmap, xev, xdotool, wmctrl
-*** list opened windows
-		- Problem :: How can I list the open windows?
-		- Use ~wmctrl~ command.
-		- Interact with a EWMH/NetWM compatible X Window Manager
-      (~wmctrl~).
-		- If you want to list the windows being managed by the window
-      manager, run the command:
-			#+BEGIN_SRC bash
-			wmctrl -l
-      #+END_SRC
-*** simultaneous key + click from command line
-		- Problem :: How can I simulate a key plus mouse click from
-      commande line?
-		- Use ~xdotool~ command.
-		- Command-line X11 automation tool.
-		- See [[https://stackoverflow.com/questions/49066062/keymouse-click-simultaneous-xdotool][simultaneous key + mouse click]] and [[http://manpages.ubuntu.com/manpages/trusty/man1/xdotool.1.html][xdotool (man page)]].
-		- If you want to simulate ~alt+mouse-1~ simultaneously from
-      command line, run the command:
-			#+BEGIN_SRC bash
-			xdotool keydown alt click 1 keyup alt
-      #+END_SRC
-*** mouse coordinates from command line
-		- Problem :: How can I get current mouse coordinates from bash?
-		- Use ~xdotool~ command.
-		- Command-line X11 automation tool.
-		- See [[https://stackoverflow.com/questions/8480073/how-would-i-get-the-current-mouse-coordinates-in-bash][get current mouse coordinates from command line]].
-		- If you want to get the current mouse coordinates location from
-      command line, run the command:
-			#+BEGIN_SRC bash
-			xdotool getmouselocation
-      #+END_SRC
-		- If you want to get the current mouse coordinates location and
-      set the variables ~X~ and ~Y~ to hold respectively the
-      horizontal and vertical position, run the command:
-			#+BEGIN_SRC bash
-			eval $(xdotool getmouselocation --shell)
-      #+END_SRC
-*** xdotool (to sort)
-		$ xdotool getactivewindow
-    27263352
-    $ xdotool getactivewindow getwindowname
-    Terminal
-    $ xdotool getactivewindow | xprop -id 27263352 WM_CLASS
-    WM_CLASS(STRING) = "gnome-terminal-server", "Gnome-terminal"
+*** What is ~xbindkey~?
+- ~xbindkey~: a grabbing keys program for X.
+*** What is ~xmodmap~?
+- ~xmodmap~: utility for modifying keymaps and pointer button mappings
+  in X.
+*** How can I list the open windows?
+- Use ~wmctrl~ command.
+- ~wmctrl~: interact with a EWMH/NetWM compatible X Window Manager.
+- If you want to list the windows being managed by the window
+  manager, run the command:
+
+#+BEGIN_SRC bash
+wmctrl -l
+#+END_SRC
+
+*** How can I simulate a key plus mouse click from commande line?
+- Use ~xdotool~ command.
+- ~xdotool~: command-line X11 automation tool.
+- See [[https://stackoverflow.com/questions/49066062/keymouse-click-simultaneous-xdotool][simultaneous key + mouse click]] on stackoverflow and [[http://manpages.ubuntu.com/manpages/trusty/man1/xdotool.1.html][xdotool]] man
+  page on ubuntu.
+- If you want to simulate ~alt+mouse-1~ simultaneously from
+  command line, run the command:
+
+#+BEGIN_SRC bash
+xdotool keydown alt click 1 keyup alt
+#+END_SRC
+
+*** How can I get current mouse coordinates from bash?
+- Use ~xdotool~ command.
+- ~xdotool~: command-line X11 automation tool.
+- See [[https://stackoverflow.com/questions/8480073/how-would-i-get-the-current-mouse-coordinates-in-bash][get current mouse coordinates]] on stackoverflow.
+- If you want to get the current mouse coordinates location from
+  command line, run the command:
+
+#+BEGIN_SRC bash
+xdotool getmouselocation
+#+END_SRC
+
+- If you want to get the current mouse coordinates location and
+  set the variables ~X~ and ~Y~ to hold respectively the
+  horizontal and vertical position, run the command:
+
+#+BEGIN_SRC bash
+eval $(xdotool getmouselocation --shell)
+#+END_SRC
+
+*** Some use cases of ~xdotool~
+- If I run the command ~xdotool getactivewindow~ I get ~27263352~.
+- If I run the command ~xdotool getactivewindow getwindowname~ from
+  my terminal I get ~Terminal~.
+- If I run the command ~xdotool getactivewindow | xprop -id 27263352
+  WM_CLASS~ I get ~WM_CLASS(STRING) = "gnome-terminal-server",
+  "Gnome-terminal"~.
 ** Autokey
-*** Install ~autokey~
-		- Problem :: How can I install ~autokey~?
-		- Use ~git~ and ~pip3~ commands.
-		- A tool for installing and managing Python packages (~pin3~).
-		- The stupid content tracker (~git~).
-		- See the [[https://github.com/autokey/autokey/wiki/Installing][Installing (wiki)]] and [[https://pygobject.readthedocs.io/en/latest/getting_started.html][PyGObject (getting started page)]].
-		- If you want to install ~autokey~ with ~pip3~, clone the
-      repository, install dependencies that are not in ~setup.py~
-      files as ~wheel~, ~dbus-python~ and ~PyGObject~, and, install
-      ~autokey~ from the cloned repository. We do every needed steps
-      in a ~python~ virtual environment. Finally, we make a symlink of
-      ~autokey-gtk~ executable in ~~/.local/bin/~ directory to be able
-      to use ~autokey~ widely without enter in the ~python~ virtual
-      environment. To do so, we run the commands:
-			#+BEGIN_SRC bash
-			$ git clone https://github.com/autokey/autokey.git
-			$ cd autokey
-			$ python3 -m venv ~/.py-venv/autokey/
-			$ source ~/.py-venv/autokey/bin/activate
-			(autokey) $ pip3 install wheel dbus-python
-			(autokey) $ sudo apt install libgirepository1.0-dev gcc \
-			            libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 \
-									# for PyGObject
-			(autokey) $ pip3 install pycairo
-			(autokey) $ pip3 install PyGObject
-			(autokey) $ pip3 install .
-			(autokey) $ ln -s ~/.py-venv/autokey/bin/autokey-gtk \
-                  ~/.local/bin/autokey-gtk
-			(autokey) $ deactivate
-      #+END_SRC
-		- To start ~autokey~ whith the GUI, run the command:
-			#+BEGIN_SRC bash
-			autokey-gtk -c
-      #+END_SRC
-		- To start ~autokey~ in backgroun, run the command ~autokey-gtk~
-      without any command line arguments:
-			#+BEGIN_SRC bash
-			autokey-gtk
-      #+END_SRC
-*** systemd service for ~autokey~
-		- Problem :: How can I have ~autokey~ run in background and start
-      at login to your linux session?
-		- Use ~systemctl~, ~autokey-gtk~ and ~exec~ commands.
-		- Control the ~systemd~ system and ~service manager~
-      (~systemctl~).
-		- ~exec~ execut bash commands in the ~i3wm~ config file
-      ~~/.config/i3/config~.
-		- If you want to ~autokey~ start in background when you login to
-      your linux session, we use the ~systemd~ and add it a ~systemd
-      unit file~, ~enable~ and ~start~ the service:
-			1) The systemd unit file,
-         ~~/.config/systemd/user/autokey.service~:
-         #+BEGIN_SRC bash
-				 [Unit]
-				 Description=Desktop automation for Linux and X11
-				 Documentation=https://github.com/autokey/autokey
+*** How can I install ~autokey~?
+- Use ~git~ and ~pip3~ commands.
+- ~pip3~: a tool for installing and managing Python packages.
+- ~git~: the stupid content tracker.
+- See [[https://github.com/autokey/autokey/wiki/Installing][Installing]] wiki and [[https://pygobject.readthedocs.io/en/latest/getting_started.html][PyGObject]] getting started documentation.
+- If you want to install ~autokey~ with ~pip3~, clone the
+  repository, install dependencies that are not in ~setup.py~
+  files as ~wheel~, ~dbus-python~ and ~PyGObject~, and, install
+  ~autokey~ from the cloned repository. We do every needed steps
+  in a ~python~ virtual environment. Finally, we make a symlink of
+  ~autokey-gtk~ executable in ~~/.local/bin/~ directory to be able
+  to use ~autokey~ widely without activating the ~python~ virtual
+  environment. To do so, we run the commands:
 
-				 [Service]
-				 Type=notify
-				 ExecStart=/home/tony/.local/bin/autokey-gtk
-				 ExecStop=/bin/systemctl show --property MainPID --value emacs --user | kill
-				 Restart=always
+#+BEGIN_SRC bash
+$ git clone https://github.com/autokey/autokey.git
+$ cd autokey
+$ python3 -m venv ~/.py-venv/autokey/
+$ source ~/.py-venv/autokey/bin/activate
+(autokey) $ pip3 install wheel dbus-python
+(autokey) $ sudo apt install libgirepository1.0-dev gcc \
+            libcairo2-dev pkg-config python3-dev gir1.2-gtk-3.0 \
+            # for PyGObject
+(autokey) $ pip3 install pycairo
+(autokey) $ pip3 install PyGObject
+(autokey) $ pip3 install .
+(autokey) $ ln -s ~/.py-venv/autokey/bin/autokey-gtk \
+            ~/.local/bin/autokey-gtk
+(autokey) $ deactivate
+#+END_SRC
 
-				 [Install]
-				 WantedBy=default.target
-         #+END_SRC
-			2) Enable and start the ~autokey~ service by running the command:
-				 #+BEGIN_SRC bash
-         systemctl --user enable autokey
-				 systemctl --user start autokey
-				 #+END_SRC
-*** autokey configuration
-		- files are in ~~/.config/autokey/~ directory.
-*** ~autokey~ links
-	  - [[https://github.com/autokey/autokey][autokey]]
-    - [[https://github.com/autokey/autokey/wiki/Installing][autokey/wiki/Installing]]
-    - [[https://github.com/autokey/autokey/wiki/FAQ][autokey/wiki/FAQ]]
-    - [[https://github.com/autokey/autokey/wiki/Scripting][autokey/wiki/Scripting]]
-		- [[https://github.com/autokey/autokey/wiki/API-Examples][autokey/wiki/API-Examples]]
-		- [[https://github.com/autokey/autokey/wiki/Special-Keys][autokey/wiki/Special-Keys]]
-    - [[https://github.com/hobbs/autokey-emacs-osx][autokey-emacs-osx (examples)]]
-*** writing autokey script
-		- see [[../linux/autokey--lib--autokey--scripting.py][autokey/lib/autokey/scripting.py]].
-		- the ~GtkDialog~ class use ~zenity~ command line programm. See
-      ~man zenity~.
+- To start ~autokey~ with the GUI, run the command:
+
+#+BEGIN_SRC bash
+autokey-gtk -c
+#+END_SRC
+
+- To start ~autokey~ in background, run the command ~autokey-gtk~
+  without any command line arguments:
+
+#+BEGIN_SRC bash
+autokey-gtk
+#+END_SRC
+
+*** How can I have ~autokey~ run in background and start at login to your linux session?
+- Use ~systemctl~, ~autokey-gtk~ commands and ~i3~ directive ~exec~.
+- ~systemctl~: control the ~systemd~ system and ~service manager~.
+- ~exec~: executes bash commands in the ~i3wm~ config file ~~/.config/i3/config~.
+- If you want ~autokey~ to start in background when you login to
+  your linux session, use the ~systemd~ and add it the /systemd
+  unit file/ ~~/.config/systemd/user/autokey.service~:
+
+#+BEGIN_SRC bash
+[Unit]
+Description=Desktop automation for Linux and X11
+Documentation=https://github.com/autokey/autokey
+
+[Service]
+Type=notify
+ExecStart=/home/tony/.local/bin/autokey-gtk
+ExecStop=/bin/systemctl show --property MainPID --value emacs --user | kill
+Restart=always
+
+[Install]
+WantedBy=default.target
+#+END_SRC
+
+- Then you have to enable the service and start it. To do so, run the
+  command:
+
+#+BEGIN_SRC bash
+systemctl --user enable autokey
+systemctl --user start autokey
+#+END_SRC
+
+*** Where are stored ~autokey~ config files?
+- ~autokey~ config files are in ~~/.config/autokey/~ directory.
+*** Where can I find ~autokey~ ressources?
+- [[https://github.com/autokey/autokey][autokey]] github repository and the ~autokey~ wiki pages about,
+  [[https://github.com/autokey/autokey/wiki/Installing][Installing]], [[https://github.com/autokey/autokey/wiki/FAQ][FAQ]], [[https://github.com/autokey/autokey/wiki/Scripting][Scripting]], [[https://github.com/autokey/autokey/wiki/API-Examples][API-Examples]], [[https://github.com/autokey/autokey/wiki/Special-Keys][Special-Keys]].
 * Date
   date, crontab, sleep, at, atq, atrm
 * Images
