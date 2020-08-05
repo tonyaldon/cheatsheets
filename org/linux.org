@@ -2617,7 +2617,6 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
   #+END_SRC
 
 - Note: the font ~symbola~ allow you to print all ~unicode~ character.
-
 * Miscellaneous
 ** Links
 *** Where can I find linux ressources?
@@ -2636,25 +2635,27 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
 - [[https://www.linuxprogrammingblog.com/all-about-linux-signals?page=9][real-time signals]]: All about linux signals by Linux Programming
   Blog.
 ** terminal
-*** Current terminal
-		- Problem :: How can I check which terminal I'm using?
-		- Use ~cat~ and ~grep~ commands.
-		- Concatenate files and print on the standard output (~cat~).
-		- Print lines matching a pattern (~grep~).
-		- See examples [[https://askubuntu.com/questions/640096/how-do-i-check-which-terminal-i-am-using][how do i check which terminal i am using]].
-		- If you want to check which terminal you are using, run the
-      command:
-			#+BEGIN_SRC bash
-			cat /etc/alternatives/x-terminal-emulator | grep exec
-      #+END_SRC
+*** How can I check which terminal I'm using?
+- Use ~cat~ and ~grep~ commands.
+- ~cat~: concatenate files and print on the standard output.
+- ~grep~: print lines matching a pattern.
+- See [[https://askubuntu.com/questions/640096/how-do-i-check-which-terminal-i-am-using][which terminal i am using]] on askubuntu.
+- If you want to check which terminal you are using, run the
+  command:
+
+  #+BEGIN_SRC bash
+  cat /etc/alternatives/x-terminal-emulator | grep exec
+  #+END_SRC
+
 ** desktop
-*** desktop notification
-		- Problem :: How can I send a desktop notification?
-		- Use ~notify-send~ command.
-		- A program to send desktop notifications.
-		- If you want to send the message ~hey tony~ to the desktop and
-      that the popup window notification keep alive 3 seconds, run
-      the command:
-			#+BEGIN_SRC bash
-			notify-send -t 3000 "hey tony"
-      #+END_SRC
+*** How can I send a desktop notification?
+- Use ~notify-send~ command.
+- ~notify-send~: a program to send desktop notifications.
+- If you want to send the message ~hello world~ to the desktop and
+  that the popup window notification keep alive 3 seconds, run
+  the command:
+
+  #+BEGIN_SRC bash
+  notify-send -t 3000 "hello world"
+  #+END_SRC
+
