@@ -1981,8 +1981,6 @@ systemctl --user start autokey
 *** Where can I find ~autokey~ ressources?
 - [[https://github.com/autokey/autokey][autokey]] github repository and the ~autokey~ wiki pages about,
   [[https://github.com/autokey/autokey/wiki/Installing][Installing]], [[https://github.com/autokey/autokey/wiki/FAQ][FAQ]], [[https://github.com/autokey/autokey/wiki/Scripting][Scripting]], [[https://github.com/autokey/autokey/wiki/API-Examples][API-Examples]], [[https://github.com/autokey/autokey/wiki/Special-Keys][Special-Keys]].
-* Date
-  date, crontab, sleep, at, atq, atrm
 * Images
 ** Use images
 *** How to set the wallpaper?
@@ -2657,13 +2655,6 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
 - Note: the font ~symbola~ allow you to print all ~unicode~ character.
 
 * Miscellaneous
-** Miscellaneous commands
-  whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
-  split, iconv, diff, patch, man ascii, man utf-8, fpp
-  (https://github.com/facebook/PathPicker), history, ffmpeg, ;,
-  \&\&, \&, nohup, |, grip, pdflatex, pdftk, docker, source, dpkg,
-  debootstrap>, > >, 2>, 2> >, 2>\&1, <, < <, |, uptime, tload,
-  rm, kill, killall, gparted, alias, unalias
 ** terminal
 *** Current terminal
 		- Problem :: How can I check which terminal I'm using?
@@ -2687,8 +2678,3 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
 			#+BEGIN_SRC bash
 			notify-send -t 3000 "hey tony"
       #+END_SRC
-** ideas
-	 - [[https://github.com/sharkdp/bat][bat (a cat clone with wings)]]
-	 - https://github.com/evmar/webtreemap
-	 - https://www.npmjs.com/package/source-map-explorer
-	 - https://github.com/AlDanial/cloc
