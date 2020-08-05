@@ -1630,7 +1630,7 @@ sudo e2label /dev/sdb1
 *** How can I know the ~UUID~ of an USB drive?
 - Use ~blkid~ command.
 - ~blkid~: locate/print block device attributes.
-- See [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]] from archilinux wiki.
+- See [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]] from archlinux wiki.
 - If you want to print the ~UUID~ of the block device wich
   partition is ~/dev/sdb1~, run the command:
 
@@ -1985,52 +1985,62 @@ systemctl --user start autokey
   date, crontab, sleep, at, atq, atrm
 * Images
 ** Use images
-*** Wallpaper
-		- Problem :: How to set the wallpaper?
-		- Use the command ~feh~.
-		- Image viewer and cataloguer.
-		- See examples here [[https://wiki.archlinux.org/index.php/feh][wiki command feh]].
-		- If you want ~path/to/images.jpg~ to be you be your image
-			background, run the command:
-			#+BEGIN_SRC bash
-			feh --bg-fill path/to/images.jpg
-			#+END_SRC
-		- If you want to remove your background image set with ~feh~, run
-      the command:
-			#+BEGIN_SRC bash
-			xsetroot -solid black
-			#+END_SRC
+*** How to set the wallpaper?
+- Use the command ~feh~.
+- ~feh~: Image viewer and cataloguer.
+- See [[https://wiki.archlinux.org/index.php/feh][feh]] on archlinux wiki.
+- If you want ~path/to/images.jpg~ to be you be your image
+  background, run the command:
+
+#+BEGIN_SRC bash
+  feh --bg-fill path/to/images.jpg
+#+END_SRC
+
+- If you want to remove your background image set with ~feh~, run
+  the command:
+
+#+BEGIN_SRC bash
+  xsetroot -solid black
+#+END_SRC
+
 ** Manipulate images
-*** Convert images
-		- Problem :: How to convert images?
-		- Use the command ~convert~.
-		- Convert  between  image  formats as well as resize an image.
-		- See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
-		- If you want to convert the image ~image.png~ to the format
-      ~jpg~, run the command:
-			#+BEGIN_SRC bash
-			convert image.png image.jpg
-			#+END_SRC
-		- If you want to install ~convert~, as it comes with the
-      [[https://imagemagick.org/][imagemagick]] package, run the command:
-			#+BEGIN_SRC bash
-			sudo apt install imagemagick
-			#+END_SRC
-*** Resize an image
-		- Problem :: How to resize an image?
-		- Use the command ~convert~.
-		- Convert  between  image  formats as well as resize an image.
-		- See examples here [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][howtogeek: convert image]].
-		- If you want to resize an image to 200 pixels in width and 100
-      pixels in heigh, run the command:
-			#+BEGIN_SRC bash
-			convert image.png -resize 200x100 image.png
-			#+END_SRC
-		- If you want to install ~convert~, as it comes with the
-      [[https://imagemagick.org/][imagemagick]] package, run the command:
-			#+BEGIN_SRC bash
-			sudo apt install imagemagick
-			#+END_SRC
+*** How to convert images?
+- Use the command ~convert~.
+- ~convert~: convert  between  image  formats as well as resize an image.
+- See [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][convert image]] on howtogeek.
+- If you want to convert the image ~image.png~ to the format
+  ~jpg~, run the command:
+
+#+BEGIN_SRC bash
+convert image.png image.jpg
+#+END_SRC
+
+- If you want to install ~convert~, as it comes with the
+  [[https://imagemagick.org/][imagemagick]] package, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install imagemagick
+#+END_SRC
+
+*** How to resize an image?
+- Use the command ~convert~.
+- ~convert~: convert  between  image  formats as well as resize an
+  image.
+- See [[https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/][convert image]] on howtogeek.
+- If you want to resize an image to 200 pixels in width and 100
+  pixels in heigh, run the command:
+
+#+BEGIN_SRC bash
+convert image.png -resize 200x100 image.png
+#+END_SRC
+
+- If you want to install ~convert~, as it comes with the
+  [[https://imagemagick.org/][imagemagick]] package, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install imagemagick
+#+END_SRC
+
 * Backup
 ** rsync
 *** rsync keep the file sent
