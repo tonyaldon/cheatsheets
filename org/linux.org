@@ -1116,404 +1116,450 @@ inotifywait -qq -e open path/to/watched-file && echo "hey"
 
 * Network
 ** DNS
-*** A record of an url
-		- Problem :: How to get information of an ~url~ ?
-		- Use the command ~dig~.
-		- ~dig~ is a DNS lookup utility.
-		- See examples [[https://support.dnsimple.com/articles/a-record/][A record]].
-		- If you want to get the *A record* of ~youtube.com~, run the
-			command:
-			#+BEGIN_SRC bash
-			dig A youtube.com
-			#+END_SRC
+*** How to get information of an ~url~ ?
+- Use the command ~dig~.
+- ~dig~: a DNS lookup utility.
+- See [[https://support.dnsimple.com/articles/a-record/][A record]] from dnsimple.com.
+- If you want to get the *A record* of ~youtube.com~, run the command:
+
+#+BEGIN_SRC bash
+dig A youtube.com
+#+END_SRC
+
 ** Host
-*** IP address
-		- Problem :: How can I know my IP address?
-		- Use ~ifconfig~ command.
-		- configure a network interface.
-		- If you want to know your (local) IP address (use over the LAN),
-      run the command:
-			#+BEGIN_SRC bash
-			ifconfig -a | grep -E 'inet '  # this is the local IP address
-      #+END_SRC
-		- If you want to know your (public) IP address (use over internet),
-      follow the link  [[https://ifconfig.co/ip][ifconfig.co]] or run the command:
-			#+BEGIN_SRC bash
-			curl ifconfig.co/ip
-      #+END_SRC
+*** How can I know my IP address?
+- Use ~ifconfig~ command.
+- ~ifconfig~: configure a network interface.
+- If you want to know your (local) IP address (use over the LAN), run
+  the command:
+
+#+BEGIN_SRC bash
+ifconfig -a | grep -E 'inet '  # this is the local IP address
+#+END_SRC
+
+- If you want to know your (public) IP address (use over internet),
+  follow the link  [[https://ifconfig.co/ip][ifconfig.co]] or run the command:
+
+#+BEGIN_SRC bash
+curl ifconfig.co/ip
+#+END_SRC
+
 ** SSH
-*** Enable SSH on ubuntu
-		- Problem :: How can I to enable SSH (server) on ubuntu?
-		- Use ~openssh-server~ package.
-		- Secure shell (SSH) server, for secure access from remote machines.
-		- See examples [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
-		- If you want to enable SSH server on the standard port 22, you
-      have to *start* ~ssh~ service with ~systemctl~ command and
-      *allow* incomming SSH connection by *opening* (allowing) the
-      port 22 with the command ~ufw~ and *enabling* the connection
-      with the command ~ufw~. To do so, run the commands
-			#+BEGIN_SRC bash
-			sudo systemctl start ssh
-			sudo ufw allow ssh  # or sudo ufw allow 22/tcp
-			sudo ufw enable
-      #+END_SRC
-		- If you want to install ~openssh-server~ and *start* the service
-      ~ssh~, run the command:
-			#+BEGIN_SRC bash
-      sudo apt install openssh-server
-			#+END_SRC
-*** Connecting to SSH
-		- Problem :: How can I connect to my server via SSH?
-		- Use ~ssh~ command.
-		- OpenSSH SSH client (remote login program)
-		- See examples [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]].
-		- If you want to connect to your Ubuntu machine over LAN with
-      ~bob~ as username and ~192.168.1.100~, run the command:
-			#+BEGIN_SRC bash
-			ssh bob@192.168.1.100
-      #+END_SRC
-		- If you want to connect to your Ubuntu machine over Internet with
-      ~bob~ as username and ~2a01:c50e:e911:9600:fc4d:b07d:d36f:6358~,
-      run the command:
-			#+BEGIN_SRC bash
-			ssh bob@2a01:c50e:e911:9600:fc4d:b07d:d36f:6358
-      #+END_SRC
-*** Connected to SSH server
-		- Problem :: How can I know that my shell is connected via a SSH connection?
-		- Use ~printenv~ command.
-		- Print all or part of environment.
-		- If you want to know if you're connected via SSH, check if the
-      environment variables ~SSH_CONNECTION~, ~SSH_CLIENT~ and
-      ~SSH_TTY~ are defined. To do so, run the command:
-			#+BEGIN_SRC bash
-			printenv | grep SSH
-      #+END_SRC
-*** Exit SSH session
-		- Problem :: How can I exit a SSH connection?
-		- Use ~exit~ command.
-		- cause normal process termination
-		- If you want to exit a SSH connection, you can either type ~C-d~
-      or run the command:
-			#+BEGIN_SRC bash
-			exit
-      #+END_SRC
-*** Use sshfs
-		- Problem :: How can I mount remote directories over ssh?
-		- Use ~sshfs~ command.
-		- filesystem client based on ssh.
-		- See examples [[https://linuxize.com/post/how-to-use-sshfs-to-mount-remote-directories-over-ssh/][sshfs]].
-		- If you want to mount the home directory of a user named *tony*
-      on a remote host with IP address of *192.168.1.100*, create a
-      directory ~~/remote-tony~ that will serve as a mount point and
-      use ~sshfs~ command. To do so, run the commands:
-			#+BEGIN_SRC bash
-			mkdir ~/remote-tony
-			sshfs tony@192.168.1.100:/home/tony ~/remote-tony
-      #+END_SRC
-		- If you want to detach the mounted file system ~~/remote-tony~,
-      run the command:
-			#+BEGIN_SRC bash
-			sudo umount ~/remote-tony
-      #+END_SRC
-*** Passwordless SSH login
-		- Problem :: How can I setup a passwordless SSH login?
-		- Use ~ssh-keygen~, ~ssh-add~ and ~ssh-copy-id~ command.
-		- Authentication key generation, management and conversion
-      (~ssh-keygen~).
-		- Use locally available keys to authorise logins on a remote
-      machine (~ssh-copy-id~).
-		- Adds private key identities to the authentication agent
-      (~ssh-add~).
-		- See examples [[https://linuxize.com/post/how-to-setup-passwordless-ssh-login/][setup passwordless ssh login]] and [[https://gist.github.com/jexchan/2351996][create different public key]].
-		- If you want to connect to the user ~jim~ on the server
-      ~192.168.1.100~ without prompting a password, you have to
-      generate a *ssh key*, send the public part to
-      ~jim@192.168.1.100~ server, append the public key on the remote
-      file ~~/.ssh/authorized_keys~ and add the private key to the
-      authentication agent. After that, you can directly connect to
-      the server. To do so, run the command:
-			#+BEGIN_SRC bash
-			ssh-keygen -t rsa -f ~/.ssh/id_rsa_jim
-			ssh-copy-id -i ~/.ssh/id_rsa_jim.pub jim@192.168.1.100
-			ssh-add ~/.ssh/id_rsa_jim
-      #+END_SRC
-		- If you want to list all identities currently represented by the
-      agent, run the command:
-			#+BEGIN_SRC bash
-      ssh-add -l
-			#+END_SRC
-		- If you want to delete the identity ~~/.ssh/id_rsa_jim~ from the
-      agent, run the command:
-			#+BEGIN_SRC bash
-      ssh-add -d ~/.ssh/id_rsa_jim
-			#+END_SRC
-*** Error connecting to agent
-		- Problem :: How can I solve the problem that give either message
-      ~Error connecting to agent: No such file or directory~ or ~Could
-      not open a connection to your authentication agent~ when I run
-      the command ~~/.ssh/id_rsa_some_key~?
-		- Use ~eval~ command.
-		- Execute arguments as a shell command.
-		- See example [[https://unix.stackexchange.com/questions/48863/ssh-add-complains-could-not-open-a-connection-to-your-authentication-agent/48868][open a connection to your authentication agent]].
-		- If you want to open a connection to your authentication agent
-      that is already running, run the command:
-			#+BEGIN_SRC bash
-			eval "$(ssh-agent)"
-      #+END_SRC
-*** Start authentication agent
-		- Problem :: How can I start my authentication agent ~ssh-agent~?
-		- Use ~ssh-agent~, ~eval~ and ~ssh-add~ commands.
-		- Hold private keys used for public key authentication
-      (~ssh-agent~).
-		- Execute arguments as a shell command (~eval~).
-		- Adds private key identities to the authentication agent
-      (~ssh-add~).
-		- If you want to start your authentication agent, open a
-      connection to the agent and add the key ~id_rsa_some_key~ to
-      the agent, run the commands:
-			#+BEGIN_SRC bash
-			ssh-agent
-			eval "$(ssh-agent)"
-			ssh-add ~/.ssh/id_rsa_some_key
-      #+END_SRC
-		- If you want to list the identities represented by the
-      authentication agent, run the command:
-			#+BEGIN_SRC bash
-			ssh-add -l
-      #+END_SRC
-		- If you want to Kill the current agent (given by the
-      SSH_AGENT_PID environment variable), run the command:
-			#+BEGIN_SRC bash
-			ssh-agent -k
-      #+END_SRC
-*** SSH private key automatically added to ssh-agent
-		- Problem :: how to get ssh private key automatically added to the
-      authentication agent?
-		- Use the keywords ~AddKeysToAgent~ and ~IdentityFile~ in the
-      ~~/.ssh/config~ user's configuration file.
-		- Specifies whether keys should be automatically added to a
-      running ssh-agent(1) (~AddKeysToAgent~).
-		- Specifies a file from which the user's RSA authentication
-      identity is read.
-		- See ~ssh_config~ ~man~ documentation.
-		- If you want to get ssh private keys ~~/.ssh/id_rsa_key_1~ and
-      ~~/.ssh/id_rsa_key_2~ automatically added to the authentication
-      agent, you have to add these following lines to the file
-      ~~/.ssh/config~:
-			#+BEGIN_SRC bash
-			Host *
-			    AddKeysToAgent yes
-					IdentityFile ~/.ssh/id_rsa_key_1
-					IdentityFile ~/.ssh/id_rsa_key_2
-      #+END_SRC
-*** Start ssh-agent on login
-		- Problem :: How can I start ~ssh-agent~ on login?
-		- Use ~systemd~ by adding a user sytemd unit for ~ssh-agent~.
-		- See examples [[https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login][start-ssh-agent-on-login]].
-		- If you want to start ~ssh-agent~ on login, you have to add a
-      ~ssh-agent.service~ user systemd unit, export ~SSH_AUTH_SOCK~
-      environment in the ~.bashrc~ file, ~enable~ and ~start~ the
-      ~ssh-agent~ unit, and specify (in the file ~~/.ssh/config~) that
-      keys should be automatically added to a running ~ssh-agent~.
-			1) file ~~/.config/systemd/user/ssh-agent.service~:
-				 #+BEGIN_SRC bash
-				 [Unit]
-				 Description=SSH key agent
-				 
-				 [Service]
-				 Type=forking
-				 Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
-				 ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
-				 
-				 [Install]
-				 WantedBy=default.target
-			   #+END_SRC
-			2) file ~.bashrc~:
-				 #+BEGIN_SRC bash
-			   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-				 #+END_SRC
-			3) in a terminal, run the commands:
-				 #+BEGIN_SRC bash
-				 systemctl --user enable ssh-agent
-				 systemctl --user start ssh-agent
-				 #+END_SRC
-			4) file ~~./ssh/config~, if you have two private keys:
-				 #+BEGIN_SRC bash
-				 Host *
-			        AddKeysToAgent yes
-							IdentityFile ~/.ssh/id_rsa_key_1
-							IdentityFile ~/.ssh/id_rsa_key_2
-				 #+END_SRC
-		- Note that after login, before the first use of ~ssh~ (via
-      ~ssh~, ~git~, ...), your ~ssh-agent~ doesn't know about your keys,
-      so ~ssh-add -l~ lists anything.
+*** How can I to enable SSH server on ubuntu?
+- Use ~openssh-server~ package.
+- ~openssh-server~: Secure shell (SSH) server, for secure access from
+  remote machines.
+- See [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]] by linuxize.
+- If you want to enable SSH server on the standard port 22, you
+  have to /start/ ~ssh~ service with ~systemctl~ command and
+  /allow/ incomming SSH connection by /opening/ (allowing) the
+  port 22 with the command ~ufw~ and /enabling/ the connection
+  with the command ~ufw~. To do so, run the commands:
+
+#+BEGIN_SRC bash
+sudo systemctl start ssh
+sudo ufw allow ssh  # or sudo ufw allow 22/tcp
+sudo ufw enable
+#+END_SRC
+
+- If you want to install ~openssh-server~ and /start/ the service
+  ~ssh~, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install openssh-server
+#+END_SRC
+
+*** How can I connect to my server via SSH?
+- Use ~ssh~ command.
+- ~ssh~: OpenSSH SSH client (remote login program).
+- See [[https://linuxize.com/post/how-to-enable-ssh-on-ubuntu-18-04/][enable ssh on ubuntu]] by linuxize.
+- If you want to connect to your Ubuntu machine over LAN with
+  ~bob~ as username and ~192.168.1.100~ IP, run the command:
+
+#+BEGIN_SRC bash
+ssh bob@192.168.1.100
+#+END_SRC
+
+- If you want to connect to your Ubuntu machine over Internet with
+  ~bob~ as username and ~2a01:c50e:e911:9600:fc4d:b07d:d36f:6358~ IP,
+  run the command:
+
+#+BEGIN_SRC bash
+ssh bob@2a01:c50e:e911:9600:fc4d:b07d:d36f:6358
+#+END_SRC
+
+*** How can I know that my shell is connected via a SSH connection?
+- Use ~printenv~ command.
+- ~printenv~: print all or part of environment.
+- If you want to know if you're connected via SSH, check if the
+  environment variables ~SSH_CONNECTION~, ~SSH_CLIENT~ and
+  ~SSH_TTY~ are defined. To do so, run the command:
+
+#+BEGIN_SRC bash
+printenv | grep SSH
+#+END_SRC
+
+*** How can I exit a SSH connection?
+- Use ~exit~ command.
+- ~exit~: cause normal process termination.
+- If you want to exit a SSH connection, you can either type ~C-d~
+  or run the command:
+
+#+BEGIN_SRC bash
+exit
+#+END_SRC
+
+*** How can I mount remote directories over ssh?
+- Use ~sshfs~ command.
+- ~sshfs~: filesystem client based on ssh.
+- See [[https://linuxize.com/post/how-to-use-sshfs-to-mount-remote-directories-over-ssh/][sshfs]] by linuxize.
+- If you want to mount the home directory of a user named ~tony~
+  on a remote host with IP address of ~192.168.1.100~, create a
+  directory ~~/remote-tony~ that will serve as a mount point and
+  use ~sshfs~ command. To do so, run the commands:
+
+#+BEGIN_SRC bash
+mkdir ~/remote-tony
+sshfs tony@192.168.1.100:/home/tony ~/remote-tony
+#+END_SRC
+
+- If you want to detach the mounted file system ~~/remote-tony~,
+  run the command:
+
+#+BEGIN_SRC bash
+sudo umount ~/remote-tony
+#+END_SRC
+
+*** How can I setup a passwordless SSH login?
+- Use ~ssh-keygen~, ~ssh-add~ and ~ssh-copy-id~ command.
+- ~ssh-keygen~: Authentication key generation, management and
+  conversion.
+- ~ssh-add~: Adds private key identities to the authentication agent.
+- ~ssh-copy-id~: Use locally available keys to authorise logins on a
+  remote machine.
+- See examples [[https://linuxize.com/post/how-to-setup-passwordless-ssh-login/][setup passwordless ssh login]] and [[https://gist.github.com/jexchan/2351996][create different public key]].
+- If you want to connect to the user ~jim~ on the server
+  ~192.168.1.100~ without prompting a password, you have to
+  generate a /ssh key/, send the public part to
+  ~jim@192.168.1.100~ server, append the public key on the remote
+  file ~~/.ssh/authorized_keys~ and add the private key to the
+  authentication agent. After that, you can directly connect to
+  the server. To do so, run the command:
+
+#+BEGIN_SRC bash
+ssh-keygen -t rsa -f ~/.ssh/id_rsa_jim
+ssh-copy-id -i ~/.ssh/id_rsa_jim.pub jim@192.168.1.100
+ssh-add ~/.ssh/id_rsa_jim
+#+END_SRC
+
+- If you want to list all identities currently represented by the
+  agent, run the command:
+
+#+BEGIN_SRC bash
+ssh-add -l
+#+END_SRC
+
+- If you want to delete the identity ~~/.ssh/id_rsa_jim~ from the
+  agent, run the command:
+
+#+BEGIN_SRC bash
+ssh-add -d ~/.ssh/id_rsa_jim
+#+END_SRC
+
+*** How can I solve the problem that give the error: "Error connecting to agent: No such file or directory"?
+- Use ~eval~ command.
+- ~eval~: execute arguments as a shell command.
+- See [[https://unix.stackexchange.com/questions/48863/ssh-add-complains-could-not-open-a-connection-to-your-authentication-agent/48868][open a connection to your authentication agent]] on stackexchange.
+- If you want to open a connection to your authentication agent
+  that is already running, run the command:
+
+#+BEGIN_SRC bash
+eval "$(ssh-agent)"
+#+END_SRC
+
+*** How can I start my authentication agent ~ssh-agent~?
+- Use ~ssh-agent~, ~eval~ and ~ssh-add~ commands.
+- ~ssh-agent~: Hold private keys used for public key authentication.
+- ~eval~: Execute arguments as a shell command.
+- ~ssh-add~: Adds private key identities to the authentication agent.
+- If you want to start your authentication agent, open a
+  connection to the agent and add the key ~id_rsa_some_key~ to
+  the agent. To do so, run the commands:
+
+#+BEGIN_SRC bash
+ssh-agent
+eval "$(ssh-agent)"
+ssh-add ~/.ssh/id_rsa_some_key
+#+END_SRC
+
+- If you want to list the identities represented by the
+  authentication agent, run the command:
+
+#+BEGIN_SRC bash
+ssh-add -l
+#+END_SRC
+
+- If you want to Kill the current agent (given by the
+  ~SSH_AGENT_PID~ environment variable), run the command:
+
+#+BEGIN_SRC bash
+ssh-agent -k
+#+END_SRC
+
+*** How to get ssh private key automatically added to the authentication agent?
+- Use the keywords ~AddKeysToAgent~ and ~IdentityFile~ in the
+  ~~/.ssh/config~ user's configuration file.
+- ~AddKeysToAgent~: Specifies whether keys should be automatically
+  added to a running ssh-agent(1).
+- ~IdentityFile~: Specifies a file from which the user's RSA
+  authentication identity is read.
+- See ~man~ documentation ~ssh_config~.
+- If you want to get ssh private keys ~~/.ssh/id_rsa_key_1~ and
+  ~~/.ssh/id_rsa_key_2~ automatically added to the authentication
+  agent, you have to add these following lines to the file
+  ~~/.ssh/config~:
+
+#+BEGIN_SRC bash
+Host *
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_rsa_key_1
+    IdentityFile ~/.ssh/id_rsa_key_2
+#+END_SRC
+
+*** How can I start ~ssh-agent~ on login?
+- Use ~systemd~ by adding a user sytemd unit for ~ssh-agent~.
+- See [[https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login][start-ssh-agent-on-login]] on stackoverflow.
+- If you want to start ~ssh-agent~ on login, you have to add a
+  ~ssh-agent.service~ user systemd unit, export ~SSH_AUTH_SOCK~
+  environment in the ~.bashrc~ file, ~enable~ and ~start~ the
+  ~ssh-agent~ unit, and specify (in the file ~~/.ssh/config~) that
+  keys should be automatically added to a running ~ssh-agent~.
+
+1) file ~~/.config/systemd/user/ssh-agent.service~:
+
+#+BEGIN_SRC bash
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=forking
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+#+END_SRC
+
+2) file ~.bashrc~:
+
+#+BEGIN_SRC bash
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+#+END_SRC
+
+3) in a terminal, run the commands:
+
+#+BEGIN_SRC bash
+systemctl --user enable ssh-agent
+systemctl --user start ssh-agent
+#+END_SRC
+
+4) file ~~./ssh/config~, if you have two private keys:
+
+#+BEGIN_SRC bash
+Host *
+     AddKeysToAgent yes
+     IdentityFile ~/.ssh/id_rsa_key_1
+     IdentityFile ~/.ssh/id_rsa_key_2
+#+END_SRC
+
+- Note that after login, before the first use of ~ssh~ (via
+  ~ssh~, ~git~, ...), your ~ssh-agent~ doesn't know about your keys,
+  so ~ssh-add -l~ lists anything.
 ** Servers
-*** php server
-		- Problem :: How to run a php server?
-		- Use the command ~php~.
-		- If the directory contains a ~index.php~ file, to have the server
-			running on ~localhost~ on port ~8080~, run the command:
-			#+BEGIN_SRC bash
-			php -S localhost:8080
-			#+END_SRC
-*** Automatic reload server
-		- Problem :: How to run a server that automatically reload when
-      files change on the system?
-		- Use the command ~browser-sync~.
-		- If the directory contains a ~index.html~ file, to have the server
-			reload each second, run the command:
-			#+BEGIN_SRC bash
-			browser-sync start --reload-delay=1000 -w --server
-			#+END_SRC
-*** httpd Apache rewrite rules
-		- Problem :: How can I rewrite apache rules?
-		- Use ~RewriteCond~ and ~RewriteRule~ directives.
-		- See examples [[https://httpd.apache.org/docs/trunk/fr/rewrite/intro.html][apache documentation on rewrite]].
-*** OVH config files
-		- Problem :: How can I configure ovh config file on server?
-		- Modify the ~.ovhconfig~ file.
-		- See examples [[https://docs.ovh.com/fr/hosting/configurer-fichier-ovhconfig/][ovh documentation on .ovhconfig file]].
-*** nginx resources
-		- [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]]
-		- [[https://linuxize.com/post/nginx-reverse-proxy/][(linuxize) nginx reverse proxy]]
-		- [[https://linuxize.com/post/how-to-set-up-nginx-server-blocks-on-ubuntu-18-04/][(linuxize) nginx server block]]
-		- [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
-		- [[https://scaron.info/blog/improve-your-nginx-ssl-configuration.html][improve your nginx ssl]]
-		- [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][(nginx.com) reverse proxy]]
-		- [[https://www.nginx.com/blog/creating-nginx-rewrite-rules/][(nginx.com) nginx rewrite rules]]: Really good examples to
-      understand what are ~$uri~, ~$request_uri~, ~try_files~,
-      ~return~, ~rewrite~.
-		- [[https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/][(nginx.com) nginx config pitfalls]]
-		- [[https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/][(nginx.com) nginx serving statict content]]
-		- [[https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/][(nginx.com) ssl nginx / upstream server]]
-		- The *request URI* is the part of the request that comes after
-      the domain name or IP address/port.
-*** Install nginx
-		- Problem :: How can I install nginx on ubuntu?
-		- Use ~apt~ command.
-		- High-level commandline interface for the package management
-      system.
-		- See example [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]].
-		- If you want to install nginx on ubuntu and get ready to use,
-      update your packages with ~apt update~, install it with ~apt
-      install~ and open the ~ports~ used by nginx:
-			#+BEGIN_SRC bash
-			sudo apt update
-			sudo apt install nginx
-			sudo ufw allow 'Nginx Full'
-			sudo ufw enable
-      #+END_SRC
-		- If you want to check if ~nginx~ is running, run the command:
-			#+BEGIN_SRC bash
-			sudo systemctl status nginx
-      #+END_SRC
-		- Each time you modify your ~nginx~ configuration, you have to
-      ~reload~ ~nginx~. To do so, run the command:
-			#+BEGIN_SRC bash
-			sudo systemctl reload nginx
-      #+END_SRC
-*** nginx default configuration
-		- Problem :: What is the default configuration of ~nginx~ after
-      installing it?
-		- See example [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][(linuxize) install nginx]].
-		- By default, ~nginx~ serves the file ~index.nginx-debian.html~ on
-      ~localhost~ (~127.0.0.1~) on ~port 80~. Just after intalling
-      ~nginx~, before any modification, you can visit the address
-      ~http://127.0.0.1~ on your browser.
-		- This happens because ~nginx~ looks at config files on the directory
-      ~/etc/nginx/sites-enabled~. It sees the file
-      ~/etc/nginx/sites-enabled/default~ that is a symlink of the file
-      ~/etc/nginx/sites-available/default~. This default file tells
-      ~nginx~ to serve the file ~index.nginx-debian.html~ that is in
-      the directory ~/var/www/html~. And the config file [[../linux/etc--nginx--sites-available--default.txt][default]],
-      after flushing the commented lines, is as follow:
-		  #+BEGIN_SRC bash
-			server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+*** How to run a php server?
+- Use the command ~php~.
+- If the directory contains a ~index.php~ file, to have the server
+  running on ~localhost~ on port ~8080~, run the command:
 
-        root /var/www/html;
-        index index.html index.htm index.nginx-debian.html;
-        server_name _;
+#+BEGIN_SRC bash
+  php -S localhost:8080
+#+END_SRC
 
-        location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
-        }
-			}
-      #+END_SRC
-*** nginx reverse proxy
-		- Problem :: How can I set nginx to be a reverse proxy?
-		- Use ~proxy_pass~ directive in your ~nginx block~ configuration.
-		- To pass a request to an HTTP proxied server, the ~proxy_pass~
-      directive is specified inside a ~location~.
-		- See examples [[https://linuxize.com/post/nginx-reverse-proxy/][(linuxize) nginx reverse proxy]], [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][(nginx.com) reverse proxy]] 
-		  and [[http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass][(documentation) proxy_pass]].
-		- If you want to serve at ~mydomain.com~ an application that is running as a http
-      server (node app, flask app,...) on ~http://127.0.0.1:5000~,
-      your ~nginx block~ for ~mydomain.com~ defined in the file
-      ~/etc/nginx/sites-available/mydomain.conf~ must contain the
-      following lines:
-			#+BEGIN_SRC bash
-			server {
-			  listen 80;
-				server_name www.mydomain.com mydomain.com;
-				
-				location / {
-				proxy_pass http://127.0.0.1:5000;
-				}
-			}
-      #+END_SRC
-*** error (nginx): cannot get
-		- Problem :: How can I fix the nginx error ~error (nginx): cannot
-      get /app~ related to proxy servers?
-		- See ~proxy_pass~ directive in your ~block~ configuration.
-		- The error was that I was trying to pass ~location~ ~/app~ to
-      the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
-      end of the address. To solve the problem, I add a ~/~ to the
-      ~proxy_pass~ address. My ~block~ configuration
-      ~/etc/nginx/sites-available/mydomain.conf~ contains the
-      following lines: 
-			#+BEGIN_SRC bash
-			location /app {
-        proxy_pass http://127.0.0.1:5000/;
-			}
-      #+END_SRC
+*** How to run a server that automatically reload when files change on the system?
+- Use the command ~browser-sync~.
+- See [[https://www.browsersync.io/][browsersync]] homepage.
+- If the directory contains an ~index.html~ file, to have the server
+  reload each second, run the command:
+
+#+BEGIN_SRC bash
+browser-sync start --reload-delay=1000 -w --server
+#+END_SRC
+
+- If you want to install ~browser-sync~, run the command:
+
+#+BEGIN_SRC bash
+npm install -g browser-sync
+#+END_SRC
+
+*** How can I rewrite apache rules?
+- Use ~RewriteCond~ and ~RewriteRule~ directives.
+- See module [[https://httpd.apache.org/docs/trunk/fr/rewrite/intro.html][mod_rewrite]] from Apache documentation.
+*** How can I configure OVH config file on server?
+- Modify the ~.ovhconfig~ file.
+- See [[https://docs.ovh.com/fr/hosting/configurer-fichier-ovhconfig/][.ovhconfig file]] from OVH documentation.
+*** Where can I find good ~nginx~ resources?
+- [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][install nginx]], [[https://linuxize.com/post/nginx-reverse-proxy/][nginx reverse proxy]], [[https://linuxize.com/post/how-to-set-up-nginx-server-blocks-on-ubuntu-18-04/][nginx server block]], [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][nginx ssl]] by
+  linuxize.
+- [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][reverse proxy]], [[https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/][nginx config pitfalls]], [[https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/][nginx serving statict content]],
+  [[https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/][ssl nginx / upstream server]] from nginx.com.
+- [[https://www.nginx.com/blog/creating-nginx-rewrite-rules/][nginx rewrite rules]] from nginx.com that shows really good examples
+  to understand what are ~$uri~, ~$request_uri~, ~try_files~,
+  ~return~, ~rewrite~.
+- [[https://scaron.info/blog/improve-your-nginx-ssl-configuration.html][improve your nginx ssl]] from scaron.info.
+*** What does ~request URI~ refer to in ~nginx~ vocabulary?
+- The *request URI* is the part of the request that comes after the domain name or IP address/port.
+*** How can I install nginx on ubuntu?
+- Use ~apt~ and ~ufw~ command.
+- ~apt~: high-level commandline interface for the package management
+  system.
+- ~ufw~: program for managing a netfilter firewall.
+- See [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][install nginx]] by linuxize.
+- If you want to install nginx on ubuntu and get ready to use,
+  update your packages with ~apt update~, install it with ~apt
+  install~ and open the ~ports~ used by nginx:
+
+#+BEGIN_SRC bash
+sudo apt update
+sudo apt install nginx
+sudo ufw allow 'Nginx Full'
+sudo ufw enable
+#+END_SRC
+
+- If you want to check if ~nginx~ is running, run the command:
+
+#+BEGIN_SRC bash
+sudo systemctl status nginx
+#+END_SRC
+
+- Each time you modify your ~nginx~ configuration, you have to
+  ~reload~ ~nginx~. To do so, run the command:
+
+#+BEGIN_SRC bash
+sudo systemctl reload nginx
+#+END_SRC
+
+*** What is the default configuration of ~nginx~ after installing it?
+- See [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][install nginx]] by linuxize.
+- By default, ~nginx~ serves the file ~index.nginx-debian.html~ on
+  ~localhost~ (~127.0.0.1~) on ~port 80~. Just after intalling
+  ~nginx~, before any modification, you can visit the address
+  ~http://127.0.0.1~ on your browser.
+- This happens because ~nginx~ looks at config files on the directory
+  ~/etc/nginx/sites-enabled~. It sees the file
+  ~/etc/nginx/sites-enabled/default~ that is a symlink of the file
+  ~/etc/nginx/sites-available/default~. This default file tells
+  ~nginx~ to serve the file ~index.nginx-debian.html~ that is in
+  the directory ~/var/www/html~. And the config file [[../linux/etc--nginx--sites-available--default.txt][default]],
+  after flushing the commented lines, is as follow:
+
+#+BEGIN_SRC bash
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/html;
+  index index.html index.htm index.nginx-debian.html;
+  server_name _;
+
+  location / {
+          # First attempt to serve request as file, then
+          # as directory, then fall back to displaying a 404.
+          try_files $uri $uri/ =404;
+  }
+}
+#+END_SRC
+
+*** How can I set nginx to be a reverse proxy?
+- Use ~proxy_pass~ directive in your ~nginx block~ configuration.
+- To pass a request to an HTTP proxied server, the ~proxy_pass~
+  directive is specified inside a ~location~.
+- See [[https://linuxize.com/post/nginx-reverse-proxy/][nginx reverse proxy]] by linuxize, [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][reverse proxy]] from nginx.com
+  and [[http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass][proxy_pass]] from nginx.org documentation.
+- If you want to serve at ~mydomain.com~ an application that is running as a http
+  server (node app, flask app,...) on ~http://127.0.0.1:5000~,
+  your ~nginx block~ for ~mydomain.com~ defined in the file
+  ~/etc/nginx/sites-available/mydomain.conf~ must contain the
+  following lines:
+
+#+BEGIN_SRC bash
+server {
+  listen 80;
+  server_name www.mydomain.com mydomain.com;
+
+  location / {
+  proxy_pass http://127.0.0.1:5000;
+  }
+}
+#+END_SRC
+
+*** How can I fix the nginx error ~error (nginx): cannot get /app~ related to proxy servers?
+- See ~proxy_pass~ directive in your ~block~ configuration.
+- The error was that I was trying to pass ~location~ ~/app~ to
+  the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
+  end of the address. 
+-To solve the problem, I add a ~/~ to the ~proxy_pass~ address. My
+~block~ configuration ~/etc/nginx/sites-available/mydomain.conf~
+contains know the following lines:
+
+#+BEGIN_SRC bash
+location /app {
+  proxy_pass http://127.0.0.1:5000/;
+}
+#+END_SRC
+
 ** Connection
-*** Wifi connection
-		- Problem :: How can I restart my wifi connection?
-		- Use ~service~ command.
-		- run a System V init script.
-		- See examples [[https://askubuntu.com/questions/271387/how-to-restart-wifi-connection][restart wifi connection]].
-		- If you want to restart your wifi connection, run the command:
-			#+BEGIN_SRC bash
-			sudo service network-manager restart
-      #+END_SRC
-*** Address of wireless network
-		- Problem :: How can I check if I'm connected to a wireless network?
-		- Use ~iwgetid~ command.
-		- Report ESSID, NWID or AP/Cell Address of wireless network.
-		- If you want to check if you are connected to a wireless
-      newtork, run the command:
-			#+BEGIN_SRC bash
-			iwgetid
-      #+END_SRC
-			If you get nothing, you are not connected.
+*** How can I restart my wifi connection?
+- Use ~service~ command.
+- ~service~: run a System V init script.
+- See [[https://askubuntu.com/questions/271387/how-to-restart-wifi-connection][restart wifi connection]] on askubuntu.
+- If you want to restart your wifi connection, run the command:
+
+#+BEGIN_SRC bash
+sudo service network-manager restart
+#+END_SRC
+
+*** How can I check if I'm connected to a wireless network?
+- Use ~iwgetid~ command.
+- ~iwgetid~: report ESSID, NWID or AP/Cell Address of wireless network.
+- If you want to check if you are connected to a wireless
+  newtork, run the following command and if you get nothing, you are
+  not connected:
+
+#+BEGIN_SRC bash
+iwgetid
+#+END_SRC
+
 ** ftp
-*** ftp session down once I run a command
-		- Problem :: Why do I get kicked out of a FTP session once I run a
-      command?
-		- Use ~ufw~ command.
-		- Program for managing a netfilter firewall.
-		- See examples [[https://unix.stackexchange.com/questions/90487/why-do-i-get-kicked-out-of-a-ftp-session-once-i-run-a-command/90501][ftp error due to firewall]].
-		- If you want to open all the port to not have problem of
-      firewall with ~ftp~, run the command:
-			#+BEGIN_SRC bash
-			sudo ufw disable
-      #+END_SRC
+*** Why do I get kicked out of a FTP session once I run a command?
+- Use ~ufw~ command.
+- ~ufw~: program for managing a netfilter firewall.
+- See [[https://unix.stackexchange.com/questions/90487/why-do-i-get-kicked-out-of-a-ftp-session-once-i-run-a-command/90501][ftp error due to firewall]] on stackexchange.
+- If you want to open all the port to not have problem of
+  firewall with ~ftp~, run the command:
+
+#+BEGIN_SRC bash
+sudo ufw disable
+#+END_SRC
+
+*** What is ~ftp~?
+- ~ftp~ is an internet file transfer program.
 ** Miscellaneous
-  curl, wget, ping, ftp
+*** What is ~curl~?
+- ~curl~: transfer a URL.
+*** What is ~wget~?
+- ~wget~: the non-interactive network downloader.
+*** What is ~ping~?
+- ~ping~: send ICMP ECHO_REQUEST to network hosts.
 * Devices
   lsblk, mount, umount
   [[https://askubuntu.com/questions/37767/how-to-access-a-usb-flash-drive-from-the-terminal][usb flash drive: commnand line]]
