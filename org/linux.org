@@ -1561,214 +1561,224 @@ sudo ufw disable
 *** What is ~ping~?
 - ~ping~: send ICMP ECHO_REQUEST to network hosts.
 * Devices
-  lsblk, mount, umount
-  [[https://askubuntu.com/questions/37767/how-to-access-a-usb-flash-drive-from-the-terminal][usb flash drive: commnand line]]
-  #+BEGIN_SRC bash
-  lsblk  # find what the drive is called
-  sudo mount /dev/sdb1 /mnt/  # if drive called sdb1
-  sudo umount /mnt/
-  #+END_SRC
 ** USB drive
-*** Wipe out data
-		- Problem :: How can I securely clear (wipe out) all the data on
-      my USB drive?
-		- Use ~dd~ command.
-		- Convert and copy a file.
-		- See examples [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][how to format usb drives]].
-		- If you want to wipe out all the data on your USB drive, plug
-      it, be sure that is not mounted, and assuming that your target drive
-      is ~/dev/sdb~, run the command:
-			#+BEGIN_SRC bash
-			sudo dd if=/dev/zero of=/dev/sdb bs=4096 status=progress
-      #+END_SRC
-		- Last time, for a 32GB usb drive, the process took about 30
-      minuntes to complete.
-		- Once the disk is erased, the ~dd~ command will print ~~No space
-      left on device~.
-*** Format USB drive with EXT4
-		- Problem :: How can I format a usb drive with EXT4?
-		- Use ~parted~ and ~mkfs.ext4~ commands.
-		- A partition manipulation program (~parted~).
-		- Create an ext4 filesystem (~mkfs.ext4~).
-		- See examples [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][how to format usb drives]].
-		- If you want to format an usb drive with only one ext4 partition
-      that take the whole space, plug you're usb drive, be sure that
-      is not mounted, create a GPT partition table, create a ext4
-      partition that takes the whole space and finaly format the
-      partition to ext4. To do so, assuming that your target drive
-      is ~/dev/sdb~, run the commands:
-			#+BEGIN_SRC bash
-			sudo parted /dev/sdb --script -- mklabel gpt
-			sudo parted /dev/sdb --script -- mkpart primary ext4 0% 100%
-			sudo mkfs.ext4 -F /dev/sdb1
-      #+END_SRC
-		- When format as above, when the usb is mounted is own by ~root~,
-      belong to ~root~ group and as the permission file is
-      ~drwxr-xr-x~.
-		- If you want to print the partition table and verify that
-      everything is set up correctly, run the command:
-			#+BEGIN_SRC bash
-			sudo parted /dev/sdb --script print
-      #+END_SRC
-*** Name a USB drive
-		- Problem :: How can I name a USB drive with an ext4 filesystem?
-		- Use ~e2label~ command.
-		- Change the label on an ext2/ext3/ext4 filesystem.
-		- See examples [[https://help.ubuntu.com/community/RenameUSBDrive][rename usb drive]].
-		- If you want to name (or rename) ~my-name~ your USB drive,
-      assuming the target drive is ~/dev/sdb1~ and is unmounted, run
-      the command:
-			#+BEGIN_SRC bash
-			sudo e2label /dev/sdb1 my-name
-      #+END_SRC
-		- I you want to check the name of your USB drive, assuming the
-      target is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC bash
-			sudo e2label /dev/sdb1
-      #+END_SRC
-		- The name of an usb drive doesn't identify the usb drive. For
-      this purpose see ~UUID~ of the usb drive or the ~PARTUUID~.
-*** UUID of an USB drive
-		- Problem :: How can I know the ~UUID~ of an USB drive?
-		- Use ~blkid~ command.
-		- locate/print block device attributes
-		- See examples [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]].
-		- If you want to print the ~UUID~ of the block device wich
-      partition is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC bash
-			blkid -s UUID -o value /dev/sdb1
-      #+END_SRC
-		- Filesystem partitions have UUIDs but physical devices do not.
-*** USB drive accross linux system
-		- Problem :: How can I set up the USB drive in such way that user
-      with the same UID accross linux system can access to the USB drive?
-		- Use ~mkfs.ext4~ and ~chown~ commands.
-		- Create an ext4 filesystem (~mkfs.ext4~).
-		- Change file owner and group (~chown~).
-		- See examples [[https://unix.stackexchange.com/questions/422656/how-to-make-an-ext4-formatted-usb-drive-with-full-rw-permissions-for-any-linux-m][ext4 formatted usb drive with full rw permissions]].
-		- If you want to format your usb drive to ext4 file system and
-      give it the ownership of the same username (same UID) your
-      share accross linux system, assuming that ~/dev/sdb1~ is the
-      partition and ~my-name~ is your username, run the commands:
-			#+BEGIN_SRC bash
-			sudo mkfs.ext4 /dev/sdb1
-			sudo mount /dev/sdb1 /mnt
-			sudo chown my-name: /mnt
-			sudo umount /mnt
-      #+END_SRC
-		- Take care, the above operations will kill your all the data on
-      the usb drive.
-*** Preserve mode/ownership/timestamps when using sudo
-		- Problem :: How can I preserve mode/ownership/timestamps when
-      ~cp~ or ~rsync~ and using ~sudo~ ?
-		- Use ~cp~ or ~rsync~ command.
-		- Copy files and directories (~cp~).
-		- A fast, versatile, remote (and local) file-copying tool (~rsync~).
-		- If you want to copy the directory ~my-dir~ to your USB drive
-      mounted at ~/mnt~ and preserving mode/ownership/timestamps, run
-      the command:
-			#+BEGIN_SRC bash
-			sudo cp -r --preserve my-dir /mnt  # with cp
-			sudo rsync -rog my-dir /mnt  # with rsync
-      #+END_SRC
-*** Mount USB drive without sudo privilege
-		- Problem :: How can I mount a usb drive without sudo privilege?
-		- Use ~pmount~ command.
-		- Mount arbitrary hotpluggable devices as normal user.
-		- If you want to mount your USB drive on ~/media/usbdrive~
-      assuming the target drive is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC bash
-			pmount /dev/sdb1 usbdrive
-      #+END_SRC
-		- If you want to unmount your USB drive mounted with ~pmount~
-      assuming the target drive is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC bash
-			pumount /dev/sdb1
-      #+END_SRC
+*** How can I securely clear (wipe out) all the data on my USB drive?
+- Use ~dd~ command.
+- ~dd~: convert and copy a file.
+- See [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][format usb drives]] by linuxize.
+- If you want to /wipe out/ all the data on your USB drive, plug
+  it, be sure that is not mounted, and assuming that your target drive
+  is ~/dev/sdb~, run the command:
 
-*** Mount USB drive
-		- Problem :: How can I mount a usb drive?
-		- Use ~mount~ command.
-		- Mount a filesystem.
-		- If you want to mount your USB drive on ~/mnt~
-      assuming the target drive is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC bash
-			sudo /dev/sdb1 /mnt
-      #+END_SRC
-		- If you want to unmount your USB drive, assuming the target drive
-      is ~/dev/sdb1~, run the command:
-			#+BEGIN_SRC bash
-			sudo umount /dev/sdb1
-      #+END_SRC
+#+BEGIN_SRC bash
+sudo dd if=/dev/zero of=/dev/sdb bs=4096 status=progress
+#+END_SRC
 
-*** List block USB devices
-		- Problem :: How can I list block USB devices?
-		- Use ~lsblk~ command.
-		- List block devices.
-		- If you want to the block USB devices on your machine, run the
-      command:
-			#+BEGIN_SRC bash
-			lsblk
-      #+END_SRC
-*** List USB devices
-		- Problem :: How can I list USB devices?
-		- Use ~lsusb~ command.
-		- List USB devices.
-		- If you want to the USB devices on your machine, run the
-      command:
-			#+BEGIN_SRC bash
-			lsusb
-      #+END_SRC
-*** Available space on USB
-		- Problem :: How can I know what is the available space on a USB drive?
-		- Use ~df~ command.
-		- report file system disk space usage.
-		-  .
-		- If you want to know the available space that remains on a USB
-      drive, assuming the target drive is ~/dev/sdb1~ and is mounted,
-      run the command:
-			#+BEGIN_SRC bash
-			df -h /dev/sdb1
-      #+END_SRC
-*** read-only usb drive
-		- Problem :: Why the file system of my usb drive suddenly becomes
-      ~read-only~?
-		- See example [[https://superuser.com/questions/1125282/what-can-i-do-if-my-usb-flash-drive-is-write-protected-or-read-only][usb drive write protected or read only]].
-		- This is probably because the drive has probably experienced a
-      fault condition. That is your usb drive is not safe. So you must
-      backup your data and change your usb drive.
+- Last time, for a 32GB usb drive, the process took about 30
+  minuntes to complete.
+- Once the disk is erased, the ~dd~ command will print ~~No space
+  left on device~.
+*** How can I format a usb drive with EXT4?
+- Use ~parted~ and ~mkfs.ext4~ commands.
+- ~parted~: a partition manipulation program.
+- ~mkfs.ext4~: create an ext4 filesystem.
+- See [[https://linuxize.com/post/how-to-format-usb-sd-card-linux/][format usb drives]] by linuxize.
+- If you want to format an usb drive with only one ext4 partition
+  that take the whole space, plug you're usb drive, be sure that
+  is not mounted, create a GPT partition table, create a ext4
+  partition that takes the whole space and finaly format the
+  partition to ext4. To do so, assuming that your target drive
+  is ~/dev/sdb~, run the commands:
+
+#+BEGIN_SRC bash
+sudo parted /dev/sdb --script -- mklabel gpt
+sudo parted /dev/sdb --script -- mkpart primary ext4 0% 100%
+sudo mkfs.ext4 -F /dev/sdb1
+#+END_SRC
+
+- When the usb drive is formated as above, when the usb is mounted it is
+  own by ~root~, belong to ~root~ group and as the permission file is
+  ~drwxr-xr-x~.
+- If you want to print the partition table and verify that
+  everything is set up correctly, run the command:
+
+#+BEGIN_SRC bash
+sudo parted /dev/sdb --script print
+#+END_SRC
+
+*** How can I name a USB drive with an ext4 filesystem?
+- Use ~e2label~ command.
+- ~e2label~: change the label on an ext2/ext3/ext4 filesystem.
+- See [[https://help.ubuntu.com/community/RenameUSBDrive][rename usb drive]] from help.ubuntu.com.
+- If you want to name (or rename) ~my-name~ your USB drive,
+  assuming the target drive is ~/dev/sdb1~ and is unmounted, run
+  the command:
+
+#+BEGIN_SRC bash
+sudo e2label /dev/sdb1 my-name
+#+END_SRC
+
+- I you want to check the name of your USB drive, assuming the
+  target is ~/dev/sdb1~, run the command:
+
+#+BEGIN_SRC bash
+sudo e2label /dev/sdb1
+#+END_SRC
+
+- The name of an usb drive doesn't identify the usb drive. For
+  this purpose see ~UUID~ of the usb drive or the ~PARTUUID~.
+*** How can I know the ~UUID~ of an USB drive?
+- Use ~blkid~ command.
+- ~blkid~: locate/print block device attributes.
+- See [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]] from archilinux wiki.
+- If you want to print the ~UUID~ of the block device wich
+  partition is ~/dev/sdb1~, run the command:
+
+#+BEGIN_SRC bash
+blkid -s UUID -o value /dev/sdb1
+#+END_SRC
+
+- Filesystem partitions have UUIDs but physical devices do not.
+*** How can I set up the USB drive in such way that user with the same UID accross linux system can access to the USB drive?
+- Use ~mkfs.ext4~ and ~chown~ commands.
+- ~mkfs.ext4~: create an ext4 filesystem.
+- ~chown~: change file owner and group.
+- See  [[https://unix.stackexchange.com/questions/422656/how-to-make-an-ext4-formatted-usb-drive-with-full-rw-permissions-for-any-linux-m][ext4 formatted usb drive]] on stackexchange.
+- If you want to format your usb drive to ext4 file system and
+  give it the ownership of the same username (same UID) you
+  share accross linux system, assuming that ~/dev/sdb1~ is the
+  partition and ~my-name~ is your username, run the commands:
+
+#+BEGIN_SRC bash
+sudo mkfs.ext4 /dev/sdb1
+sudo mount /dev/sdb1 /mnt
+sudo chown my-name: /mnt
+sudo umount /mnt
+#+END_SRC
+
+- Take care, the above operations will kill your all the data on
+  the usb drive.
+*** How can I preserve mode/ownership/timestamps when using ~cp~ or ~rsync~ with ~sudo~?
+- ~cp~: copy files and directories.
+- ~rsync~: a fast, versatile, remote (and local) file-copying tool.
+- If you want to copy the directory ~my-dir~ to your USB drive
+  mounted at ~/mnt~ and preserving mode/ownership/timestamps, run
+  the command:
+
+#+BEGIN_SRC bash
+sudo cp -r --preserve my-dir /mnt  # with cp
+sudo rsync -rog my-dir /mnt  # with rsync
+#+END_SRC
+
+*** How can I mount a usb drive without sudo privilege?
+- Use ~pmount~ command.
+- ~pmount~: mount arbitrary hotpluggable devices as normal user.
+- If you want to /mount/ your USB drive on ~/media/usbdrive~
+  assuming the target drive is ~/dev/sdb1~, run the command:
+
+#+BEGIN_SRC bash
+pmount /dev/sdb1 usbdrive
+#+END_SRC
+
+- If you want to /unmount/ your USB drive mounted with ~pmount~
+  assuming the target drive is ~/dev/sdb1~, run the command:
+
+#+BEGIN_SRC bash
+pumount /dev/sdb1
+#+END_SRC
+
+*** How can I mount a usb drive?
+- Use ~mount~ command.
+- ~mount~: mount a filesystem.
+- If you want to /mount/ your USB drive on ~/mnt~
+  assuming the target drive is ~/dev/sdb1~, run the command:
+
+#+BEGIN_SRC bash
+sudo /dev/sdb1 /mnt
+#+END_SRC
+
+- If you want to /unmount/ your USB drive, assuming the target drive
+  is ~/dev/sdb1~, run the command:
+
+#+BEGIN_SRC bash
+sudo umount /dev/sdb1
+#+END_SRC
+
+*** How can I list block USB devices?
+- Use ~lsblk~ command.
+- ~lsblk~: list block devices.
+- If you want to the block USB devices on your machine, run the
+  command:
+
+#+BEGIN_SRC bash
+lsblk
+#+END_SRC
+
+*** How can I list USB devices?
+- Use ~lsusb~ command.
+- ~lsusb~: list USB devices.
+- If you want to the USB devices on your machine, run the
+  command:
+
+#+BEGIN_SRC bash
+lsusb
+#+END_SRC
+
+*** How can I know what is the available space on a USB drive?
+- Use ~df~ command.
+- ~df~: report file system disk space usage.
+- If you want to know the available space that remains on a USB
+  drive, assuming the target drive is ~/dev/sdb1~ and is mounted,
+  run the command:
+
+#+BEGIN_SRC bash
+df -h /dev/sdb1
+#+END_SRC
+
+*** Why the file system of my usb drive suddenly becomes ~read-only~?
+- See [[https://superuser.com/questions/1125282/what-can-i-do-if-my-usb-flash-drive-is-write-protected-or-read-only][usb drive write protected or read only]] on stackexchange.
+- This is probably because the drive has probably experienced a
+  fault condition. That is your usb drive is not safe. So you must
+  backup your data and change your usb drive.
 ** Iphone
-*** Mount Iphone on Linux Ubuntu
-		- Problem :: How can I mount my Iphone on my linux machine?
-		- Use ~idevicepair~ and ~ifuse~ command.
-		- Manage host pairings with devices and usbmuxd (~idevicepair~).
-		- Mount directories of an iOS device locally using fuse (~ifuse~).
-		- See examples [[https://www.maketecheasier.com/easily-mount-your-iphone-as-an-external-drive-in-ubuntu/][mount your iphone as an external drive]].
-		- If you want to mount your Iphone on the directory
-      ~/media/iphone~ in order browse its directories contents, you
-      have to plug your Iphone to your machine, pair it, create the
-      directory ~/media/iphone~ (if doesn't exist yet) and mount the
-      Iphone. To do so, run the commands:
-			#+BEGIN_SRC bash
-			idevicepair pair
-			mkdir /media/iphone
-			sudo ifuse /media/iphone
-      #+END_SRC
-		- If you to list the medias on your mobile (in my case there were
-      on the directory ~/media/iphone/DCIM/106APPLE~), run the
-      command:
-			#+BEGIN_SRC bash
-      ls ~/media/iphone/DCIM/106APPLE~
-			#+END_SRC
-		- If you want to unmount your Iphone, run the command:
-			#+BEGIN_SRC bash
-			sudo umount media/iphone
-      #+END_SRC
-		- If you want to install ~idevicepair~ and ~ifuse~, run the
-      command:
-			#+BEGIN_SRC bash
-			sudo apt install libimobiledevice6 libimobiledevice-utils ifuse
-      #+END_SRC
+*** How can I mount my Iphone on my linux machine?
+- Use ~idevicepair~ and ~ifuse~ command.
+- ~idevicepair~: manage host pairings with devices and usbmuxd.
+- ~ifuse~: mount directories of an iOS device locally using fuse.
+- See [[https://www.maketecheasier.com/easily-mount-your-iphone-as-an-external-drive-in-ubuntu/][mount your iphone as an external drive]] from maketecheasier.
+- If you want to mount your Iphone on the directory
+  ~/media/iphone~ in order browse its directories contents, you
+  have to plug your Iphone to your machine, pair it, create the
+  directory ~/media/iphone~ (if doesn't exist yet) and mount the
+  Iphone. To do so, run the commands:
+
+#+BEGIN_SRC bash
+idevicepair pair
+mkdir /media/iphone
+sudo ifuse /media/iphone
+#+END_SRC
+
+- If you want to list the medias on your mobile (in my case there were
+  on the directory ~/media/iphone/DCIM/106APPLE~), run the
+  command:
+
+#+BEGIN_SRC bash
+ls ~/media/iphone/DCIM/106APPLE
+#+END_SRC
+
+- If you want to unmount your Iphone, run the command:
+
+#+BEGIN_SRC bash
+sudo umount media/iphone
+#+END_SRC
+
+- If you want to install ~idevicepair~ and ~ifuse~, run the
+  command:
+
+#+BEGIN_SRC bash
+sudo apt install libimobiledevice6 libimobiledevice-utils ifuse
+#+END_SRC
+
 * X window system
 ** Get X information
 *** How can I print all X information on a selected window?
