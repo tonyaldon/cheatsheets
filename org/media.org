@@ -287,7 +287,10 @@ pactl set-source-volume @DEFAULT_SOURCE@ -5%
 - [[https://commons.wikimedia.org/wiki/Category:SVG_icons_by_subject][SVG_icons_by_subject (wikimedia)]]
 - [[https://commons.wikimedia.org/wiki/Category:SVG_arrow_icons][SVG_arrow_icons (wikimedia)]]
 - [[https://pixabay.com/][free images,videos,... (pixabay)]]
-** Download videos
+- [[https://freesound.org/][freesound]]
+- [[https://soundcloudmp3.org][soundcloud to mp3 (soundcloudmp3)]]
+- [[https://soundcloud.com/][(music) soundcloud]]
+** Download youtube videos
 *** How can I download the audio of a youtube video?
 - Use ~youtube-dl~ command.
 - ~youtube-dl~: Command-line program to download videos from
