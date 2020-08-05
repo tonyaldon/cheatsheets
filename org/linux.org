@@ -2043,260 +2043,250 @@ sudo apt install imagemagick
 
 * Backup
 ** rsync
-*** rsync keep the file sent
-		- Problem :: How can I always replace the ~DEST~ file by the
-      ~SRC~ file?
-		- Use ~-a~ flag of ~rsync~.
-		- It is a quick way of saying you want recursion and want to
-      preserve almost everything.
-		- If you want to *always* replace all the files with the same
-      ~path~ on ~path/to/dest/~ by the files on ~path/to/src/~, run
-      the command:
-			#+BEGIN_SRC bash
-			rsync -a path/to/src/ path/to/dest/
-      #+END_SRC
-*** rsync keep only the newer file
-		- Problem :: How can I always replace the ~DEST~ file by the
-      ~SRC~ file *only* if the ~SRC~ file is newer than the ~DEST~
-      file?
-		- Use ~-au~ flags of ~rsync~.
-		- Skip files that are newer on the receiver (~-u~ flag).
-		- If you want to replace all the files with the same
-      ~path~ on ~path/to/dest/~ by the files on ~path/to/src/~ that
-      are *newer*, run the command:
-			#+BEGIN_SRC bash
-			rsync -au path/to/src/ path/to/dest/
-      #+END_SRC
-*** rsync keep the newer file and make a copy of the old
-		- Problem :: How can I keep the *newer* file between ~DEST~ and
-      ~SRC~ file on the receiver and keep a *copy* on the receiver of
-      the *older* of ~DEST~ file and ~SRC~ file?
-		- Use ~-aub~ flags of ~rsync~.
-		- Skip files that are newer on the receiver (~-u~ flag).
-		- With this option, preexisting destination files are renamed as
-      each file is transferred or deleted (~-b~ flag).
-		- If you want to keep the *newer* files between ~path/to/dest/~
-      and ~path/to/src/~ on the receiver (~path/to/dest/~) and keep a
-      *copy* on the receiver (~path/to/dest/~) of the *older* files
-      (by appending them a ~~~), run the command:
-			#+BEGIN_SRC bash
-			rsync -aub path/to/src/ path/to/dest/
-      #+END_SRC
-*** rsync synchronize (witout copy of older files)
-		- Problem :: How can I synchronize ~DEST~ directory and
-      ~SRC~ directory?
-		- Use ~-au~ flags of ~rsync~.
-		- It is a quick way of saying you want recursion and want to
-      preserve almost everything (~-a~ flag).
-		- Skip files that are newer on the receiver (~-u~ flag).
-		- If you want to synchronize ~path/to/src/~ and ~path/to/dest/~,
-      that is (~DEST~ and ~SRC~ become the same copy, keeping
-      all files that were on ~DEST~ but not on ~SRC~ and vice-versa,
-      and keeping the newer files (with the same ~path~) of the ~DEST~
-      and ~SRC~ directory), run the commands:
-			#+BEGIN_SRC bash
-			rsync -au path/to/src/ path/to/dest/
-			rsync -au path/to/dest/ path/to/src/
-      #+END_SRC
-*** rsync synchronize (with copy of older files and log file)
-		- Problem :: How can I synchronize ~DEST~ directory and ~SRC~
-      directory, keep a copy of the older files and generate a log
-      file?
-		- Use ~-aub~ and ~--backup-dir~ flags of ~rsync~.
-		- It is a quick way of saying you want recursion and want to
-      preserve almost everything (~-a~ flag).
-		- Skip files that are newer on the receiver (~-u~ flag).
-		- With this option, preexisting destination files are renamed as
-      each file is transferred or deleted (~-b~ flag).
-		- In  combination  with the ~--backup~ option, this tells rsync to
-      store all backups in the specified directory on the receiving
-      side (~--backup-dir~).
-		- If you want to synchronize ~path/to/src/~ and ~path/to/dest/~,
-      and keep a copy of the older files in a *specified directory*
-      ~backup~ (on both directorise ~path/to/src/~ and ~path/to/dest/~)
-      and a log file ~backup.log~ (available on both directorise ~path/to/src/~
-      and ~path/to/dest/~) that keep track of the synchronization
-      process , run the commands:
-			#+BEGIN_SRC bash
-			rsync -aub --backup-dir="backup" path/to/dest/ path/to/src/ \
-			  | tee -a path/to/src/backup.log
-			rsync -aub --backup-dir="backup" path/to/src/ path/to/dest/ \
-			  | tee -a path/to/src/backup.log
-			rsync -aub --backup-dir="backup" path/to/dest/ path/to/src/ \
-			  | tee -a path/to/src/backup.log
-			rsync path/to/src/backup.log path/to/dest/backup.log
-      #+END_SRC
-		- Note 1: In the file ~backup.log~, you can see what happen
-      during the synchronization. This way you can see the files that
-      have been deleted on the ~SRC~ directory but still present on
-      the ~DEST~ directory that you copied back into to the ~SRC~
-      directory.
-		- Note 2: The directory ~backup~ contains all older files.
-		- Note 3: If on the ~SRC~ and ~DEST~ you had the file ~path-to/some-file~
-      that differed, after the synchronization you can see the
-      difference (how the newer was changed from the older), by running
-      the command:
-			#+BEGIN_SRC bash
-      git diff path/to/src/backup/path-to/some-file path/to/src/path-to/some-file
-			#+END_SRC
-		- Note 4: After the synchronization, if you are happy, you can delete
-      on both side (~SRC~ and ~DEST~ directories), the file
-      ~backup.log~ and the directory ~backup~. To do so, run the
-      commands:
-      #+BEGIN_SRC bash
-      rm -rf path/to/src/backup path/to/src/backup.log
-      rm -rf path/to/dest/backup path/to/dest/backup.log
-			#+END_SRC
-*** rsync delete on remote what is not on local
-		- Problem :: How can I delete files on ~DEST~ that are not present
-      on ~SRC~?
-		- Use ~-a~, ~--delete~ flags of ~rsync~.
-		- It is a quick way of saying you want recursion and want to
-      preserve almost everything (~-a~ flag).
-		- This tells rsync to delete extraneous files from the receiving
-      side (ones  that  aren’t on  the  sending  side), but only for
-      the directories that are being synchronized.  You must have
-      asked rsync to send the whole directory (e.g. "dir" or "dir/")
-      without  using a  wildcard  for the directory’s contents
-      (e.g. "dir/*") since the wildcard is expanded by the shell and
-      rsync thus gets a request to transfer individual files, not the
-      files’ parent  directory (~--delete~ flag).
-		- If you want to delete files on ~path/to/dest/~ that are not present
-      on ~path/to/src/~, run the command:
-			#+BEGIN_SRC bash
-			rsync -a --delete path/to/src/ path/to/dest/
-      #+END_SRC
-*** rsync delete excluded file that you've not exclude first time
-		- Problem :: How can I delete files on ~DEST~ that I've note
-      ~exclude~ the first time with ~rsync~ ?
-		- Use ~-a~, ~--delete-excluded~, ~--exclude~ flags of ~rsync~.
-		- It is a quick way of saying you want recursion and want to
-      preserve almost everything (~-a~ flag).
-		- In  addition  to  deleting  the files on the receiving side that
-      are not on the sending side, this tells rsync to also delete any
-      files on the receiving side that are excluded with ~--exclude~
-      (~--delete-excluded~ flag).
-		- Exclude files matching a pattern (~--exclude~).
-		- If you first have send the  directories ~node_modules~
-      accidentally from the ~path/to/src/~ directory to the
-      ~path/to/dest/~ directory, you can delete them later. To do so,
-      run the command:
-			#+BEGIN_SRC bash
-			rsync -a --exclude="*node_modules*" --delete-excluded \
-			  path/to/src/ path/to/dest/
-      #+END_SRC
-*** rsync incremental backup
-		- Problem :: How can I do a incremental backup?
-		- Use ~-avz~, ~--exclude~ and ~--exclude-exclude~ flags of
-      ~rsync~.
-		- It is a quick way of saying you want recursion and want to
-      preserve almost everything (~-a~ flag).
-		- Increases the amount of information you are given during the
-      transfer (~-v~ flag).
-		- Compresses the file data as it is sent to the
-      destination machine (~-z~ flag).
-		- Exclude files matching a pattern (~--exclude~).
-		- In  addition  to  deleting  the files on the receiving side that
-      are not on the sending side, this tells rsync to also delete any
-      files on the receiving side that are excluded with ~--exclude~
-      (~--delete-excluded~ flag).
-		- If you want ~DEST~ directory to be the exact copy of ~SRC~
-      directory, but you just want to send the file that have changed
-      ~SRC~, delete on ~DEST~ the file you have deleted on ~SRC~, and
-      do not send (exclude) on ~DEST~ the ~node_modules~ directory on
-      ~SRC~, run the command:
-			#+BEGIN_SRC bash
-			rsync -avz --exclude="*node_modules*" --delete-exclude \
-			  path/to/src/ path/to/dest/
-      #+END_SRC
+*** With ~rsync~ how can I always replace the ~DEST~ file by the ~SRC~ file?
+- Use ~-a~ flag of ~rsync~.
+- It is a quick way of saying you want recursion and want to
+  preserve almost everything.
+- If you want to /always/ replace all the files with the same
+  ~path~ on ~path/to/dest/~ by the files on ~path/to/src/~, run
+  the command:
+
+#+BEGIN_SRC bash
+rsync -a path/to/src/ path/to/dest/
+#+END_SRC
+
+*** With ~rsync~ how can I always replace the ~DEST~ file by the ~SRC~ file /only/ if the ~SRC~ file is newer than the ~DEST~ file?
+- Use ~-au~ flags of ~rsync~.
+- Skip files that are newer on the receiver (~-u~ flag).
+- If you want to replace all the files with the same
+  ~path~ on ~path/to/dest/~ by the files on ~path/to/src/~ that
+  are /newer/, run the command:
+
+#+BEGIN_SRC bash
+rsync -au path/to/src/ path/to/dest/
+#+END_SRC
+
+*** With ~rsync~ how can I keep the *newer* file between ~DEST~ and ~SRC~ file on the receiver and keep a *copy* on the receiver of the *older* of ~DEST~ file and ~SRC~ file?
+- Use ~-aub~ flags of ~rsync~.
+- ~-u~ flag: skip files that are newer on the receiver.
+- ~-b~ flag: with this option, preexisting destination files are renamed as each file is transferred or deleted.
+- If you want to keep the /newer/ files between ~path/to/dest/~
+  and ~path/to/src/~ on the receiver (~path/to/dest/~) and keep a
+  /copy/ on the receiver (~path/to/dest/~) of the /older/ files
+  (by appending them a ~~~), run the command:
+
+#+BEGIN_SRC bash
+rsync -aub path/to/src/ path/to/dest/
+#+END_SRC
+
+*** With ~rsync~ how can I synchronize ~DEST~ directory and ~SRC~ directory?
+- Use ~-au~ flags of ~rsync~.
+- ~-a~ flag: it is a quick way of saying you want recursion and want to preserve almost everything.
+- ~-u~ flag: skip files that are newer on the receiver.
+- If you want to synchronize ~path/to/src/~ and ~path/to/dest/~,
+  that is (~DEST~ and ~SRC~ become the same copy, keeping
+  all files that were on ~DEST~ but not on ~SRC~ and vice-versa,
+  and keeping the newer files (with the same ~path~) of the ~DEST~
+  and ~SRC~ directory), run the commands:
+
+#+BEGIN_SRC bash
+rsync -au path/to/src/ path/to/dest/
+rsync -au path/to/dest/ path/to/src/
+#+END_SRC
+
+*** With ~rsync~ how can I synchronize ~DEST~ directory and ~SRC~ directory, keep a copy of the older files and generate a log file?
+- Use ~-aub~ and ~--backup-dir~ flags of ~rsync~.
+- It is a quick way of saying you want recursion and want to preserve almost everything (~-a~ flag).
+- ~-u~ flag: skip files that are newer on the receiver.
+- ~-b~ flag: with this option, preexisting destination files are
+  renamed as each file is transferred or deleted.
+- ~--backup-dir~: in  combination  with the ~--backup~ option, this
+  tells rsync to store all backups in the specified directory on the
+  receiving side.
+- If you want to synchronize ~path/to/src/~ and ~path/to/dest/~,
+  and keep a copy of the older files in a *specified directory*
+  ~backup~ (on both directorise ~path/to/src/~ and ~path/to/dest/~)
+  and a log file ~backup.log~ (available on both directorise ~path/to/src/~
+  and ~path/to/dest/~) that keep track of the synchronization
+  process , run the commands:
+
+#+BEGIN_SRC bash
+rsync -aub --backup-dir="backup" path/to/dest/ path/to/src/ \
+  | tee -a path/to/src/backup.log
+rsync -aub --backup-dir="backup" path/to/src/ path/to/dest/ \
+  | tee -a path/to/src/backup.log
+rsync -aub --backup-dir="backup" path/to/dest/ path/to/src/ \
+  | tee -a path/to/src/backup.log
+rsync path/to/src/backup.log path/to/dest/backup.log
+#+END_SRC
+
+- Note 1: In the file ~backup.log~, you can see what happen
+  during the synchronization. This way you can see the files that
+  have been deleted on the ~SRC~ directory but still present on
+  the ~DEST~ directory that you copied back into to the ~SRC~
+  directory.
+- Note 2: The directory ~backup~ contains all older files.
+- Note 3: If on the ~SRC~ and ~DEST~ you had the file ~path-to/some-file~
+  that differed, after the synchronization you can see the
+  difference (how the newer was changed from the older), by running
+  the command:
+
+#+BEGIN_SRC bash
+git diff path/to/src/backup/path-to/some-file path/to/src/path-to/some-file
+#+END_SRC
+
+- Note 4: After the synchronization, if you are happy, you can delete
+  on both side (~SRC~ and ~DEST~ directories), the file
+  ~backup.log~ and the directory ~backup~. To do so, run the
+  commands:
+
+#+BEGIN_SRC bash
+rm -rf path/to/src/backup path/to/src/backup.log
+rm -rf path/to/dest/backup path/to/dest/backup.log
+#+END_SRC
+
+*** With ~rsync~ how can I delete files on ~DEST~ that are not present on ~SRC~?
+- Use ~-a~, ~--delete~ flags of ~rsync~.
+- (~-a~ flag): it is a quick way of saying you want recursion and want to preserve almost everything.
+- ~--delete~ flag: this tells rsync to delete extraneous files from
+  the receiving side (ones  that  aren’t on  the  sending  side), but
+  only for the directories that are being synchronized.  You must have
+  asked rsync to send the whole directory (e.g. "dir" or "dir/")
+  without  using a  wildcard  for the directory’s contents
+  (e.g. "dir/*") since the wildcard is expanded by the shell and rsync
+  thus gets a request to transfer individual files, not the files’
+  parent  directory.
+- If you want to delete files on ~path/to/dest/~ that are not present
+  on ~path/to/src/~, run the command:
+
+#+BEGIN_SRC bash
+rsync -a --delete path/to/src/ path/to/dest/
+#+END_SRC
+
+*** With ~rsync~ how can I delete files on ~DEST~ that I've note ~exclude~ the first time with ~rsync~ ?
+- Use ~-a~, ~--delete-excluded~, ~--exclude~ flags of ~rsync~.
+- ~-a~ flag: it is a quick way of saying you want recursion and want to preserve almost everything.
+- ~--delete-excluded~ flag: in  addition  to  deleting  the files on the receiving side that are not on the sending side, this tells rsync to also delete any files on the receiving side that are excluded with ~--exclude~.
+- ~--exclude~ flag: exclude files matching a pattern.
+- If you first have send the  directories ~node_modules~
+  accidentally from the ~path/to/src/~ directory to the
+  ~path/to/dest/~ directory, you can delete them later. To do so,
+  run the command:
+
+#+BEGIN_SRC bash
+rsync -a --exclude="*node_modules*" --delete-excluded \
+  path/to/src/ path/to/dest/
+#+END_SRC
+
+*** With ~rsync~ how can I do a incremental backup?
+- Use ~-avz~, ~--exclude~ and ~--exclude-exclude~ flags of
+  ~rsync~ command.
+- ~-a~ flag: it is a quick way of saying you want recursion and want
+  to preserve almost everything.
+- ~-v~ flag: increases the amount of information you are given during
+  the transfer.
+- ~-z~ flag: compresses the file data as it is sent to the destination
+  machine.
+- ~--exclude~ flag: exclude files matching a pattern.
+- ~--delete-excluded~ flag: in  addition  to  deleting  the files on
+  the receiving side that are not on the sending side, this tells
+  rsync to also delete any files on the receiving side that are
+  excluded with ~--exclude~.
+- If you want ~DEST~ directory to be the exact copy of ~SRC~
+  directory, but you just want to send the file that have changed
+  ~SRC~, delete on ~DEST~ the file you have deleted on ~SRC~, and
+  do not send (exclude) on ~DEST~ the ~node_modules~ directory on
+  ~SRC~, run the command:
+
+#+BEGIN_SRC bash
+rsync -avz --exclude="*node_modules*" --delete-exclude \
+  path/to/src/ path/to/dest/
+#+END_SRC
+
 ** Backup and archive
-*** Backup
-		- Problem :: What is a Backup?
-		- A *backup* is a copy of data that can be used to restore the
-      original in the event that your data is lost or damaged. If a
-      company experiences data loss due to hardware failure, human
-      error or natural disaster, a backup can be used to quickly
-      restore that data.
-*** Archive
-		- Problem :: What is an Archive?
-		- An *archive* is a collection of historical records that are kept
-      for long-term retention and used for future
-      reference. Typically, archives contain data that is not actively
-      used.
-*** Difference between backup and archive
-		- Problem :: What is the difference between *backup* and *archive*?
-		- Basically, a *backup* is a *copy* of a set of data, while an
-      *archive* holds *original* data that has been *removed* from its
-      original location.
+*** What is a Backup?
+- A /backup/ is a copy of data that can be used to restore the
+  original in the event that your data is lost or damaged. If a
+  company experiences data loss due to hardware failure, human
+  error or natural disaster, a backup can be used to quickly
+  restore that data.
+*** What is an Archive?
+- An /archive/ is a collection of historical records that are kept
+  for long-term retention and used for future
+  reference. Typically, archives contain data that is not actively
+  used.
+*** What is the difference between /backup/ and /archive/?
+- Basically, a /backup/ is a /copy/ of a set of data, while an
+  /archive/ holds /original/ data that has been /removed/ from its
+  original location.
 ** Back up ~/etc~ directory
-*** ~/etc~ stored in a ~git~ repository
-		- Problem :: How can I review or revert changes that were made to ~/etc~?
-		- Use ~etckeeper~ tool.
-		- Store ~/etc~ in ~git~.
-		- See examples [[https://etckeeper.branchable.com/README/][etckeeper README]].
-		- If you want to install and initialize ~etckeeper~ on ubuntu,
-      run the commands:
-			#+BEGIN_SRC bash
-			sudo apt install etckeeper
-      #+END_SRC
-		- If you want to ~commit~ changes made in ~/etc~ installing new
-      package using ~apt~, do *nothing*, ~etckeeper~ do it for you.
-		- If you want to ~commit~ changes made in ~/etc~, run the
-      commands:
-			#+BEGIN_SRC bash
-      cd /etc
-			sudo git add .  # or only a few files
-			sudo git commit -m "your message"
-			#+END_SRC
-		- If you want to *configure* and tweak ~etckeeper~, see files and
-      directories:
-			- /etc/etckeeper/
-			- /etc/etckeeper/etckeeper.conf
-		- If you want to *skip* some files or directories from being
-      stored into ~git~ repository, add them to ~/etc/.gitignore~.
-		- If I want to *revert* changes to a previous state (commit), you
-      must ~checkout~ to the previous commit and re-initialize
-      ~etckeeper~, to do so run the commands:
-			#+BEGIN_SRC bash
-      sudo git checkout <previous-commit>
-			sudo etckeeper init
-			#+END_SRC
-*** ~/etc~ backed up to ~usb~ drive
-		- Problem :: How can I back up the ~/etc~ directory to ~usb~ drive?
-		- Use ~rsync~ command.
-		- A fast, versatile, remote (and local) file-copying tool
-		- If you want to ???:
-			#+BEGIN_SRC bash
-			???
-      #+END_SRC
-		- Be aware that ~/etc~ directory contains secret informations. For
-      instance, SHA-512 password are stored in the file
-      ~/etc/shadow~.
+*** How can I review or revert changes that were made to ~/etc~?
+- Use ~etckeeper~ tool.
+- ~etckeeper~: store ~/etc~ in ~git~.
+- See [[https://etckeeper.branchable.com/README/][etckeeper]] README.
+- If you want to install and initialize ~etckeeper~ on ubuntu,
+  run the commands:
+
+#+BEGIN_SRC bash
+sudo apt install etckeeper
+#+END_SRC
+
+- If you want to ~commit~ changes made in ~/etc~ installing new
+  package using ~apt~, do /nothing/, ~etckeeper~ do it for you.
+- If you want to ~commit~ changes made in ~/etc~, run the
+  commands:
+
+#+BEGIN_SRC bash
+cd /etc
+sudo git add .  # or only a few files
+sudo git commit -m "your message"
+#+END_SRC
+
+- If you want to /configure/ and tweak ~etckeeper~, see files and
+  directories:
+  - /etc/etckeeper/
+  - /etc/etckeeper/etckeeper.conf
+- If you want to /skip/ some files or directories from being
+  stored into ~git~ repository, add them to ~/etc/.gitignore~.
+- If I want to /revert/ changes to a previous state (commit), you
+  must ~checkout~ to the previous commit and re-initialize
+  ~etckeeper~, to do so run the commands:
+
+#+BEGIN_SRC bash
+sudo git checkout <previous-commit>
+sudo etckeeper init
+#+END_SRC
+
+*** How can I back up the ~/etc~ directory to ~usb~ drive?
+- Use ~rsync~ command.
+- ~rsync~: a fast, versatile, remote (and local) file-copying tool.
+- Be aware that ~/etc~ directory contains secret informations. For
+  instance, SHA-512 password are stored in the file
+  ~/etc/shadow~.
 ** Large files with ~git~
-*** git-annex
-		- [[https://git-annex.branchable.com/][git-annex (homepage)]]
-		- [[https://git-annex.branchable.com/not/][git-annex is NOT ...]]
-		- [[https://git-annex.branchable.com/walkthrough/][git-annex (walkthrough)]]
-		- [[https://git-annex.branchable.com/tips/emacs_integration/][git-annex (emacs integration)]]
-*** git-lfs
-		- [[https://git-lfs.github.com/][git-lfs (homepage)]]
-		- [[https://www.atlassian.com/git/tutorials/git-lfs][git-lfs (tutorial)]]
-		- [[https://www.youtube.com/watch?v=006RUPVIP-c][git-lfs (talk)]]
-*** Difference between git-lfs and git-annex
-		- Problem :: What is the difference between ~git-lfs~ and ~git-annex~?
-		- ~git-lfs~ differs from ~git-annex~ in that:
-			1) all the large files in the repository are usually present in
-         the working tree; it doesn't have a way to drop content that
-         is not wanted locally while keeping other content locally
-         available, as ~git-annex~ does.
-			2) And so it does not need to be able to get content like
-         ~git-annex~ can do either.
-			3) It also differs in that it uses a central server, which is
-         trusted to retain content, so it doesn't try to avoid losing
-         the local copy, which could be the only copy, as ~git-annex~
-         does.
-		- See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and
-		[[https://lwn.net/Articles/774125/][large files with git (article)]].
+*** What is ~git-annex~?
+- [[https://git-annex.branchable.com/][git-annex (homepage)]]
+- [[https://git-annex.branchable.com/not/][git-annex is NOT ...]]
+- [[https://git-annex.branchable.com/walkthrough/][git-annex (walkthrough)]]
+- [[https://git-annex.branchable.com/tips/emacs_integration/][git-annex (emacs integration)]]
+*** What is ~git-lfs~?
+- [[https://git-lfs.github.com/][git-lfs (homepage)]]
+- [[https://www.atlassian.com/git/tutorials/git-lfs][git-lfs (tutorial)]]
+- [[https://www.youtube.com/watch?v=006RUPVIP-c][git-lfs (talk)]]
+*** What is the difference between ~git-lfs~ and ~git-annex~?
+- See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and [[https://lwn.net/Articles/774125/][large
+  files with git (article)]].
+- ~git-lfs~ differs from ~git-annex~ in that:
+  1) all the large files in the repository are usually present in
+     the working tree; it doesn't have a way to drop content that
+     is not wanted locally while keeping other content locally
+     available, as ~git-annex~ does.
+  2) And so it does not need to be able to get content like
+     ~git-annex~ can do either.
+  3) It also differs in that it uses a central server, which is
+     trusted to retain content, so it doesn't try to avoid losing
+     the local copy, which could be the only copy, as ~git-annex~
+     does.
 
 * UI
 ** GTK (miscellaneous)
