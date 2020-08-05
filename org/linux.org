@@ -2289,169 +2289,373 @@ sudo etckeeper init
      does.
 
 * UI
-** GTK (miscellaneous)
-	 - If you want that ~chromium~ uses ~GTK~, allow ~GTK+~ theme in:
-     Settings > Preferences > Appearence > Use ~GTK+~ theme.
-	 - ~GTK~ config files:
-		 - ~~/.gtkrc-2.0~ for ~gtk2~,
-		 - ~~/.config/gtk-3.0/settings.ini~ for ~gtk-3~,
-		 - ~/etc/gtk-3.0/settings.ini~.
-	 - How to get information on the ~gtk~ settings? Run the command:
-		 #+BEGIN_SRC bash
-			gtk-query-settings
-     #+END_SRC
-	 - Find ~GTK~ themes in the directory: ~/usr/share/themes/~.
-	 - To add ~emacs~ like keybinding in ~GTK~ (~gtk-3~) applications (like
-     chromium), add the line ~gtk-key-theme-name = Emacs~
-     in your ~GTK~ config file
-     ~/home/tony/.config/gtk-3.0/settings.ini~. The implemented ~emacs~ keybinding
-     can be found in the file
-     ~/usr/share/themes/Emacs/gtk-3.0/gtk-keys.css~.
-		 See [[../linux/Emacs--gtk-3.0--gtk-keys.css][Emacs gtk-key.css]] file.
-	 - To add ~emacs~ like keybinding in ~GTK~ (~gtk-3~) applications (like
-     chromium), add the line ~gtk-key-theme-name = "Emacs"~
-     in your ~GTK~ config file
-     ~/home/tony/.gtkrc-2.0~. The implemented ~emacs~ keybinding
-     can be found in the file
-     ~/usr/share/themes/Emacs/gtk-2.0-key/gtkrc~.
-		 See [[../linux/Emacs--gtk-2.0-key--gtkrc.txt][Emacs gtkrc]] file.
-	 - to switch between ~GTK~ theme you can use the command
-     ~gtk-theme-switch~.
-	 - To modify text size of ~GTK~ (~gtk-3~)applications like ~chromium~, add
-     the line ~gtk-font-name=Sans 12~ (~12~ is the size), in your ~GTK~ config file
-     ~/home/tony/.config/gtk-3.0/settings.ini~.
-	 - links:
-     - [[https://wiki.archlinux.org/index.php/GTK][GTK (archlinux)]]
-     - [[https://www.gtk.org][GTK (home page)]]
-     - [[https://developer.gnome.org/gtk3/stable/][GTK+ 3 Reference Manual]]
-     - [[https://developer.gnome.org/gtk3/stable/GtkSettings.html][GTK+ 3 Settings (Reference Manual)]]
-     - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
-		 - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/popover.html][python GTK 3 (popover)]]
-     - [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
-	 - ~GTK inspector~: If you want to test/debug the element (component) of an application
-     that uses ~gtk~ for the UI, you can use ~GTK inspector~. To do
-     so, run the command:
-		 #+BEGIN_SRC bash
-     GTK_DEBUG=interactive <app-name>
-		 #+END_SRC
-		 See [[https://wiki.gnome.org/action/show/Projects/GTK/Inspector?action=show&redirect=Projects%2FGTK%2B%2FInspector][GTK inspector (gnome)]].
-		 To install ~GTK inspector~, you have to install the package
-     ~libgtk-3-dev~, to do so, run the command:
-		 #+BEGIN_SRC bash
-     sudo apt install libgtk-3-dev
-		 #+END_SRC
-	 - If you want to switch between ~gtk theme~, you can use the
-     command ~gtk-theme-switch~. To install it, run the command:
-		 #+BEGIN_SRC bash
-     sudo apt install gtk-theme-switch
-		 #+END_SRC
-** Xft
-*** Scale up my screen view
-		- Problem :: How can I scale up my screen view?
-		- Use ~~/.Xresources~ file and/or ~xrdb~ command.
-		- Many desktop environments use ~xrdb~ to load ~~/.Xresources~
-      files on session startup to initialize the resource database.
-		- See examples [[https://wiki.archlinux.org/index.php/x_resources][Xresources (archlinux)]] and [[https://wiki.archlinux.org/index.php/HiDPI][HiDPX]].
-		- If you want to scale up what you see on your screen, saying that
-      your ~dpi~ (dot per inch) is equal to ~96~ and you want to
-      raise up to ~144 dpi~ (dpi must be a multiple of 96), you can
-      add this line ~Xft.dpi: 144~ to the file ~~/.Xresources~, and
-      run the command:
-			#+BEGIN_SRC bash
-			xrdb -merge ~/.Xresources
-      #+END_SRC
-		- If you want to check the currently loaded resources, run the
-      command:
-			#+BEGIN_SRC bash
-			xrdb -query all
-      #+END_SRC
-		- To see the default settings for your installed ~X11 apps~, look in
-      ~/etc/X11/app-defaults/~.
+** GTK
+*** How to make ~chromium~ using ~GTK~?
+- If you want that ~chromium~ uses ~GTK~, in ~chromium~ allow ~GTK+~
+  theme in: ~Settings > Preferences > Appearence > Use GTK+ theme~.
+*** What are the ~GTK~ config files?
+- ~~/.gtkrc-2.0~ for ~gtk2~,
+- ~~/.config/gtk-3.0/settings.ini~ for ~gtk-3~,
+- ~/etc/gtk-3.0/settings.ini~.
+*** How to get information on the ~GTK~ settings?
+- Run the command:
 
+#+BEGIN_SRC bash
+gtk-query-settings
+#+END_SRC
+*** Where are stored the ~GTK~ themes?
+- You can find ~GTK~ themes in the directory: ~/usr/share/themes/~.
+*** How can I add ~emacs~ like keybinding in ~GTK~ applications like (~chromium~)?
+- In ~gtk-2~ add the line  in your ~GTK~ config file
+  ~/home/tony/.gtkrc-2.0~.
+
+#+BEGIN_SRC text
+gtk-key-theme-name = "Emacs"
+#+END_SRC
+
+- In ~gtk-3~, add the following line in your ~GTK~ config file
+  ~/home/tony/.config/gtk-3.0/settings.ini~.
+
+#+BEGIN_SRC text
+gtk-key-theme-name = Emacs
+#+END_SRC
+
+*** Where the ~emacs~ like keybinding in ~GTK~ applications are defined?
+- In ~gtk-2~, the implemented ~emacs~ keybinding can be found in the
+  file ~/usr/share/themes/Emacs/gtk-2.0-key/gtkrc~:
+
+#+BEGIN_SRC text
+#
+# Bindings for GtkTextView and GtkEntry
+#
+binding "gtk-emacs-text-entry"
+{
+  bind "<ctrl>b" { "move-cursor" (logical-positions, -1, 0) }
+  bind "<shift><ctrl>b" { "move-cursor" (logical-positions, -1, 1) }
+  bind "<ctrl>f" { "move-cursor" (logical-positions, 1, 0) }
+  bind "<shift><ctrl>f" { "move-cursor" (logical-positions, 1, 1) }
+
+  bind "<alt>b" { "move-cursor" (words, -1, 0) }
+  bind "<shift><alt>b" { "move-cursor" (words, -1, 1) }
+  bind "<alt>f" { "move-cursor" (words, 1, 0) }
+  bind "<shift><alt>f" { "move-cursor" (words, 1, 1) }
+
+  bind "<ctrl>a" { "move-cursor" (paragraph-ends, -1, 0) }
+  bind "<shift><ctrl>a" { "move-cursor" (paragraph-ends, -1, 1) }
+  bind "<ctrl>e" { "move-cursor" (paragraph-ends, 1, 0) }
+  bind "<shift><ctrl>e" { "move-cursor" (paragraph-ends, 1, 1) }
+
+  bind "<ctrl>w" { "cut-clipboard" () }
+  bind "<ctrl>y" { "paste-clipboard" () }
+
+  bind "<ctrl>d" { "delete-from-cursor" (chars, 1) }
+  bind "<alt>d" { "delete-from-cursor" (word-ends, 1) }
+  bind "<ctrl>k" { "delete-from-cursor" (paragraph-ends, 1) }
+  bind "<alt>backslash" { "delete-from-cursor" (whitespace, 1) }
+
+  bind "<alt>space" { "delete-from-cursor" (whitespace, 1)
+                      "insert-at-cursor" (" ") }
+  bind "<alt>KP_Space" { "delete-from-cursor" (whitespace, 1)
+                         "insert-at-cursor" (" ")  }
+
+  #
+  # Some non-Emacs keybindings people are attached to
+  #
+  bind "<ctrl>u" {
+     "move-cursor" (paragraph-ends, -1, 0)
+     "delete-from-cursor" (paragraph-ends, 1)
+  }
+  bind "<ctrl>h" { "delete-from-cursor" (chars, -1) }
+  bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) }
+}
+
+#
+# Bindings for GtkTextView
+#
+binding "gtk-emacs-text-view"
+{
+  bind "<ctrl>p" { "move-cursor" (display-lines, -1, 0) }
+  bind "<shift><ctrl>p" { "move-cursor" (display-lines, -1, 1) }
+  bind "<ctrl>n" { "move-cursor" (display-lines, 1, 0) }
+  bind "<shift><ctrl>n" { "move-cursor" (display-lines, 1, 1) }
+
+  bind "<ctrl>space" { "set-anchor" () }
+  bind "<ctrl>KP_Space" { "set-anchor" () }
+}
+
+#
+# Bindings for GtkTreeView
+#
+binding "gtk-emacs-tree-view"
+{
+  bind "<ctrl>s" { "start-interactive-search" () }
+  bind "<ctrl>f" { "move-cursor" (logical-positions, 1) }
+  bind "<ctrl>b" { "move-cursor" (logical-positions, -1) }
+}
+
+#
+# Bindings for menus
+#
+binding "gtk-emacs-menu"
+{
+  bind "<ctrl>n" { "move-current" (next) }
+  bind "<ctrl>p" { "move-current" (prev) }
+  bind "<ctrl>f" { "move-current" (child) }
+  bind "<ctrl>b" { "move-current" (parent) }
+}
+
+class "GtkEntry" binding "gtk-emacs-text-entry"
+class "GtkTextView" binding "gtk-emacs-text-entry"
+class "GtkTextView" binding "gtk-emacs-text-view"
+class "GtkTreeView" binding "gtk-emacs-tree-view"
+class "GtkMenuShell" binding "gtk-emacs-menu"
+#+END_SRC
+
+- In ~gtk-3~, the implemented ~emacs~ keybinding can be found in the
+  file ~/usr/share/themes/Emacs/gtk-3.0/gtk-keys.css~.
+
+#+BEGIN_SRC css
+/*
+ * Bindings for GtkTextView and GtkEntry
+ */
+@binding-set gtk-emacs-text-entry
+{
+  bind "<ctrl>b" { "move-cursor" (logical-positions, -1, 0) };
+  bind "<shift><ctrl>b" { "move-cursor" (logical-positions, -1, 1) };
+  bind "<ctrl>f" { "move-cursor" (logical-positions, 1, 0) };
+  bind "<shift><ctrl>f" { "move-cursor" (logical-positions, 1, 1) };
+
+  bind "<alt>b" { "move-cursor" (words, -1, 0) };
+  bind "<shift><alt>b" { "move-cursor" (words, -1, 1) };
+  bind "<alt>f" { "move-cursor" (words, 1, 0) };
+  bind "<shift><alt>f" { "move-cursor" (words, 1, 1) };
+
+  bind "<ctrl>a" { "move-cursor" (paragraph-ends, -1, 0) };
+  bind "<shift><ctrl>a" { "move-cursor" (paragraph-ends, -1, 1) };
+  bind "<ctrl>e" { "move-cursor" (paragraph-ends, 1, 0) };
+  bind "<shift><ctrl>e" { "move-cursor" (paragraph-ends, 1, 1) };
+
+  /* bind "<ctrl>w" { "cut-clipboard" () }; */
+  bind "<ctrl>y" { "paste-clipboard" () };
+
+  bind "<ctrl>d" { "delete-from-cursor" (chars, 1) };
+  bind "<alt>d" { "delete-from-cursor" (word-ends, 1) };
+  bind "<ctrl>k" { "delete-from-cursor" (paragraph-ends, 1) };
+  bind "<alt>backslash" { "delete-from-cursor" (whitespace, 1) };
+
+  bind "<alt>space" { "delete-from-cursor" (whitespace, 1)
+                      "insert-at-cursor" (" ") };
+  bind "<alt>KP_Space" { "delete-from-cursor" (whitespace, 1)
+                         "insert-at-cursor" (" ")  };
+  /*
+   * Some non-Emacs keybindings people are attached to
+   */
+  bind "<ctrl>u" { "move-cursor" (paragraph-ends, -1, 0)
+                   "delete-from-cursor" (paragraph-ends, 1) };
+
+  bind "<ctrl>h" { "delete-from-cursor" (chars, -1) };
+  bind "<ctrl>w" { "delete-from-cursor" (word-ends, -1) };
+}
+
+/*
+ * Bindings for GtkTextView
+ */
+@binding-set gtk-emacs-text-view
+{
+  bind "<ctrl>p" { "move-cursor" (display-lines, -1, 0) };
+  bind "<shift><ctrl>p" { "move-cursor" (display-lines, -1, 1) };
+  bind "<ctrl>n" { "move-cursor" (display-lines, 1, 0) };
+  bind "<shift><ctrl>n" { "move-cursor" (display-lines, 1, 1) };
+
+  bind "<ctrl>space" { "set-anchor" () };
+  bind "<ctrl>KP_Space" { "set-anchor" () };
+}
+
+/*
+ * Bindings for GtkTreeView
+ */
+@binding-set gtk-emacs-tree-view
+{
+  bind "<ctrl>s" { "start-interactive-search" () };
+  bind "<ctrl>f" { "move-cursor" (logical-positions, 1) };
+  bind "<ctrl>b" { "move-cursor" (logical-positions, -1) };
+}
+
+/*
+ * Bindings for menus
+ */
+@binding-set gtk-emacs-menu
+{
+  bind "<ctrl>n" { "move-current" (next) };
+  bind "<ctrl>p" { "move-current" (prev) };
+  bind "<ctrl>f" { "move-current" (child) };
+  bind "<ctrl>b" { "move-current" (parent) };
+}
+
+entry {
+  -gtk-key-bindings: gtk-emacs-text-entry;
+}
+
+textview {
+  -gtk-key-bindings: gtk-emacs-text-entry, gtk-emacs-text-view;
+}
+
+treeview {
+  -gtk-key-bindings: gtk-emacs-tree-view;
+}
+
+GtkMenuShell {
+  -gtk-key-bindings: gtk-emacs-menu;
+}
+#+END_SRC
+*** How to switch between ~GTK~ themes?
+- Use the command ~gtk-theme-switch~.
+- To install it, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install gtk-theme-switch
+#+END_SRC
+
+*** How to modify text size of ~GTK~ applications like ~chromium~?
+- In ~gtk-3~, add the following line in your ~GTK~ config file
+  ~/home/tony/.config/gtk-3.0/settings.ini~.
+
+#+BEGIN_SRC text
+gtk-font-name=Sans 12
+#+END_SRC
+*** How can I find ~GTK~ resources?
+- [[https://wiki.archlinux.org/index.php/GTK][GTK (archlinux)]]
+- [[https://www.gtk.org][GTK (home page)]]
+- [[https://developer.gnome.org/gtk3/stable/][GTK+ 3 Reference Manual]]
+- [[https://developer.gnome.org/gtk3/stable/GtkSettings.html][GTK+ 3 Settings (Reference Manual)]]
+- [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
+- [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/popover.html][python GTK 3 (popover)]]
+- [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
+*** How can I test/debug components of an application that uses ~gtk~ for the UI?
+- Use ~GTK inspector~.
+- See [[https://wiki.gnome.org/action/show/Projects/GTK/Inspector?action=show&redirect=Projects%2FGTK%2B%2FInspector][GTK inspector]] on gnome.org.
+- To do so, run the command:
+
+#+BEGIN_SRC bash
+GTK_DEBUG=interactive <app-name>
+#+END_SRC
+
+- To install ~GTK inspector~, you have to install the package
+~libgtk-3-dev~, to do so, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install libgtk-3-dev
+#+END_SRC
+
+** Xft
+*** How can I scale up my screen view?
+- Use ~~/.Xresources~ file and/or ~xrdb~ command.
+- Many desktop environments use ~xrdb~ to load ~~/.Xresources~
+  files on session startup to initialize the resource database.
+- See [[https://wiki.archlinux.org/index.php/x_resources][Xresources]] and [[https://wiki.archlinux.org/index.php/HiDPI][HiDPX]] archlinux.
+- If you want to scale up what you see on your screen, saying that
+  your ~dpi~ (dot per inch) is equal to ~96~ and you want to
+  raise up to ~144 dpi~ (dpi must be a multiple of 96), you can
+  add this line ~Xft.dpi: 144~ to the file ~~/.Xresources~, and
+  run the command:
+
+#+BEGIN_SRC bash
+xrdb -merge ~/.Xresources
+#+END_SRC
+
+- If you want to check the currently loaded resources, run the
+  command:
+
+#+BEGIN_SRC bash
+xrdb -query all
+#+END_SRC
+
+- To see the default settings of your installed ~X11 apps~, look in
+  ~/etc/X11/app-defaults/~.
 ** i3 window manager
-*** file content and i3status
-		- Problem :: How can I add some text on the i3bar via i3status?
-		- Use ~~/.i3status.conf~ file, ~i3status~ command, ~read_file~
-      module of ~i3status~.
-		- Generates a status line for i3bar (~i3status~).
-		- i3status looks for configuration file ~~/.i3status.conf~ among other.
-		- See section ~File content~ of the ~man~ page of ~i3status~.
-		- If you want to add the text ~tony~ into the ~i3bar~, put ~tony~
-      in the file ~path-to-tony-file~ and add this lines to the
-      ~~/.i3status.conf~ file:
-			#+BEGIN_SRC bash
-			order += "read_file tony"
-			read_file tony {
-					format = "%content"
-					path = "path-to-tony-file"
-					max_characters = 10
-			}
-      #+END_SRC
-*** debug i3status and i3blocks
-		- Problem :: How can I debug i3status (i3blocks) config file?
-		- Use ~i3status~ or ~i3bloks~ commands.
-		- A flexible scheduler for your i3bar blocks (~i3blocks~).
-		- Generates a status line for i3bar (~i3status~)
-		- If you want to debug ~i3status~ config file, run the command:
-			#+BEGIN_SRC bash
-			i3status ~/config/i3/config
-      #+END_SRC
-		- If you want to debug ~i3blocks~ config file, run the command:
-			#+BEGIN_SRC bash
-      i3blocks -c ~/.config/i3blocks/config
-			#+END_SRC
-*** guess key name use by i3 config file
-		- Problem :: How can I know the key name use by i3 config file for
-      a specific key?
-		- Use ~xev~ command.
-		- Print contents of X events.
-		- If you want to get information about a specific key on your
-      keyboard, that you can use in your i3 config file, run the
-      command ~xev~ in your terminal, a (Event tester) window popup, then press the
-      key from which you want to get information. For instance,
-      pressing the ~space~ key on my keyboard, I get this output:
-			#+BEGIN_SRC bash
-			KeyRelease event, serial 34, synthetic NO, window 0x1400001,
-					root 0x14f, subw 0x0, time 713381482, (524,452), root:(528,472),
-					state 0x0, keycode 65 (keysym 0x20, space), same_screen YES,
-					XLookupString gives 1 bytes: (20) " "
-					XFilterEvent returns: False
-      #+END_SRC
-			~keycode 65 (keysym 0x20, space)~ is the interesting part and
-      the name to use in i3 config file is ~space~.
+*** How can I debug ~i3status~ and ~i3blocks~ config files?
+- Use ~i3status~ or ~i3bloks~ commands.
+- ~i3blocks~: a flexible scheduler for your i3bar blocks.
+- ~i3status~: generates a status line for i3bar.
+- If you want to debug ~i3status~ config file, run the command:
+
+#+BEGIN_SRC bash
+i3status ~/config/i3/config
+#+END_SRC
+
+- If you want to debug ~i3blocks~ config file, run the command:
+
+#+BEGIN_SRC bash
+i3blocks -c ~/.config/i3blocks/config
+#+END_SRC
+
+*** How can I know the key name use by i3 config file for a specific key?
+- Use ~xev~ command.
+- ~xev~: print contents of X events.
+- If you want to get information about a specific key on your
+  keyboard, that you can use in your i3 config file, run the
+  command ~xev~ in your terminal, a (Event tester) window popup, then press the
+  key from which you want to get information. For instance,
+  pressing the ~space~ key on my keyboard, I get this following
+  output where ~keycode 65 (keysym 0x20, space)~ is the interesting
+  part and the name to use in i3 config file is ~space~.
+
+#+BEGIN_SRC text
+KeyRelease event, serial 34, synthetic NO, window 0x1400001,
+    root 0x14f, subw 0x0, time 713381482, (524,452), root:(528,472),
+    state 0x0, keycode 65 (keysym 0x20, space), same_screen YES,
+    XLookupString gives 1 bytes: (20) " "
+    XFilterEvent returns: False
+#+END_SRC
+
 ** Gnome
-*** Reset all gnome settings
-		- Problem :: How can I reset all gnome settings?
-		- Use ~gnome-tweaks~ command.
-		- Customize your Ubuntu Gnome desktop (~gnome-tweaks~).
-		- See example [[https://www.linuxuprising.com/2019/03/how-to-reset-gnome-desktop-settings-to.html][how-to-reset-gnome-desktop-settings]].
-		- If you want to reset all gnome desktop settings to default,
-      launch ~gnome-tweak~ and in its gnome menu click ~Reset to
-      Defaults~.
-		- if you want to install ~gnome-tweaks~, run the command:
-			#+BEGIN_SRC bash
-			sudo apt install gnome-tweaks
-      #+END_SRC
-*** Dpi and text-scaling in Gnome
-		- Problem :: How can I modify the text size on Gnome desktop?
-		- Use ~gsettings~ command.
-		- GSettings configuration tool (~gsettings~).
-		- See example [[https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi][find and change the screen dpi]].
-		- If you want to change the ~dpi~ in Ubuntu Gnome desktop, you
-      can't because it's hard coded to a value of ~96 dpi~. But you
-      can change the text size of the applications. For instance, to
-      increase the text size by ~1.2~ (of the hard coded ~96 dpi~,
-      i.e. ~1.2*96~), *set* to ~1.2~ the value of the *key*
-      ~text-scaling-factor~ of the *shema* ~org.gnome.desktop.interface~
-      run the command:
-			#+BEGIN_SRC bash
-			gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
-      #+END_SRC
-		- If you want to go back to the default text size, *reset* the
-      value of *key* ~text-scaling-factor~. To do so, run the command:
-			#+BEGIN_SRC bash
-			gsettings reset org.gnome.desktop.interface text-scaling-factor
-			#+END_SRC
+*** How can I reset all gnome settings?
+- Use ~gnome-tweaks~ command.
+- ~gnome-tweaks~: customize your Ubuntu Gnome desktop.
+- If you want to reset all gnome desktop settings to default,
+  launch ~gnome-tweak~ and in its gnome menu click ~Reset to
+  Defaults~.
+- if you want to install ~gnome-tweaks~, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install gnome-tweaks
+#+END_SRC
+
+*** How can I modify the text size on Gnome desktop?
+- Use ~gsettings~ command.
+- ~gsettings~: GSettings configuration tool.
+- See example [[https://askubuntu.com/questions/197828/how-to-find-and-change-the-screen-dpi][find and change the screen dpi]] on askubuntu.
+- If you want to change the ~dpi~ in Ubuntu Gnome desktop, you
+  can't because it's hard coded to a value of ~96 dpi~. But you
+  can change the text size of the applications. For instance, to
+  increase the text size by ~1.2~ (of the hard coded ~96 dpi~,
+  i.e. ~1.2*96~), /set/ to ~1.2~ the value of the /key/
+  ~text-scaling-factor~ of the /shema/ ~org.gnome.desktop.interface~
+  run the command:
+
+#+BEGIN_SRC bash
+gsettings set org.gnome.desktop.interface text-scaling-factor 1.2
+#+END_SRC
+
+- If you want to go back to the default text size, /reset/ the
+  value of /key/ ~text-scaling-factor~. To do so, run the command:
+
+#+BEGIN_SRC bash
+gsettings reset org.gnome.desktop.interface text-scaling-factor
+#+END_SRC
+
+** fonts
+*** How can I list all available font on my system?
+- Use ~fc-list~ command.
+- ~fc-list~: list available fonts.
+- If you want to list all available font, run the command:
+
+  #+BEGIN_SRC bash
+  fc-list
+  #+END_SRC
+
+- Note: the font ~symbola~ allow you to print all ~unicode~ character.
+
 * Miscellaneous
 ** Miscellaneous commands
   whoami, shutdown, reboot, pandoc, chmod, sort, wc, uniq, cut, csplit,
@@ -2483,16 +2687,6 @@ sudo etckeeper init
 			#+BEGIN_SRC bash
 			notify-send -t 3000 "hey tony"
       #+END_SRC
-** font
-*** list font
-		- Problem :: How can I list all available font on my system?
-		- Use ~fc-list~ command.
-		- list available fonts.
-		- If you want to list all available font, run the command:
-			#+BEGIN_SRC bash
-			fc-list
-      #+END_SRC
-		- The font ~symbola~ allow you to print all ~unicode~ character.
 ** ideas
 	 - [[https://github.com/sharkdp/bat][bat (a cat clone with wings)]]
 	 - https://github.com/evmar/webtreemap
