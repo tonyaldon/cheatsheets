@@ -191,25 +191,6 @@ npm ls -g --depth=0
 - [[https://nix.dev/][nix.dev]]
 - [[https://nixcloud.io/main/en/][nixcloud]]
 - [[https://github.com/rycee/home-manager][home-manager (nix)]]
-* Environment variables
-*** How can I print all environment variables?
-- Use ~printenv~ command.
-- ~printenv~: print all or part of environment.
-- If you want to print all environment variables, run the command:
-
-#+BEGIN_SRC bash
-printenv
-#+END_SRC
-
-*** How can I list colors used in my terminal?
-- Use ~dircolors~ command.
-- ~dircolors~: color setup for ~ls~.
-- If you want to print the color used by ~ls~ command in your
-  terminal, run the command:
-
-#+BEGIN_SRC bash
-dircolors --print-database
-#+END_SRC
 
 * Users and groups
 ** Sudo and Root
@@ -2659,3 +2640,22 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
   notify-send -t 3000 "hello world"
   #+END_SRC
 
+** environment variables
+*** How can I print all environment variables?
+- Use ~printenv~ command.
+- ~printenv~: print all or part of environment.
+- If you want to print all environment variables, run the command:
+
+#+BEGIN_SRC bash
+printenv
+#+END_SRC
+
+*** How can I list colors used in my terminal?
+- Use ~dircolors~ command.
+- ~dircolors~: color setup for ~ls~.
+- If you want to print the color used by ~ls~ command in your
+  terminal, run the command:
+
+#+BEGIN_SRC bash
+dircolors --print-database
+#+END_SRC
