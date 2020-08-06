@@ -19,7 +19,7 @@
 programs:=$(wildcard *.c)
 #+END_SRC
 
-** ~bash~ script
+** bash script
 *** Where can I find a good cheatsheet about bash scripting?
 - See bash scripting cheatsheet on [[https://devhints.io/bash][devhints.io]].
 *** How can I know the status of the last command run in my terminal?
@@ -42,7 +42,7 @@ echo $?
 - ~printf~: format and print data.
 - See [[https://unix.stackexchange.com/questions/404100/formatting-numerical-output-in-bash-to-have-exactly-4-decimal-places][formatting numerical output in bash]].
 - If you want to transform ~12.3~ to ~12~ and ~3.62~ to ~03~, the
-  ~printf~ format to use is ~"%02.0f"~. So, running the following
+  ~printf~ format to use is ~%02.0f~. So, running the following
   command gives you the expected results:
 
 #+BEGIN_SRC bash
@@ -54,7 +54,7 @@ printf "%02.0f" 3.62
 ** Linux packages
 *** How can I list linux packages related to a regexp?
 - Use ~apt-cache search~ command.
-- ~apt-cache search~: search performs a full text search on all
+- ~apt-cache search~: perform a full text search on all
   available package lists for the POSIX regex pattern given.
 - If you want to search linux packages related to ~emacs~, run the
   command:
@@ -88,7 +88,7 @@ apt-cache show emacs
 apt list --installed
 #+END_SRC
 
-- If you want to check if the package ~emacs~ is install, run the
+- If you want to check if the package ~emacs~ is installed, run the
   command:
 
 #+BEGIN_SRC bash
@@ -128,7 +128,7 @@ apt-get remove emacs
 ldd /bin/ls
 #+END_SRC
 
-On my computer I get this output:
+- On my computer the previous command gave me:
 
 #+BEGIN_SRC text
 linux-vdso.so.1 (0x00007ffeeb143000)
@@ -168,12 +168,12 @@ npm ls -g --depth=0
 #+END_SRC
 
 ** pip for python
-*** What is ~pip~?
-- ~pip~ is package installer for python. You can use ~pip~ to install
+*** What is pip?
+- ~pip~ is a package installer for python. You can use ~pip~ to install
   packages from the Python Package Index and other indexes.
 - See [[https://pypi.org/project/pip/][pip]] on pypi.
 ** brew for missing packages on macOS
-*** How can I install ~brew~?
+*** How can I install brew?
 - See [[https://brew.sh/][brew]] homepage.
 - To install ~brew~, run the command:
 
@@ -183,7 +183,7 @@ npm ls -g --depth=0
 #+END_SRC
 
 ** nix
-*** What is ~nix~?
+*** What is nix?
 - [[https://nixos.org/][nixos (homepage)]]
 - [[https://nixos.org/nixos/nix-pills/why-you-should-give-it-a-try.html][why you should give it a try]]
 - [[https://engineering.shopify.com/blogs/engineering/what-is-nix][what is nix]]
@@ -213,7 +213,7 @@ dircolors --print-database
 
 * Users and groups
 ** Sudo and Root
-*** How can I switch to ~root~ User?
+*** How can I switch to root User?
 - Use ~su~ command.
 - ~su~: change user ID or become superuser.
 - See [[https://linuxize.com/post/su-command-in-linux/][su command]] by linuxize.
@@ -231,7 +231,7 @@ su
 sudo su -
 #+END_SRC
 
-*** How can I add a user to the ~sudo~ group?
+*** How can I add a user to the sudo group?
 - Use ~usermod~ command.
 - ~usermod~: modify a user account.
 - If you want to add the user ~jim~ to the group ~sudo~, run the
@@ -241,7 +241,7 @@ sudo su -
 sudo usermod -aG sudo jim
 #+END_SRC
 
-*** How can I remove a user from the ~sudo~ group?
+*** How can I remove a user from the sudo group?
 - Use ~deluser~ command.
 - ~deluser~: remove a user from the system.
 - If you want to remove the user ~jim~ from the group ~sudo~, run the
@@ -323,7 +323,7 @@ sudo passwd root
 sudo passwd -l root
 #+END_SRC
 
-*** How can I encrypt a password that can be used in the ~/etc/shadow~ file?
+*** How can I encrypt a password that can be used in the /etc/shadow file?
 - Use ~mkpasswd~ command.
 - ~mkpasswd~: Encrypts the given password with the crypt(3) libc
   function using the given salt.
@@ -376,15 +376,15 @@ id   # if you're logged as tony
 #+END_SRC
 
 ** Miscellaneous
-*** What is ~adduser~?
+*** What is adduser?
 - ~adduser~: add a user to the system.
-*** What is ~addgroup~?
+*** What is addgroup?
 - ~addgroup~: add a group to the system.
-*** What is ~delgroup~?
+*** What is delgroup?
 - ~delgroup~: remove a user from the system.
-*** What is ~chown~?
+*** What is chown?
 - ~chown~: change file owner and group.
-*** What is ~chgrp~?
+*** What is chgrp?
 - ~chgrp~: change group ownership.
 
 * Process and system
@@ -404,7 +404,7 @@ npm install pm2 -g
 pm2 start app.js
 #+END_SRC
 
-*** How can I start and daemonize applications with ~pm2~?
+*** How can I start and daemonize applications with pm2?
 - Use ~pm2 start~ command.
 - ~pm2 start~: start and daemonize an app.
 - See [[https://pm2.keymetrics.io/docs/usage/quick-start/][quick start]] from the documentation.
@@ -452,7 +452,7 @@ pm2 save
 pm2 unstartup  #then copy/past and run the generated command
 #+END_SRC
 
-*** What are the common actions I want to do with ~pm2~?
+*** What are the common actions I want to do with pm2?
 - See [[https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/][documentation]] and ~pm2 --help~.
 - List of commands, without description:
 
@@ -662,7 +662,7 @@ H/W path         Device     Class          Description
 *** How to upgrade my pc RAM?
 - See [[https://www.howtogeek.com/346541/how-to-upgrade-or-replace-your-pcs-ram/][how to upgrade or replace pc RAM]] from How-To Geek.
 ** systemd
-*** How do I reload the configuration file of a ~systemd~ unit?
+*** How do I reload the configuration file of a systemd unit?
 - Use ~daemon-reload~ subcommand of ~systemctl~.
 - ~systemctl daemon-reload~: reload the systemd manager
   configuration.
@@ -673,10 +673,10 @@ H/W path         Device     Class          Description
 systemctl daemon-reload
 #+END_SRC
 
-*** What is ~systemd~?
+*** What is systemd?
 - ~systemd~: a system and service manager for Linux operating
   systems.
-*** What is ~systemctl~?
+*** What is systemctl?
 - ~systemctl~: control the systemd system and service manager.
 - See [[https://wiki.archlinux.org/index.php/systemd][systemd]] from Archlinux wiki.
 - Common command lines using ~systemctl~:
@@ -687,14 +687,14 @@ systemctl show --property MainPID --value emacs --user
 systemctl status emacs --user
 #+END_SRC
 
-*** What is ~journalctl~?
+*** What is journalctl?
 - ~journalctl~: Query the systemd journal.
 ** miscellaneous
-*** What is ~hostnamectl~?
+*** What is hostnamectl?
 -~hostnamectl~: control the system hostname.
-*** What is ~top~?
+*** What is top?
 -~top~: display Linux processes.
-*** What is ~ps~?
+*** What is ps?
 -~ps~: report a snapshot of the current processes.
 * Files
 ** Get info
@@ -845,11 +845,11 @@ Stream size                   : 2.31 MiB (100%)
 #+END_SRC
 
 ** View files
-*** What is ~cat~, ~head~ and ~tail~?
+*** What is cat, head and tail?
 - ~cat~: concatenate files and print on the standard output.
 - ~head~: output the first part of files.
 - ~tail~: output the last part of files.
-*** What is ~less~?
+*** What is less?
 - ~less~: a filter for paging through text one screenful at a time.
 ** Links
 *** How can make a symbolic link?
@@ -914,7 +914,7 @@ lrwxrwxrwx  1 tony tony 37 Jul 24 08:24 video.mp4 -> /home/tony/videos/video.mp4
 #+BEGIN_SRC bash
 tar -cfv etc.tar /etc
 #+END_SRC
-*** How can I extract all files from a ~tar~ archive?
+*** How can I extract all files from a tar archive?
 - Use ~tar~ command.
 - ~tar~: an archive utility.
 - If you want extract all files from the archive ~archive.tar~, run
@@ -923,7 +923,7 @@ tar -cfv etc.tar /etc
 #+BEGIN_SRC bash
 tar -xf archive.tar
 #+END_SRC
-*** What is the difference between ~zip~ and ~gzip~?
+*** What is the difference between zip and gzip?
 - See [[http://www.differencebetween.net/technology/difference-between-zip-and-gzip/][difference between zip and gzip]] from differencebetween.net.
 - ~gzip~ can achieve better compression compared to ~zip~.
 - ~zip~ is capable of /archiving/ and /compressing/ multiple files, while
@@ -931,9 +931,9 @@ tar -xf archive.tar
 - You can easily /extract/ individual files from a large ~zip~ file,
   but not from a ~gzip~ tarball.
 ** Search
-*** What is ~locate~?
+*** What is locate?
 - ~locate~: find files by name.
-*** What is ~grep~?
+*** What is grep?
 - ~grep~: Search for pattern in files.
 - If you want to search the sequence ~hello world~ in the files
   ~menu.h~ and ~main.c~ ignoring the case, run the command:
@@ -953,7 +953,7 @@ grep -i 'hello world' menu.h main.c
   find ~/ -name "virtualenv*"
   #+END_SRC
 
-*** What is ~recoll~?
+*** What is recoll?
 - ~recoll~ is a desktop full-text search tool.
 - See [[https://www.lesbonscomptes.com/recoll/][recoll]] homepage, [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll]] usermanual and [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]] if you
   want use it with emacs.
@@ -1016,7 +1016,7 @@ find . -type f -name "*baz*" -exec sed -i 's/foo/bar/g' {} +
 #+END_SRC
 
 ** Directories
-*** How can I list the directories first when using ~ls~?
+*** How can I list the directories first when using ls?
 - Use ~--group-directories-first~ flag of ~ls~ command.
 - ~ls~: list directory contents.
 - If you want to list the directories first when using ~ls~, run the
@@ -1080,7 +1080,7 @@ inotifywait -qq -e open path/to/watched-file && echo "hey"
 
 * Network
 ** DNS
-*** How to get information of an ~url~ ?
+*** How to get information of an url ?
 - Use the command ~dig~.
 - ~dig~: a DNS lookup utility.
 - See [[https://support.dnsimple.com/articles/a-record/][A record]] from dnsimple.com.
@@ -1241,7 +1241,7 @@ ssh-add -d ~/.ssh/id_rsa_jim
 eval "$(ssh-agent)"
 #+END_SRC
 
-*** How can I start my authentication agent ~ssh-agent~?
+*** How can I start my authentication agent ssh-agent?
 - Use ~ssh-agent~, ~eval~ and ~ssh-add~ commands.
 - ~ssh-agent~: Hold private keys used for public key authentication.
 - ~eval~: Execute arguments as a shell command.
@@ -1290,7 +1290,7 @@ Host *
     IdentityFile ~/.ssh/id_rsa_key_2
 #+END_SRC
 
-*** How can I start ~ssh-agent~ on login?
+*** How can I start ssh-agent on login?
 - Use ~systemd~ by adding a user sytemd unit for ~ssh-agent~.
 - See [[https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login][start-ssh-agent-on-login]] on stackoverflow.
 - If you want to start ~ssh-agent~ on login, you have to add a
@@ -1371,7 +1371,7 @@ npm install -g browser-sync
 *** How can I configure OVH config file on server?
 - Modify the ~.ovhconfig~ file.
 - See [[https://docs.ovh.com/fr/hosting/configurer-fichier-ovhconfig/][.ovhconfig file]] from OVH documentation.
-*** Where can I find good ~nginx~ resources?
+*** Where can I find good nginx resources?
 - [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][install nginx]], [[https://linuxize.com/post/nginx-reverse-proxy/][nginx reverse proxy]], [[https://linuxize.com/post/how-to-set-up-nginx-server-blocks-on-ubuntu-18-04/][nginx server block]], [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][nginx ssl]] by
   linuxize.
 - [[https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/][reverse proxy]], [[https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/][nginx config pitfalls]], [[https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/][nginx serving statict content]],
@@ -1380,7 +1380,7 @@ npm install -g browser-sync
   to understand what are ~$uri~, ~$request_uri~, ~try_files~,
   ~return~, ~rewrite~.
 - [[https://scaron.info/blog/improve-your-nginx-ssl-configuration.html][improve your nginx ssl]] from scaron.info.
-*** What does ~request URI~ refer to in ~nginx~ vocabulary?
+*** What does request URI refer to in nginx vocabulary?
 - The *request URI* is the part of the request that comes after the domain name or IP address/port.
 *** How can I install nginx on ubuntu?
 - Use ~apt~ and ~ufw~ command.
@@ -1412,7 +1412,7 @@ sudo systemctl status nginx
 sudo systemctl reload nginx
 #+END_SRC
 
-*** What is the default configuration of ~nginx~ after installing it?
+*** What is the default configuration of nginx after installing it?
 - See [[https://linuxize.com/post/how-to-install-nginx-on-ubuntu-18-04/][install nginx]] by linuxize.
 - By default, ~nginx~ serves the file ~index.nginx-debian.html~ on
   ~localhost~ (~127.0.0.1~) on ~port 80~. Just after intalling
@@ -1466,7 +1466,7 @@ server {
 }
 #+END_SRC
 
-*** How can I fix the nginx error ~error (nginx): cannot get /app~ related to proxy servers?
+*** How can I fix the nginx error "error (nginx): cannot get /app" related to proxy servers?
 - See ~proxy_pass~ directive in your ~block~ configuration.
 - The error was that I was trying to pass ~location~ ~/app~ to
   the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
@@ -1515,14 +1515,14 @@ iwgetid
 sudo ufw disable
 #+END_SRC
 
-*** What is ~ftp~?
+*** What is ftp?
 - ~ftp~ is an internet file transfer program.
 ** Miscellaneous
-*** What is ~curl~?
+*** What is curl?
 - ~curl~: transfer a URL.
-*** What is ~wget~?
+*** What is wget?
 - ~wget~: the non-interactive network downloader.
-*** What is ~ping~?
+*** What is ping?
 - ~ping~: send ICMP ECHO_REQUEST to network hosts.
 * Devices
 ** USB drive
@@ -1591,7 +1591,7 @@ sudo e2label /dev/sdb1
 
 - The name of an usb drive doesn't identify the usb drive. For
   this purpose see ~UUID~ of the usb drive or the ~PARTUUID~.
-*** How can I know the ~UUID~ of an USB drive?
+*** How can I know the UUID of an USB drive?
 - Use ~blkid~ command.
 - ~blkid~: locate/print block device attributes.
 - See [[https://wiki.archlinux.org/index.php/Persistent_block_device_naming][persistent block device naming]] from archlinux wiki.
@@ -1622,7 +1622,7 @@ sudo umount /mnt
 
 - Take care, the above operations will kill your all the data on
   the usb drive.
-*** How can I preserve mode/ownership/timestamps when using ~cp~ or ~rsync~ with ~sudo~?
+*** How can I preserve mode/ownership/timestamps when using cp or rsync with sudo?
 - ~cp~: copy files and directories.
 - ~rsync~: a fast, versatile, remote (and local) file-copying tool.
 - If you want to copy the directory ~my-dir~ to your USB drive
@@ -1699,7 +1699,7 @@ lsusb
 df -h /dev/sdb1
 #+END_SRC
 
-*** Why the file system of my usb drive suddenly becomes ~read-only~?
+*** Why the file system of my usb drive suddenly becomes read-only?
 - See [[https://superuser.com/questions/1125282/what-can-i-do-if-my-usb-flash-drive-is-write-protected-or-read-only][usb drive write protected or read only]] on stackexchange.
 - This is probably because the drive has probably experienced a
   fault condition. That is your usb drive is not safe. So you must
@@ -1757,7 +1757,7 @@ xwininfo -all  # and click on the window you want the information from
 #+END_SRC
 
 ** X and i3
-*** How can I kill a window that I can't kill with ~i3~?
+*** How can I kill a window that I can't kill with i3?
 - Use ~xkill~ command.
 - ~xkill~: kill a client by its X resource.
 - If you want to kill a window that doesn't respond, run the
@@ -1767,7 +1767,7 @@ xwininfo -all  # and click on the window you want the information from
 xkill  # and click on the window you want to kill
 #+END_SRC
 
-*** How can I get the instance and class of X window that are used with ~i3~?
+*** How can I get the instance and class of X window that are used with i3?
 - Use ~xprop~ command.
 - ~xprop~: property displayer for X.
 - If you want to get the instance and class of an X window in
@@ -1811,9 +1811,9 @@ DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm
 #+END_SRC
 
 ** Miscellaneous
-*** What is ~xbindkey~?
+*** What is xbindkey?
 - ~xbindkey~: a grabbing keys program for X.
-*** What is ~xmodmap~?
+*** What is xmodmap?
 - ~xmodmap~: utility for modifying keymaps and pointer button mappings
   in X.
 *** How can I list the open windows?
@@ -1857,7 +1857,7 @@ xdotool getmouselocation
 eval $(xdotool getmouselocation --shell)
 #+END_SRC
 
-*** Some use cases of ~xdotool~
+*** Some use cases of xdotool
 - If I run the command ~xdotool getactivewindow~ I get ~27263352~.
 - If I run the command ~xdotool getactivewindow getwindowname~ from
   my terminal I get ~Terminal~.
@@ -1865,7 +1865,7 @@ eval $(xdotool getmouselocation --shell)
   WM_CLASS~ I get ~WM_CLASS(STRING) = "gnome-terminal-server",
   "Gnome-terminal"~.
 ** Autokey
-*** How can I install ~autokey~?
+*** How can I install autokey?
 - Use ~git~ and ~pip3~ commands.
 - ~pip3~: a tool for installing and managing Python packages.
 - ~git~: the stupid content tracker.
@@ -1909,7 +1909,7 @@ autokey-gtk -c
 autokey-gtk
 #+END_SRC
 
-*** How can I have ~autokey~ run in background and start at login to your linux session?
+*** How can I have autokey run in background and start at login to your linux session?
 - Use ~systemctl~, ~autokey-gtk~ commands and ~i3~ directive ~exec~.
 - ~systemctl~: control the ~systemd~ system and ~service manager~.
 - ~exec~: executes bash commands in the ~i3wm~ config file ~~/.config/i3/config~.
@@ -1940,9 +1940,9 @@ systemctl --user enable autokey
 systemctl --user start autokey
 #+END_SRC
 
-*** Where are stored ~autokey~ config files?
+*** Where are stored autokey config files?
 - ~autokey~ config files are in ~~/.config/autokey/~ directory.
-*** Where can I find ~autokey~ ressources?
+*** Where can I find autokey ressources?
 - [[https://github.com/autokey/autokey][autokey]] github repository and the ~autokey~ wiki pages about,
   [[https://github.com/autokey/autokey/wiki/Installing][Installing]], [[https://github.com/autokey/autokey/wiki/FAQ][FAQ]], [[https://github.com/autokey/autokey/wiki/Scripting][Scripting]], [[https://github.com/autokey/autokey/wiki/API-Examples][API-Examples]], [[https://github.com/autokey/autokey/wiki/Special-Keys][Special-Keys]].
 * Images
@@ -2005,7 +2005,7 @@ sudo apt install imagemagick
 
 * Backup
 ** rsync
-*** With ~rsync~ how can I always replace the ~DEST~ file by the ~SRC~ file?
+*** With rsync how can I always replace the DEST file by the SRC file?
 - Use ~-a~ flag of ~rsync~.
 - It is a quick way of saying you want recursion and want to
   preserve almost everything.
@@ -2017,7 +2017,7 @@ sudo apt install imagemagick
 rsync -a path/to/src/ path/to/dest/
 #+END_SRC
 
-*** With ~rsync~ how can I always replace the ~DEST~ file by the ~SRC~ file /only/ if the ~SRC~ file is newer than the ~DEST~ file?
+*** With rsync how can I always replace the DEST file by the SRC file /only/ if the SRC file is newer than the ~DEST~ file?
 - Use ~-au~ flags of ~rsync~.
 - Skip files that are newer on the receiver (~-u~ flag).
 - If you want to replace all the files with the same
@@ -2028,7 +2028,7 @@ rsync -a path/to/src/ path/to/dest/
 rsync -au path/to/src/ path/to/dest/
 #+END_SRC
 
-*** With ~rsync~ how can I keep the *newer* file between ~DEST~ and ~SRC~ file on the receiver and keep a *copy* on the receiver of the *older* of ~DEST~ file and ~SRC~ file?
+*** With rsync how can I keep the *newer* file between DEST and SRC file on the receiver and keep a *copy* on the receiver of the *older* of ~DEST~ file and ~SRC~ file?
 - Use ~-aub~ flags of ~rsync~.
 - ~-u~ flag: skip files that are newer on the receiver.
 - ~-b~ flag: with this option, preexisting destination files are renamed as each file is transferred or deleted.
@@ -2041,7 +2041,7 @@ rsync -au path/to/src/ path/to/dest/
 rsync -aub path/to/src/ path/to/dest/
 #+END_SRC
 
-*** With ~rsync~ how can I synchronize ~DEST~ directory and ~SRC~ directory?
+*** With rsync how can I synchronize DEST directory and SRC directory?
 - Use ~-au~ flags of ~rsync~.
 - ~-a~ flag: it is a quick way of saying you want recursion and want to preserve almost everything.
 - ~-u~ flag: skip files that are newer on the receiver.
@@ -2056,7 +2056,7 @@ rsync -au path/to/src/ path/to/dest/
 rsync -au path/to/dest/ path/to/src/
 #+END_SRC
 
-*** With ~rsync~ how can I synchronize ~DEST~ directory and ~SRC~ directory, keep a copy of the older files and generate a log file?
+*** With rsync how can I synchronize DEST directory and SRC directory, keep a copy of the older files and generate a log file?
 - Use ~-aub~ and ~--backup-dir~ flags of ~rsync~.
 - It is a quick way of saying you want recursion and want to preserve almost everything (~-a~ flag).
 - ~-u~ flag: skip files that are newer on the receiver.
@@ -2107,7 +2107,7 @@ rm -rf path/to/src/backup path/to/src/backup.log
 rm -rf path/to/dest/backup path/to/dest/backup.log
 #+END_SRC
 
-*** With ~rsync~ how can I delete files on ~DEST~ that are not present on ~SRC~?
+*** With rsync how can I delete files on DEST that are not present on SRC?
 - Use ~-a~, ~--delete~ flags of ~rsync~.
 - (~-a~ flag): it is a quick way of saying you want recursion and want to preserve almost everything.
 - ~--delete~ flag: this tells rsync to delete extraneous files from
@@ -2125,7 +2125,7 @@ rm -rf path/to/dest/backup path/to/dest/backup.log
 rsync -a --delete path/to/src/ path/to/dest/
 #+END_SRC
 
-*** With ~rsync~ how can I delete files on ~DEST~ that I've note ~exclude~ the first time with ~rsync~ ?
+*** With rsync how can I delete files on DEST that I've note exclude the first time with rsync ?
 - Use ~-a~, ~--delete-excluded~, ~--exclude~ flags of ~rsync~.
 - ~-a~ flag: it is a quick way of saying you want recursion and want to preserve almost everything.
 - ~--delete-excluded~ flag: in  addition  to  deleting  the files on the receiving side that are not on the sending side, this tells rsync to also delete any files on the receiving side that are excluded with ~--exclude~.
@@ -2140,7 +2140,7 @@ rsync -a --exclude="*node_modules*" --delete-excluded \
   path/to/src/ path/to/dest/
 #+END_SRC
 
-*** With ~rsync~ how can I do a incremental backup?
+*** With rsync how can I do a incremental backup?
 - Use ~-avz~, ~--exclude~ and ~--exclude-exclude~ flags of
   ~rsync~ command.
 - ~-a~ flag: it is a quick way of saying you want recursion and want
@@ -2181,8 +2181,8 @@ rsync -avz --exclude="*node_modules*" --delete-exclude \
 - Basically, a /backup/ is a /copy/ of a set of data, while an
   /archive/ holds /original/ data that has been /removed/ from its
   original location.
-** Back up ~/etc~ directory
-*** How can I review or revert changes that were made to ~/etc~?
+** Back up /etc directory
+*** How can I review or revert changes that were made to /etc?
 - Use ~etckeeper~ tool.
 - ~etckeeper~: store ~/etc~ in ~git~.
 - See [[https://etckeeper.branchable.com/README/][etckeeper]] README.
@@ -2219,23 +2219,23 @@ sudo git checkout <previous-commit>
 sudo etckeeper init
 #+END_SRC
 
-*** How can I back up the ~/etc~ directory to ~usb~ drive?
+*** How can I back up the /etc directory to usb drive?
 - Use ~rsync~ command.
 - ~rsync~: a fast, versatile, remote (and local) file-copying tool.
 - Be aware that ~/etc~ directory contains secret informations. For
   instance, SHA-512 password are stored in the file
   ~/etc/shadow~.
-** Large files with ~git~
-*** What is ~git-annex~?
+** Large files with git
+*** What is git-annex?
 - [[https://git-annex.branchable.com/][git-annex (homepage)]]
 - [[https://git-annex.branchable.com/not/][git-annex is NOT ...]]
 - [[https://git-annex.branchable.com/walkthrough/][git-annex (walkthrough)]]
 - [[https://git-annex.branchable.com/tips/emacs_integration/][git-annex (emacs integration)]]
-*** What is ~git-lfs~?
+*** What is git-lfs?
 - [[https://git-lfs.github.com/][git-lfs (homepage)]]
 - [[https://www.atlassian.com/git/tutorials/git-lfs][git-lfs (tutorial)]]
 - [[https://www.youtube.com/watch?v=006RUPVIP-c][git-lfs (talk)]]
-*** What is the difference between ~git-lfs~ and ~git-annex~?
+*** What is the difference between git-lfs and git-annex?
 - See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and [[https://lwn.net/Articles/774125/][large
   files with git (article)]].
 - ~git-lfs~ differs from ~git-annex~ in that:
@@ -2252,22 +2252,22 @@ sudo etckeeper init
 
 * UI
 ** GTK
-*** How to make ~chromium~ using ~GTK~?
+*** How to make chromium using GTK?
 - If you want that ~chromium~ uses ~GTK~, in ~chromium~ allow ~GTK+~
   theme in: ~Settings > Preferences > Appearence > Use GTK+ theme~.
-*** What are the ~GTK~ config files?
+*** What are the GTK config files?
 - ~~/.gtkrc-2.0~ for ~gtk2~,
 - ~~/.config/gtk-3.0/settings.ini~ for ~gtk-3~,
 - ~/etc/gtk-3.0/settings.ini~.
-*** How to get information on the ~GTK~ settings?
+*** How to get information on the GTK settings?
 - Run the command:
 
 #+BEGIN_SRC bash
 gtk-query-settings
 #+END_SRC
-*** Where are stored the ~GTK~ themes?
-- You can find ~GTK~ themes in the directory: ~/usr/share/themes/~.
-*** How can I add ~emacs~ like keybinding in ~GTK~ applications like (~chromium~)?
+*** Where are stored the GTK themes?
+- You can find ~GTK~ themes in the directory: /usr/share/themes/~.
+*** How can I add emacs like keybinding in GTK applications like (~chromium)?
 - In ~gtk-2~ add the line  in your ~GTK~ config file
   ~/home/tony/.gtkrc-2.0~.
 
@@ -2282,7 +2282,7 @@ gtk-key-theme-name = "Emacs"
 gtk-key-theme-name = Emacs
 #+END_SRC
 
-*** Where the ~emacs~ like keybinding in ~GTK~ applications are defined?
+*** Where the emacs like keybinding in GTK applications are defined?
 - In ~gtk-2~, the implemented ~emacs~ keybinding can be found in the
   file ~/usr/share/themes/Emacs/gtk-2.0-key/gtkrc~:
 
@@ -2470,7 +2470,7 @@ GtkMenuShell {
   -gtk-key-bindings: gtk-emacs-menu;
 }
 #+END_SRC
-*** How to switch between ~GTK~ themes?
+*** How to switch between GTK themes?
 - Use the command ~gtk-theme-switch~.
 - To install it, run the command:
 
@@ -2478,14 +2478,14 @@ GtkMenuShell {
 sudo apt install gtk-theme-switch
 #+END_SRC
 
-*** How to modify text size of ~GTK~ applications like ~chromium~?
+*** How to modify text size of GTK applications like chromium?
 - In ~gtk-3~, add the following line in your ~GTK~ config file
   ~/home/tony/.config/gtk-3.0/settings.ini~.
 
 #+BEGIN_SRC text
 gtk-font-name=Sans 12
 #+END_SRC
-*** How can I find ~GTK~ resources?
+*** How can I find GTK resources?
 - [[https://wiki.archlinux.org/index.php/GTK][GTK (archlinux)]]
 - [[https://www.gtk.org][GTK (home page)]]
 - [[https://developer.gnome.org/gtk3/stable/][GTK+ 3 Reference Manual]]
@@ -2493,7 +2493,7 @@ gtk-font-name=Sans 12
 - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
 - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/popover.html][python GTK 3 (popover)]]
 - [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
-*** How can I test/debug components of an application that uses ~gtk~ for the UI?
+*** How can I test/debug components of an application that uses gtk for the UI?
 - Use ~GTK inspector~.
 - See [[https://wiki.gnome.org/action/show/Projects/GTK/Inspector?action=show&redirect=Projects%2FGTK%2B%2FInspector][GTK inspector]] on gnome.org.
 - To do so, run the command:
@@ -2535,7 +2535,7 @@ xrdb -query all
 - To see the default settings of your installed ~X11 apps~, look in
   ~/etc/X11/app-defaults/~.
 ** i3 window manager
-*** How can I debug ~i3status~ and ~i3blocks~ config files?
+*** How can I debug i3status and i3blocks config files?
 - Use ~i3status~ or ~i3bloks~ commands.
 - ~i3blocks~: a flexible scheduler for your i3bar blocks.
 - ~i3status~: generates a status line for i3bar.
