@@ -194,18 +194,18 @@ npm ls -g --depth=0
 
 * Users and groups
 ** Sudo and Root
-*** How can I switch to root User?
+*** How can I switch to root user?
 - Use ~su~ command.
 - ~su~: change user ID or become superuser.
 - See [[https://linuxize.com/post/su-command-in-linux/][su command]] by linuxize.
-- If you want to run an interactive shell as root, when root's
+- If you want to run an interactive shell as root when root's
   password is already defined, run the command:
 
 #+BEGIN_SRC bash
 su
 #+END_SRC
 
-- If you want to run an interactive shell as root, when root's
+- If you want to run an interactive shell as root when root's
   password is not defined, run the command:
 
 #+BEGIN_SRC bash
@@ -245,7 +245,7 @@ sudo deluser jim sudo
 sudo visudo
 #+END_SRC
 
-- If you want to check the existing sudoers file for syntax, errors
+- If you want to check the existing sudoers file for syntax errors
   and mode, run the command:
 
 #+BEGIN_SRC bash
@@ -357,15 +357,15 @@ id   # if you're logged as tony
 #+END_SRC
 
 ** Miscellaneous
-*** What is adduser?
+*** What adduser command is for?
 - ~adduser~: add a user to the system.
-*** What is addgroup?
+*** What addgroup command is for?
 - ~addgroup~: add a group to the system.
-*** What is delgroup?
+*** What delgroup command is for?
 - ~delgroup~: remove a user from the system.
-*** What is chown?
+*** What chown command is for?
 - ~chown~: change file owner and group.
-*** What is chgrp?
+*** What chgrp command is for?
 - ~chgrp~: change group ownership.
 
 * Process and system
@@ -416,7 +416,7 @@ pm2 start npm --name my-app -- start
 - Use ~pm2 startup~ and ~pm2 save~ commands.
 - ~pm2 startup~: enable the pm2 startup hook.
 - ~pm2 save~: freeze a process list for automatic respawn.
-- See examples [[https://pm2.keymetrics.io/docs/usage/quick-start/][quick start]] from the documentation.
+- See [[https://pm2.keymetrics.io/docs/usage/quick-start/][quick start]] from the documentation.
 - If you want that ~pm2~ automatically ~restart~ on boot/reboot
   and run the saved processes, you have to enable the ~pm2~
   /startup hook/ and /freeze/ a list of the current running
@@ -455,7 +455,7 @@ pm2 logs
 *** How can I know the caracteristics of my CPU?
 - Use ~lscpu~ command.
 - ~lscpu~: display information about the CPU architecture.
-- See example [[https://unix.stackexchange.com/questions/218074/how-to-know-number-of-cores-of-a-system-in-linux][number of cores of as system]] on stackexchange.
+- See [[https://unix.stackexchange.com/questions/218074/how-to-know-number-of-cores-of-a-system-in-linux][number of cores of as system]] on stackexchange.
 - If you want to know how many /physical CPU/ do you have, run the
   command ~lscpu~ and see the line which starts with ~Socket(s):~.
 - If you want to know how many /core per socket/ do you have, run the
@@ -500,18 +500,18 @@ ida arat pln pts md_clear flush_l1d
 #+END_SRC
 
 ** hardware
-*** How can I get the characteristics of your RAM?
+*** How can I get the characteristics of my RAM?
 - Use ~lshw~ command.
 - ~lshw~: extract detailed information on the hardware configuration
   of the machine.
 - See [[https://askubuntu.com/questions/391173/how-to-find-the-frequency-and-type-of-my-current-ram][frequency and type of my current RAM]] on askubuntu.
 - If you want to get characteristics of your RAM, run the command:
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC text
 sudo lshw -C memory
 #+END_SRC
 
-On my computer, this gave me this output:
+- After running the previous command, I got this output:
 
 #+BEGIN_SRC bash
 *-firmware
@@ -589,9 +589,9 @@ On my computer, this gave me this output:
 sudo lshw -short
 #+END_SRC
 
-On my computer, this gave me this output:
+- After running the previous command, I got this output:
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC text
 H/W path         Device     Class          Description
 ======================================================
                             system         HP EliteBook 840 G1 (F9X37UP#ABF)
@@ -657,7 +657,7 @@ systemctl daemon-reload
 *** What is systemd?
 - ~systemd~: a system and service manager for Linux operating
   systems.
-*** What is systemctl?
+*** What systemctl command is for?
 - ~systemctl~: control the systemd system and service manager.
 - See [[https://wiki.archlinux.org/index.php/systemd][systemd]] from Archlinux wiki.
 - Common command lines using ~systemctl~:
@@ -668,15 +668,15 @@ systemctl show --property MainPID --value emacs --user
 systemctl status emacs --user
 #+END_SRC
 
-*** What is journalctl?
+*** What journalctl command is for?
 - ~journalctl~: Query the systemd journal.
 ** miscellaneous
-*** What is hostnamectl?
--~hostnamectl~: control the system hostname.
-*** What is top?
--~top~: display Linux processes.
-*** What is ps?
--~ps~: report a snapshot of the current processes.
+*** What hostnamectl command is for?
+- ~hostnamectl~: control the system hostname.
+*** What top command is for?
+- ~top~: display Linux processes.
+*** What ps command is for?
+- ~ps~: report a snapshot of the current processes.
 * Files
 ** Get info
 *** How can I recursively list a directory in a tree-like format?
@@ -753,7 +753,7 @@ du -sh $HOME
 file elisp.el video.mp4
 #+END_SRC
 
-This gave me this output:
+- After running the previous command, I got this output:
 
 #+BEGIN_SRC text
 elisp.el:  Lisp/Scheme program, ASCII text
@@ -826,11 +826,11 @@ Stream size                   : 2.31 MiB (100%)
 #+END_SRC
 
 ** View files
-*** What is cat, head and tail?
+*** What cat, head and tail commands are for?
 - ~cat~: concatenate files and print on the standard output.
 - ~head~: output the first part of files.
 - ~tail~: output the last part of files.
-*** What is less?
+*** What less command is for?
 - ~less~: a filter for paging through text one screenful at a time.
 ** Links
 *** How can make a symbolic link?
@@ -847,7 +847,7 @@ ln -s /absolute-path-to/video.mp4 video.mp4
 
 - If the ~linked-video~ was empty before making the link above and if
   you run the command ~ls -l~ in the directory ~linked-video~ you
-  obtain something like this:
+  should obtain something like this:
 
 #+BEGIN_SRC text
 lrwxrwxrwx  1 tony tony 37 Jul 24 08:24 video.mp4 -> /home/tony/videos/video.mp4
@@ -859,9 +859,9 @@ lrwxrwxrwx  1 tony tony 37 Jul 24 08:24 video.mp4 -> /home/tony/videos/video.mp4
 - If you want to get the path (target) of the current ~python~,
   run the command:
 
-  #+BEGIN_SRC bash
-  readlink $(which python)
-  #+END_SRC
+#+BEGIN_SRC bash
+readlink $(which python)
+#+END_SRC
 
 *** How can I manage symbolic links of whole directory tree?
 - Use ~stow~ command.
@@ -912,9 +912,9 @@ tar -xf archive.tar
 - You can easily /extract/ individual files from a large ~zip~ file,
   but not from a ~gzip~ tarball.
 ** Search
-*** What is locate?
+*** What locate command is for?
 - ~locate~: find files by name.
-*** What is grep?
+*** What grep command is for?
 - ~grep~: Search for pattern in files.
 - If you want to search the sequence ~hello world~ in the files
   ~menu.h~ and ~main.c~ ignoring the case, run the command:
@@ -930,9 +930,9 @@ grep -i 'hello world' menu.h main.c
   directory where the ~name~ match the global patern ~virtualenv*~,
   run the command:
 
-  #+BEGIN_SRC bash
-  find ~/ -name "virtualenv*"
-  #+END_SRC
+#+BEGIN_SRC bash
+find ~/ -name "virtualenv*"
+#+END_SRC
 
 *** What is recoll?
 - ~recoll~ is a desktop full-text search tool.
@@ -980,8 +980,8 @@ find . -type f -exec sed -i 's/foo/bar/g' {} +
 #+END_SRC
 
 - If you want to replace only if the file name matches another
-  string / has a specific extension / is of a certain type etc
-  (Non-recursive, files in this directory only), run the command:
+  string (Non-recursive, files in this directory only), run the
+  command:
 
 #+BEGIN_SRC bash
 sed -i -- 's/foo/bar/g' *baz*    # all files whose name contains baz
@@ -1052,11 +1052,11 @@ brew install watchman
 *** How can I whatch a file and trigger a command when it was opened?
 - Use ~inotifywait~ command.
 - ~inotifywait~: wait for changes to files using inotify.
-- If you want to print ~hey~ in the ~stdout~ after the file
+- If you want to print ~hello world~ in the ~stdout~ after the file
   ~path/to/watched-file~ was opened, run the command:
 
 #+BEGIN_SRC bash
-inotifywait -qq -e open path/to/watched-file && echo "hey"
+inotifywait -qq -e open path/to/watched-file && echo "hello world"
 #+END_SRC
 
 * Network
@@ -1090,7 +1090,7 @@ curl ifconfig.co/ip
 #+END_SRC
 
 ** SSH
-*** How can I to enable SSH server on ubuntu?
+*** How can I enable SSH server on ubuntu?
 - Use ~openssh-server~ package.
 - ~openssh-server~: Secure shell (SSH) server, for secure access from
   remote machines.
@@ -1224,9 +1224,9 @@ eval "$(ssh-agent)"
 
 *** How can I start my authentication agent ssh-agent?
 - Use ~ssh-agent~, ~eval~ and ~ssh-add~ commands.
-- ~ssh-agent~: Hold private keys used for public key authentication.
-- ~eval~: Execute arguments as a shell command.
-- ~ssh-add~: Adds private key identities to the authentication agent.
+- ~ssh-agent~: hold private keys used for public key authentication.
+- ~eval~: execute arguments as a shell command.
+- ~ssh-add~: adds private key identities to the authentication agent.
 - If you want to start your authentication agent, open a
   connection to the agent and add the key ~id_rsa_some_key~ to
   the agent. To do so, run the commands:
@@ -1254,9 +1254,9 @@ ssh-agent -k
 *** How to get ssh private key automatically added to the authentication agent?
 - Use the keywords ~AddKeysToAgent~ and ~IdentityFile~ in the
   ~~/.ssh/config~ user's configuration file.
-- ~AddKeysToAgent~: Specifies whether keys should be automatically
+- ~AddKeysToAgent~: specifies whether keys should be automatically
   added to a running ssh-agent(1).
-- ~IdentityFile~: Specifies a file from which the user's RSA
+- ~IdentityFile~: specifies a file from which the user's RSA
   authentication identity is read.
 - See ~man~ documentation ~ssh_config~.
 - If you want to get ssh private keys ~~/.ssh/id_rsa_key_1~ and
@@ -1322,7 +1322,8 @@ Host *
   so ~ssh-add -l~ lists anything.
 ** Servers
 *** How to run a php server?
-- Use the command ~php~.
+- Use ~php~ command.
+- ~php~: PHP Command Line Interface.
 - If the directory contains a ~index.php~ file, to have the server
   running on ~localhost~ on port ~8080~, run the command:
 
@@ -1449,7 +1450,7 @@ server {
 
 *** How can I fix the nginx error "error (nginx): cannot get /app" related to proxy servers?
 - See ~proxy_pass~ directive in your ~block~ configuration.
-- The error was that I was trying to pass ~location~ ~/app~ to
+- The error was that I was trying to pass ~location /app~ to
   the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
   end of the address. 
 -To solve the problem, I add a ~/~ to the ~proxy_pass~ address. My
@@ -1496,14 +1497,14 @@ iwgetid
 sudo ufw disable
 #+END_SRC
 
-*** What is ftp?
+*** What ftp command is for?
 - ~ftp~ is an internet file transfer program.
 ** Miscellaneous
-*** What is curl?
+*** What curl command is for?
 - ~curl~: transfer a URL.
-*** What is wget?
+*** What wget command is for?
 - ~wget~: the non-interactive network downloader.
-*** What is ping?
+*** What ping command is for?
 - ~ping~: send ICMP ECHO_REQUEST to network hosts.
 * Devices
 ** USB drive
@@ -1520,7 +1521,7 @@ sudo dd if=/dev/zero of=/dev/sdb bs=4096 status=progress
 #+END_SRC
 
 - Last time, for a 32GB usb drive, the process took about 30
-  minuntes to complete.
+  minutes to complete.
 - Once the disk is erased, the ~dd~ command will print ~~No space
   left on device~.
 *** How can I format a usb drive with EXT4?
@@ -1762,8 +1763,8 @@ xprop  # and click on the window you want the information from
 
 
 - For example with a window running ~chromium-browser~ application, I
-  get the following line where ~"chromium-browser"~ is the /instance/,
-  second ~"Chromium-browser"~ is the /class/:
+  get the following line where ~chromium-browser~ is the /instance/,
+  second ~Chromium-browser~ is the /class/:
 
 #+BEGIN_SRC text
 WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"
@@ -1775,7 +1776,7 @@ WM_CLASS(STRING) = "chromium-browser", "Chromium-browser"
 - ~xrandr~: set the size, orientation and/or reflection of the outputs
   for a screen.
 - If you want to display the monitor ~DP-2~ on the left of the
-  monitor ~<eDP-1>~, run the command:
+  monitor ~eDP-1~, run the command:
 
 #+BEGIN_SRC bash
 xrandr --output DP-2 --left-of eDP-1
@@ -1792,9 +1793,9 @@ DP-2 connected 1280x1024+1366+0 (normal left inverted right x axis y axis) 338mm
 #+END_SRC
 
 ** Miscellaneous
-*** What is xbindkey?
+*** What xbindkey command is for?
 - ~xbindkey~: a grabbing keys program for X.
-*** What is xmodmap?
+*** What xmodmap command is for?
 - ~xmodmap~: utility for modifying keymaps and pointer button mappings
   in X.
 *** How can I list the open windows?
@@ -1838,13 +1839,17 @@ xdotool getmouselocation
 eval $(xdotool getmouselocation --shell)
 #+END_SRC
 
-*** Some use cases of xdotool
+*** Some use cases of xdotool command
 - If I run the command ~xdotool getactivewindow~ I get ~27263352~.
 - If I run the command ~xdotool getactivewindow getwindowname~ from
   my terminal I get ~Terminal~.
 - If I run the command ~xdotool getactivewindow | xprop -id 27263352
-  WM_CLASS~ I get ~WM_CLASS(STRING) = "gnome-terminal-server",
-  "Gnome-terminal"~.
+  WM_CLASS~, I got this output:
+
+#+BEGIN_SRC text
+WM_CLASS(STRING) = "gnome-terminal-server", "Gnome-terminal"
+#+END_SRC
+
 ** Autokey
 *** How can I install autokey?
 - Use ~git~ and ~pip3~ commands.
@@ -1890,7 +1895,7 @@ autokey-gtk -c
 autokey-gtk
 #+END_SRC
 
-*** How can I have autokey run in background and start at login to your linux session?
+*** How can I have autokey run in background and start at login to my linux session?
 - Use ~systemctl~, ~autokey-gtk~ commands and ~i3~ directive ~exec~.
 - ~systemctl~: control the ~systemd~ system and ~service manager~.
 - ~exec~: executes bash commands in the ~i3wm~ config file ~~/.config/i3/config~.
@@ -1924,7 +1929,7 @@ systemctl --user start autokey
 *** Where are stored autokey config files?
 - ~autokey~ config files are in ~~/.config/autokey/~ directory.
 *** Where can I find autokey ressources?
-- [[https://github.com/autokey/autokey][autokey]] github repository and the ~autokey~ wiki pages about,
+- [[https://github.com/autokey/autokey][autokey]] github repository and the ~autokey~ wiki pages
   [[https://github.com/autokey/autokey/wiki/Installing][Installing]], [[https://github.com/autokey/autokey/wiki/FAQ][FAQ]], [[https://github.com/autokey/autokey/wiki/Scripting][Scripting]], [[https://github.com/autokey/autokey/wiki/API-Examples][API-Examples]], [[https://github.com/autokey/autokey/wiki/Special-Keys][Special-Keys]].
 * Images
 ** Use images
@@ -1936,14 +1941,14 @@ systemctl --user start autokey
   background, run the command:
 
 #+BEGIN_SRC bash
-  feh --bg-fill path/to/images.jpg
+feh --bg-fill path/to/images.jpg
 #+END_SRC
 
 - If you want to remove your background image set with ~feh~, run
   the command:
 
 #+BEGIN_SRC bash
-  xsetroot -solid black
+xsetroot -solid black
 #+END_SRC
 
 ** Manipulate images
@@ -2009,7 +2014,7 @@ rsync -a path/to/src/ path/to/dest/
 rsync -au path/to/src/ path/to/dest/
 #+END_SRC
 
-*** With rsync how can I keep the *newer* file between DEST and SRC file on the receiver and keep a *copy* on the receiver of the *older* of ~DEST~ file and ~SRC~ file?
+*** With rsync how can I keep the newer file between DEST and SRC file on the receiver and keep a *copy* on the receiver of the *older* of ~DEST~ file and ~SRC~ file?
 - Use ~-aub~ flags of ~rsync~.
 - ~-u~ flag: skip files that are newer on the receiver.
 - ~-b~ flag: with this option, preexisting destination files are renamed as each file is transferred or deleted.
@@ -2186,9 +2191,7 @@ sudo git commit -m "your message"
 #+END_SRC
 
 - If you want to /configure/ and tweak ~etckeeper~, see files and
-  directories:
-  - /etc/etckeeper/
-  - /etc/etckeeper/etckeeper.conf
+  directories ~/etc/etckeeper/~ and ~/etc/etckeeper/etckeeper.conf~.
 - If you want to /skip/ some files or directories from being
   stored into ~git~ repository, add them to ~/etc/.gitignore~.
 - If I want to /revert/ changes to a previous state (commit), you
@@ -2220,16 +2223,15 @@ sudo etckeeper init
 - See discussions [[https://git-annex.branchable.com/todo/git_smudge_clean_interface_suboptiomal/][git smudge clean interface suboptiomal]] and [[https://lwn.net/Articles/774125/][large
   files with git (article)]].
 - ~git-lfs~ differs from ~git-annex~ in that:
-  1) all the large files in the repository are usually present in
-     the working tree; it doesn't have a way to drop content that
-     is not wanted locally while keeping other content locally
-     available, as ~git-annex~ does.
-  2) And so it does not need to be able to get content like
-     ~git-annex~ can do either.
-  3) It also differs in that it uses a central server, which is
-     trusted to retain content, so it doesn't try to avoid losing
-     the local copy, which could be the only copy, as ~git-annex~
-     does.
+- With ~git-lfs~, all the large files in the repository are usually
+  present in the working tree; it doesn't have a way to drop content
+  that is not wanted locally while keeping other content locally
+  available, as ~git-annex~ does.
+- And so ~git-lfs~ does not need to be able to get content like
+  ~git-annex~ can do either.
+- ~git-lfs~ also differs in that it uses a central server, which is
+  trusted to retain content, so it doesn't try to avoid losing the
+  local copy, which could be the only copy, as ~git-annex~ does.
 
 * UI
 ** GTK
@@ -2247,17 +2249,17 @@ sudo etckeeper init
 gtk-query-settings
 #+END_SRC
 *** Where are stored the GTK themes?
-- You can find ~GTK~ themes in the directory: /usr/share/themes/~.
-*** How can I add emacs like keybinding in GTK applications like (~chromium)?
+- You can find ~GTK~ themes in the directory: ~/usr/share/themes/~.
+*** How can I add emacs like keybinding in GTK applications like chromium?
 - In ~gtk-2~ add the line  in your ~GTK~ config file
-  ~/home/tony/.gtkrc-2.0~.
+  ~/.gtkrc-2.0~.
 
 #+BEGIN_SRC text
 gtk-key-theme-name = "Emacs"
 #+END_SRC
 
 - In ~gtk-3~, add the following line in your ~GTK~ config file
-  ~/home/tony/.config/gtk-3.0/settings.ini~.
+  ~/.config/gtk-3.0/settings.ini~.
 
 #+BEGIN_SRC text
 gtk-key-theme-name = Emacs
@@ -2452,7 +2454,7 @@ GtkMenuShell {
 }
 #+END_SRC
 *** How to switch between GTK themes?
-- Use the command ~gtk-theme-switch~.
+- Use ~gtk-theme-switch~ command.
 - To install it, run the command:
 
 #+BEGIN_SRC bash
@@ -2461,7 +2463,7 @@ sudo apt install gtk-theme-switch
 
 *** How to modify text size of GTK applications like chromium?
 - In ~gtk-3~, add the following line in your ~GTK~ config file
-  ~/home/tony/.config/gtk-3.0/settings.ini~.
+  ~/.config/gtk-3.0/settings.ini~.
 
 #+BEGIN_SRC text
 gtk-font-name=Sans 12
@@ -2474,7 +2476,7 @@ gtk-font-name=Sans 12
 - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/][python GTK 3 (documentation)]]
 - [[https://python-gtk-3-tutorial.readthedocs.io/en/latest/popover.html][python GTK 3 (popover)]]
 - [[https://www.dedoimedo.com/computers/gnome-edit-theme.html][gtk - gnome edit theme]]
-*** How can I test/debug components of an application that uses gtk for the UI?
+*** How can I test/debug components of an application that uses GTK for the UI?
 - Use ~GTK inspector~.
 - See [[https://wiki.gnome.org/action/show/Projects/GTK/Inspector?action=show&redirect=Projects%2FGTK%2B%2FInspector][GTK inspector]] on gnome.org.
 - To do so, run the command:
@@ -2593,9 +2595,9 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
 - ~fc-list~: list available fonts.
 - If you want to list all available font, run the command:
 
-  #+BEGIN_SRC bash
-  fc-list
-  #+END_SRC
+#+BEGIN_SRC bash
+fc-list
+#+END_SRC
 
 - Note: the font ~symbola~ allow you to print all ~unicode~ character.
 * Miscellaneous
@@ -2624,9 +2626,9 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
 - If you want to check which terminal you are using, run the
   command:
 
-  #+BEGIN_SRC bash
-  cat /etc/alternatives/x-terminal-emulator | grep exec
-  #+END_SRC
+#+BEGIN_SRC bash
+cat /etc/alternatives/x-terminal-emulator | grep exec
+#+END_SRC
 
 ** desktop
 *** How can I send a desktop notification?
@@ -2636,9 +2638,9 @@ gsettings reset org.gnome.desktop.interface text-scaling-factor
   that the popup window notification keep alive 3 seconds, run
   the command:
 
-  #+BEGIN_SRC bash
-  notify-send -t 3000 "hello world"
-  #+END_SRC
+#+BEGIN_SRC bash
+notify-send -t 3000 "hello world"
+#+END_SRC
 
 ** environment variables
 *** How can I print all environment variables?
