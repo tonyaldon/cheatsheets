@@ -620,5 +620,11 @@ Worth reading info node.
    - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
    - [[http://aspell.net/][aspell (homepage)]]
 * Discard packages
+* Discarded packages
 ** fill-column-indicator
-	 - Conflict with my use of ~avy-goto-end-of-line~ command.
+- Conflict with my use of ~avy-goto-end-of-line~ command.
+** posframe & ivy-postframe
+- do not like the user interface
+- do not respect my cursor settings
+- code complicated to modify
+- I prefer [[https://github.com/muffinmad/emacs-mini-frame][mini-frame]]
