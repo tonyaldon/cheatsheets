@@ -171,7 +171,7 @@ function addDocumentStyle_(thisDocument) {
   - in source panel, click on snippet, the click on new snippet. Write
     your snippet and save it.
   - in command menu, run command ~Create new snippet~. Write your
-    snippet and save it. 
+    snippet and save it.
 - Run a snippet:
   - in source panel, select the snippet and ~C-RET~ will run the
     snippet.
@@ -503,6 +503,53 @@ can call ~simple-call-tree-display-buffer~ with file list in argument.)
 - stack trace
 - DSM https://en.wikipedia.org/wiki/Design_structure_matrix
 
+* Programming Paradigm
+Lorsque l'on fait un travail de programmation, il faut distinguer
+deux états:
+1) Je suis *perdu* et,
+2) Je ne suis *pas perdu*.
+** Je suis perdu
+Lorsque l'on est perdu, les actions suivantes peuvent nous aider à
+retrouver notre chemin:
+1) Lire le message d'erreur,
+2) Découper le problème,
+3) Mettre des prints/consol.log() un peu partout,
+4) Mettre le message d'erreur dans google,
+5) Chercher dans stackoverflow,
+6) Chercher dans github,
+7) Lire différents post liés au sujet,
+8) Lire la documentation du langage, module (library), system
+   (linux),
+9) Lire le code source du langage, module, ...,
+10) S'acharner jusqu'à ce que le problème saute (soit solutionné),
+11) Penser à changer de paradigme (ne pas confondre les moyens avec
+    les résultats attendus).
+** Je ne suis pas perdu
+Lorsque l'on sait ce que l'on veut faire, alors programmer se réduit à
+de *l'édition de text* que ce soit soit au niveau des *fichiers* (écrire
+dans le fichiers) ou au niveau du *système* (déplacer/renommer les
+fichiers/répertoires, modifier les droits sur les fichiers...).
+
+L'acte *d'édition de texte* peut s'apparenter à un *acte chirurgical* dans
+lequelle la *précision* et la *parfaite exécution* du geste sont essentiels et
+garantissent la qualité du résultat.
+
+L'acte d'édition peut se voir comme l'application répétée des
+sous-actes suivants:
+
+1) *Décider*: Qu'est-ce que je veux modifier? directory, fichier,
+   region, lines, line, words, word,
+2) *Localiser*: Quels fichiers/directories?, quelle partie du
+   fichier?, quels mots? ...,
+3) *Se déplacer*: dired, rgrep, swiper, find file, find buffer, jump
+   line, jump word, go-to-char, ring movement ...,
+4) *Sélectionner*: files/directories, region, line, one cursor,
+   multiple cursors, multiple files ...,
+5) *Inciser*: kill-ring-save, cut, insert space, insert new line,
+   insert new line indent, new statment (variable, function, class,
+   if/loop, library,...),
+6) *Réparer*: yank, fill, write,...,
+7) *Coudre*: save and run.
 * links
 ** miscellaneous
 - [[https://github.com/samoshkin/dotfiles][dotfiles by samoshkin (github)]]
