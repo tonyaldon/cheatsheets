@@ -3,36 +3,18 @@
 
 * Emacs workflow
 ** Keybindings phylosophy
-   -  Recommended :: use ~hydra~ for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
-   -  If any alternative :: use ~key-chords~ (2 fingers in
-     the same hand used as one finger) [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
-   -  Banned :: long term key-chords,
-   -  Banned :: bind commands with low use.
+-  Recommended :: use ~hydra~ for grouped actions [[https://github.com/abo-abo/hydra][hydra]],
+-  If any alternative :: use ~key-chords~ (2 fingers in
+  the same hand used as one finger) [[https://www.emacswiki.org/emacs/KeyChord][key-chord]],
+-  Banned :: long term key-chords,
+-  Banned :: bind commands with low use.
 ** A good setup
-   Either to write *code* or just *text*, I need:
-	 - a good completion sytem :: [[https://company-mode.github.io/][company-mode]], [[https://github.com/abo-abo/swiper][ivy]],
-	 - a good linting system :: [[https://www.flycheck.org/en/latest/][flycheck]],
-	 - a good snippets system :: [[https://github.com/joaotavora/yasnippet][yasnippet]],
-	 - an enhanced UI :: [[https://github.com/tumashu/posframe][posframe]],
-	 - an unified layout :: indentation, color, highlight.
-** Settings guide lines
-*** File types
-    Each file should be either a:
-    * setup file :: where we set stuff - mainly a ~mode~ - (file
-      prefixed by ~setup-~),
-    * keybinding file :: where we mainly set keybindings (files
-      prefixed by ~kb-~),
-    * util file :: where we define functions and variables that can be
-      use in many ~setup~ or ~kb~ files (files prefixed by ~util-~).
-*** Files' skeleton
-    In those files, things should be ordered in the following way:
-    1) ~require~,
-    2) ~defvar~,
-    3) ~setq~,
-    4) ~defun~,
-    5) ~defadvice~,
-    6) ~add-hook~,
-    7) ~define-key~.
+Either to write *code* or just *text*, I need:
+- a good completion sytem :: [[https://company-mode.github.io/][company-mode]], [[https://github.com/abo-abo/swiper][ivy]],
+- a good linting system :: [[https://www.flycheck.org/en/latest/][flycheck]],
+- a good snippets system :: [[https://github.com/joaotavora/yasnippet][yasnippet]],
+- an enhanced UI :: [[https://github.com/muffinmad/emacs-mini-frame][mini-frame]],
+- an unified layout :: indentation, color, highlight.
 * Programming Paradigm
   Lorsque l'on fait un travail de programmation, il faut distinguer
   deux états:
