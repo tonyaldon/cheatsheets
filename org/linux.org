@@ -1272,7 +1272,7 @@ Host *
 #+END_SRC
 
 *** How can I start ssh-agent on login?
-- Use ~systemd~ by adding a user sytemd unit for ~ssh-agent~.
+- Use ~systemd~ by adding a user systemd unit for ~ssh-agent~.
 - See [[https://stackoverflow.com/questions/18880024/start-ssh-agent-on-login][start-ssh-agent-on-login]] on stackoverflow.
 - If you want to start ~ssh-agent~ on login, you have to add a
   ~ssh-agent.service~ user systemd unit, export ~SSH_AUTH_SOCK~
