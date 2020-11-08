@@ -128,18 +128,9 @@ Either to write *code* or just *text*, I need:
 	- https://lihautan.com/manipulating-ast-with-javascript/
 * dired-mode
 ** ideas
-	 - [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
-   - [[https://github.com/emacsorphanage/dired-k][dired-k]]
-	 - use ~dired-actual-switches~ modify sorting in dired
-** Default keybindings
-   | ~A~   | ~dired-do-search~               |
-   | ~Q~   | ~dired-do-query-replace-regexp~ |
-   | ~/~   | ~dired-narrow~                  |
-   | ~g~   | ~revert-buffer~                 |
-   | ~k~   | ~dired-do-kill-lines~           |
-   | ~F~   | ~dired-do-find-marked-files~    |
-   | ~M-(~ | ~dired-mark-sexp~               |
-   | ~I~   | ~dired-info~                    |
+- [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
+- [[https://github.com/emacsorphanage/dired-k][dired-k]]
+- use ~dired-actual-switches~ modify sorting in dired
 * ibuffer
 ** Default keybindings
    | ~/ n~ | filter by name     |
