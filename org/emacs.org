@@ -525,14 +525,6 @@ files:
   #+END_SRC
 - ~.projectile~: package ~projectile~
 - ~jsconfig.json~: package ~tide~
-** Abo-Abo
-- [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
-- [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
-- [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
-- [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
-- [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
-- ~swiper-all~ (search in all open buffers)
-- [[https://github.com/abo-abo/lpy][lpy (python minor-mode)]]
 ** org-mode
 - [[http://juanreyero.com/article/emacs/org-teams.html][org-teams]]
 - [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
