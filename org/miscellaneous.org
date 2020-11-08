@@ -365,6 +365,31 @@ prettier --write file.html
 - https://github.com/yashi/org-asciidoc
 - https://jsdoc.app/about-getting-started.html
 * Code in production
+** github pages
+1) Example of my application [[https://tricks.tonyaldon.com/][tricks]] where the code lives at [[https://github.com/tonyaldon/tricks-app][tricks-app]]
+   on ~github~.
+2) ~tonyaldon~ is my username on ~github~
+3) Create a github repository: ~tonyaldon.github.io~
+4) Declare the custom domain (~tricks.tonyaldon.com~) on ~github~:
+   - see [[https://docs.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site][custom domain for github pages]] from ~github~ documentation.
+   - ~repository > settings > github pages > custom domain~ and write
+     down the domain ~tricks.tonyaldon.com~.
+5) Create a *CNAME* record that points ~tricks.tonyaldon.com~ to
+   ~tonyaldon.github.io~. (Note that [[https://www.ovh.com/fr/][ovh]] is my DNS provider).
+   - ~Domain > tonyaldon.com > DNS zone > add an entry > CNAME~
+   - Note that the ~.~ at the end of ~tonyaldon.com.~ and
+     ~tonyaldon.github.io.~ is really *mandatory*.
+   - Subdomain of ~tonyaldon.com.~: ~trick~
+   - target: ~tonyaldon.github.io.~
+6) Check the *DNS* by running the command: ~dig tricks.tonyaldon.com~.
+7) You have to add a ~CNAME~ file to your project containing the line
+   ~tricks.tonyaldon.com~. (For instance, with [[https://create-react-app.dev/][create-react-app]], my
+   ~CNAME~ file is under the directory ~public~.)
+8) Deploy your build site on the repository
+   ~tonyaldon/tonyaldon.github.io~. You can achieve this using the
+   command line tool [[https://github.com/tschaub/gh-pages][gh-pages]]. In my case, I just have to add three
+   extra lines in my ~package.json~ and to deploy I just run ~npm run
+   deploy~. See [[https://github.com/tonyaldon/tricks-app][tricks-app]] README.
 ** node app in production
 *** 0) tools
 - ~git~
