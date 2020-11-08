@@ -505,6 +505,18 @@ can call ~simple-call-tree-display-buffer~ with file list in argument.)
 
 * links
 ** miscellaneous
+- [[https://github.com/samoshkin/dotfiles][dotfiles by samoshkin (github)]]
+- [[https://github.com/denisidoro/dotfiles][dotfiles by denisidoro (github)]]
+- [[https://stuartsierra.com/presentations][Stuart Sierra presentation]]
+- [[https://www.cognitect.com/blog/2016/8/18/the-new-normal-tempo-flow-and-maneuverability][The new normal by Michael Nygard (blog)]]
+- [[https://github.com/mtnygard/architecture-qualities][architecture-qualites by Michael Nygard (github)]]
+- [[http://www.rosettacode.org/wiki/Rosetta_Code][Rosetta Code]]
+- [[https://en.wikipedia.org/wiki/Monad_(functional_programming)][monad (wikipedia)]]
+- [[https://www.springer.com/gp/book/9780387245447][The grammar of graphics by Wilkinson, Leland (book)]]
+- [[https://en.wikipedia.org/wiki/Closure_(computer_programming)][closure (wikipedia)]]
+- [[https://github.com/jwasham/coding-interview-university][coding-interview-university (github)]]
+- [[https://github.com/wiedzmin/structured-text-tools][structured-text-tools (github)]]
+- [[https://github.com/wiedzmin/awesome-dotfiles][awesome-dotfiles (github)]]
 - [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
 - [[https://fmt.dev/latest/index.html][fmt (homepage)]] A modern formatting library
 - [[https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts#Comparison_of_keyboard_shortcuts][comparison of keyboard shortcut (wikipedia)]]
