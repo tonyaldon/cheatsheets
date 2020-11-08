@@ -511,19 +511,6 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
 - with the font ~symbola~ you can print all ~unicode~ character.
 * Ideas
-** skeleton directory for some config file
-files:
-- ~.csswatcher~: package ~ac-html-csswatcher~
-  #+BEGIN_SRC bash
-  # ignore all css
-  ignore: \.css$
-  # except app.css
-  use: app\.css
-  # and skip recursive scanning node_modules, it may be slow!
-  skip: node_modules
-  #+END_SRC
-- ~.projectile~: package ~projectile~
-- ~jsconfig.json~: package ~tide~
 ** Other
 - [[https://github.com/emacsorphanage/dired-k][dired-k]]
 - use ~dired-actual-switches~ modify sorting in dired
