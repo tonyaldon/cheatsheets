@@ -504,6 +504,11 @@ Worth reading info node.
       return and line feed) by ~^J~ (only line feed). Notes that ~^J~
       is not printed when you open the file literally with
       ~find-file-literally~.
+** unbound symbol/variable
+- https://emacs.stackexchange.com/questions/2828/how-can-i-unbind-all-symbol-definitions-with-a-certain-prefix
+- https://www.gnu.org/software/emacs/manual/html_node/elisp/Void-Variables.html
+- makunbound
+- fmakunbound
 ** font
    - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
    - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
