@@ -105,60 +105,60 @@ Either to write *code* or just *text*, I need:
 	- subword-mode is a builtin package.
 * js-mode
 ** Completion with ~tern~
-   - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
-     editor-independent JavaScript analyzer that can be used to
-     improve the JavaScript integration of existing editors. I use it
-     to perfom completion in ~js-mode~.
-   - See [[https://ternjs.net/doc/manual.html#emacs][tern (into emacs)]].
-   - If you want to install ~tern~, run the command:
-     #+BEGIN_SRC bash
-     npm install -g tern
-     #+END_SRC
-   - If you want to use ~tern~ within emacs in the ~js-mode~:
-     - you have to install the emacs package ~tern~ (or ~company-tern~
-       that have ~tern~ as a dependency). To do so, add the line
-       ~(depends-on "company-tern")~ to the ~Cask~ file of the emacs
-       configuration in the directory ~~/.emacs.d~,
-     - you have to add the directory where the ~tern~ executable
-       resides to the ~PATH~ and ~exec-path~ emacs variables. As it
-       depends on the way you've installed ~node~ (either with ~apt~
-       or ~nvm~), first find it with ~whereis~ command, then add
-       it. To do so, run the command:
-       #+BEGIN_SRC bash
-       whereis tern
-       #+END_SRC
-       And for instance, if you get
-       ~/home/tony/.nvm/versions/node/v8.9.0/bin/tern~, add the
-       following lines to your emacs config file:
-       #+BEGIN_SRC emacs-lisp
-       (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:" (getenv "PATH")))
-       (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
-       #+END_SRC
-       Note: If ~tern~ has been install globaly with ~sudo npm install
-       -g tern~ and ~npm~ has been install with ~sudo apt install
-       nodejs~, ~tern~ is already in your ~PATH~ (~/usr/bin/tern~). So
-       you neither have to set ~"PATH"~ nor ~'exec-path~.
-     - you have to enable the ~tern-mode~ in the ~js-mode-hook~. To do
-       so, add the folling line to you emacs config file:
-       #+BEGIN_SRC bash
-       (add-hook 'js-mode-hook (lambda () (tern-mode t)))
-       #+END_SRC
-     - Finally, to work, ~tern~ looks for a file named ~.tern-config~
-       either in the directory where the file ~my-file.js~ resides, or
-       in the chain of the parents directories, until the ~$HOME~ home
-       directory. The ~.tern-config~ must contain at list the
-       following content:
-       #+BEGIN_SRC js
-       {
-         "libs": [
-           "browser",
-           "ecmascript"
-         ],
-         "plugins": {
-           "node": {}
-         }
-       }
-       #+END_SRC
+- ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
+  editor-independent JavaScript analyzer that can be used to
+  improve the JavaScript integration of existing editors. I use it
+  to perfom completion in ~js-mode~.
+- See [[https://ternjs.net/doc/manual.html#emacs][tern (into emacs)]].
+- If you want to install ~tern~, run the command:
+  #+BEGIN_SRC bash
+  npm install -g tern
+  #+END_SRC
+- If you want to use ~tern~ within emacs in the ~js-mode~:
+  - you have to install the emacs package ~tern~ (or ~company-tern~
+    that have ~tern~ as a dependency). To do so, add the line
+    ~(depends-on "company-tern")~ to the ~Cask~ file of the emacs
+    configuration in the directory ~~/.emacs.d~,
+  - you have to add the directory where the ~tern~ executable
+    resides to the ~PATH~ and ~exec-path~ emacs variables. As it
+    depends on the way you've installed ~node~ (either with ~apt~
+    or ~nvm~), first find it with ~whereis~ command, then add
+    it. To do so, run the command:
+    #+BEGIN_SRC bash
+    whereis tern
+    #+END_SRC
+    And for instance, if you get
+    ~/home/tony/.nvm/versions/node/v8.9.0/bin/tern~, add the
+    following lines to your emacs config file:
+    #+BEGIN_SRC emacs-lisp
+    (setenv "PATH" (concat "/home/tony/.nvm/versions/node/v8.9.0/bin:" (getenv "PATH")))
+    (add-to-list 'exec-path "/home/tony/.nvm/versions/node/v8.9.0/bin")
+    #+END_SRC
+    Note: If ~tern~ has been install globaly with ~sudo npm install
+    -g tern~ and ~npm~ has been install with ~sudo apt install
+    nodejs~, ~tern~ is already in your ~PATH~ (~/usr/bin/tern~). So
+    you neither have to set ~"PATH"~ nor ~'exec-path~.
+  - you have to enable the ~tern-mode~ in the ~js-mode-hook~. To do
+    so, add the folling line to you emacs config file:
+    #+BEGIN_SRC bash
+    (add-hook 'js-mode-hook (lambda () (tern-mode t)))
+    #+END_SRC
+  - Finally, to work, ~tern~ looks for a file named ~.tern-config~
+    either in the directory where the file ~my-file.js~ resides, or
+    in the chain of the parents directories, until the ~$HOME~ home
+    directory. The ~.tern-config~ must contain at list the
+    following content:
+    #+BEGIN_SRC js
+    {
+      "libs": [
+        "browser",
+        "ecmascript"
+      ],
+      "plugins": {
+        "node": {}
+      }
+    }
+    #+END_SRC
 ** Completion with ~company~ and ~ac-html-csswatcher~
 For a specific project, you get after evalute ~(find-file
 ac-html-csswatcher-source-dir)~, you get:
@@ -176,33 +176,33 @@ completion ~App-id~ (~sexp~ starting one of the line of ~global-class~
 file) proposed.
 
 to use ~ac-html-csswatcher~ in ~js-jsx-mode~ (ie: React JS):
-  1. modified ~company-web-html~, enable its use in other mode than
-     ~derived from html and web-mode~
-	2. Add ~company-web-html~ backend to ~company-backends~ in
-     ~js-jsx-mode~.
-	3. modified or advice after function
-     ~ac-html-csswatcher-setup-html-stuff-async~ in order to copy file
-     ~global-class~ to ~global-className~. (because in React, in
-     ~html tag~   or ~react component~, to specify ~css~ classes we
-     use the attribute ~className~)
+1. modified ~company-web-html~, enable its use in other mode than
+   ~derived from html and web-mode~
+2. Add ~company-web-html~ backend to ~company-backends~ in
+   ~js-jsx-mode~.
+3. modified or advice after function
+   ~ac-html-csswatcher-setup-html-stuff-async~ in order to copy file
+   ~global-class~ to ~global-className~. (because in React, in
+   ~html tag~   or ~react component~, to specify ~css~ classes we
+   use the attribute ~className~)
 ** completion with ~tide~ (js and jsx)
-	 - [[https://github.com/ananthakumaran/tide][tide (github)]]
-	 - add ~jsconfig.json~ file in the root of the project:
-		 see: https://code.visualstudio.com/docs/languages/jsconfig
-		 #+BEGIN_SRC js
-		 {
-			 "compilerOptions": {
-				 "target": "es2017",
-				 "allowSyntheticDefaultImports": true,
-				 "noEmit": true,
-				 "checkJs": true,
-				 "jsx": "react",
-				 "lib": [ "dom", "es2017" ]
-			 }
-		 }
-		 #+END_SRC
-	 - see example: [[https://patrickskiba.com/emacs/2019/09/07/emacs-for-react-dev.html][react dev (patrickskiba)]] and [[https://wdicc.com/emacs-as-react-native-ide/][react native ide]].
-	 - ~company-fuzzy~ doesn't work with ~company-tide~ provide by ~tide~.
+- [[https://github.com/ananthakumaran/tide][tide (github)]]
+- add ~jsconfig.json~ file in the root of the project:
+  see: https://code.visualstudio.com/docs/languages/jsconfig
+  #+BEGIN_SRC js
+  {
+    "compilerOptions": {
+      "target": "es2017",
+      "allowSyntheticDefaultImports": true,
+      "noEmit": true,
+      "checkJs": true,
+      "jsx": "react",
+      "lib": [ "dom", "es2017" ]
+    }
+  }
+  #+END_SRC
+- see example: [[https://patrickskiba.com/emacs/2019/09/07/emacs-for-react-dev.html][react dev (patrickskiba)]] and [[https://wdicc.com/emacs-as-react-native-ide/][react native ide]].
+- ~company-fuzzy~ doesn't work with ~company-tide~ provide by ~tide~.
 * latex
 ** code completion with lsp, digestif & company
    #+BEGIN_SRC emacs-lisp
