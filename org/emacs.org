@@ -317,308 +317,312 @@ Worth reading info node.
 - ~(info "(elisp) Windows and Frames")~
 * Tips
 ** Commands
-   * ~M-x re-builder~ : build regular expression
-   * ~C-u C-x =~ : pop a buffer with information at point
-   * ~M-x list-faces-display~ : list all available faces on current emacs session
-   * ~M-:~ : interactive ~eval-expression~
-   * ~c~ : in ~Info-mode~ run ~Info-copy-current-node-name~.
+- ~M-x re-builder~ : build regular expression
+- ~C-u C-x =~ : pop a buffer with information at point
+- ~M-x list-faces-display~ : list all available faces on current emacs session
+- ~c~ : in ~Info-mode~ run ~Info-copy-current-node-name~.
 ** emacs setup
-     #+END_SRC
-   * Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
-     to bind ~kmacro~ if needed.
-   * If you want to mute warning messages, add this line ~(setq
-     warning-minimum-level :emergency)~ to your emacs configuration.
+- Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
+to bind ~kmacro~ if needed.
+- If you want to mute warning messages, add this line ~(setq
+warning-minimum-level :emergency)~ to your emacs configuration.
 ** miscellaneous
-   * [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
-   * [[https://emacs.stackexchange.com/questions/10367/construct-a-list-from-a-variable][emacs: construct list from variable]]
-   * [[http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html][tips on ibuffer]]
-   * [[http://ergoemacs.org/emacs/emacs_jump_to_previous_position.html][ergoemacs: jump to previous position]]
-   * [[http://iboyko.com/articles/updating-emacs-from-24-to-26-27-on-ubuntu/][updating emacs from 24 to 26-27]]
-   * ~mark-ring~ :
-     1) Don't try to ~push-mark~ when that you want is to cycle into the ~mark-ring~.
-     2) Better is to ~defadvice~ before with ~(push-mark)~ other
-        commands when they move point and you may want to go back to the
-        position. [[https://gist.github.com/magnars/2350388][see magnars to do the advice.]]
-   * ~key-chord~ example: ~(key-chord-define js-mode-map ";;" "\C-e;")~
-   * Don't rebind ~(kbd "ESC")~ , it doesn't work and break some
-     internal emacs stuff. Better to bind ~[escape]~.
-     See: [[https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key][escape prefix key]]
-   * To open a file as ~sudo~, emacs use ~tramp~. To do so:
-     1) with ~counsel-find-file~: give the path of the file,
-        - run ~counsel-find-file~,
-        - in ~ivy-minibuffer~, give the path of the file,
-        - in ~ivy-minibuffer~, run ~ivy-dispatching-done~,
-        - in ~ivy-minibuffer~, type ~r~ key to open as root.
-     2) in ~dired-mode~, see the package ~dired-toggle-sudo~
-        ([[https://lists.gnu.org/archive/html/help-gnu-emacs/2014-02/msg00268.html][switching dired using sudo]]).
-   * If you get the error ~<dead-acute> is undefined~, try adding the
-     package ~iso-transl~ to your ~.emacs~. Add this ~(require
-     'iso-transl')~ to your ~.emacs~.
+- [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
+- [[https://emacs.stackexchange.com/questions/10367/construct-a-list-from-a-variable][emacs: construct list from variable]]
+- [[http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html][tips on ibuffer]]
+- [[http://ergoemacs.org/emacs/emacs_jump_to_previous_position.html][ergoemacs: jump to previous position]]
+- [[http://iboyko.com/articles/updating-emacs-from-24-to-26-27-on-ubuntu/][updating emacs from 24 to 26-27]]
+- ~mark-ring~ :
+1) Don't try to ~push-mark~ when that you want is to cycle into the ~mark-ring~.
+2) Better is to ~defadvice~ before with ~(push-mark)~ other
+   commands when they move point and you may want to go back to the
+   position. [[https://gist.github.com/magnars/2350388][see magnars to do the advice.]]
+- ~key-chord~ example: ~(key-chord-define js-mode-map ";;" "\C-e;")~
+- Don't rebind ~(kbd "ESC")~ , it doesn't work and break some
+internal emacs stuff. Better to bind ~[escape]~.
+See: [[https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key][escape prefix key]]
+- To open a file as ~sudo~, emacs use ~tramp~. To do so:
+1) with ~counsel-find-file~: give the path of the file,
+   - run ~counsel-find-file~,
+   - in ~ivy-minibuffer~, give the path of the file,
+   - in ~ivy-minibuffer~, run ~ivy-dispatching-done~,
+   - in ~ivy-minibuffer~, type ~r~ key to open as root.
+2) in ~dired-mode~, see the package ~dired-toggle-sudo~
+   ([[https://lists.gnu.org/archive/html/help-gnu-emacs/2014-02/msg00268.html][switching dired using sudo]]).
+- If you get the error ~<dead-acute> is undefined~, try adding the
+package ~iso-transl~ to your ~.emacs~. Add this ~(require
+'iso-transl')~ to your ~.emacs~.
 ** byte compilation
-   - [[https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory][Byte compilation:]]
-   see the emacs functions ~byte-compile-file~, ~byte-recompile-file~,
-   ~byte-recompile-directory~. You can do: ~M-x
-   byte-recompile-directory~.
-   - When you upgrade your emacs (for example from 24 to 26), some
-   packages wouldn't work because they have been byte compile with the
-   old version. Think to byte compile your packages with the newer
-   emacs version.
+- [[https://stackoverflow.com/questions/1217180/how-do-i-byte-compile-everything-in-my-emacs-d-directory][Byte compilation:]]
+  see the emacs functions ~byte-compile-file~, ~byte-recompile-file~,
+  ~byte-recompile-directory~. You can do: ~M-x
+  byte-recompile-directory~.
+  - When you upgrade your emacs (for example from 24 to 26), some
+    packages wouldn't work because they have been byte compile with the
+    old version. Think to byte compile your packages with the newer
+    emacs version.
 ** emacs command line in terminal
 *** --eval
-    - Problem :: How can I write in a file with ~emacs~ use as a command line?
-    - Use the options ~--eval~, ~--batch~, ~-f~ of ~emacs~ considered
-      as a command line.
-    - See example: ~(info "(emacs) Command Example")~.
-    - If you want write ~"blabla"~ into the file ~some-file~,
-      run the command:
-      #+BEGIN_SRC bash
-      emacs --batch some-file --eval '(insert "blabla")' -f save-buffer >& log
-      #+END_SRC
+- Problem :: How can I write in a file with ~emacs~ use as a command line?
+- Use the options ~--eval~, ~--batch~, ~-f~ of ~emacs~ considered
+  as a command line.
+- See example: ~(info "(emacs) Command Example")~.
+- If you want write ~"blabla"~ into the file ~some-file~,
+  run the command:
+  #+BEGIN_SRC bash
+  emacs --batch some-file --eval '(insert "blabla")' -f save-buffer >& log
+  #+END_SRC
 ** bugs
-   * In terminal (emacs without Xwindow), emacs adds some strange
-     characters when:(copying stuff frome the clipboard into
-     emacs, when switching between emacs (in terminal) and other
-     Xwindows, when lauching emacs.)
-     Problem solved by removing the binding ~M-[~. See
-     [[https://superuser.com/questions/729366/emacs-adding-strange-characters-at-the-beginning-of-files][stackoverflow thread]].
-	 * Problem with lockfiles when using ~create-react-app~ to write
-     React js App. Seems to be a conflict with ~watchman~ that stop
-     the app whenever it detect a new file. But when you edit a file,
-     for instance ~file.js~, while it is not saved, emacs (by
-     default) create a temporary file ~#file.js~ that is a
-     symlink. And that symlink cause ~watchman~ to stop the
-     application.
-		 Problem solved by setting the variable ~create-lockfiles~ to
-     ~nil~, by evaluating the code ~(setq create-lockfiles nil)~.
-		 See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][emacs creates temporary symbolic link]]
+- In terminal (emacs without Xwindow), emacs adds some strange
+characters when:(copying stuff frome the clipboard into
+emacs, when switching between emacs (in terminal) and other
+Xwindows, when lauching emacs.)
+Problem solved by removing the binding ~M-[~. See
+[[https://superuser.com/questions/729366/emacs-adding-strange-characters-at-the-beginning-of-files][stackoverflow thread]].
+- Problem with lockfiles when using ~create-react-app~ to write
+React js App. Seems to be a conflict with ~watchman~ that stop
+the app whenever it detect a new file. But when you edit a file,
+for instance ~file.js~, while it is not saved, emacs (by
+default) create a temporary file ~#file.js~ that is a
+symlink. And that symlink cause ~watchman~ to stop the
+application.
+Problem solved by setting the variable ~create-lockfiles~ to
+~nil~, by evaluating the code ~(setq create-lockfiles nil)~.
+See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-temporary-symbolic-links-for-modified-files][emacs creates temporary symbolic link]]
 ** emacs server/client
 *** start emacs faster
-    - Problem :: How can I run emacs faster at startup?
-    - Use ~--fg-daemon~ flag of ~emacs~ and ~emacsclient~.
-    - Start a server in the foreground (~--fg-daemon~).
-    - Tells a running Emacs to visit a file (~emacsclient~).
-    - See examples [[http://wikemacs.org/wiki/Emacs_server][emacs server (wikemacs)]], [[https://stackoverflow.com/questions/1167484/how-to-gracefully-shutdown-emacs-daemon][emacs server (stackoverflow)]],
-      [[https://www.emacswiki.org/emacs/EmacsAsDaemon][emacs server (emacswiki)]], [[https://emacs.stackexchange.com/questions/39484/speed-up-emacs-start-up-time][emacs daemon]].
-    - If you want to start emacs faster, the best way is to run
-      ~emacs~ as server and connect client ~emacsclient~ to this
-      server. To do so, run the following commands:
-      #+BEGIN_SRC bash
-      emacs --fg-daemon
-      emacsclient -nc
-      #+END_SRC
-    - Your ~.emacs~ configuration is loaded once with ~emacs
-      --fg-daemon~.
-    - Your can start as many client ~emacsclient~ as you want. As they
-      run with the server you have started before, they all share
-      buffers, a command history, or other kinds of information with
-      any existing Emacs process.
+- Problem :: How can I run emacs faster at startup?
+- Use ~--fg-daemon~ flag of ~emacs~ and ~emacsclient~.
+- Start a server in the foreground (~--fg-daemon~).
+- Tells a running Emacs to visit a file (~emacsclient~).
+- See examples [[http://wikemacs.org/wiki/Emacs_server][emacs server (wikemacs)]], [[https://stackoverflow.com/questions/1167484/how-to-gracefully-shutdown-emacs-daemon][emacs server (stackoverflow)]],
+  [[https://www.emacswiki.org/emacs/EmacsAsDaemon][emacs server (emacswiki)]], [[https://emacs.stackexchange.com/questions/39484/speed-up-emacs-start-up-time][emacs daemon]].
+- If you want to start emacs faster, the best way is to run
+  ~emacs~ as server and connect client ~emacsclient~ to this
+  server. To do so, run the following commands:
+  #+BEGIN_SRC bash
+  emacs --fg-daemon
+  emacsclient -nc
+  #+END_SRC
+- Your ~.emacs~ configuration is loaded once with ~emacs
+  --fg-daemon~.
+- Your can start as many client ~emacsclient~ as you want. As they
+  run with the server you have started before, they all share
+  buffers, a command history, or other kinds of information with
+  any existing Emacs process.
 *** emacs daemon
-    - Problem :: How can I start ~emacs~ in daemon mode when you login
-      to your linux session?
-    - Use ~systemctl~ command.
-    - Control the ~systemd~ system and ~service manager~.
-    - See examples: ~(info "(emacs) Emacs Server")~.
-    - If you want to ~emacs~ start in daemon mode when you login to
-      your linux session, we use the ~systemd~ and add it a ~systemd
-      unit file~. To do so:
-      1) Locate the ~emacs.service~ files that comes with your ~emacs~
-         distribution. Run ~locate emacs.service~ in your terminal to
-         find the path.
-      2) Then you have to copy ~emacs.service~ file to a standard
-         directory such as ~~/.config/systemd/user/~. This file looks
-         like this:
-         #+BEGIN_SRC bash
-         [Unit]
-         Description=Emacs text editor
-         Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+- Problem :: How can I start ~emacs~ in daemon mode when you login
+  to your linux session?
+- Use ~systemctl~ command.
+- Control the ~systemd~ system and ~service manager~.
+- See examples: ~(info "(emacs) Emacs Server")~.
+- If you want to ~emacs~ start in daemon mode when you login to
+  your linux session, we use the ~systemd~ and add it a ~systemd
+  unit file~. To do so:
+  1) Locate the ~emacs.service~ files that comes with your ~emacs~
+     distribution. Run ~locate emacs.service~ in your terminal to
+     find the path.
+  2) Then you have to copy ~emacs.service~ file to a standard
+     directory such as ~~/.config/systemd/user/~. This file looks
+     like this:
+     #+BEGIN_SRC bash
+     [Unit]
+     Description=Emacs text editor
+     Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
 
-         [Service]
-         Type=notify
-         ExecStart=/usr/bin/emacs --fg-daemon
-         ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
-         Restart=on-failure
+     [Service]
+     Type=notify
+     ExecStart=/usr/bin/emacs --fg-daemon
+     ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+     Restart=on-failure
 
-         [Install]
-         WantedBy=default.target
-         #+END_SRC
-      3) Finally, activate it by running the command:
-      #+BEGIN_SRC bash
-      systemctl --user enable emacs
-      systemctl --user start emacs
-      #+END_SRC
-    - ~systemctl~ comes with standard commands as ~enable~, ~start~,
-      ~status~, ~stop~. So to interact with ~emacs systemd unit~, you
-      can use the following commands:
-      #+BEGIN_SRC bash
-      systemctl --user enable emacs
-      systemctl --user start emacs
-      systemctl --user status emacs
-      systemctl --user stop emacs
-      #+END_SRC
+     [Install]
+     WantedBy=default.target
+     #+END_SRC
+  3) Finally, activate it by running the command:
+  #+BEGIN_SRC bash
+  systemctl --user enable emacs
+  systemctl --user start emacs
+  #+END_SRC
+- ~systemctl~ comes with standard commands as ~enable~, ~start~,
+  ~status~, ~stop~. So to interact with ~emacs systemd unit~, you
+  can use the following commands:
+  #+BEGIN_SRC bash
+  systemctl --user enable emacs
+  systemctl --user start emacs
+  systemctl --user status emacs
+  systemctl --user stop emacs
+  #+END_SRC
 ** faces
 *** Check default font
-    - Problem :: How can I check the current default font use by emacs?
-    - Use ~customize-face~, ~describe-font~ or ~describe-char~ commands.
-    - See examples [[http://ergoemacs.org/emacs/emacs_list_and_set_font.html][list and set font]].
-    - If you want to check the current default font where you're
-      cursor is, run the command:
-      #+BEGIN_SRC bash
-      M-x describe-font RET RET
-      #+END_SRC
-      this will pop-up a help buffer with the ~name~, ~full name~ and
-      ~file name~ of the font use on the character under cursor.
-    - If you want to check the current default font where you're
-      cursor is, run the command:
-      #+BEGIN_SRC bash
-      M-x describe-char RET
-      #+END_SRC
-      this will pop-up a help buffer with a lot of informations about
-      the caracher under cursor, and the font name at the line in
-      ~display~.
-    - If you want to check the current default font and maybe modify
-      it in the interactive customize menu, enter the command:
-      #+BEGIN_SRC bash
-      M-x customize-face RET default RET
-      #+END_SRC
-      this will pop-up the buffer ~*Customize Face: Default*~, that
-      contains the information in line ~Font Family~.
+- Problem :: How can I check the current default font use by emacs?
+- Use ~customize-face~, ~describe-font~ or ~describe-char~ commands.
+- See examples [[http://ergoemacs.org/emacs/emacs_list_and_set_font.html][list and set font]].
+- If you want to check the current default font where you're
+  cursor is, run the command:
+  #+BEGIN_SRC bash
+  M-x describe-font RET RET
+  #+END_SRC
+  this will pop-up a help buffer with the ~name~, ~full name~ and
+  ~file name~ of the font use on the character under cursor.
+- If you want to check the current default font where you're
+  cursor is, run the command:
+  #+BEGIN_SRC bash
+  M-x describe-char RET
+  #+END_SRC
+  this will pop-up a help buffer with a lot of informations about
+  the caracher under cursor, and the font name at the line in
+  ~display~.
+- If you want to check the current default font and maybe modify
+  it in the interactive customize menu, enter the command:
+  #+BEGIN_SRC bash
+  M-x customize-face RET default RET
+  #+END_SRC
+  this will pop-up the buffer ~*Customize Face: Default*~, that
+  contains the information in line ~Font Family~.
 ** utf-8
 *** links
-    - [[https://en.wikipedia.org/wiki/UTF-8][utf-8 (wikipedia)]]
-    - [[http://ergoemacs.org/emacs/emacs_line_ending_char.html][emacs line ending char (ergoemacs)]]
-    - [[https://stackoverflow.com/questions/17862846/whats-the-difference-among-various-types-of-utf-8-in-emacs][difference among utf-8 types in emacs (stackoverflow)]]
+- [[https://en.wikipedia.org/wiki/UTF-8][utf-8 (wikipedia)]]
+- [[http://ergoemacs.org/emacs/emacs_line_ending_char.html][emacs line ending char (ergoemacs)]]
+- [[https://stackoverflow.com/questions/17862846/whats-the-difference-among-various-types-of-utf-8-in-emacs][difference among utf-8 types in emacs (stackoverflow)]]
 *** commands
-    - ~M-x describe-variable RET buffer-file-coding-system~,
-    - ~C-q~ : ~quoted-insert~,
-    - ~find-file-literally~ : Visit file FILENAME with no conversion
-      of any kind,
-    - ~hexl-mode~ : A mode for editing binary files in hex dump
-      format,
-    - ~M-x set-buffer-file-coding-system RET utf-8-unix~.
+- ~M-x describe-variable RET buffer-file-coding-system~,
+- ~C-q~ : ~quoted-insert~,
+- ~find-file-literally~ : Visit file FILENAME with no conversion
+  of any kind,
+- ~hexl-mode~ : A mode for editing binary files in hex dump
+  format,
+- ~M-x set-buffer-file-coding-system RET utf-8-unix~.
 *** utf-8-unix-with-signature-dos and utf-8-unix-with-signature-unix
-    - I change my file ~file.txt~ from ~utf-8-unix-with-signature-dos~
-    to ~utf-8-unix-with-signature-unix~ by running ~M-x
-    set-buffer-file-coding-system RET utf-8-unix-with-signature-unix~
-    in a buffer with ~file.txt~ open.
-    - This changed the end of line character ~^M^J~ (stand for carriage
-      return and line feed) by ~^J~ (only line feed). Notes that ~^J~
-      is not printed when you open the file literally with
-      ~find-file-literally~.
+- I change my file ~file.txt~ from ~utf-8-unix-with-signature-dos~
+  to ~utf-8-unix-with-signature-unix~ by running ~M-x
+  set-buffer-file-coding-system RET utf-8-unix-with-signature-unix~
+  in a buffer with ~file.txt~ open.
+  - This changed the end of line character ~^M^J~ (stand for carriage
+    return and line feed) by ~^J~ (only line feed). Notes that ~^J~
+    is not printed when you open the file literally with
+    ~find-file-literally~.
 ** unbound symbol/variable
 - https://emacs.stackexchange.com/questions/2828/how-can-i-unbind-all-symbol-definitions-with-a-certain-prefix
 - https://www.gnu.org/software/emacs/manual/html_node/elisp/Void-Variables.html
 - makunbound
 - fmakunbound
 ** font
-   - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
-   - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
-   - with the font ~symbola~ you can print all ~unicode~ character.
 - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
 - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
 - with the font ~symbola~ you can print all ~unicode~ character.
 * Ideas
 ** skeleton directory for some config file
-	 files:
-	  - ~.csswatcher~: package ~ac-html-csswatcher~
-			#+BEGIN_SRC bash
-      # ignore all css
-			ignore: \.css$
-			# except app.css
-			use: app\.css
-			# and skip recursive scanning node_modules, it may be slow!
-			skip: node_modules
-			#+END_SRC
-		- ~.projectile~: package ~projectile~
-		- ~jsconfig.json~: package ~tide~
+files:
+- ~.csswatcher~: package ~ac-html-csswatcher~
+  #+BEGIN_SRC bash
+  # ignore all css
+  ignore: \.css$
+  # except app.css
+  use: app\.css
+  # and skip recursive scanning node_modules, it may be slow!
+  skip: node_modules
+  #+END_SRC
+- ~.projectile~: package ~projectile~
+- ~jsconfig.json~: package ~tide~
 ** Abo-Abo
-   - [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
-   - [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
-   - [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
-   - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
-   - [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
-   - ~swiper-all~ (search in all open buffers)
-   - [[https://github.com/abo-abo/lpy][lpy (python minor-mode)]]
+- [[https://oremacs.com/2015/10/02/swiper-visual-line/][unfill-paragraph function]]
+- [[https://oremacs.com/2014/12/23/upcase-word-you-silly/][defadvice upcase-word ...]]
+- [[https://oremacs.com/2015/01/27/my-refactoring-workflow/][refactoring workflow]]
+- [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
+- [[https://github.com/emacscollective/no-littering][no-littering package : help keeping /.emacs.d clean]]
+- ~swiper-all~ (search in all open buffers)
+- [[https://github.com/abo-abo/lpy][lpy (python minor-mode)]]
 ** org-mode
-   - [[http://juanreyero.com/article/emacs/org-teams.html][org-teams]]
-   - [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
-   - [[https://github.com/alphapapa/org-graph-view][org-graph-view]]
-   - [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
-   - [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
-   - [[https://github.com/200ok-ch/org-parser][org-parser]]
-   - [[https://github.com/ndwarshuis/org-sql][org-sql]]
-   - see function: org-element-parse-buffer
+- [[http://juanreyero.com/article/emacs/org-teams.html][org-teams]]
+- [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
+- [[https://github.com/alphapapa/org-graph-view][org-graph-view]]
+- [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
+- [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
+- [[https://github.com/200ok-ch/org-parser][org-parser]]
+- [[https://github.com/ndwarshuis/org-sql][org-sql]]
+- see function: org-element-parse-buffer
 ** Other
-	 - https://github.com/benma/emacs.d/blob/master/init.el
-	   (section fill-column-indicator & company/fill-column-indicator)
-	 - have a look on ~company-lsp~ and ~lsp-mode~
-   - diff-hl.el package -> Diff highlights in the fringe (https://protesilaos.com/dotemacs/)
-	 - javascript:
-		 - https://www.npmjs.com/package/indium
-     - https://github.com/NicolasPetton/Indium
-     - https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-js.html
-	 - (shell-command-to-string "ls -l")
-	 - https://github.com/leoliu/easy-kill
-	 - https://github.com/joodland/bm (bookmark)
-	 - company-statistics, company-suggest, company-tabnine
-	 - [[https://github.com/alphapapa/bufler.el][bufler.el]]
-   - [[https://github.com/ahungry/fast-scroll][fast-scroll]]
-   - [[https://github.com/fourier/ztree][ztree]] (Directory tree comparison mode for Emacs)
-   - [[https://github.com/emacs-tw/awesome-emacs][awesome-emacs]] (list of emacs packages)
-   - see: bm.el package (bm.el provides visible, buffer local,
-     bookmarks and the ability to jump forward and backward to the
-     next bookmark.)
-   - [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
-   - see: counsel-recentf
-   - [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
-   - [[https://github.com/articuluxe/parsenv][parsenv]]
-   - [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
-   - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
-   - [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
-   - ~mode-line~: To modify what appears in mode-line, you can modify
-     the default variable ~mode-line-format~. For instance, to show
-     the total number of line in the buffer see [[https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline][display in mode-line]].
-   - [[https://github.com/gregsexton/origami.el][origami.el : a text folding minor mode for Emacs.]]
-   - [[http://www.shanidar.net/news/ca/2016/09/11/0001/more-emacs-configuration-tweaks-multiple-cursor-on-click-minimap-code-folding-ensime-eval-overlays][minimap and origami]]
-   - It may be possible to change the rendering of the two spaces
-     ~"  "~ inserted when expand a subtree in dired-subtree by modifying
-     the function ~dired-subtree--readin~.
-   - [[http://ergoemacs.org/emacs/emacs_show_key_and_command.html][command-log-mode package]]
-   - [[http://ergoemacs.org/emacs/emacs_n_unicode.html][ergoemacs: emacs unicode]]
-   - [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
-   - [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
-   - [[https://melpa.org/#/counsel-jq][counsel for jq]]
-   - [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
-   - [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
-   - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
-   - search engine
-     - [[https://xapian.org/][xapian]]
-     - [[https://xapian.org/docs/omega/overview.html][omega]]
-     - [[https://www.lesbonscomptes.com/recoll/][recoll]]
-     - [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]]
-     - [[http://angel-de-vicente.blogspot.com/2017/11/emacs-interface-to-recoll.html][emacs interface to recoll]]
-     - [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll usermanual]]
-   - [[https://github.com/Alexander-Miller/treemacs][treemacs]]
-   - [[https://github.com/amake/orgro][orgro]] (org-mode file viewer for iOS and android)
-   - [[https://symmetricaldatasecurity.blogspot.com/2020/05/prettifying-org-mode-with-css.html][prettifying-org-mode-with-css]]
-   - [[/home/tony/work/apps/emacs/lisp/delim-col.el]] (interesting to modify rectangle)
-   - https://github.com/benma/visual-regexp.el
-   - goto-last-change package
-   - goto-last-point package
-   - https://github.com/joostkremers/writeroom-mode
-   - https://github.com/rnkn/olivetti
-   - rainbow-mode package
-   - immortal-scratch package
-   - scratch package
-   - ivy-emoji package
+- [[https://github.com/emacsorphanage/dired-k][dired-k]]
+- use ~dired-actual-switches~ modify sorting in dired
+- https://github.com/Wilfred/helpful
+- see: tab-bar.el and tab-line.el
+- https://github.com/nex3/perspective-el
+- https://github.com/darksmile/cheatsheet
+- https://github.com/abrochard/walkman
+- https://github.com/akicho8/string-inflection (http://xenodium.com/string-inflection-emacs-package/)
+- http://xenodium.com/emacs-smartparens-auto-indent/
+- https://github.com/benma/emacs.d/blob/master/init.el
+  (section fill-column-indicator & company/fill-column-indicator)
+- have a look on ~company-lsp~ and ~lsp-mode~
+- diff-hl.el package -> Diff highlights in the fringe (https://protesilaos.com/dotemacs/)
+- javascript:
+  - https://www.npmjs.com/package/indium
+  - https://github.com/NicolasPetton/Indium
+  - https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-js.html
+- (shell-command-to-string "ls -l")
+- https://github.com/leoliu/easy-kill
+- https://github.com/joodland/bm (bookmark)
+- company-statistics, company-suggest, company-tabnine
+- [[https://github.com/alphapapa/bufler.el][bufler.el]]
+- [[https://github.com/ahungry/fast-scroll][fast-scroll]]
+- [[https://github.com/fourier/ztree][ztree]] (Directory tree comparison mode for Emacs)
+- [[https://github.com/emacs-tw/awesome-emacs][awesome-emacs]] (list of emacs packages)
+- see: bm.el package (bm.el provides visible, buffer local,
+  bookmarks and the ability to jump forward and backward to the
+  next bookmark.)
+- [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
+- see: counsel-recentf
+- [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
+- [[https://github.com/articuluxe/parsenv][parsenv]]
+- [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
+- [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
+- [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
+- ~mode-line~: To modify what appears in mode-line, you can modify
+  the default variable ~mode-line-format~. For instance, to show
+  the total number of line in the buffer see [[https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline][display in mode-line]].
+- [[https://github.com/gregsexton/origami.el][origami.el : a text folding minor mode for Emacs.]]
+- [[http://www.shanidar.net/news/ca/2016/09/11/0001/more-emacs-configuration-tweaks-multiple-cursor-on-click-minimap-code-folding-ensime-eval-overlays][minimap and origami]]
+- It may be possible to change the rendering of the two spaces
+  ~"  "~ inserted when expand a subtree in dired-subtree by modifying
+  the function ~dired-subtree--readin~.
+- [[http://ergoemacs.org/emacs/emacs_show_key_and_command.html][command-log-mode package]]
+- [[http://ergoemacs.org/emacs/emacs_n_unicode.html][ergoemacs: emacs unicode]]
+- [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
+- [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
+- [[https://melpa.org/#/counsel-jq][counsel for jq]]
+- [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
+- [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
+- [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
+- search engine
+  - [[https://xapian.org/][xapian]]
+  - [[https://xapian.org/docs/omega/overview.html][omega]]
+  - [[https://www.lesbonscomptes.com/recoll/][recoll]]
+  - [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]]
+  - [[http://angel-de-vicente.blogspot.com/2017/11/emacs-interface-to-recoll.html][emacs interface to recoll]]
+  - [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll usermanual]]
+- [[https://github.com/Alexander-Miller/treemacs][treemacs]]
+- [[https://github.com/amake/orgro][orgro]] (org-mode file viewer for iOS and android)
+- [[https://symmetricaldatasecurity.blogspot.com/2020/05/prettifying-org-mode-with-css.html][prettifying-org-mode-with-css]]
+- [[/home/tony/work/apps/emacs/lisp/delim-col.el]] (interesting to modify rectangle)
+- https://github.com/benma/visual-regexp.el
+- goto-last-change package
+- goto-last-point package
+- https://github.com/joostkremers/writeroom-mode
+- https://github.com/rnkn/olivetti
+- rainbow-mode package
+- immortal-scratch package
+- scratch package
+- ivy-emoji package
 ** ispell, flyspell, aspell (for text mode)
-   - switch between English, French, Spanish
-   - work with company (see: company-ispell)
-   - [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][company example (redguardtoo)]]
-   - [[http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html][auto completion for non programmers]]
-   - [[http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html][spell check set up]]
-   - [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
-   - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
-   - [[http://aspell.net/][aspell (homepage)]]
+- switch between English, French, Spanish
+- work with company (see: company-ispell)
+- [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][company example (redguardtoo)]]
+- [[http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html][auto completion for non programmers]]
+- [[http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html][spell check set up]]
+- [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
+- [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
+- [[http://aspell.net/][aspell (homepage)]]
 * Discarded packages
 ** fill-column-indicator
 - Conflict with my use of ~avy-goto-end-of-line~ command.
