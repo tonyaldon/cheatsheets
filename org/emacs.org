@@ -17,68 +17,81 @@ Either to write *code* or just *text*, I need:
 - an unified layout :: indentation, color, highlight.
 * org-mode
 ** Default keybindings
-   | ~C-c SPC~ | ~org-table-blank-field~ |
-   | ~S-RET~   | ~org-table-copy-down~   |
-   | ~M-RET~   | ~org-meta-return~       |
-   | ~C-c ;~   | ~org-toggle-comment~    |
-   | ~C-c C-e~ | ~org-export-dispatch~   |
-   | ???       | ~org-move-subtree-up~   |
-   | ???       | ~org-move-subtree-down~ |
+| ~C-c SPC~     | ~org-table-blank-field~                                                    |
+| ~S-RET~       | ~org-table-copy-down~                                                      |
+| ~M-RET~       | ~org-meta-return~                                                          |
+| ~C-c ;~       | ~org-toggle-comment~                                                       |
+| ~C-c C-e~     | ~org-export-dispatch~                                                      |
+| ???           | ~org-move-subtree-up~                                                      |
+| ???           | ~org-move-subtree-down~                                                    |
+| ~C-c C-l~     | ~org-insert-link~                                                          |
+| C-c .         | ~org-time-stamp~                                                           |
+| C-u C-c .     | ~org-time-stamp~  with date                                                |
+| C-u C-u C-c . | ~org-time-stamp~  with date and without prompting to user                  |
+| C-c !         | ~org-time-stamp-inactive~                                                  |
+| C-c /         | ~org-sparse-tree~                                                          |
+| C-c C-c       | at the beginning of the line, different command (according to the context) |
+| C-c <TAB>     | org-table-toggle-column-width                                              |
+
+~org-shiftup~ (S-<up>) before the character ~>~ of an active timestamp
+toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
+
+
 ** export file
-	 - ~org-export-backends~, ~(require 'ox-man)~
+- ~org-export-backends~, ~(require 'ox-man)~
 *** info file
-		- Problem :: How can I produce an *info* file?
-		- Use ~makeinfo~ command.
-		- Translate  Texinfo  source  documentation  to various other
-      formats (~makeinfo~).
-		- If you want to produce ~my-file.info~ from a ~my-file.texi~,
-      run the command:
-			#+BEGIN_SRC bash
-			makeinfo my-file.texi
-      #+END_SRC
-		- Note: Translate  Texinfo  source  documentation  to various
-      other formats, by default Info files suitable for reading online
-      with Emacs or standalone GNU Info.
-		- If you want to produce ~my-file.info~ file, you can write
-      ~my-file.org~ org file and from inside emacs export it by
-      running the command ~org-texinfo-export-to-info~.
+- Problem :: How can I produce an *info* file?
+- Use ~makeinfo~ command.
+- Translate  Texinfo  source  documentation  to various other
+  formats (~makeinfo~).
+- If you want to produce ~my-file.info~ from a ~my-file.texi~,
+  run the command:
+  #+BEGIN_SRC bash
+  makeinfo my-file.texi
+  #+END_SRC
+- Note: Translate  Texinfo  source  documentation  to various
+  other formats, by default Info files suitable for reading online
+  with Emacs or standalone GNU Info.
+- If you want to produce ~my-file.info~ file, you can write
+  ~my-file.org~ org file and from inside emacs export it by
+  running the command ~org-texinfo-export-to-info~.
 *** org html themes
-		- Problem :: How can I quickly give a style to my ~org~ document
-      when exported as an ~html~ document?
-		- Use the ~css/js~ themes ~theme-readtheorg~ or ~theme-bigblow~
-      provide by *fniessen* at [[https://github.com/fniessen/org-html-themes][org-html-theme (github)]].
-		- If you want to use the ~css/js~ themes ~theme-readtheorg~, add
-      the following line at the top of your ~org~ document, and
-      export it within ~emacs~ with the keys ~C-c C-e h h~:
-			#+BEGIN_SRC org
-			#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-      #+END_SRC
-		- If you prefer using the theme ~theme-bigblow~, in the above
-      line, switch ~theme-readtheorg~ by ~theme-bigblow~.
+- Problem :: How can I quickly give a style to my ~org~ document
+  when exported as an ~html~ document?
+- Use the ~css/js~ themes ~theme-readtheorg~ or ~theme-bigblow~
+  provide by *fniessen* at [[https://github.com/fniessen/org-html-themes][org-html-theme (github)]].
+- If you want to use the ~css/js~ themes ~theme-readtheorg~, add
+  the following line at the top of your ~org~ document, and
+  export it within ~emacs~ with the keys ~C-c C-e h h~:
+  #+BEGIN_SRC org
+  #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+  #+END_SRC
+- If you prefer using the theme ~theme-bigblow~, in the above
+  line, switch ~theme-readtheorg~ by ~theme-bigblow~.
 ** ideas
-   - https://github.com/DanielDe/org-web
-   - https://github.com/200ok-ch/organice/
-   - https://github.com/200ok-ch/org-parser
-   - https://github.com/fniessen/orgmk
-   - https://organice.200ok.ch/documentation.html#building_docs
-   - https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-   - https://github.com/fniessen
-   - https://github.com/fniessen/org-html-themes
+- https://github.com/DanielDe/org-web
+- https://github.com/200ok-ch/organice/
+- https://github.com/200ok-ch/org-parser
+- https://github.com/fniessen/orgmk
+- https://organice.200ok.ch/documentation.html#building_docs
+- https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+- https://github.com/fniessen
+- https://github.com/fniessen/org-html-themes
 ** parsing
-	- ~sudo apt install pandoc~
-	- ~pandoc -f org -t json _org-export-small.org > _pandoc-json.json~
-	- ~prettier --write pandoc-json.json~
-	- [[https://hg.sr.ht/~zck/org-parser][org-parser]]
-	- org-code ??? faces and functions
-	- with org-parser (clojure)
-		- ~lein run file.org~
-		- ~./target/org-parser.js file.org~
-	- [seems to be a good option] [[https://github.com/jlumpe/ox-json][ox-json]], [[https://github.com/jlumpe/pyorg][pyorg]] & [[https://github.com/jlumpe/pyorg-flask][pyorg-flask]] by jlumpe (github)
-	- [seems to be the best option] [[https://github.com/orgapp/orgajs][orgajs]], [[http://unifiedjs.com/][unifiedjs]]
-	- https://github.com/mattduck/org-toggl-py/blob/master/org-export-json.el
-	- https://www.reddit.com/r/emacs/comments/ccwl4r/i_made_a_json_export_back_end_for_org_mode/
-	- https://www.reddit.com/r/orgmode/comments/7wjmwr/orga_the_ultimate_orgmode_parser_in_javascript/
-	- https://lihautan.com/manipulating-ast-with-javascript/
+- ~sudo apt install pandoc~
+- ~pandoc -f org -t json _org-export-small.org > _pandoc-json.json~
+- ~prettier --write pandoc-json.json~
+- [[https://hg.sr.ht/~zck/org-parser][org-parser]]
+- org-code ??? faces and functions
+- with org-parser (clojure)
+  - ~lein run file.org~
+  - ~./target/org-parser.js file.org~
+- [seems to be a good option] [[https://github.com/jlumpe/ox-json][ox-json]], [[https://github.com/jlumpe/pyorg][pyorg]] & [[https://github.com/jlumpe/pyorg-flask][pyorg-flask]] by jlumpe (github)
+- [seems to be the best option] [[https://github.com/orgapp/orgajs][orgajs]], [[http://unifiedjs.com/][unifiedjs]]
+- https://github.com/mattduck/org-toggl-py/blob/master/org-export-json.el
+- https://www.reddit.com/r/emacs/comments/ccwl4r/i_made_a_json_export_back_end_for_org_mode/
+- https://www.reddit.com/r/orgmode/comments/7wjmwr/orga_the_ultimate_orgmode_parser_in_javascript/
+- https://lihautan.com/manipulating-ast-with-javascript/
 * dired-mode
 ** ideas
 - [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
