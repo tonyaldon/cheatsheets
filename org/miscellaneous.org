@@ -455,6 +455,46 @@ sudo systemctl reload nginx
 *** 6) ssl/tls certificats
 - [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
 
+* Call tree (source code)
+** [emacs] simple-call-tree
+- simple-call-tree.el: interesting. Have to comment part of the
+  mode-line-format in simple-call-tree-mode to get code working.
+
+  Have to eval-buffer (simple-call-tree.el) manually to get things
+  working (it seems that .elc file doesn't work).
+
+  https://github.com/vapniks/simple-call-tree
+  see: https://www.emacswiki.org/emacs/SimpleCallTree
+  see: https://www.reddit.com/r/emacs/comments/2z1bek/simplecalltreeel_usage/cpg3xc8/
+
+  it seems that we can use graphviz to get the graph view. (sct-graphviz.el)
+
+call ~simple-call-tree-display-buffer~ interactively in a buffer
+gives you the tree of the called function that are defined in
+the buffer itself.
+
+If you want more than one file (ie. more than the current buffer, you
+can call ~simple-call-tree-display-buffer~ with file list in argument.)
+
+#+BEGIN_SRC emacs-lisp
+  (simple-call-tree-display-buffer '("~/work/settings/emacs.d/.emacs.d/settings/packages/sidebar.el"
+                                     "~/work/settings/emacs.d/.emacs.d/settings/key-bindings/kb.el"))
+#+END_SRC
+** [clojure]
+- https://github.com/testedminds/lein-topology
+- https://github.com/xumingming/tracer
+*** codegraph (really cool)
+- https://gitlab.com/200ok/codegraph
+  and https://200ok.ch/posts/using-clojure-to-visualize-dependencies-in-clojure-code.html
+** other
+- https://www.gnu.org/software/cflow/manual/cflow.html
+** vocabulary
+- call tree
+- control flow graph https://en.wikipedia.org/wiki/Control-flow_graph
+- call stack
+- stack trace
+- DSM https://en.wikipedia.org/wiki/Design_structure_matrix
+
 * links
 ** miscellaneous
 - [[https://github.com/petitparser/dart-petitparser][petitparser (github)]] Dynamic parser combinators in Dart.
