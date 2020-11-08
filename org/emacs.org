@@ -314,6 +314,10 @@ Worth reading info node.
 - ~(info "(elisp) Coordinates and Windows")~
 - ~(info "(elisp) Basic Windows")~
 - ~(info "(elisp) Windows and Frames")~
+** to sort
+- [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
+- [[https://github.com/emacs-tw/awesome-emacs][awesome-emacs]] (list of emacs packages)
+- [[https://rosettacode.org/wiki/Category:Emacs_Lisp][Rosetta Code (emacs-lisp)]]
 * Tips
 ** Commands
 - ~M-x re-builder~ : build regular expression
@@ -510,79 +514,26 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
 - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
 - with the font ~symbola~ you can print all ~unicode~ character.
-* Ideas
-** Other
+* Packages (yet not tried)
+- [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
+- [[https://github.com/darksmile/cheatsheet][cheatsheet]]
+- [[https://github.com/company-mode/company-statistics][company-statistics]]
+- [[https://github.com/TommyX12/company-tabnine][company-tabnine]]
+- [[/home/tony/work/learning/apps/emacs/lisp/delim-col.el][delim-col (built-in)]] (interesting to modify rectangle)
 - [[https://github.com/emacsorphanage/dired-k][dired-k]]
-- use ~dired-actual-switches~ modify sorting in dired
-- https://github.com/Wilfred/helpful
-- see: tab-bar.el and tab-line.el
-- https://github.com/nex3/perspective-el
-- https://github.com/darksmile/cheatsheet
-- https://github.com/abrochard/walkman
-- https://github.com/akicho8/string-inflection (http://xenodium.com/string-inflection-emacs-package/)
-- http://xenodium.com/emacs-smartparens-auto-indent/
-- https://github.com/benma/emacs.d/blob/master/init.el
-  (section fill-column-indicator & company/fill-column-indicator)
-- have a look on ~company-lsp~ and ~lsp-mode~
-- diff-hl.el package -> Diff highlights in the fringe (https://protesilaos.com/dotemacs/)
-- javascript:
-  - https://www.npmjs.com/package/indium
-  - https://github.com/NicolasPetton/Indium
-  - https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-js.html
-- (shell-command-to-string "ls -l")
-- https://github.com/leoliu/easy-kill
-- https://github.com/joodland/bm (bookmark)
-- company-statistics, company-suggest, company-tabnine
-- [[https://github.com/alphapapa/bufler.el][bufler.el]]
-- [[https://github.com/ahungry/fast-scroll][fast-scroll]]
-- [[https://github.com/fourier/ztree][ztree]] (Directory tree comparison mode for Emacs)
-- [[https://github.com/emacs-tw/awesome-emacs][awesome-emacs]] (list of emacs packages)
-- see: bm.el package (bm.el provides visible, buffer local,
-  bookmarks and the ability to jump forward and backward to the
-  next bookmark.)
-- [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
-- see: counsel-recentf
+- [[https://github.com/leoliu/easy-kill][easy-kill]]
+- [[https://gitlab.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
 - [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
-- [[https://github.com/articuluxe/parsenv][parsenv]]
-- [[http://blog.binchen.org/posts/counsel-etags-v1-3-1-is-released-enemacsctags.html][counsel etags: for code navigation in emacs]]
-- [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][redguardtoo: tweak company mode]]
-- [[https://github.com/jojojames/dired-sidebar][dired-sidebar]]
-- ~mode-line~: To modify what appears in mode-line, you can modify
-  the default variable ~mode-line-format~. For instance, to show
-  the total number of line in the buffer see [[https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline][display in mode-line]].
-- [[https://github.com/gregsexton/origami.el][origami.el : a text folding minor mode for Emacs.]]
-- [[http://www.shanidar.net/news/ca/2016/09/11/0001/more-emacs-configuration-tweaks-multiple-cursor-on-click-minimap-code-folding-ensime-eval-overlays][minimap and origami]]
-- It may be possible to change the rendering of the two spaces
-  ~"  "~ inserted when expand a subtree in dired-subtree by modifying
-  the function ~dired-subtree--readin~.
-- [[http://ergoemacs.org/emacs/emacs_show_key_and_command.html][command-log-mode package]]
-- [[http://ergoemacs.org/emacs/emacs_n_unicode.html][ergoemacs: emacs unicode]]
-- [[https://github.com/ch11ng/exwm][exwm: emacs windows manager]]
-- [[https://stedolan.github.io/jq/][jq: command-line JSON processor]]
-- [[https://melpa.org/#/counsel-jq][counsel for jq]]
-- [[https://emacs.stackexchange.com/questions/43848/running-a-function-every-time-a-character-is-inserted][running-a-function-every-time-a-character-is-inserted]]
-- [[https://github.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
+- [[https://github.com/NicolasPetton/Indium][indium]]
+- [[https://github.com/Wilfred/helpful][helpful]]
+- [[https://github.com/rnkn/olivetti][olivetti]]
+- [[https://elpa.gnu.org/packages/rainbow-mode.html][rainbow-mode]] package (maybe interesting with i3-conf mode where there is color #ffffff in the configuration)
+- [[https://github.com/nex3/perspective-el][perspective-el]]
 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
-- search engine
-  - [[https://xapian.org/][xapian]]
-  - [[https://xapian.org/docs/omega/overview.html][omega]]
-  - [[https://www.lesbonscomptes.com/recoll/][recoll]]
-  - [[https://oremacs.com/2015/07/27/counsel-recoll/][counsel-recoll]]
-  - [[http://angel-de-vicente.blogspot.com/2017/11/emacs-interface-to-recoll.html][emacs interface to recoll]]
-  - [[https://www.lesbonscomptes.com/recoll/usermanual/usermanual.html][recoll usermanual]]
-- [[https://github.com/Alexander-Miller/treemacs][treemacs]]
-- [[https://github.com/amake/orgro][orgro]] (org-mode file viewer for iOS and android)
-- [[https://symmetricaldatasecurity.blogspot.com/2020/05/prettifying-org-mode-with-css.html][prettifying-org-mode-with-css]]
-- [[/home/tony/work/apps/emacs/lisp/delim-col.el]] (interesting to modify rectangle)
-- https://github.com/benma/visual-regexp.el
-- goto-last-change package
-- goto-last-point package
-- https://github.com/joostkremers/writeroom-mode
-- https://github.com/rnkn/olivetti
-- rainbow-mode package
-- immortal-scratch package
-- scratch package
-- ivy-emoji package
+- [[https://github.com/akicho8/string-inflection][string-inflection]]
+- [[https://github.com/benma/visual-regexp.el][visual-regexp.el]]
+- [[https://github.com/joostkremers/writeroom-mode][writeroom-mode]]
+- [[https://melpa.org/#/goto-last-point][goto-last-point]]
 * Discarded packages
 ** fill-column-indicator
 - Conflict with my use of ~avy-goto-end-of-line~ command.
