@@ -583,15 +583,6 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - immortal-scratch package
 - scratch package
 - ivy-emoji package
-** ispell, flyspell, aspell (for text mode)
-- switch between English, French, Spanish
-- work with company (see: company-ispell)
-- [[https://github.com/redguardtoo/emacs.d/blob/master/lisp/init-company.el][company example (redguardtoo)]]
-- [[http://blog.binchen.org/posts/emacs-auto-completion-for-non-programmers.html][auto completion for non programmers]]
-- [[http://blog.binchen.org/posts/what-s-the-best-spell-check-set-up-in-emacs.html][spell check set up]]
-- [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
-- [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
-- [[http://aspell.net/][aspell (homepage)]]
 * Discarded packages
 ** fill-column-indicator
 - Conflict with my use of ~avy-goto-end-of-line~ command.
