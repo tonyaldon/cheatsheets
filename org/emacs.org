@@ -514,17 +514,6 @@ Worth reading info node.
    - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
    - with the font ~symbola~ you can print all ~unicode~ character.
 * Articles
-** Ergoemacs/xahlee
-   - [[http://ergoemacs.org/emacs/unicode\_basics.html][unicode\_basics]]: See ~list-character-sets~, ~list-charset-chars~,
-   ~describe-character-set~.
-   - [[http://xahlee.info/UnixResource_dir/writ/lisp_problems.html][lisp problems]]
-   - [[http://ergoemacs.org/emacs/ergoemacs_and_paredit.html][ergoemacs and paredit]]
-   - [[http://ergoemacs.org/emacs/emacs_editing_lisp.html][emacs editing lisp]] (see: ~mark-sexp~, ~backward-up-list~)
-   - [[http://ergoemacs.org/emacs/elisp_change_brackets.html][elisp change brackets]]
-   - [[http://xahlee.info/UnixResource_dir/writ/hard-wrap.html][hard-wrap]]
-   - [[http://xahlee.info/UnixResource_dir/writ/truncate_line.html][truncate line]]
-   - [[http://ergoemacs.org/emacs/lisp_formatter.html][lisp formatter]]
-   - [[http://ergoemacs.org/emacs/bookmark.html][bookmark]]
 ** other
    - [[https://www.masteringemacs.org/article/swapping-quote-symbols-emacs-parsepartialsexp][marsteringemacs: swapping quote symbols]]
    - [[http://dreamsongs.com/RiseOfWorseIsBetter.html][the rise of worse is better]]
