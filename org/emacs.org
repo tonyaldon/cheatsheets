@@ -84,25 +84,6 @@ Either to write *code* or just *text*, I need:
 - [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
 - [[https://github.com/emacsorphanage/dired-k][dired-k]]
 - use ~dired-actual-switches~ modify sorting in dired
-* ibuffer
-** Default keybindings
-   | ~/ n~ | filter by name     |
-   | ~/ p~ | remove last filter |
-   | ~/ /~ | remove all filters |
-** ideas
-   - see: ibuffer-vc
-   - see: ibuffer with projectile
-	 - https://github.com/jojojames/ibuffer-sidebar
-	 - https://github.com/purcell/ibuffer-projectile
-* magit
-** Default keybindings
-   | ~c~ | magit-commit |
-   | ~l~ | magit-log    |
-   | ~z~ | magit-stash  |
-   | ~r~ | magit-rebase |
-* subword-mode
-	- subword-mode intersting to use in js-mode.
-	- subword-mode is a builtin package.
 * js-mode
 ** Completion with ~tern~
 - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
