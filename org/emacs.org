@@ -238,73 +238,75 @@ to use ~ac-html-csswatcher~ in ~js-jsx-mode~ (ie: React JS):
 (add-hook 'LaTeX-mode-hook #'lsp)
 #+END_SRC
 * Learn emacs/emacs-lisp
-  The best way to learn to code is to *read* a lot of *good
-  code*. Thanks to every open-source projects, we can do it. Here a
-  list of files, packages or people in the emacs world that I think
-  they are worth reading to understand ~emacs~ and ~emacs-lisp~.
+The best way to learn to code is to *read* a lot of *good
+code*. Thanks to every open-source projects, we can do it. Here a
+list of files, packages or people in the emacs world that I think
+they are worth reading to understand ~emacs~ and ~emacs-lisp~.
 ** Emacs internals
-   1) The best way to understand *Emacs internals* is to read the
-      code ([[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]). Some source files, such as
-      ~xdisp.c~, have extensive comments describing the design and
-      implementation.
-   2) The *Tips* an *GNU Emacs Internals* may also help. To go to the
-      respective info nodes, eval the ~emacs-lisp~ expressions:
-      #+BEGIN_SRC emacs-lisp
-      (info "(elisp)Tips")
-      (info "(elisp)GNU Emacs Internals").
-      #+END_SRC
-   3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
+1) The best way to understand *Emacs internals* is to read the
+   code ([[https://github.com/emacs-mirror/emacs][GNU Emacs source code]]). Some source files, such as
+   ~xdisp.c~, have extensive comments describing the design and
+   implementation.
+2) The *Tips* an *GNU Emacs Internals* may also help. To go to the
+   respective info nodes, eval the ~emacs-lisp~ expressions:
+   #+BEGIN_SRC emacs-lisp
+   (info "(elisp)Tips")
+   (info "(elisp)GNU Emacs Internals").
+   #+END_SRC
+3) The file ~emacs/etc/DEBUG~ describes how to debug Emacs bugs.
 ** Emacs built-in (emacs-lisp)
-   - [[../emacs/built-in/thingatpt.el][thingatpt.el]]: get the thing at point.
-   - [[../emacs/built-in/mhtml-mode.el][mhtml-mode.el]]: HTML editing mode that handles CSS and JS.
-   - [[../emacs/built-in/syntax.el][syntax.el]]: helper functions to find syntactic context. See the
-     function ~syntax-ppss-context~.
-   - [[../emacs/built-in/project.el][project.el]]: Operations on the current project.
+- [[../emacs/built-in/thingatpt.el][thingatpt.el]]: get the thing at point.
+- [[../emacs/built-in/mhtml-mode.el][mhtml-mode.el]]: HTML editing mode that handles CSS and JS.
+- [[../emacs/built-in/syntax.el][syntax.el]]: helper functions to find syntactic context. See the
+  function ~syntax-ppss-context~.
+- [[../emacs/built-in/project.el][project.el]]: Operations on the current project.
 ** Emacs external packages
-   - [[../emacs/external/ace-window/][ace-window]]: Quickly switch windows,
-   - [[../emacs/external/company/][company]]: Modular text completion framework,
-   - [[../emacs/external/avy/][avy]]: Jump to arbitrary positions in visible text and select text
-     quickly,
-   - [[../emacs/external/expand-region/][expand-region]]: Increase selected region by semantic units,
-   - [[../emacs/external/iedit/][iedit]]: Edit multiple regions in the same way simultaneously,
-   - [[../emacs/external/multiple-cursors/][multiple-cursors]]: Multiple cursors for emacs,
-   - [[../emacs/external/s/][s]]: The long lost Emacs string manipulation library.
+- [[../emacs/external/ace-window/][ace-window]]: Quickly switch windows,
+- [[../emacs/external/company/][company]]: Modular text completion framework,
+- [[../emacs/external/avy/][avy]]: Jump to arbitrary positions in visible text and select text
+  quickly,
+- [[../emacs/external/expand-region/][expand-region]]: Increase selected region by semantic units,
+- [[../emacs/external/iedit/][iedit]]: Edit multiple regions in the same way simultaneously,
+- [[../emacs/external/multiple-cursors/][multiple-cursors]]: Multiple cursors for emacs,
+- [[../emacs/external/s/][s]]: The long lost Emacs string manipulation library.
 ** Emacs community
-   - [[https://github.com/danielmartin/dotfiles][github: daniel martin dotfiles]]
-   - [[https://github.com/abo-abo][github (abo-abo)]]
-   - [[https://oremacs.com/][oremacs (abo-abo)]]
-   - [[http://emacsrocks.com/][emacsrocks (magnars)]]
-   - [[http://whattheemacsd.com/][.emacs.d (magnars)]]
-   - [[https://github.com/magnars][github (magnars)]]
+- [[https://github.com/danielmartin/dotfiles][github: daniel martin dotfiles]]
+- [[https://github.com/abo-abo][github (abo-abo)]]
+- [[https://oremacs.com/][oremacs (abo-abo)]]
+- [[http://emacsrocks.com/][emacsrocks (magnars)]]
+- [[http://whattheemacsd.com/][.emacs.d (magnars)]]
+- [[https://github.com/magnars][github (magnars)]]
 ** Test emacs-lisp code and emacs
+*** article
+- [[https://blog.abrochard.com/ert-tests.html][ert tests]] by Adrien Brochard
 *** tools
-    - ~ert~: see the info node ~(info "ert")~,
-    - ~ecukes~: see the [[https://github.com/ecukes/ecukes][github page]].
+- ~ert~: see the info node ~(info "ert")~,
+- ~ecukes~: see the [[https://github.com/ecukes/ecukes][github page]].
 *** To understand testing whith *ecukes*
-    1) [[https://github.com/magnars/expand-region.el][expand region]],
-    2) [[https://github.com/magnars/multiple-cursors.el][multiple-cusors]],
-    3) [[https://github.com/niligulmohar/buster-mode][buster-mode (github)]] or [[http://emacsrocks.com/][buster mode (emacsrocks)]].
+1) [[https://github.com/magnars/expand-region.el][expand region]],
+2) [[https://github.com/magnars/multiple-cursors.el][multiple-cusors]],
+3) [[https://github.com/niligulmohar/buster-mode][buster-mode (github)]] or [[http://emacsrocks.com/][buster mode (emacsrocks)]].
 *** To understand testing whith *ert*
 **** simple.el (emacs built-in)
-     1) [[../emacs/built-in/simple.el][simple.el]] and [[../emacs/built-in/simple-tests.el][simple-tests.el]]
-     2) test of the ~open-line~ function:
-        - [[file:../emacs/built-in/simple.el::582][open-line]] definition
-        - [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
-        - [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
+1) [[../emacs/built-in/simple.el][simple.el]] and [[../emacs/built-in/simple-tests.el][simple-tests.el]]
+2) test of the ~open-line~ function:
+   - [[file:../emacs/built-in/simple.el::582][open-line]] definition
+   - [[file:../emacs/built-in/simple-tests.el::113][open-line]] basic test
+   - [[file:../emacs/built-in/simple-tests.el::30][simple-test--dummy-buffer]] macro to set dummy-buffer
 ** How to define ~derived-mode~
-   - [[../emacs/built-in/elisp-mode.el][elisp-mode.el]]
-   - [[../emacs/built-in/conf-mode.el][conf-mode.el]]
+- [[../emacs/built-in/elisp-mode.el][elisp-mode.el]]
+- [[../emacs/built-in/conf-mode.el][conf-mode.el]]
 ** Buffer/Windows/Frame
-   Worth reading info node.
+Worth reading info node.
 *** displaying buffers
-    - ~(info "(elisp) Precedence of Action Functions")~
-    - ~(info "(elisp) Frame Layouts with Side Windows")~
-    - ~(info "(elisp) Buffer Display Action Functions")~
+- ~(info "(elisp) Precedence of Action Functions")~
+- ~(info "(elisp) Frame Layouts with Side Windows")~
+- ~(info "(elisp) Buffer Display Action Functions")~
 *** Window configuration
-    - ~(info "(elisp) Window Configurations")~
-    - ~(info "(elisp) Coordinates and Windows")~
-    - ~(info "(elisp) Basic Windows")~
-    - ~(info "(elisp) Windows and Frames")~
+- ~(info "(elisp) Window Configurations")~
+- ~(info "(elisp) Coordinates and Windows")~
+- ~(info "(elisp) Basic Windows")~
+- ~(info "(elisp) Windows and Frames")~
 * Tips
 ** Commands
    * ~M-x re-builder~ : build regular expression
