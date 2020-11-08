@@ -552,6 +552,7 @@ sous-actes suivants:
 7) *Coudre*: save and run.
 * links
 ** miscellaneous
+- [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]
 - [[https://github.com/samoshkin/dotfiles][dotfiles by samoshkin (github)]]
 - [[https://github.com/denisidoro/dotfiles][dotfiles by denisidoro (github)]]
 - [[https://stuartsierra.com/presentations][Stuart Sierra presentation]]

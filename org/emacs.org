@@ -513,11 +513,9 @@ Worth reading info node.
    - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
    - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
    - with the font ~symbola~ you can print all ~unicode~ character.
-* Articles
-** other
-   - [[https://www.masteringemacs.org/article/swapping-quote-symbols-emacs-parsepartialsexp][marsteringemacs: swapping quote symbols]]
-   - [[http://dreamsongs.com/RiseOfWorseIsBetter.html][the rise of worse is better]]
-   - [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]: emacs-lisp example, see ~logand~.
+- [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
+- [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
+- with the font ~symbola~ you can print all ~unicode~ character.
 * Ideas
 ** skeleton directory for some config file
 	 files:
