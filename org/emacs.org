@@ -92,11 +92,6 @@ toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
 - https://www.reddit.com/r/emacs/comments/ccwl4r/i_made_a_json_export_back_end_for_org_mode/
 - https://www.reddit.com/r/orgmode/comments/7wjmwr/orga_the_ultimate_orgmode_parser_in_javascript/
 - https://lihautan.com/manipulating-ast-with-javascript/
-* dired-mode
-** ideas
-- [[https://github.com/vifon/dired-recent.el][dired-recent.el]]
-- [[https://github.com/emacsorphanage/dired-k][dired-k]]
-- use ~dired-actual-switches~ modify sorting in dired
 * js-mode
 ** Completion with ~tern~
 - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
@@ -619,7 +614,6 @@ Worth reading info node.
    - [[https://github.com/Henry/dot-emacs/blob/master/my-lisp/company-flyspell.el][company flyspell]]
    - [[https://www.emacswiki.org/emacs/FlySpell][FlySpell (emacswiki)]]
    - [[http://aspell.net/][aspell (homepage)]]
-* Discard packages
 * Discarded packages
 ** fill-column-indicator
 - Conflict with my use of ~avy-goto-end-of-line~ command.
