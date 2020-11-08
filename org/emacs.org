@@ -68,15 +68,14 @@ toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
   #+END_SRC
 - If you prefer using the theme ~theme-bigblow~, in the above
   line, switch ~theme-readtheorg~ by ~theme-bigblow~.
-** ideas
-- https://github.com/DanielDe/org-web
-- https://github.com/200ok-ch/organice/
-- https://github.com/200ok-ch/org-parser
-- https://github.com/fniessen/orgmk
-- https://organice.200ok.ch/documentation.html#building_docs
-- https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-- https://github.com/fniessen
-- https://github.com/fniessen/org-html-themes
+** org packages
+- [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
+- [[https://github.com/alphapapa/org-graph-view][org-graph-view]]
+- [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
+- [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
+- [[https://github.com/ndwarshuis/org-sql][org-sql]]
+- [[https://github.com/fniessen/orgmk][orgmk]]
+- [[https://github.com/fniessen/org-html-themes][org-html-themes]]
 ** parsing
 - ~sudo apt install pandoc~
 - ~pandoc -f org -t json _org-export-small.org > _pandoc-json.json~
@@ -525,15 +524,6 @@ files:
   #+END_SRC
 - ~.projectile~: package ~projectile~
 - ~jsconfig.json~: package ~tide~
-** org-mode
-- [[http://juanreyero.com/article/emacs/org-teams.html][org-teams]]
-- [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
-- [[https://github.com/alphapapa/org-graph-view][org-graph-view]]
-- [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
-- [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
-- [[https://github.com/200ok-ch/org-parser][org-parser]]
-- [[https://github.com/ndwarshuis/org-sql][org-sql]]
-- see function: org-element-parse-buffer
 ** Other
 - [[https://github.com/emacsorphanage/dired-k][dired-k]]
 - use ~dired-actual-switches~ modify sorting in dired
