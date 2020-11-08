@@ -517,22 +517,32 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
 - with the font ~symbola~ you can print all ~unicode~ character.
 * Packages (yet not tried)
+- [[https://github.com/chenyanming/anki.el][anki.el]]
 - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
 - [[https://github.com/darksmile/cheatsheet][cheatsheet]]
 - [[https://github.com/company-mode/company-statistics][company-statistics]]
 - [[https://github.com/TommyX12/company-tabnine][company-tabnine]]
+- [[https://code.librehq.com/qhong/crdt.el/][crdt.el]]
 - [[/home/tony/work/learning/apps/emacs/lisp/delim-col.el][delim-col (built-in)]] (interesting to modify rectangle)
 - [[https://github.com/emacsorphanage/dired-k][dired-k]]
 - [[https://github.com/leoliu/easy-kill][easy-kill]]
+- [[https://github.com/emacsorphanage/elisp-depend][elisp-depend]]
 - [[https://gitlab.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
+- [[https://github.com/tkf/emacs-request][emacs-request]]
 - [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
+- [[https://github.com/storax/graph.el][graph.el]]
+- [[https://gitlab.com/emacs-stuff/indent-tools][indent-tools]] : Indent, navigate around and act on indentation units:
+  perfect for yaml, python and the like.
 - [[https://github.com/NicolasPetton/Indium][indium]]
 - [[https://github.com/Wilfred/helpful][helpful]]
 - [[https://github.com/rnkn/olivetti][olivetti]]
-- [[https://elpa.gnu.org/packages/rainbow-mode.html][rainbow-mode]] package (maybe interesting with i3-conf mode where there is color #ffffff in the configuration)
+- [[https://elpa.gnu.org/packages/rainbow-mode.html][rainbow-mode]] package (maybe interesting with i3-conf mode where
+  there is color #ffffff in the configuration)
 - [[https://github.com/nex3/perspective-el][perspective-el]]
 - [[https://github.com/alphapapa/prism.el][prism.el]]
 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
+- [[https://github.com/emacsorphanage/smeargle][smeargle]]
+- [[https://github.com/emacsorphanage/sourcemap][sourcemap]]
 - [[https://github.com/akicho8/string-inflection][string-inflection]]
 - [[https://github.com/benma/visual-regexp.el][visual-regexp.el]]
 - [[https://github.com/joostkremers/writeroom-mode][writeroom-mode]]
