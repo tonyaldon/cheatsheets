@@ -545,3 +545,8 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - do not respect my cursor settings
 - code complicated to modify
 - I prefer [[https://github.com/muffinmad/emacs-mini-frame][mini-frame]]
+
+* Articles (new)
+- [[https://rgoswami.me/posts/anki-decks-orgmode/][anki decks orgmode]]
+- [[https://correl.phoenixinquis.net/2015/07/12/git-graphs.html][git graphs]]
+- [[https://plantuml.com/emacs][plantuml (in emacs)]]
