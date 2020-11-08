@@ -464,6 +464,8 @@ sudo systemctl reload nginx
 - [[https://linuxize.com/post/secure-nginx-with-let-s-encrypt-on-ubuntu-18-04/][(linuxize) nginx ssl]]
 
 * Call tree (source code)
+** [emacs] elisp-depmap
+- [[https://gitlab.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
 ** [emacs] simple-call-tree
 - simple-call-tree.el: interesting. Have to comment part of the
   mode-line-format in simple-call-tree-mode to get code working.
@@ -591,3 +593,7 @@ sous-actes suivants:
 - [[https://developers.google.com/search/reference/robots_txt?hl=en][robots.txt (google developers)]]
 - [[https://support.google.com/webmasters/answer/6062608?hl=en][robots.txt (google support)]]
 - [[https://www.robotstxt.org/robotstxt.html][robotstxt.org]]
+** graphviz & dot
+- https://en.wikipedia.org/wiki/DOT_(graph_description_language)
+- https://graphviz.org/doc/info/lang.html
+- https://graphviz.org/gallery/
