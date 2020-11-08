@@ -69,13 +69,14 @@ toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
 - If you prefer using the theme ~theme-bigblow~, in the above
   line, switch ~theme-readtheorg~ by ~theme-bigblow~.
 ** org packages
-- [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
 - [[https://github.com/alphapapa/org-graph-view][org-graph-view]]
-- [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
-- [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
-- [[https://github.com/ndwarshuis/org-sql][org-sql]]
-- [[https://github.com/fniessen/orgmk][orgmk]]
+- [[https://github.com/the-humanities/org-mind-map][org-mind-map]]
 - [[https://github.com/fniessen/org-html-themes][org-html-themes]]
+- [[https://github.com/fniessen/orgmk][orgmk]]
+- [[https://github.com/alphapapa/org-ql][org-ql]]
+- [[https://github.com/alphapapa/org-sidebar][org-sidebar]]
+- [[https://github.com/ndwarshuis/org-sql][org-sql]]
+- [[https://github.com/alphapapa/org-web-tools][org-web-tools]]
 ** parsing
 - ~sudo apt install pandoc~
 - ~pandoc -f org -t json _org-export-small.org > _pandoc-json.json~
@@ -315,6 +316,7 @@ Worth reading info node.
 - ~(info "(elisp) Basic Windows")~
 - ~(info "(elisp) Windows and Frames")~
 ** to sort
+- [[https://github.com/alphapapa/emacs-package-dev-handbook][emacs-package-dev-handbook (alphapapa)]]
 - [[https://alphapapa.github.io/emacs-package-dev-handbook/][emacs package dev handbook]]
 - [[https://github.com/emacs-tw/awesome-emacs][awesome-emacs]] (list of emacs packages)
 - [[https://rosettacode.org/wiki/Category:Emacs_Lisp][Rosetta Code (emacs-lisp)]]
@@ -529,6 +531,7 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - [[https://github.com/rnkn/olivetti][olivetti]]
 - [[https://elpa.gnu.org/packages/rainbow-mode.html][rainbow-mode]] package (maybe interesting with i3-conf mode where there is color #ffffff in the configuration)
 - [[https://github.com/nex3/perspective-el][perspective-el]]
+- [[https://github.com/alphapapa/prism.el][prism.el]]
 - [[https://gitlab.com/rstocker/scanner][scanner]] : Scan documents and images with GNU Emacs.
 - [[https://github.com/akicho8/string-inflection][string-inflection]]
 - [[https://github.com/benma/visual-regexp.el][visual-regexp.el]]
