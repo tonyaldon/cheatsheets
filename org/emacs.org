@@ -103,23 +103,6 @@ Either to write *code* or just *text*, I need:
 * subword-mode
 	- subword-mode intersting to use in js-mode.
 	- subword-mode is a builtin package.
-* projectile
-	To refresh the cache of a project.
-	- M-x projectile-invalidate-cache
-* ivy/counsel/swiper
-** Default keybindings
-*** In ~ivy-mode-map~:
-    | ~C-m~     | ~ivy-done~                |
-    | ~M-o~     | ~ivy-dispatching-done~    |
-    | ~C-M-o~   | ~ivy-dispatching-call~    |
-    | ~M-i~     | ~ivy-insert-current~      |
-    | ~M-j~     | ~ivy-yank-word~           |
-    | ~S-SPC~   | ~ivy-restrict-to-matches~ |
-    | ~C-c C-o~ | ~ivy-occur~               |
-*** In ~ivy-minibuffer-map~:
-    | ~C-r~   | ~ivy-reverse-i-search~ |
-    | ~C-M-j~ | ~ivy-immediate-done~   |
-    | ~M-o j~ | ~open in other window~ |
 * js-mode
 ** Completion with ~tern~
    - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
