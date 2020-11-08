@@ -279,6 +279,8 @@ What do you have to figure out when you switch to a new PL?
 ** JavaScript
 - [[https://github.com/v8/v8][V8]] (V8 is Google's open source JavaScript engine.)
 - [[https://v8.dev/docs][V8 documentation]]
+- [[https://github.com/evanw/esbuild][esbuild (github)]]
+- [[https://v8.dev/blog/cost-of-javascript-2019][The cost of javascript 2019 (V8 blog)]]
 ** installation Clojure & leiningen
 *** installation clojure
 - [[https://clojure.org/guides/getting_started][clojure (getting started)]]
@@ -331,7 +333,13 @@ Emacs Lisp files have been installed to:
 
 *** installation leiningen
 - See [[https://leiningen.org/][leiningen]].
-- install with ~apt~:
+- Install manualy (recommended way):
+  - Download the [[https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein][lein script]].
+  - Put it on your ~PATH~ (eg. ~~/.local/bin~)
+  - set it to be executable (~chmod a+x ~/.local/bin/lein~).
+  - Run it (lein) and it will download the self-install package.
+- Install with ~apt~ thought that you will not run the last clojure
+  version on the ~repl~:
 
 #+BEGIN_SRC bash
 sudo apt install leiningen
