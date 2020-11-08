@@ -2,6 +2,23 @@
 #+author: Tony Aldon
 
 * *Kdenlive*
+** Install
+*** How to install kdenlive 20.04 on ubuntu 18.04 LTS?
+- see [[https://askubuntu.com/questions/1056373/recommended-way-to-install-kdenlive-on-ubuntu-18-04][install kdenlive on ubuntu 18.04]] from askubuntu.
+- I you want to install ~kdenlive~ 20.04 on ~ubuntu~ 18.04 LTS, run the
+  commands:
+
+#+BEGIN_SRC bash
+wget https://files.kde.org/kdenlive/release/kdenlive-20.04.2c-x86_64.appimage
+chmod +x kdenlive-20.04.2c-x86_64.appimage
+#+END_SRC
+
+- You can know fire ~kdenlive~ by running the command:
+
+#+BEGIN_SRC bash
+./kdenlive-20.04.2c-x86_64.appimage
+#+END_SRC
+
 ** Effects
 *** How can I cut part of a video and move it on the frame?
 - Use ~Crop, Scale and Tilt~ effect.
@@ -288,6 +305,7 @@ pactl set-source-volume @DEFAULT_SOURCE@ -5%
 - [[https://commons.wikimedia.org/wiki/Category:SVG_arrow_icons][SVG_arrow_icons (wikimedia)]]
 - [[https://pixabay.com/][free images,videos,... (pixabay)]]
 - [[https://freesound.org/][freesound]]
+- [[https://www.bensound.com/][bensound]]
 - [[https://soundcloudmp3.org][soundcloud to mp3 (soundcloudmp3)]]
 - [[https://soundcloud.com/][(music) soundcloud]]
 ** Download youtube videos
