@@ -326,12 +326,17 @@ Worth reading info node.
 - ~C-u C-x =~ : pop a buffer with information at point
 - ~M-x list-faces-display~ : list all available faces on current emacs session
 - ~c~ : in ~Info-mode~ run ~Info-copy-current-node-name~.
+- ~move-past-close-and-reindent~ : Move past next ‘)’, delete
+  indentation before it, then indent after it.
+- ~C-u M-!~ : result of the shell command in the current directory
+- ~M-x ielm~
 ** emacs setup
 - Keep free the key chords ~C-<f1>~, ~C-<f2>~ , ~C-<f3>~ to use it
 to bind ~kmacro~ if needed.
 - If you want to mute warning messages, add this line ~(setq
 warning-minimum-level :emergency)~ to your emacs configuration.
 ** miscellaneous
+- https://emacs.stackexchange.com/questions/17253/how-to-direct-an-elisp-defun-to-continue-despite-errors
 - [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
 - [[https://emacs.stackexchange.com/questions/10367/construct-a-list-from-a-variable][emacs: construct list from variable]]
 - [[http://martinowen.net/blog/2010/02/03/tips-for-emacs-ibuffer.html][tips on ibuffer]]
@@ -516,6 +521,11 @@ See: [[https://stackoverflow.com/questions/5738170/why-does-emacs-create-tempora
 - [[https://wilkesley.org/~ian/xah/emacs/emacs_list_and_set_font.html][set font (xah lee)]]
 - [[https://stackoverflow.com/questions/22652888/display-all-unicode-characters-in-emacs-under-os-x][display all unicode (stackoverflow)]]
 - with the font ~symbola~ you can print all ~unicode~ character.
+** to sort
+*** emacs-lisp-mode indentation
+- to add specific indentation to 'form' and 'macro', use `put' function.
+e.g: (put 'if 'lisp-indent-function 2)
+- see: [[/home/tony/work/learning/apps/emacs/lisp/emacs-lisp/lisp-mode.el::1201][lisp-mode (built-in: L1201)]]
 * Packages (yet not tried)
 - [[https://github.com/chenyanming/anki.el][anki.el]]
 - [[https://oremacs.com/2015/01/30/auto-yasnippet/][auto-yasnippet]]
