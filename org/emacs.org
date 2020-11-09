@@ -558,7 +558,6 @@ e.g: (put 'if 'lisp-indent-function 2)
 - [[https://github.com/akicho8/string-inflection][string-inflection]]
 - [[https://github.com/benma/visual-regexp.el][visual-regexp.el]]
 - [[https://github.com/joostkremers/writeroom-mode][writeroom-mode]]
-- [[https://melpa.org/#/goto-last-point][goto-last-point]]
 * Discarded packages
 ** fill-column-indicator
 - Conflict with my use of ~avy-goto-end-of-line~ command.
