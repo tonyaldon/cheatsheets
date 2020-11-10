@@ -1,0 +1,317 @@
+#+title: Clojure tricks
+#+author: Tony Aldon
+
+* AWS
+- [[https://aws.amazon.com/amplify/][AWS amplify]]: Fastest, easiest way to develop mobile and web apps
+  that scale.
+- [[https://aws.amazon.com/api-gateway/][AWS api-gateway]]: Create, maintain, and secure APIs at any scale.
+- [[https://aws.amazon.com/appsync/][AWS appsync]]: Accelerate application development with scalable
+  GraphQL APIs.
+- [[https://aws.amazon.com/cloudfront/][AWS cloudfront]]: Fast, highly secure and programmable content
+  delivery network (CDN).
+- [[https://aws.amazon.com/cognito/][AWS cognito]]: Simple and Secure User Sign-Up, Sign-In, and Access
+  Control.
+- [[https://aws.amazon.com/elasticbeanstalk/][AWS elasticbeanstalk]]: AWS Elastic Beanstalk is an easy-to-use
+  service for deploying and scaling web applications and services
+  developed with Java, .NET, PHP, Node.js, Python, Ruby, Go, and
+  Docker on familiar servers such as Apache, Nginx, Passenger, and
+  IIS.
+- [[https://aws.amazon.com/lambda/][AWS lambda]]: Run code without thinking about servers. Pay only for
+  the compute time you consume.
+- [[https://aws.amazon.com/lightsail/][AWS lightsail]]: Virtual servers, storage, databases, and networking
+  for a low, predictable price.
+- [[https://aws.amazon.com/ses/][AWS ses]]: High-scale inbound and outbound cloud email service.
+- [[https://aws.amazon.com/s3/][AWS S3]]: Object storage built to store and retrieve any amount of
+  data from anywhere.
+** Clojure library
+- [[https://github.com/cognitect-labs/aws-api][aws-api]]: aws-api is a Clojure library which provides programmatic
+  access to AWS services from your Clojure program.
+** Serverless web app
+- [[https://aws.amazon.com/lambda/web-apps/][AWS: Serverless web app]]: Find resources to build and run
+  applications without thinking about servers.
+- [[https://github.com/aws-samples/lambda-refarch-webapp][lambda-refarch-webapp (github)]]: The Web Application reference
+  architecture is a general-purpose, event-driven, web application
+  back-end that uses AWS Lambda, Amazon API Gateway for its business
+  logic. It also uses Amazon DynamoDB as its database and Amazon
+  Cognito for user management. All static content is hosted using AWS
+  Amplify Console. This application implements a simple To Do app, in
+  which a registered user can create, update, view the existing items,
+  and eventually, delete them.
+- [[https://www.youtube.com/watch?v=eOBq__h4OJ4][AWS Lambda - Serverless Compute AWS (video)]]
+* Books
+- The joy of clojure (2nd edition), see [[~/work/learning/documents/][documents]] directory.
+- [[https://www.braveclojure.com/][Brave Clojure]]: become a better programmer.
+* Code Examples
+- [[https://github.com/borkdude/who-follows-me][who-follows-me (github)]]: Check out who follows you, but you're not
+  following back and vice versa.
+- [[https://github.com/giovanialtelino/hackernews-lacinia-datomic][hackernews-lacinia-datomic]]: A Clojure webserver designed to serve
+  Hackernews like GraphQL functions.
+- [[https://github.com/borkdude/simple-cljs-examples][simple-cljs-examples]]: Curated list of ClojureScript sample
+  applications suited for those starting with ClojureScript
+- [[https://github.com/ohpauleez/logsel][logsel (github)]]: This is an example of how to solve tree-oriented
+  problems with clojure.walk and core.logic.
+- [[https://medium.com/@kirill.ishanov/poor-mans-graphql-client-for-clojurescript-apps-8dc4b04e8738][graphql-client-for-clojurescript-apps (article)]]
+* Community
+- [[https://github.com/bhauman][Bruce Hauman (github)]]
+* Databases
+** Datomic
+- [[https://github.com/Datomic/mbrainz-sample][mbrainz sample (github)]]: Datomic MusicBrainz sample database.
+- [[https://www.datomic.com][Datomic]]: A transactional database with a flexible data model,
+  elastic scaling, and rich queries.
+- [[https://www.datomic.com/get-datomic.html][get-datomic]]: All Datomic On-Prem licenses are perpetual and include
+  all features.
+- [[https://github.com/cognitect-labs/day-of-datomic-cloud][day of datomic cloud (github)]]: Day of Datomic Cloud project is a
+  collection of samples and tutorials for learning Datomic Cloud at a
+  Clojure REPL.
+- [[https://github.com/felixflores/datomic_schema_grapher][datomic_schema_grapher]]: Visually see the datomic schema. Uses
+  graphviz.
+** Datomic Ion
+- [[https://docs.datomic.com/cloud/ions/ions-tutorial.html][ions tutorial]]: This tutorial will show you how to write applications
+  that run entirely inside Datomic Cloud without any additional
+  servers.
+- [[https://github.com/Datomic/ion-event-example][ion event example (github)]]: Sample Datomic Ion app that
+  - tracks AWS CodeDeploy events, storing information about each
+    CodeDeploy event in Datomic.
+  - responds to a Slack event by querying recent CodeDeploy events and
+    writing to a Slack channel.
+- [[https://medium.com/@rodeorockstar/datomic-ions-aws-api-gateway-and-routing-d20a1bb086dd][datomic ion and rooting (article)]]
+** Datascript
+- [[https://github.com/tonsky/datascript][datascript (tonsky)]]: An immutable in-memory database and Datalog
+  query engine in Clojure and ClojureScript.
+** Datalog
+- [[http://www.learndatalogtoday.org/][Learn datalog today]]: Learn Datalog Today is an interactive tutorial
+  designed to teach you the Datomic dialect of Datalog. Datalog is a
+  declarative database query language with roots in logic
+  programming. Datalog has similar expressive power as SQL.
+* Data Science & Mathematics
+- [[https://github.com/alanmarazzi/panthera][panthera]]: Dataframes in Clojure. Through pandas. On Python.
+- [[https://github.com/apache/incubator-mxnet][incubator-mxnet]]: Apache MXNet is a deep learning framework designed
+  for both efficiency and flexibility. (Support for Python, Java, C++,
+  R, Scala, Clojure, Go, Javascript, Perl, and Julia).
+- [[https://mxnet.apache.org/versions/1.7/api/clojure][MXNet - Clojure API]]: MXNet supports the Clojure programming
+  language. The MXNet Clojure package brings flexible and efficient
+  GPU computing and state-of-art deep learning to Clojure.
+- [[https://github.com/clojupyter/clojupyter][clojupyter]]: A Jupyter kernel for Clojure - run Clojure code in
+  Jupyter Lab, Notebook and Console.
+- [[https://github.com/mikera/core.matrix][core.matrix]]: The core.matrix library provides array programming as a
+  language extension for Clojure/Clojurescript, with a focus on
+  numerical computing.
+- [[https://github.com/clj-python/libpython-clj][libpython-clj]]: Bridge between JVM objects and Python objects easily;
+  use Python in your Java and use some Java in your Python.
+- [[https://github.com/uncomplicate/neanderthal][neanderthal]]: Neanderthal is a Clojure library for fast matrix and
+  linear algebra computations based on the highly optimized native
+  libraries of BLAS and LAPACK computation routines for both CPU and
+  GPU..
+- [[https://github.com/generateme/fastmath][fastmath]]: Fast and primitive based math library.
+- [[https://clojureverse.org/t/online-meeting-clojure-data-science/3503/11][online meeting: clojure data science]]: List of clojure libraries in
+  data science.
+- [[https://dragan.rocks/articles/20/Clojure-Numpy-Cupy-CPU-GPU][CuPy accelerates NumPy on the GPU? (article)]]
+
+* Documentation and ressources
+- [[https://clojuredocs.org/][clojuredocs]]: ClojureDocs is a community-powered documentation and
+  examples repository for the Clojure programming language.
+- [[http://clojure-doc.org/][clojure-doc (CDS)]]: Welcome to the community-driven documentation
+  site for the Clojure programming language.
+- [[http://www.getclojure.org/][get clojure]]: Enter keywords (eg: iterate AND range) and it returns
+  examples usings those keywords.
+- [[http://www.rosettacode.org/wiki/Category:Clojure][Rosetta Code (clojure)]]: Listed below are all of the tasks on Rosetta
+  Code which have been solved using Clojure.
+- [[http://www.4clojure.com/][4clojure]]: 4Clojure is a resource to help fledgling clojurians
+  learn the language through interactive problems.
+- [[https://github.com/emacsorphanage/4clojure][4clojure (emacs plugin)]]: Open and evaluate 4clojure questions.
+* Frontend
+** Fulcro
+- [[https://github.com/fulcrologic][fulcrologic (github organization)]]: Libraries by Fulcrologic, LLC.
+- [[https://github.com/fulcrologic/fulcro][fulcro (github)]]: Fulcro is a library for building data-driven
+  full-stack applications for the web, native, and desktop (via
+  electron). It uses React and is written in Clojure and
+  Clojurescript.
+- [[http://book.fulcrologic.com/][Fulcro Developers Guide]]: clojureScript frontend framework
+- [[https://github.com/fulcrologic/fulcro-inspect][fulcro-inspect (github)]]: Chrome extension to inspect Fulcro applications.
+- [[https://github.com/fulcrologic/video-series][fulcro - video-series (github)]]: This repository contains snapshots
+  of the repository as it existed at various interesting points in the
+  [[https://www.youtube.com/playlist?list=PLVi9lDx-4C_T7jkihlQflyqGqU4xVtsfi][video series]].
+- [[https://soundcloud.com/user-959992602/s4-e6-fulcro-with-tony-kay-part-1][ClojureScript podcast - Fulcro with Tony Kay (part 1)]]
+- [[https://soundcloud.com/user-959992602/s4-e7-fulcro-with-tony-kay-part-2][ClojureScript podcast - Fulcro with Tony Kay (part 2)]]
+** EQL (edn query language)
+- [[https://edn-query-language.org/][EQL]]: EQL is a declarative way to make hierarchical (and possibly
+  nested) selections of information about data requirements. EQL
+  doesn’t have its own language; it uses EDN to express the request,
+  taking advantage of the rich set of primitives provided by it.
+- [[https://github.com/wilkerlucio/pathom][pathom (github)]]: A Clojure library designed to help you write
+  Clojure(script) graph query processing parsers for the query
+  notation used by EQL.
+- [[https://blog.wsscode.com/pathom/v2/pathom/2.2.0/introduction.html][pathom (documentation)]]
+** component tool
+- [[https://github.com/nubank/workspaces][workspaces (github)]]: Workspaces is a component development
+  environment for ClojureScript, inspired by [[https://github.com/bhauman/devcards][devcards]].
+** Miscellaneous
+- [[https://github.com/reagent-project/reagent][reagent (github)]]: A simple ClojureScript interface to React.
+- [[https://github.com/vouch-opensource/krell][krell (github)]]: Stand alone, low configuration ClojureScript tooling
+  for React Native. All features are provided as a simple set of
+  defaults over the standard ClojureScript compiler.
+- [[https://github.com/bhauman/react-native-figwheel-bridge][react-native-figwheel-bridge]]: Enables React Native projects written
+  in ClojureScript to use Figwheel's live reloading and REPL.
+
+* Miscellaneous
+- [[https://github.com/cognitect/transit-format][transit-format]]: Transit is a format and set of libraries for
+  conveying values between applications written in different
+  programming languages. This spec describes Transit in order to
+  facilitate its implementation in a wide range of languages.
+- [[https://lambdaisland.com/guides/clojure-repls/clojure-repls][clojure-repls (article)]]: Presentation of clojure repls (they are
+  many).
+- [[https://github.com/seancorfield/honeysql][honeysql]]: SQL as Clojure data structures. Build queries
+  programmatically -- even at runtime -- without having to bash
+  strings together.
+- [[https://github.com/abengoa/clj-stripe][clj-stripe]]: clj-stripe is a library that provides Clojure bindings
+  for the Stripe API.
+- [[https://github.com/stuartsierra/component][component]]: 'Component' is a tiny Clojure framework for managing the
+  lifecycle and dependencies of software components which have runtime
+  state.
+- [[https://github.com/borkdude/jet][jet]]: CLI to transform between JSON, EDN and Transit, powered with a
+  minimal query language.
+- [[https://github.com/weavejester/medley][medley]]: Medley is a lightweight Clojure/ClojureScript library of
+  useful, mostly pure functions that are "missing" from clojure.core.
+- [[https://luminusweb.com/][luminus]]: Luminus is a Clojure micro-framework based on a set of
+  leightweight libraries.
+- [[https://rigsomelight.com/2014/05/01/interactive-programming-flappy-bird-clojurescript.html][interactive programming in clojurescript]]: flappy bird live on figwheel.
+- [[http://clojure-doc.org/articles/ecosystem/maven.html][How to use Maven to build Clojure projects (article)]]
+- [[https://github.com/seancorfield/next-jdbc][next-jdbc (github)]]: The next generation of clojure.java.jdbc: a new
+  low-level Clojure wrapper for JDBC-based access to databases.
+- [[https://purelyfunctional.tv/article/jvm-deployment-options/][jvm deployment option (article)]]: What are the options for deploying
+  a Clojure server?
+- [[https://cljsrn.org/][cljsrn - clojureScript + React Native]]: Resources for developers
+  using ClojureScript to build React Native apps.
+- [[https://github.com/hodur-org/hodur-engine][hodur-engine]]: Hodur is a descriptive domain modeling approach and
+  related collection of libraries for Clojure.
+- [[https://github.com/rm-hull/helpmate][helpmate]]: HelpMate is a Clojure/ClojureScript library for
+  templating/emitting SGML-like content. It uses S-Expressions to
+  represent elements, and maps to represent an element's attributes.
+- [[https://github.com/candera/causatum][causatum]]: A Clojure library designed to generate streams of timed
+  events based on stochastic state machines.
+** walk
+- [[https://clojure.github.io/clojure/clojure.walk-api.html][API for clojure.walk]]
+- [[https://clojuredocs.org/clojure.walk/walk][walk (ClojureDocs)]]: example using ~clojure.walk~.
+* Security
+** App examples
+- [[https://juxt.pro/blog/securing-your-clojurescript-app][securing clojurescript app (article)]]: Use buddy's json tokens to
+  authenticate your single page application.
+** Libraries
+- [[https://github.com/propan/geheimtur][geheimtur]]: a Clojure library that allows you to secure your Pedestal
+  applications with minimum efforts.
+- [[https://funcool.github.io/buddy-auth/latest/][buddy-auth (documentation)]]: buddy-auth is a module that provides
+  authentication and authorization facilites or ring and ring based
+  web applications.
+- [[https://github.com/funcool/buddy][buddy (github)]]: buddy is a complete security library for clojure.
+- [[https://github.com/mattrepl/clj-oauth][clj-oauth]]: clj-oauth provides OAuth Client support for Clojure
+  programs.
+- [[https://github.com/weavejester/ring-oauth2][ring-oauth2]]: Ring middleware that acts as a OAuth 2.0 client. This
+  is used for authenticating and integrating with third party website,
+  like Twitter, Facebook and GitHub.
+** JWT (JSON Web Tokens)
+- [[https://jwt.io/introduction/][Introduction to JSON Web Tokens (jwt.io)]]
+- [[https://tools.ietf.org/html/rfc7519][JWT (rfc 7519)]]: JSON Web Token (JWT) is a compact, URL-safe means of representing
+   claims to be transferred between two parties.
+- [[https://stormpath.com/blog/token-auth-spa][Token Based Authentication for Single Page Apps (SPAs)]]: We will
+  cover access tokens, how they differ from session cookies.
+- [[https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/][Refresh tokens]]: Refresh Tokens: When to Use Them and How They Interact with JWTs.
+** Miscellaneous
+- [[https://cheatsheetseries.owasp.org/cheatsheets/HTML5_Security_Cheat_Sheet.html][HTML5_Security_Cheat_Sheet (OWASP)]]: The following cheat sheet serves
+  as a guide for implementing HTML 5 in a secure fashion.
+
+* Tools
+- [[https://github.com/technomancy/leiningen/][leiningen]]: Leiningen is for automating Clojure projects without
+  setting your hair on fire.
+- [[https://github.com/cognitect-labs/REBL-distro][REBL]]: REBL is a graphical, interactive tool for browsing Clojure
+  data.
+- [[https://github.com/weavejester/hiccup/wiki/Converting-html-to-hiccup][Converting html to hiccup]]: Here are several tools capable of
+  converting HTML to Hiccup.
+- [[https://github.com/borkdude/clj-kondo][clj-kondo]]: A linter for Clojure code that sparks joy.
+- [[https://figwheel.org/][figwheel]]: Figwheel Main builds your ClojureScript code and hot loads
+  it as you are coding!
+** shadow-cljs
+- [[http://shadow-cljs.org/][shadow-cljs (github)]]: shadow-cljs provides everything you need to compile
+  your ClojureScript code with a focus on simplicity and ease of use.
+- [[https://code.thheller.com/blog/shadow-cljs/2019/03/01/what-shadow-cljs-is-and-isnt.html][what shadow cljs is and isn't (article)]]
+  [[https://code.thheller.com/blog/shadow-cljs/2019/03/03/code-splitting-clojurescript.html][code splitting clojurescript (article)]]
+
+* Scripting
+- [[https://github.com/daveray/clawk][clawk]]: Kinda like awk, but Clojure. Reads each line of stdin, binds
+  it to $ and evaluates the code provided. Non-nil results go to
+  stdout.
+- [[https://github.com/borkdude/babashka.curl][babashka.curl]]: A tiny curl wrapper via idiomatic Clojure, inspired
+  by clj-http, Ring and friends.
+- [[https://github.com/borkdude/babashka][babashka]]: The main idea behind babashka is to leverage Clojure in
+  places where you would be using bash otherwise.
+* Specs
+- [[https://clojure.org/about/spec][spec (clojure.org)]]
+- [[https://clojure.org/guides/spec][spec guides (clojure.org)]]
+- [[https://github.com/bnoguchi/awesome-clojure-spec][awesome-clojure-spec (bnoguchi)]]: A catalog of
+  interesting clojure.spec repos and gists.
+- [[https://github.com/metosin/spec-tools][spec-tools (metosin)]]: Clojure/Script utilities on top of
+  clojure.spec. Bundled in one project but features in separate
+  namespaces.
+* Tests
+- [[https://github.com/clojure/test.check][test.check]]: test.check is a Clojure property-based testing tool
+  inspired by QuickCheck. The core idea of test.check is that instead
+  of enumerating expected input and output for unit tests, you write
+  properties about your function that should hold true for all
+  inputs. This lets you write concise, powerful tests.
+* Video, Visualization, Animation
+- [[https://github.com/w33tmaricich/kawa][kawa]]: A clojure wrapper around ffmpeg command line tools.
+- [[http://www.quil.info/][quil]]: Clojure/ClojureScript library for creating interactive
+  drawings and animations.
+- [[https://github.com/metasoarous/oz][oz]]: Oz is a data visualization and scientific document processing
+  library for Clojure built around Vega-Lite & Vega.
+- [[https://github.com/jsa-aerial/hanami][hanami]]: Interactive arts and charts visualizations with
+  Clojure(Script), Vega-lite, and Vega. Flower viewing 花見 (hanami).
+- [[https://vega.github.io/vega-lite/][vega-lite]]: Vega-Lite is a high-level grammar of interactive
+  graphics. It provides a concise, declarative JSON syntax to create
+  an expressive range of visualizations for data analysis and
+  presentation.
+* Web request, Web API, Web application
+** graphql & graph queries
+- [[https://github.com/wilkerlucio/pathom][pathom]]: A Clojure library designed to help you write Clojure(script)
+  graph query processing parsers for the query notation used by EQL.
+- [[https://github.com/Vincit/venia][venia]]: A Clojure(Script) qraphql query client library. Generate
+  valid graphql queries with Clojure data structures.
+- [[https://github.com/retro/graphql-builder][graphql-builder]]: GraphQL client library for Clojure and
+  ClojureScript.
+- [[https://github.com/walmartlabs/lacinia][lacinia]]: This library is a full implementation of Facebook's GraphQL
+  specification.
+- [[https://github.com/oliyh/lacinia-gen][lacinia-gen]]: lacinia-gen lets you generate GraphQL responses using
+  your lacinia schema and GraphQL queries, allowing you to make your
+  tests more rigorous in both Clojure and Clojurescript.
+- [[https://github.com/oliyh/locksmith][locksmith]]: Want to use GraphQL with Clojure/script but don't want
+  snake_keys or camelKeys everywhere? Use locksmith to change all the
+  keys!
+- [[https://github.com/oliyh/re-graph][re-graph]]: re-graph is a graphql client for Clojure and ClojureScript
+  with bindings for re-frame applications.
+- [[https://medium.com/@kirill.ishanov/poor-mans-graphql-client-for-clojurescript-apps-8dc4b04e8738][graphql client for clojurescript (article)]]
+- [[https://jborden.github.io/2017/05/15/using-lacinia][using-lacinia (article)]]: Using the Lacinia GraphQL Clojure Library.
+** Pedestal
+- [[http://pedestal.io/][pedestal]]: Pedestal is a set of libraries that we use to build
+  services and applications. It runs in the back end and can serve up
+  whole HTML pages or handle API requests.
+- [[http://pedestal.io/guides/hello-world][pedestal (hello-world)]]
+- [[https://github.com/pedestal/pedestal/tree/master/samples][pedestal samples (github)]]: This is a collection of examples of
+  services using the pedestal toolkit.
+- [[https://github.com/pedestal/pedestal.ions][pedestal.ions]]: Datomic Ion interceptor chain provider.
+- [[https://podcastaddict.com/episode/https%3A%2F%2Ffeeds.soundcloud.com%2Fstream%2F639012531-user-959992602-s3-e7-pedestal-with-daniel-de-aguiar.mp3&podcastId=2486562][ClojureScript Podcast: S4 E11 Pedestal with Daniel De Aguiar]]
+** Miscellaneous
+- [[https://github.com/cognitect-labs/vase][vase]]: This system provides a data-driven and extensible way to
+  describe and run HTTP APIs. Building blocks make it very easy to use
+  Datomic as a durable database. Other databases can be added via an
+  extension mechanism.
+- [[https://github.com/JulianBirch/cljs-ajax][cljs-ajax]]: simple Ajax client for ClojureScript and Clojure.
+- [[https://tirkarthi.github.io/clojure/2017/10/09/graphql-tutorial.html][graphql-tutorial (tirkarthi)]]: A music collection app.
+- [[https://github.com/ring-clojure/ring][ring]]: Ring is a Clojure web applications library inspired by
+  Python's WSGI and Ruby's Rack.
+- [[https://github.com/dakrone/clj-http][clj-http]]: clj-http is an HTTP library wrapping the Apache
+  HttpComponents client. This library has taken over from mmcgrana’s
+  clj-http.
+- [[https://github.com/http-kit/http-kit][http-kit]]: A simple, high-performance event-driven HTTP client+server
+  for Clojure.
+- [[https://github.com/jarohen/chord][chord]]: A lightweight Clojure/ClojureScript library designed to
+  bridge the gap between the triad of CLJ/CLJS, web-sockets and
+  core.async.
