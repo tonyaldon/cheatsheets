@@ -142,7 +142,9 @@ git reset --hard
 #+END_SRC
 
 ** revert back a git-merge
-[warning] This following action delete all the commits up to ~<commit-id>~, you can't go back. This is safe if the deleted commits are yet part of another branch.
+[warning] This following action delete all the commits up to
+~<commit-id>~, you can't go back. This is safe if the deleted commits
+are yet part of another branch.
 
 #+BEGIN_SRC bash
 git reset --hard <commit-id>
