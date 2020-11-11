@@ -566,7 +566,10 @@ e.g: (put 'if 'lisp-indent-function 2)
 - do not respect my cursor settings
 - code complicated to modify
 - I prefer [[https://github.com/muffinmad/emacs-mini-frame][mini-frame]]
-
+** goto-last-point
+- No exactly what I expected.
+- What I want is jumping between marks in the mark ring (see:
+  set-mark-command).
 * Articles (new)
 - [[https://rgoswami.me/posts/anki-decks-orgmode/][anki decks orgmode]]
 - [[https://correl.phoenixinquis.net/2015/07/12/git-graphs.html][git graphs]]
