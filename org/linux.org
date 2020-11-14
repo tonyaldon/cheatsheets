@@ -825,6 +825,27 @@ Compression mode              : Lossy
 Stream size                   : 2.31 MiB (100%)
 #+END_SRC
 
+*** What option can I use to format the file time printed with -l option of ls command?
+- Use ~--time-style~ option of ~ls~ command:
+- ~--time-style~: with ~-l~, ~ls~ show time using style ~full-iso~,
+  ~long-iso~, ~iso~, ~locale~, or ~+FORMAT~ where FORMAT is
+  interpreted like in ~date~.
+- If you want to list the file of a directory with the time format set
+  to ~iso~, run the command:
+
+#+BEGIN_SRC bash
+ls -l --time-style=iso
+#+END_SRC
+
+- After running the previous command on one of my directory, I got
+  this output:
+
+#+BEGIN_SRC text
+-rw-r--r-- 1 tony tony 22293 11-11 19:10  clojure.org
+-rw-r--r-- 1 tony tony 44155 11-13 06:11  emacs.org
+-rw-r--r-- 1 tony tony 15442 08-03 12:10  frontend.org
+-rw-r--r-- 1 tony tony  6053 11-10 10:01  git.org
+#+END_SRC
 ** View files
 *** What cat, head and tail commands are for?
 - ~cat~: concatenate files and print on the standard output.
@@ -1452,7 +1473,7 @@ server {
 - See ~proxy_pass~ directive in your ~block~ configuration.
 - The error was that I was trying to pass ~location /app~ to
   the address ~http://127.0.0.1:5000~ without putting a ~/~ a the
-  end of the address. 
+  end of the address.
 -To solve the problem, I add a ~/~ to the ~proxy_pass~ address. My
 ~block~ configuration ~/etc/nginx/sites-available/mydomain.conf~
 contains know the following lines:
