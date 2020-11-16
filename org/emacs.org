@@ -32,6 +32,7 @@ Either to write *code* or just *text*, I need:
 | C-c /         | ~org-sparse-tree~                                                          |
 | C-c C-c       | at the beginning of the line, different command (according to the context) |
 | C-c <TAB>     | org-table-toggle-column-width                                              |
+| C-c C-x C-v   | org-toggle-inline-images                                                                           |
 
 ~org-shiftup~ (S-<up>) before the character ~>~ of an active timestamp
 toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
