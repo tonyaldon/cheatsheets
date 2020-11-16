@@ -83,8 +83,8 @@ digraph {
 
 ~org-shiftup~ (S-<up>) before the character ~>~ of an active timestamp
 toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
-
-
+** Resources
+- [[https://www.jstatsoft.org/article/view/v046i03][Literate Programming and Reproducible Research (article/pdf)]]
 ** export file
 - ~org-export-backends~, ~(require 'ox-man)~
 *** info file
