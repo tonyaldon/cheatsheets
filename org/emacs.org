@@ -338,6 +338,14 @@ to bind ~kmacro~ if needed.
 - If you want to mute warning messages, add this line ~(setq
 warning-minimum-level :emergency)~ to your emacs configuration.
 ** miscellaneous
+- When you update you emacs version (for instance with ~sudo apt
+  update~), you have to recompile all your installed emacs
+  packages. As I'm using ~Cask~ to manage my emacs package
+  dependencies, the best way to do it is:
+  1. Remove the directory where are stored your packages
+     "~/.emacs.d/.cask/28.0/",
+  2. Then reinstall your ~Cask~ dependencies by running the command:
+     ~cask install~.
 - https://emacs.stackexchange.com/questions/17253/how-to-direct-an-elisp-defun-to-continue-despite-errors
 - [[https://emacs.stackexchange.com/questions/233/how-to-proceed-on-package-el-signature-check-failure][signature check failure]]
 - [[https://emacs.stackexchange.com/questions/10367/construct-a-list-from-a-variable][emacs: construct list from variable]]
