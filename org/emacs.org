@@ -15,6 +15,53 @@ Either to write *code* or just *text*, I need:
 - a good snippets system :: [[https://github.com/joaotavora/yasnippet][yasnippet]],
 - an enhanced UI :: [[https://github.com/muffinmad/emacs-mini-frame][mini-frame]],
 - an unified layout :: indentation, color, highlight.
+* Graphviz
+** Resources
+*** Global
+- [[http://www.graphviz.org/][graphviz.org]]: Graphviz is open source graph visualization
+  software. Graph visualization is a way of representing structural
+  information as diagrams of abstract graphs and networks. The
+  Graphviz layout programs take descriptions of graphs in a simple
+  text language, and make diagrams in useful formats, such as images
+  and SVG for web pages; PDF or Postscript for inclusion in other
+  documents; or display in an interactive graph browser.
+- [[http://www.graphviz.org/gallery/][graphviz/gallery]]: Some examples.
+*** org-mode
+- [[https://orgmode.org/worg/org-tutorials/org-dot-diagrams.html][Generating simple process diagrams using dot and tables (orgmode.org)]]
+- [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-dot.html][Dot Source Code Blocks in Org Mode (orgmode.org)]]
+- [[https://vxlabs.com/2014/12/04/inline-graphviz-dot-evaluation-for-graphs-using-emacs-org-mode-and-org-babel/][Inline GraphViz DOT evaluation for graphs (article)]]
+** Install graphviz
+- See [[http://www.graphviz.org/download/][graphviz/download]] page.
+- To install ~graphviz~ and the doc on ~ubuntu~, run the command:
+
+#+BEGIN_SRC bash
+sudo apt install graphviz graphviz-doc
+#+END_SRC
+
+** graphviz-dot-mode
+- ~graphviz-dot-mode~ is a major mode for the ~dot~ language.
+** org-mode
+- You can write ~dot~ code in ~src~ block. To do so, you juste have to
+  add ~(dot . t)~ to the alist ~org-babel-load-languages~.
+- When you evaluate you ~dot~ source code block (~C-c C-c~ inside the
+  code block), this produce the image and return a link to that image
+  in the result (~#+RESULTS:~) block.
+- If you want the image to be displayed instead of just seing the
+  link, you can toggle the display of inline images with the command
+  ~org-toggle-inline-images~.
+- Example:
+
+#+BEGIN_SRC dot :file dot-output.png :cmdline -Kdot -Tpng
+digraph {
+  // graph from left to right
+  rankdir=LR;
+  tony -> jim
+}
+#+END_SRC
+
+#+RESULTS:
+[[file:dot-output.png]]
+
 * org-mode
 ** Default keybindings
 | ~C-c SPC~     | ~org-table-blank-field~                                                    |
