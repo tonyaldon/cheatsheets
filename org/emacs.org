@@ -353,10 +353,10 @@ warning-minimum-level :emergency)~ to your emacs configuration.
 - [[http://ergoemacs.org/emacs/emacs_jump_to_previous_position.html][ergoemacs: jump to previous position]]
 - [[http://iboyko.com/articles/updating-emacs-from-24-to-26-27-on-ubuntu/][updating emacs from 24 to 26-27]]
 - ~mark-ring~ :
-1) Don't try to ~push-mark~ when that you want is to cycle into the ~mark-ring~.
-2) Better is to ~defadvice~ before with ~(push-mark)~ other
-   commands when they move point and you may want to go back to the
-   position. [[https://gist.github.com/magnars/2350388][see magnars to do the advice.]]
+- Don't try to ~push-mark~ when that you want is to cycle into the ~mark-ring~.
+- Better is to ~defadvice~ before with ~(push-mark)~ other
+  commands when they move point and you may want to go back to the
+  position. [[https://gist.github.com/magnars/2350388][see magnars to do the advice.]]
 - ~key-chord~ example: ~(key-chord-define js-mode-map ";;" "\C-e;")~
 - Don't rebind ~(kbd "ESC")~ , it doesn't work and break some
 internal emacs stuff. Better to bind ~[escape]~.
@@ -551,6 +551,7 @@ e.g: (put 'if 'lisp-indent-function 2)
 - [[https://github.com/tkf/emacs-request][emacs-request]]
 - [[https://github.com/justbur/emacs-which-key/][emacs-which-key]]
 - [[https://github.com/storax/graph.el][graph.el]]
+- hippie-exp.el (built-in)
 - [[https://gitlab.com/emacs-stuff/indent-tools][indent-tools]] : Indent, navigate around and act on indentation units:
   perfect for yaml, python and the like.
 - [[https://github.com/NicolasPetton/Indium][indium]]
