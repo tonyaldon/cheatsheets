@@ -284,6 +284,8 @@ div {
 <div class="zoom"></div>
 #+END_SRC
 
+** Videos
+- [[https://css-tricks.com/fluid-width-video/][youtube video (css tricks)]]
 ** Animation
 - [[https://www.w3schools.com/css/css3_animations.asp][css animation]]
 ** Media queries
