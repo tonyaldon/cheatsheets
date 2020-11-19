@@ -150,6 +150,9 @@ are yet part of another branch.
 git reset --hard <commit-id>
 #+END_SRC
 
+** permanently delete a file stored in git
+- [[https://stackoverflow.com/questions/2004024/how-to-permanently-delete-a-file-stored-in-git][how to permanently delete a file stored in git]]
+
 * repository
 ** git-remote
 
