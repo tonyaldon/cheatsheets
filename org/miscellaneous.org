@@ -599,3 +599,46 @@ sous-actes suivants:
 - https://en.wikipedia.org/wiki/DOT_(graph_description_language)
 - https://graphviz.org/doc/info/lang.html
 - https://graphviz.org/gallery/
+** DNS tools
+List of links pick from the following [[https://twitter.com/trimstray/status/1328249118871998464?s=27][tweet (@trimstray)]]:
+- http://viewdns.info: Reverse IP lookup, Reverse Whois lookup, ...,
+  API and domain data (sell).
+- http://dnslytics.com: Find out everything about a domain name, IP
+  address or provider. Discover relations between them and see
+  historical data. Use it for your digital investigation, fraud
+  prevention or brand protection.
+- http://dnsspy.io: Paranoid about your DNS. Monitor, validate and
+  verify your DNS configurations
+- http://dnsdumpster.com: DNSdumpster.com is a FREE domain research
+  tool that can discover hosts related to a domain. Finding visible
+  hosts from the attackers perspective is an important part of the
+  security assessment process.
+- http://intodns.com: IntoDNS checks the health and configuration and
+  provides DNS report and mail servers report. And provides
+  suggestions to fix and improve them, with references to protocols’
+  official documentation.
+- http://www.zonecut.net/dns: DNS Bajaj is a tool I made to help
+  pinpoint errors when setting up nameservers for a domain. This is
+  still a sort of "proof of concept" and the code is reflecting that.
+- http://xip.io: xip.io is a magic domain name that provides wildcard
+  DNS for any IP address.
+- http://nip.io: Stop editing your etc/hosts file with custom hostname
+  and IP address mappings. nip.io allows you to do that by mapping any
+  IP Address to a hostname
+- http://ptrarchive.com: This site is responsible for the safekeeping
+  of historical reverse DNS records. It has over 230 billion records
+  retrieved from 2008 to the present. We provide free access to this
+  data.
+- http://www.whatsmydns.net: whatsmydns.net lets you instantly perform
+  a DNS lookup to check a domain name's current IP address and DNS
+  record information against multiple nameservers located in different
+  parts of the world.
+- http://ceipam.eu/en/dnslookup.php: DNS search on various
+  nameservers: Google, OpenDNS, Euroweb, GTS Telecom, RDS, Romtelecom,
+  Vodafone, others. Search for A, MX, NS, PTR type NS records as they
+  are on DNS servers of the providers, check DNS propagation.
+- http://spyse.com/tools/dns-lookup: Carry Out DNS Lookup And Get All
+  Main DNS Records Instantly. No Buffering, More Productivity
+- http://www.buddyns.com/delegation-lab: DNS is the most critical
+  Single Point of Failure in every organization. BuddyNS gives you
+  plug-in continuity and security for DNS.
