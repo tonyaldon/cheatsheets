@@ -141,6 +141,24 @@ toggle the timestamp to inactive (ie: replace ~<...>~ by ~[...]~).
 - https://www.reddit.com/r/emacs/comments/ccwl4r/i_made_a_json_export_back_end_for_org_mode/
 - https://www.reddit.com/r/orgmode/comments/7wjmwr/orga_the_ultimate_orgmode_parser_in_javascript/
 - https://lihautan.com/manipulating-ast-with-javascript/
+** org hyperlinks
+- see: (info "(org) Link Abbreviations")
+- An abbreviated link looks like this ~[[linkword:tag][description]]~
+  where the tag is optional. Abbreviations are resolved according to
+  the information in the variable ~org-link-abbrev-alist~ that relates
+  the linkwords to replacement text. You can also define special
+  abbreviations for a single Org buffer using the ~#+LINK:~ directive.
+- The ~%s~ characters in the resolved linkword will be replace the
+  ~tag~.
+- For instance, you can define linkword like that:
+
+#+BEGIN_SRC text
+#+LINK: google    http://www.google.com/search?q=%s
+#+LINK: emacs     file:~/work/learning/apps/emacs/%s
+#+END_SRC
+
+- And use it like this: ~[[emacs:lisp/org/org-keys.el::12]]~ or
+  ~[[google:tony aldon]]~.
 * js-mode
 ** Completion with ~tern~
 - ~tern~ is a ~node~ package. ~tern~ is a stand-alone,
