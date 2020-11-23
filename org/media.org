@@ -418,3 +418,8 @@ sudo apt install imagemagick
 - To see: ~pavucontrol~ (to capture application (system) audio instead of
   microphone)
 - To see: cloud transcoding
+** Chrome extension
+*** Screen recorder
+Found from this [[https://twitter.com/alyssaxuu/status/1329465920092315649?s=27][tweet]]:
+- [[https://chrome.google.com/webstore/detail/screenity-screen-recorder/kbbdabhdfibnancpjfhlkhafgdilcnji][Screenity (chrome extension)]]: Screen Recorder & Annotation Tool.
+- [[https://github.com/alyssaxuu/screenity][screenity (github)]]: Screen Recorder & Annotation Tool.
