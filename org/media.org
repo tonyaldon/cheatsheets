@@ -355,6 +355,12 @@ project/
   src/               # code and docs to generate videos
     README.md
 #+END_SRC
+** Video material
+- [[https://www.amazon.es/dp/B071P42H7T/ref=sspa_dk_detail_6?psc=1&pd_rd_i=B071P42H7T&pd_rd_w=tvn7p&pf_rd_p=af12bbbd-c74b-4d8c-ad16-2ed2a7b363ab&pd_rd_wg=kG57B&pf_rd_r=HRNW0CQJTFXHK2SX8YXV&pd_rd_r=1e23851a-4c7f-4b14-8a5f-b24423ad997f&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEzUlhUTzI1NTJTSEZKJmVuY3J5cHRlZElkPUEwMjkwOTAzM1JTVkxRWlNJSUY0NSZlbmNyeXB0ZWRBZElkPUExMDM2NTcwRVhYR0lVU0RWRzhWJndpZGdldE5hbWU9c3BfZGV0YWlsJmFjdGlvbj1jbGlja1JlZGlyZWN0JmRvTm90TG9nQ2xpY2s9dHJ1ZQ==][tripod PEMOTech]]
+- [[https://www.arkon.com/category/camera-tripods.html][arkon camera tripods]]
+- [[https://switchpod.co/][switchpod]]
+- [[https://www.amazon.es/Rode-SC6-Adaptador-audio-m%C3%B3viles/dp/B00I3IW50O][rode sc6 adaptador audio]]
+- [[https://www.amazon.fr/Boya-Microphone-Cravate-Smartphone-Canon/dp/B00MT5K838][boya by m1 (microphone)]]
 ** Screenshot
 *** How can I take a screenshot of my screen with a command line?
 - Use ~import~ command.
