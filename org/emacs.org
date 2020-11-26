@@ -404,6 +404,9 @@ to bind ~kmacro~ if needed.
 - If you want to mute warning messages, add this line ~(setq
 warning-minimum-level :emergency)~ to your emacs configuration.
 ** miscellaneous
+- The sentence commands assume that you follow the American typist’s
+  convention of putting two spaces at the end of a sentence (see:
+  (info "(emacs) Sentences") and [[https://www.youtube.com/watch?v=k5v2iB1FqFw][Emacs: transpose text (Protesilaos Stavrou)]]).
 - When you update you emacs version (for instance with ~sudo apt
   update~), you have to recompile all your installed emacs
   packages. As I'm using ~Cask~ to manage my emacs package
