@@ -615,6 +615,8 @@ e.g: (put 'if 'lisp-indent-function 2)
 - [[/home/tony/work/learning/apps/emacs/lisp/delim-col.el][delim-col (built-in)]] (interesting to modify rectangle)
 - [[https://github.com/emacsorphanage/dired-k][dired-k]]
 - [[https://github.com/leoliu/easy-kill][easy-kill]]
+- [[https://github.com/doublep/eldev][eldev]] : Eldev (Elisp Development Tool) is an Emacs-based build tool,
+  targeted solely at Elisp projects. It is an alternative to Cask.
 - [[https://github.com/emacsorphanage/elisp-depend][elisp-depend]]
 - [[https://gitlab.com/mtekman/elisp-depmap.el][elisp-depmap]] : Writes out a graphviz map based on project functions
 - [[https://github.com/tkf/emacs-request][emacs-request]]
