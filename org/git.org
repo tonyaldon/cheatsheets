@@ -259,6 +259,7 @@ git commit -m "Add my-submodule"
 - [[https://linuxize.com/post/how-to-install-and-configure-gitlab-on-ubuntu-18-04/][how-to-install-and-configure-gitlab-on-ubuntu-18-04 (linuxize)]]
 - [[https://docs.gitlab.com/omnibus/settings/smtp.html][settings smtp (gitlab doc)]]
 - [[https://mincong.io/2019/07/23/prepare-commit-message-using-git-hook/][prepare-commit-message hook (example)]]
+- [[https://www.youtube.com/watch?v=MYP56QJpDr4][Git From the Bits Up (video)]]
 * ideas
 - In a github repository, you can search for files by clicking on
   the button ~find file~ on the left of ~clone~ button.
