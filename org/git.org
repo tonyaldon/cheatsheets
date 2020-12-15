@@ -53,6 +53,14 @@ git tag -a <tag-name> -m "<tag-message>"
 git tag -a <tag-name> <past-commit-ref>
 #+END_SRC
 
+** -- in command line
+- The following command shows only the commits where ~my-file~
+  appears.
+
+#+BEGIN_SRC bash
+git log -- my-file
+#+END_SRC
+
 * list
 ** git-status/git-config/git-ls-tree
 
