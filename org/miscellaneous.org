@@ -554,6 +554,11 @@ sous-actes suivants:
 7) *Coudre*: save and run.
 * links
 ** miscellaneous
+- [[https://ferd.ca/complexity-has-to-live-somewhere.html][complexity-has-to-live-somewhere (article)]]
+- [[https://ferd.ca/you-reap-what-you-code.html][you-reap-what-you-code (article)]]
+- [[https://building.nubank.com.br/why-we-think-flutter-will-help-us-scale-mobile-development-at-nubank/][why we choose Flutter (nubank article)]]
+- [[https://soundcloud.com/thoughtworks/the-future-of-clojure][the future of clojure (podcast)]]
+- [[https://pijul.org/posts/2020-11-07-towards-1.0/][pijul towards-1.0 (article)]]
 - [[https://github.com/mtnygard/arch-pattern-cards][Architecture pattern cards (github)]]
 - [[http://www.cs.virginia.edu/~robins/CS_readings.html][computer science readings (Gabriel Robins)]]
 - [[https://en.wikipedia.org/wiki/Bitwise_operation][bitwise operations]]
