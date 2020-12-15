@@ -108,6 +108,33 @@ git tag -n
 git show <tag-name>
 #+END_SRC
 
+** git-ls-files/git-cat-file
+*** How does git handle symbolic links?
+- Git just stores the contents of the link (i.e. the path of the file
+  system object that it links to) in a 'blob' just like it would for a
+  normal file. It then stores the name, mode and type (including the
+  fact that it is a symlink) in the tree object that represents its
+  containing directory.
+- See [[https://stackoverflow.com/questions/954560/how-does-git-handle-symbolic-links][stackoverflow]].
+- To understand how git handles symbolic links, run the following
+  commands:
+
+#+BEGIN_SRC bash
+mkdir test
+cd test
+git init
+echo "I'm the target file" > target
+ln -s target symbolic-link
+git add symbolic-link
+git ls-files -s symbolic-link
+git cat-file -p <hash-reference-of-symbolic-link>
+#+END_SRC
+
+- Note that Git doesn't store the content of the linked file
+  (target).
+- Note that ~120000~ (in the output of ~git ls-files -s
+  symbolic-link~) is the mode use by ~git~ for the symbolic
+  links. See [[https://unix.stackexchange.com/questions/193465/what-file-mode-is-a-symlink][what file mode is a symlink (stackoverflow)]].
 * delete
 ** git-rm
 
