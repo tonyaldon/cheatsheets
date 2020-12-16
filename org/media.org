@@ -451,6 +451,30 @@ ffmpeg -i input.mp4 -an -filter:v "setpts=0.5*PTS" output.mp4
 ffmpeg -i input.mp4 -filter:a "atempo=2.0" -vn output.mp4
 #+END_SRC
 
+** tips
+*** How to convert a video into images?
+- Use ~ffmpeg~ command.
+- ~ffmpeg~: ffmpeg is a very fast video and audio converter that can
+  also grab from a live audio/video source.
+- See [[https://stackoverflow.com/questions/40088222/ffmpeg-convert-video-to-images][stackoverflow]] and the [[https://trac.ffmpeg.org/wiki/Create%20a%20thumbnail%20image%20every%20X%20seconds%20of%20the%20video][documentation]].
+- If you want to output one image every second from the video
+  ~input.mp4~, run the command:
+
+#+BEGIN_SRC bash
+ffmpeg -i input.mp4 -vf fps=1 out%d.png
+#+END_SRC
+*** How to cut a video?
+- Use the option ~-ss~ of ~ffmpeg~.
+- ~-ss~: When used as an input option (before "-i"), seeks in this
+  input file to position.
+- See [[https://superuser.com/questions/138331/using-ffmpeg-to-cut-up-video][Using ffmpeg to cut up video (superuser)]] and the man page of
+  ~ffmpeg~.
+- If you want to cut the video ~input.mp4~ from the 30s to 40s and
+  return the result in ~output.mp4~ file, run the command:
+
+#+BEGIN_SRC bash
+ffmpeg -ss 30 -i input.wmv -c copy -t 10 output.wmv
+#+END_SRC
 * Audio
 ** ALSA cards
 *** How can I find the usable ALSA devices?
