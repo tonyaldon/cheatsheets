@@ -549,7 +549,17 @@ pactl set-source-volume @DEFAULT_SOURCE@ -5%
 #+BEGIN_SRC bash
 youtube-dl -x --audio-format "mp3" https://www.youtube.com/watch?v=VQkzba7xRhs
 #+END_SRC
-
+*** How to download a youtube video in a specific format?
+- Use ~-f~ and ~-F~ option of ~youtube-dl~.
+- ~-f~: Video format code, see the "FORMAT SELECTION" for all the
+  info.
+- ~-F~: List all available formats of requested videos.
+- See [[https://unix.stackexchange.com/questions/272868/download-only-format-mp4-on-youtube-dl][download only format mp4 (stackexchange)]].
+- ~youtube-dl -F url~ where ~url~ is a youtube url, gives you a list
+  of format.
+- ~youtube-dl -f 11 url~ downloads the youtube video ~url~ at the
+  format corresponding to the number ~11~ in the output of the previous
+  commands.
 *** I get the error ~HTTP Error 403: Forbidden~ when I try to download videos from youtube with ~youtube-dl~?
 - Use ~--rm-cache-dir~ tag of the ~youtube-dl~ command.
 - See [[https://ytdl-org.github.io/youtube-dl/index.html][youtube-dl (homepage)]] and [[https://github.com/ytdl-org/youtube-dl/issues/24794][HTTP Error 403: Forbidden]].
