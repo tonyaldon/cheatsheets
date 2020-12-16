@@ -136,6 +136,34 @@ chmod +x kdenlive-20.04.2c-x86_64.appimage
 </mlt>
 #+END_SRC
 * *Inkscape*
+** Command line
+*** How to export inkscape svg to png format with command line?
+- Use ~inkscape~ command.
+- ~inkscape~: An SVG (Scalable Vector Graphics) editing program.
+- See the man page of ~inkcape~.
+- If you want to export the area-page of the ~input.svg~ file to the
+  ~input.png~ file, run the command:
+
+#+BEGIN_SRC bash
+inkscape --export-png= input.svg
+#+END_SRC
+
+- If you want to export the area-page of the ~input.svg~ file to the
+  ~ouput.png~ file, run the one of the following commands:
+
+#+BEGIN_SRC bash
+inkscape --export-png= input.svg -o output.png
+inkscape --export-area-page input.svg -o output.png
+#+END_SRC
+
+- If you want to export the drawing between the rectangle with the
+  diagonal (0,0)-(100,100) in the area-page of the ~input.svg~ file to
+  the file ~output.png~ file, run the command:
+
+#+BEGIN_SRC bash
+inkscape --export-area=0:0:100:100 input.svg -o output.png
+#+END_SRC
+
 ** Extensions
 - [[/usr/share/inkscape/extensions/inkex/__init__.py]]
 - [[/usr/share/inkscape/extensions/README.md]]
