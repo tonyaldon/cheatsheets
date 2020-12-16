@@ -136,6 +136,8 @@ chmod +x kdenlive-20.04.2c-x86_64.appimage
 </mlt>
 #+END_SRC
 * *Inkscape*
+** Palettes (related to color)
+[[/usr/share/inkscape/palettes/inkscape.gpl]]
 ** Revert svg
 *** How to revert ~svg~ file from last saved version of the document?
 - See example here [[https://bugs.launchpad.net/inkscape/+bug/804068][revert svg from last saved version]].
