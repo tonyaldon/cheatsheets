@@ -382,6 +382,13 @@ inkscape --verb-list | grep -i revert
 4) Check the audio input level with  *audacity*. It should be in
    the range *[-18,-6]*. And modify the audio input level in the
    *system preferences* of the OS.
+*** with microphone boya be m1 (on my laptop)
+- To set the input volume, run the command:
+
+#+BEGIN_SRC bash
+pactl set-source-volume @DEFAULT_SOURCE@ 12%
+#+END_SRC
+
 ** Editing with *audacity*
 1) Noise
 
