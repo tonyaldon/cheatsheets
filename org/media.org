@@ -136,6 +136,24 @@ chmod +x kdenlive-20.04.2c-x86_64.appimage
 </mlt>
 #+END_SRC
 * *Inkscape*
+** Extensions
+- [[/usr/share/inkscape/extensions/inkex/__init__.py]]
+- [[/usr/share/inkscape/extensions/README.md]]
+- [[/usr/share/inkscape/extensions/inkscape.extension.rng]]
+*** Extension to learn from
+**** color_list
+- It pops up a window with the all the color use in the current ~svg~
+  document.
+- Inside Inkscape, you can find it in ~Extensions > Color > List All~.
+- [[/usr/share/inkscape/extensions/color_list.py]]
+- [[/usr/share/inkscape/extensions/color_list.inx]]
+**** template_video
+- It produce a new video template from which you can start to produce
+  you ~svg~ document.
+- Inside Inkscape, you can find it in ~File > New from Template > Video...~.
+- [[/usr/share/inkscape/extensions/template_video.inx]]
+- [[/usr/share/inkscape/extensions/template.py]]
+- [[/usr/share/inkscape/extensions/color_list.inx]]
 ** Palettes (related to color)
 [[/usr/share/inkscape/palettes/inkscape.gpl]]
 ** Revert svg
