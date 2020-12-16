@@ -136,6 +136,181 @@ chmod +x kdenlive-20.04.2c-x86_64.appimage
 </mlt>
 #+END_SRC
 * *Inkscape*
+** Custom keybindings
+*** Align
+| binding | action                        | section | Default  |
+|---------+-------------------------------+---------+----------|
+| S-c     | AlignVerticalHorizontalCenter | Dialogs | C-M-KP_5 |
+| h       | AlignHorizontalCenter         | Dialogs | C-S-h    |
+| v       | AlignVerticalCenter           | Dialogs | C-S-t    |
+| C-h     | AlignHorizontalLeft           | Dialogs | C-S-KP_4 |
+| S-h     | AlignHorizontalRight          | Dialogs | C-S-KP_6 |
+| S-v     | AlignVerticalTop              | Dialogs | C-S-KP_8 |
+| C-v     | AlignVerticalBottom           | Dialogs | C-S-KP_2 |
+
+*** Dialogs
+| binding | action                        | section | Default  |
+|---------+-------------------------------+---------+----------|
+| C-t     | DialogsToggle                 | Dialogs | F12      |
+| a       | DialogAlignDistribute         | Dialogs | C-S-a    |
+| e       | DialogExport                  | Dialogs | C-S-e    |
+| f       | DialogFillStroke              | Dialogs | C-S-f    |
+| l       | DialogLayers                  | Dialogs | C-M-l    |
+| C-M-h   | DialogUndoHistory             | Dialogs | C-S-h    |
+
+*** Edit
+| binding   | action                        | section | Default      |
+|-----------+-------------------------------+---------+--------------|
+| M--       | EditUndo                      | Edit    | C-z          |
+| M-+       | EditRedo                      | Edit    | C-S-z        |
+| BackSpace | EditCut                       | Edit    | FIXME        |
+| C-c       | EditCopy                      | Edit    | C-c          |
+| F5        | EditPasteStyle                | Edit    | FIXME        |
+| S-F5      | EditPasteSize                 | Edit    | FIXME        |
+| C-M-F5    | EditPasteWidth                | Edit    | FIXME        |
+| S-M-F5    | EditPasteHeight               | Edit    | FIXME        |
+| d         | EditDuplicate                 | Edit    | C-d          |
+| C-d       | EditClone                     | Edit    | FIXME        |
+| S-d       | EditCloneSelectOriginal       | Edit    | FIXME        |
+| M-d       | EditUnlinkClone               | Edit    | FIXME        |
+| C-a       | EditSelectAll                 | Edit    | C-a          |
+| C-M-a     | EditSelectAllInAllLayers      | Edit    | C-M-a        |
+| Tab       | EditSelectNext                | Edit    | Tab          |
+| S-Tab     | EditSelectPrev                | Edit    | ISO_Left_Tab |
+| Escape    | EditDeselect                  | Edit    | Escape       |
+| C-f       | FitCanvasToSelectionOrDrawing | Edit    | nil          |
+
+*** Effects
+| binding       | action | section | Default |
+|---------------+--------+---------+---------|
+| I'm not using |        | Effects |         |
+| these actions |        |         |         |
+
+*** Help
+| binding       | action | section | Default |
+|---------------+--------+---------+---------|
+| I'm not using |        | Help    |         |
+| these actions |        |         |         |
+
+*** Object
+| binding | action                 | section | Default        |
+|---------+------------------------+---------+----------------|
+| C-S-h   | ObjectFlipHorizontally | Object  | h              |
+| C-S-v   | ObjectFlipVertically   | Object  | v              |
+| C-r     | ObjectRotate90         | Object  | C-bracketright |
+| S-r     | ObjectRotate90CCW      | Object  | C-bracketleft  |
+| S-g     | ObjectsToGuides        | Object  | S-g            |
+
+*** File
+| binding | action        | section | Default |
+|---------+---------------+---------+---------|
+| C-n     | FileNew       | File    | C-n     |
+| C-M-n   | FileTemplates | File    | C-M-n   |
+| C-o     | FileOpen      | File    | C-o     |
+| F6      | FileSave      | File    | C-s     |
+| M-F6    | FileSaveACopy | File    | C-S-M-s |
+| C-i     | FileImport    | File    | C-i     |
+| C-w     | FileClose     | File    | C-w     |
+| C-q     | FileQuit      | File    | C-q     |
+
+*** TODO Layers
+| binding       | action | section | Default |
+|---------------+--------+---------+---------|
+| I'm not using |        | Layers  |         |
+| these actions |        |         |         |
+
+*** Path
+| binding    | action              | section | Default       |
+|------------+---------------------+---------+---------------|
+| p          | ObjectToPath        | Path    | C-S-c         |
+| C-M-p      | StrokeToPath        | Path    | C-M-c         |
+| C-plus     | SelectionUnion      | Path    | C-plus        |
+| C-minus    | SelectionDiff       | Path    | C-minus       |
+| underscore | SelectionIntersect  | Path    | C-asterisk    |
+| backslash  | SelectionSymDiff    | Path    | C-asciicircum |
+| slash      | SelectionDivide     | Path    | C-slash       |
+| asciitilde | SelectionCutPath    | Path    | C-M-slash     |
+| S-plus     | SelectionCombine    | Path    | C-k           |
+| C-M-k      | SelectionBreakApart | Path    | C-S-k         |
+| o          | SelectionDynOffset  | Path    | C-j           |
+
+*** Selection
+| binding   | action           | section   | Default   |
+|-----------+------------------+-----------+-----------|
+| Home      | SelectionToFront | Selection | Home      |
+| End       | SelectionToBack  | Selection | End       |
+| Page_Up   | SelectionRaise   | Selection | Page_Up   |
+| Page_Down | SelectionLower   | Selection | Page_Down |
+| comma     | SelectionShrink  | Selection | comma     |
+| period    | SelectionGrow    | Selection | period    |
+| g         | SelectionGroup   | Selection | C-g       |
+| C-g       | SelectionUnGroup | Selection | C-S-g     |
+
+*** Text
+| binding       | action | section | Default |
+|---------------+--------+---------+---------|
+| I'm not using |        | Text    |         |
+| these actions |        |         |         |
+
+*** Tools
+| binding | action          | section | Default |
+|---------+-----------------+---------+---------|
+| F1      | ToolSelector    | Tools   | FIXME   |
+| s       | ToolSelector    | Tools   | FIXME   |
+| n       | ToolNode        | Tools   | FIXME   |
+| M-b     | ToolPen         | Tools   | FIXME   |
+| 0       | ToolZoom        | Tools   | FIXME   |
+| r       | ToolRect        | Tools   | FIXME   |
+| c       | ToolArc         | Tools   | FIXME   |
+| m       | ToolMeasure     | Tools   | FIXME   |
+| p       | ToolPencil      | Tools   | FIXME   |
+| e       | ToolEraser      | Tools   | FIXME   |
+| b       | ToolPaintBucket | Tools   | FIXME   |
+| t       | ToolText        | Tools   | FIXME   |
+| colon   | ToolDropper     | Tools   | FIXME   |
+*** View
+| binding        | action                | section | Default    |
+|----------------+-----------------------+---------+------------|
+| C-S-t          | FocusToggle           | View    | S-F11      |
+| numbersign (#) | ToggleGrid            | View    | numbersign |
+| bar            | ToggleGuides          | View    | bar        |
+| percent        | ToggleSnapGlobal      | View    | percent    |
+| M-r            | ToggleRulers          | View    | C-r        |
+| C-M-b          | ToggleScrollbars      | View    | C-b        |
+| C-p            | TogglePalette         | View    | M-S-p      |
+| C-s            | ToggleStatusbar       | View    | nil        |
+| C-S-s          | ToggleSnapToolbar     | View    | nil        |
+| nil            | ToggleCommandsToolbar | View    | nil        |
+| nil            | ToggleToolToolbar     | View    | nil        |
+| C-b            | ToggleToolbox         | View    | nil        |
+*** Zoom
+| binding | action         | section | Default |
+|---------+----------------+---------+---------|
+|    plus | ZoomIn         | Zoom    |    plus |
+|   minus | ZoomOut        | Zoom    |   minus |
+|       1 | Zoom1:0        | Zoom    |       1 |
+|       2 | Zoom1:2        | Zoom    |       2 |
+|       3 | ZoomSelection  | Zoom    |       3 |
+|       4 | ZoomDrawing    | Zoom    |       4 |
+|       5 | ZoomPage       | Zoom    |       5 |
+|       6 | ZoomPageWidth  | Zoom    |       6 |
+|       0 | ZoomCenterPage | Zoom    |     C-4 |
+*** TODO files used by inkscape to determine the key bindings
+- https://gitlab.gnome.org/GNOME/gtk/raw/master/gdk/gdkkeysyms.h
+
+- [[/sudo:root@tony:/usr/share/inkscape/ui/keybindings.rc]]
+
+- [[/usr/include/gtk-3.0/gdk/gdkkeysyms.h]]
+- [[/home/tony/.config/inkscape/keys]]
+- [[/usr/share/inkscape/keys/]]
+- [[/usr/share/inkscape/keys/default.xml]]
+- [[/usr/share/inkscape/ui/keybindings.rc]]
+
+- https://gitlab.gnome.org/GNOME/gtk/raw/master/gdk/gdkkeysyms.h
+- https://gitlab.gnome.org/GNOME/gtk/
+- https://gitlab.com/inkscape/inkscape
+- https://wiki.inkscape.org/wiki/index.php/Customizing_Inkscape
+- https://inkscape.org/doc/keys.html
 ** Command line
 *** How to export inkscape svg to png format with command line?
 - Use ~inkscape~ command.
@@ -195,18 +370,6 @@ inkscape --export-area=0:0:100:100 input.svg -o output.png
 #+BEGIN_SRC bash
 inkscape --verb-list | grep -i revert
 #+END_SRC
-** Custom keybindings
-- /usr/include/gtk-3.0/gdk/gdkkeysyms.h
-- /home/tony/.config/inkscape/keys
-- /usr/share/inkscape/keys/
-- /usr/share/inkscape/keys/default.xml
-- /usr/share/inkscape/ui/keybindings.rc
-
-- https://gitlab.gnome.org/GNOME/gtk/raw/master/gdk/gdkkeysyms.h
-- https://gitlab.gnome.org/GNOME/gtk/
-- https://gitlab.com/inkscape/inkscape
-- https://wiki.inkscape.org/wiki/index.php/Customizing_Inkscape
-- https://inkscape.org/doc/keys.html
 * *Audacity*
 ** Links
 - [[https://www.youtube.com/watch?v=10FFKl_0GSA][How to remove background noise in audacity]]
